@@ -1,4 +1,13 @@
-/*Empty*/
+@mixin orange-button {
+    font: normal 17px/22.1px Georgia, serif;
+    background-color: #F1CDB3;
+    padding: 15px 45px;
+    border: 0;
+    border-radius: 100px;
+    cursor: pointer;
+    letter-spacing: 0.06em;
+}
+
 .header-container {
     .logo {
         .title {
@@ -34,13 +43,24 @@
         }
 
         .orange-button {
-            font: normal 17px/22.1px Georgia, serif;
-            background-color: #F1CDB3;
-            padding: 15px 45px;
-            border: 0;
-            border-radius: 100px;
-            cursor: pointer;
-            letter-spacing: 0.06em;
+            @include orange-button;
+        }
+    }
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 120px;
+
+    .about-content {
+        display: flex;
+        flex-flow: column;
+        gap: 25px;
+        max-width: 430px;
+
+        .about-title {
+            max-width: 370px;
         }
     }
 }

@@ -94,4 +94,44 @@ body {
   letter-spacing: 0.06em;
 }
 
+.footer {
+  background: url("../../assets/images/noise.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+}
+
+.footer-container {
+  display: flex;
+  gap: 160px;
+  padding: 40px 40px 0;
+}
+.footer-container .contacts-title,
+.footer-container .locations-title {
+  font: normal 35px/45.5px Georgia, serif;
+  color: #FFFFFF;
+  letter-spacing: 0.06em;
+}
+.footer-container .contacts {
+  padding-top: 20px;
+  max-width: 280px;
+  display: flex;
+  flex-flow: column;
+  gap: 40px;
+}
+.footer-container .contacts .e-mail, .footer-container .contacts .tel {
+  font: normal 20px/23px Georgia, serif;
+  letter-spacing: 0.06em;
+  color: #F1CDB3;
+}
+.footer-container .locations {
+  padding-top: 16px;
+  max-width: 302px;
+  display: flex;
+  flex-flow: column;
+  gap: 33px;
+}
+.footer-container .locations .location {
+  font: normal 20px/23px Georgia, serif;
+  letter-spacing: 0.06em;
+  color: #F1CDB3;
+}
+
 /*# sourceMappingURL=style.css.map */

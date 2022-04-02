@@ -3,7 +3,7 @@
 }
 
 .header-hero {
-  background: url(../../assets/images/noise.png), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+  background: url("../../assets/images/noise.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
 }
 
 .orange-button {
@@ -172,6 +172,7 @@
   gap: 15px;
 }
 .donation-container .donation-content .credit-card-image {
+  width: 30px;
   background-image: url("../../assets/icons/credit-card.svg");
   background-position: left center;
   background-repeat: no-repeat;

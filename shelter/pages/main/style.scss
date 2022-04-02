@@ -89,7 +89,7 @@
 
             .pets-card {
                 max-width: 270px;
-                background-color: #FFFFFF;
+                background-color: #FAFAFA;
                 display: flex;
                 flex-flow: column;
                 align-items: center;
@@ -107,4 +107,72 @@
         }
     }
 
+}
+
+.help-container {
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    gap: 60px;
+
+    .help-title {
+        text-align: center;
+    }
+
+    .help-cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 55px;
+
+        .help-card {
+            width: 175px;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-size: 60px 60px;
+
+            &:nth-child(1) {
+                background-image: url('../../assets/icons/pet-food.svg');
+            }
+            
+            &:nth-child(2) {
+                background-image: url('../../assets/icons/transportation.svg');
+            }
+
+            &:nth-child(3) {
+                background-image: url('../../assets/icons/toys.svg');
+            }
+
+            &:nth-child(4) {
+                background-image: url('../../assets/icons/bowls-and-cups.svg');
+            }
+
+            &:nth-child(5) {
+                background-image: url('../../assets/icons/shampoos.svg');
+            }
+
+            &:nth-child(6) {
+                background-image: url('../../assets/icons/vitamins.svg');
+            }
+
+            &:nth-child(7) {
+                background-image: url('../../assets/icons/medicines.svg');
+            }
+
+            &:nth-child(8) {
+                background-image: url('../../assets/icons/collars-or-leashes.svg');
+            }
+
+            &:nth-child(9) {
+                background-image: url('../../assets/icons/sleeping-area.svg');
+            }
+
+            .help-card-title {
+                padding-top: 87px;
+                font: normal 20px/23px Georgia, serif;
+                letter-spacing: 0.06em;
+                text-align: center;
+            }
+        }
+    }
 }

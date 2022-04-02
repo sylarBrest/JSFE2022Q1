@@ -76,7 +76,7 @@
 }
 .pets-container .pets-slider .pets-cards .pets-card {
   max-width: 270px;
-  background-color: #FFFFFF;
+  background-color: #FAFAFA;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -88,6 +88,61 @@
 }
 .pets-container .pets-slider .pets-cards .pets-card .pets-button {
   margin-bottom: 30px;
+}
+
+.help-container {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+  gap: 60px;
+}
+.help-container .help-title {
+  text-align: center;
+}
+.help-container .help-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 55px;
+}
+.help-container .help-cards .help-card {
+  width: 175px;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: 60px 60px;
+}
+.help-container .help-cards .help-card:nth-child(1) {
+  background-image: url("../../assets/icons/pet-food.svg");
+}
+.help-container .help-cards .help-card:nth-child(2) {
+  background-image: url("../../assets/icons/transportation.svg");
+}
+.help-container .help-cards .help-card:nth-child(3) {
+  background-image: url("../../assets/icons/toys.svg");
+}
+.help-container .help-cards .help-card:nth-child(4) {
+  background-image: url("../../assets/icons/bowls-and-cups.svg");
+}
+.help-container .help-cards .help-card:nth-child(5) {
+  background-image: url("../../assets/icons/shampoos.svg");
+}
+.help-container .help-cards .help-card:nth-child(6) {
+  background-image: url("../../assets/icons/vitamins.svg");
+}
+.help-container .help-cards .help-card:nth-child(7) {
+  background-image: url("../../assets/icons/medicines.svg");
+}
+.help-container .help-cards .help-card:nth-child(8) {
+  background-image: url("../../assets/icons/collars-or-leashes.svg");
+}
+.help-container .help-cards .help-card:nth-child(9) {
+  background-image: url("../../assets/icons/sleeping-area.svg");
+}
+.help-container .help-cards .help-card .help-card-title {
+  padding-top: 87px;
+  font: normal 20px/23px Georgia, serif;
+  letter-spacing: 0.06em;
+  text-align: center;
 }
 
 /*# sourceMappingURL=style.css.map */

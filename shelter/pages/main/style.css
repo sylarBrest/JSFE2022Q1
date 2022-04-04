@@ -39,6 +39,7 @@
 }
 
 .about-container {
+  padding: 80px 0 100px;
   display: flex;
   align-items: center;
   gap: 120px;
@@ -53,8 +54,17 @@
   max-width: 370px;
 }
 
-.pets-container {
+.pets-section,
+.donation-section {
+  width: 100%;
+}
+.pets-section .wrapper,
+.donation-section .wrapper {
   background-color: #f6f6f6;
+}
+
+.pets-container {
+  padding: 80px 0 100px;
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -81,7 +91,7 @@
   align-items: center;
   gap: 29px;
 }
-.pets-container .pets-slider .pets-cards .pets-card .pets-card-title {
+.pets-container .pets-slider .pets-cards .pets-card-title {
   font: normal 20px/23px Georgia, serif;
   letter-spacing: 0.06em;
 }
@@ -90,6 +100,7 @@
 }
 
 .help-container {
+  padding: 80px 40px 100px;
   display: flex;
   align-items: center;
   flex-flow: column;
@@ -102,10 +113,9 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 55px;
+  gap: 56px 120px;
 }
 .help-container .help-cards .help-card {
-  width: 175px;
   background-position: top center;
   background-repeat: no-repeat;
   background-size: 60px 60px;
@@ -117,6 +127,7 @@
   background-image: url("../../assets/icons/transportation.svg");
 }
 .help-container .help-cards .help-card:nth-child(3) {
+  width: 60px;
   background-image: url("../../assets/icons/toys.svg");
 }
 .help-container .help-cards .help-card:nth-child(4) {
@@ -137,7 +148,7 @@
 .help-container .help-cards .help-card:nth-child(9) {
   background-image: url("../../assets/icons/sleeping-area.svg");
 }
-.help-container .help-cards .help-card .help-card-title {
+.help-container .help-cards .help-card-title {
   padding-top: 87px;
   font: normal 20px/23px Georgia, serif;
   letter-spacing: 0.06em;
@@ -145,9 +156,10 @@
 }
 
 .donation-container {
-  background-color: #f6f6f6;
+  padding: 80px 40px 100px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 30px;
 }
 .donation-container .donation-content {

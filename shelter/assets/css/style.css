@@ -21,6 +21,11 @@ body {
   padding: 0 40px;
 }
 
+.wrapper {
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
 .title {
   font: normal 35px/45.5px Georgia, serif;
   letter-spacing: 0.06em;
@@ -65,14 +70,10 @@ body {
   line-height: 24px;
 }
 
-.main-container {
+.main {
   display: flex;
   flex-flow: column;
   align-items: center;
-}
-
-.section {
-  padding: 80px 0 100px;
 }
 
 .round-button {

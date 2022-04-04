@@ -49,6 +49,7 @@
 }
 
 .about-container {
+    padding: 80px 0 100px;
     display: flex;
     align-items: center;
     gap: 120px;
@@ -65,8 +66,16 @@
     }
 }
 
+.pets-section,
+.donation-section {
+    width: 100%;
+    .wrapper {
+        background-color: #f6f6f6;
+    }
+}
+
 .pets-container {
-    background-color: #f6f6f6;
+    padding: 80px 0 100px;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -94,7 +103,7 @@
                 align-items: center;
                 gap: 29px;
 
-                .pets-card-title {
+                &-title {
                     font: normal 20px/23px Georgia, serif;
                     letter-spacing: 0.06em;
                 }
@@ -109,6 +118,7 @@
 }
 
 .help-container {
+    padding: 80px 40px 100px;
     display: flex;
     align-items: center;
     flex-flow: column;
@@ -122,10 +132,9 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 55px;
+        gap: 56px 120px;
 
         .help-card {
-            width: 175px;
             background-position: top center;
             background-repeat: no-repeat;
             background-size: 60px 60px;
@@ -139,6 +148,7 @@
             }
 
             &:nth-child(3) {
+                width: 60px;
                 background-image: url('../../assets/icons/toys.svg');
             }
 
@@ -166,7 +176,7 @@
                 background-image: url('../../assets/icons/sleeping-area.svg');
             }
 
-            .help-card-title {
+            &-title {
                 padding-top: 87px;
                 font: normal 20px/23px Georgia, serif;
                 letter-spacing: 0.06em;
@@ -177,9 +187,10 @@
 }
 
 .donation-container {
-    background-color: #f6f6f6;
+    padding: 80px 40px 100px;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 30px;
 
     .donation-content {

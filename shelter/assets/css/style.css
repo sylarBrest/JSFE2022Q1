@@ -32,12 +32,9 @@ body {
 }
 
 .header-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   margin: 0 auto;
   display: flex;
-  padding: 60px 40px;
+  padding: 30px 40px;
   align-items: center;
   color: #FFFFFF;
   font: normal 13px/15px Arial, sans-serif;
@@ -173,9 +170,6 @@ body {
 .footer-container .locations .location.boston {
   display: flex;
   flex-flow: column;
-}
-.footer-container .locations .location.london {
-  padding-top: 4px;
 }
 
 /*# sourceMappingURL=style.css.map */

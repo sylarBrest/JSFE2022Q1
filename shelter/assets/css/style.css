@@ -57,6 +57,9 @@ body {
 .header-container .logo .subtitle {
   letter-spacing: 0.1em;
 }
+.header-container .nav {
+  margin-top: -4px;
+}
 .header-container .nav .nav-list {
   display: flex;
   gap: 36px;
@@ -68,6 +71,10 @@ body {
   color: #CDCDCD;
   font-size: 15px;
   line-height: 24px;
+}
+.header-container .nav .nav-link.active {
+  padding-bottom: 4px;
+  border-bottom: 3px solid #F1CDB3;
 }
 
 .main {
@@ -110,14 +117,43 @@ body {
   color: #FFFFFF;
   letter-spacing: 0.06em;
 }
+.footer-container .info.e-mail-info {
+  background-image: url("../../assets/icons/mail.svg");
+  height: 32px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 40px 32px;
+}
+.footer-container .info.tel-info {
+  background-image: url("../../assets/icons/phone.svg");
+  height: 32px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 40px 32px;
+}
+.footer-container .info.location-info {
+  display: flex;
+  align-items: center;
+}
+.footer-container .info.location-info .location-info-image {
+  width: 40px;
+  background-image: url("../../assets/icons/pin.svg");
+  height: 32px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 22px 32px;
+}
 .footer-container .contacts {
-  padding-top: 20px;
+  padding-top: 16px;
   max-width: 280px;
   display: flex;
   flex-flow: column;
   gap: 40px;
 }
-.footer-container .contacts .e-mail, .footer-container .contacts .tel {
+.footer-container .contacts .e-mail,
+.footer-container .contacts .tel {
+  padding-left: 60px;
+  padding-top: 4px;
   font: normal 20px/23px Georgia, serif;
   letter-spacing: 0.06em;
   color: #F1CDB3;
@@ -133,6 +169,13 @@ body {
   font: normal 20px/23px Georgia, serif;
   letter-spacing: 0.06em;
   color: #F1CDB3;
+}
+.footer-container .locations .location.boston {
+  display: flex;
+  flex-flow: column;
+}
+.footer-container .locations .location.london {
+  padding-top: 4px;
 }
 
 /*# sourceMappingURL=style.css.map */

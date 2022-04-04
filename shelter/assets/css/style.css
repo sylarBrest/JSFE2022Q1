@@ -11,7 +11,6 @@ html {
 body {
   display: flex;
   flex-flow: column;
-  font: normal 15px/24px Arial, sans-serif;
   color: #545454;
 }
 
@@ -28,8 +27,13 @@ body {
 }
 
 .title {
-  font: normal 35px/45.5px Georgia, serif;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
   letter-spacing: 0.06em;
+  color: #545454;
 }
 
 .header-container {
@@ -66,12 +70,16 @@ body {
 }
 .header-container .nav .nav-link {
   text-decoration: none;
-  color: #CDCDCD;
+  font-family: "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-size: 15px;
-  line-height: 24px;
+  line-height: 160%;
+  color: #CDCDCD;
 }
 .header-container .nav .nav-link.active {
   padding-bottom: 4px;
+  color: #FAFAFA;
   border-bottom: 3px solid #F1CDB3;
 }
 
@@ -151,9 +159,13 @@ body {
 }
 .footer-container .contacts-title,
 .footer-container .locations-title {
-  font: normal 35px/45.5px Georgia, serif;
-  color: #FFFFFF;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
   letter-spacing: 0.06em;
+  color: #FFFFFF;
 }
 .footer-container .info.e-mail-info {
   background-image: url("../../assets/icons/mail.svg");

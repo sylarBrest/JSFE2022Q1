@@ -9,8 +9,9 @@ $color-primary-light: #FDDCC4;
 $color-light-s: #FAFAFA;
 $color-light-l: #F6F6F6;
 $color-light-xl: #FFFFFF;
+
 // Variables for Typography
-@mixin h2 {
+@mixin h2($color: $color-light-xl) {
     font: {
         family: 'Georgia', serif;
         style: normal;
@@ -18,8 +19,10 @@ $color-light-xl: #FFFFFF;
         size: 44px;
     }
     line-height: 130%;
+    color: $color;
 }
-@mixin h3 {
+
+@mixin h3($color: $color-dark-l) {
     font: {
         family: 'Georgia', serif;
         style: normal;
@@ -28,7 +31,9 @@ $color-light-xl: #FFFFFF;
     }
     line-height: 130%;
     letter-spacing: 0.06em;
+    color: $color;
 }
+
 @mixin h4 {
     font: {
         family: 'Georgia', serif;
@@ -39,6 +44,7 @@ $color-light-xl: #FFFFFF;
     line-height: 115%;
     letter-spacing: 0.06em;
 }
+
 @mixin h5 {
     font: {
         family: 'Georgia', serif;
@@ -49,7 +55,8 @@ $color-light-xl: #FFFFFF;
     line-height: 110%;
     letter-spacing: 0.06em;
 }
-@mixin par-l {
+
+@mixin paragraph-l($color: $color-dark-s) {
     font: {
         family: 'Arial', sans-serif;
         style: normal;
@@ -57,8 +64,10 @@ $color-light-xl: #FFFFFF;
         size: 15px;
     }
     line-height: 160%;
+    color: $color;
 }
-@mixin par-s {
+
+@mixin paragraph-s {
     font: {
         family: 'Arial', sans-serif;
         style: italic;
@@ -81,7 +90,6 @@ html {
 body {
     display: flex;
     flex-flow: column;
-    font: normal 15px/24px Arial, sans-serif;
     color: $color-dark-l;
 }
 
@@ -98,8 +106,7 @@ body {
 }
 
 .title {
-    font: normal 35px/45.5px Georgia, serif;
-    letter-spacing: 0.06em;
+    @include h3;
 }
 
 .header-container {
@@ -140,11 +147,10 @@ body {
 
         .nav-link {
             text-decoration: none;
-            color: $color-dark-s;
-            font-size: 15px;
-            line-height: 24px;
+            @include paragraph-l;
             &.active {
                 padding-bottom: 4px;
+                color: $color-light-s;
                 border-bottom: 3px solid #F1CDB3;
             }
         }
@@ -236,9 +242,7 @@ body {
 
     .contacts-title,
     .locations-title {
-        font: normal 35px/45.5px Georgia, serif;
-        color: #FFFFFF;
-        letter-spacing: 0.06em;
+        @include h3($color-light-xl);
     }
 
     .info {

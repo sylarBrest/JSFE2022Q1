@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-flow: column;
   font: normal 15px/24px Arial, sans-serif;
+  color: #545454;
 }
 
 .container {
@@ -84,7 +85,7 @@ body {
   width: 100%;
 }
 .pets-section .wrapper {
-  background-color: #f6f6f6;
+  background-color: #F6F6F6;
 }
 
 .pets-container {

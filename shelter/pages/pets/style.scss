@@ -4,19 +4,21 @@
     .pets-slider {
         .pets-cards {
             flex-wrap: wrap;
-            gap: 28px 40px;
+            gap: 28px 40px; //исправить после проверки
         }
     }
 
     .navigation-buttons {
-        margin-top: -1px;
+        margin-top: -1px; //исправить после проверки
         display: flex;
         gap: 20px;
         font: normal 400 20px/23px Georgia, serif;
         letter-spacing: 0.06em;
         
-        .navigation-button.current {
-            background-color: #F1CDB3;
+        .navigation-button {
+            &.current {
+                background-color: #F1CDB3;
+            }
         }
     }
 }

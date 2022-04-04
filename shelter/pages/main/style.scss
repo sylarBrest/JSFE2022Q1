@@ -1,3 +1,5 @@
+@use '../../assets/css/style.scss' as all;
+
 @mixin orange-button {
     font: normal 17px/22.1px Georgia, serif;
     background-color: #F1CDB3;
@@ -43,7 +45,7 @@
         gap: 42px;
 
         .hero-title {
-            font: normal 44px/57.2px Georgia, serif;
+            @include all.h2;
             max-width: 310px;
             color: #FFFFFF;
         }
@@ -203,7 +205,7 @@
         }
 
         .legal-information {
-            font: italic 12px/18px Arial, sans-serif;
+            @include all.par-s;
         }
     }
 }

@@ -23,7 +23,7 @@ body {
 
 .wrapper {
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 80px 40px 100px;
 }
 
 .title {
@@ -80,13 +80,53 @@ body {
   align-items: center;
 }
 
-.round-button {
+.pets-section {
+  width: 100%;
+}
+.pets-section .wrapper {
+  background-color: #f6f6f6;
+}
+
+.pets-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 60px;
+}
+.pets-container .pets-title {
+  max-width: 400px;
+  text-align: center;
+}
+.pets-container .pets-slider .pets-cards {
+  display: flex;
+}
+.pets-container .pets-slider .pets-cards .pets-card {
+  max-width: 270px;
+  background-color: #FAFAFA;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  border-radius: 9px;
+  gap: 29px;
+}
+.pets-container .pets-slider .pets-cards .pets-card-title {
+  font: normal 20px/23px Georgia, serif;
+  letter-spacing: 0.06em;
+}
+.pets-container .pets-slider .pets-cards .pets-card .pets-button {
+  margin-bottom: 30px;
+}
+
+.navigation-button {
   height: 52px;
   width: 52px;
-  background-color: #FFFFFF;
+  background-color: inherit;
   border: 2px solid #F1CDB3;
   border-radius: 100px;
   cursor: pointer;
+}
+.navigation-button.disabled {
+  border-color: #CDCDCD;
 }
 
 .pets-button {

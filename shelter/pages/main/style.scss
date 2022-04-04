@@ -13,6 +13,7 @@
     left: 50%;
     transform: translateX(-50%);
     padding: 60px 40px;
+
     .logo {
         .title {
             color: #F1CDB3;
@@ -33,6 +34,7 @@
     display: flex;
     align-items: center;
     gap: 42px;
+
     .hero {
         display: flex;
         margin-top: -80px;
@@ -53,7 +55,6 @@
 }
 
 .about-container {
-    padding: 80px 0 100px;
     display: flex;
     align-items: center;
     gap: 120px;
@@ -70,59 +71,27 @@
     }
 }
 
-.pets-section,
 .donation-section {
     width: 100%;
+
     .wrapper {
         background-color: #f6f6f6;
     }
 }
 
 .pets-container {
-    padding: 80px 0 100px;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    gap: 60px;
-
-    .pets-title {
-        max-width: 400px;
-        text-align: center;
-    }
-
     .pets-slider {
         display: flex;
         align-items: center;
         gap: 53px;
 
         .pets-cards {
-            display: flex;
             gap: 90px;
-
-            .pets-card {
-                max-width: 270px;
-                background-color: #FAFAFA;
-                display: flex;
-                flex-flow: column;
-                align-items: center;
-                gap: 29px;
-
-                &-title {
-                    font: normal 20px/23px Georgia, serif;
-                    letter-spacing: 0.06em;
-                }
-
-                .pets-button {
-                    margin-bottom: 30px;
-                }
-            }
         }
     }
-
 }
 
 .help-container {
-    padding: 80px 40px 100px;
     display: flex;
     align-items: center;
     flex-flow: column;
@@ -191,7 +160,6 @@
 }
 
 .donation-container {
-    padding: 80px 40px 100px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -238,5 +206,4 @@
             font: italic 12px/18px Arial, sans-serif;
         }
     }
-
 }

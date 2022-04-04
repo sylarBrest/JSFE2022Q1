@@ -45,7 +45,6 @@
 }
 
 .about-container {
-  padding: 80px 0 100px;
   display: flex;
   align-items: center;
   gap: 120px;
@@ -60,53 +59,23 @@
   max-width: 370px;
 }
 
-.pets-section,
 .donation-section {
   width: 100%;
 }
-.pets-section .wrapper,
 .donation-section .wrapper {
   background-color: #f6f6f6;
 }
 
-.pets-container {
-  padding: 80px 0 100px;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  gap: 60px;
-}
-.pets-container .pets-title {
-  max-width: 400px;
-  text-align: center;
-}
 .pets-container .pets-slider {
   display: flex;
   align-items: center;
   gap: 53px;
 }
 .pets-container .pets-slider .pets-cards {
-  display: flex;
   gap: 90px;
-}
-.pets-container .pets-slider .pets-cards .pets-card {
-  max-width: 270px;
-  background-color: #FAFAFA;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  gap: 29px;
-}
-.pets-container .pets-slider .pets-cards .pets-card-title {
-  font: normal 20px/23px Georgia, serif;
-  letter-spacing: 0.06em;
-}
-.pets-container .pets-slider .pets-cards .pets-card .pets-button {
-  margin-bottom: 30px;
 }
 
 .help-container {
-  padding: 80px 40px 100px;
   display: flex;
   align-items: center;
   flex-flow: column;
@@ -162,7 +131,6 @@
 }
 
 .donation-container {
-  padding: 80px 40px 100px;
   display: flex;
   align-items: center;
   justify-content: center;

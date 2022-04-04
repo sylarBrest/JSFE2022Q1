@@ -1,1 +1,22 @@
-/*Empty*/
+.pets-container {
+    gap: 59px; //исправить после проверки
+
+    .pets-slider {
+        .pets-cards {
+            flex-wrap: wrap;
+            gap: 28px 40px;
+        }
+    }
+
+    .navigation-buttons {
+        margin-top: -1px;
+        display: flex;
+        gap: 20px;
+        font: normal 400 20px/23px Georgia, serif;
+        letter-spacing: 0.06em;
+        
+        .navigation-button.current {
+            background-color: #F1CDB3;
+        }
+    }
+}

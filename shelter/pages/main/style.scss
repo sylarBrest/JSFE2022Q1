@@ -55,7 +55,7 @@
         }
 
         .hero-subtitle {
-            color: #CDCDCD;
+            @include all.paragraph-l;
         }
     }
 }

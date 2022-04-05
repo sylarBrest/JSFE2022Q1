@@ -1,3 +1,18 @@
+/* Connect fonts as they not available in Linux/OS X */
+@font-face { 
+    font-family: 'Georgia';
+    src: url('../fonts/GeorgiaRegular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face { 
+    font-family: 'Arial';
+    src: url('../fonts/ArialRegular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
 // Variables for colors
 $color-dark-s: #CDCDCD;
 $color-dark-m: #B2B2B2;
@@ -10,7 +25,7 @@ $color-light-s: #FAFAFA;
 $color-light-l: #F6F6F6;
 $color-light-xl: #FFFFFF;
 
-// Variables for Typography
+// Mixins for Typography
 @mixin h2($color: $color-light-xl) {
     font: {
         family: 'Georgia', serif;

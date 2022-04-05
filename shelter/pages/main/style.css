@@ -11,12 +11,6 @@ html {
 body {
   display: flex;
   flex-flow: column;
-  font-family: "Arial", sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 160%;
-  color: #CDCDCD;
   color: #545454;
 }
 
@@ -76,12 +70,16 @@ body {
 }
 .header-container .nav .nav-link {
   text-decoration: none;
-  color: #CDCDCD;
+  font-family: "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-size: 15px;
-  line-height: 24px;
+  line-height: 160%;
+  color: #CDCDCD;
 }
 .header-container .nav .nav-link.active {
   padding-bottom: 4px;
+  color: #FAFAFA;
   border-bottom: 3px solid #F1CDB3;
 }
 
@@ -278,6 +276,11 @@ body {
   max-width: 310px;
 }
 .hero-container .hero .hero-subtitle {
+  font-family: "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
   color: #CDCDCD;
 }
 

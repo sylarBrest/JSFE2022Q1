@@ -1,3 +1,16 @@
+/* Connect fonts as they not available in Linux/OS X */
+@font-face {
+  font-family: "Georgia";
+  src: url("../fonts/GeorgiaRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Arial";
+  src: url("../fonts/ArialRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
 * {
   box-sizing: border-box;
   margin: 0;

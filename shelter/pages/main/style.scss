@@ -24,6 +24,11 @@
 
 .primary-button {
     @include all.button-primary;
+
+    &:hover {
+        background-color: all.$color-primary-light;
+        border-color: all.$color-primary-light;
+    }
 }
 
 .hero-container {

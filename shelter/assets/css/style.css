@@ -15,6 +15,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 html {
@@ -85,18 +86,21 @@ body {
   list-style: none;
 }
 .header-container .nav .nav-link {
-  text-decoration: none;
   font-family: "Arial", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 160%;
   color: #CDCDCD;
+  transition: all 0.5s;
 }
 .header-container .nav .nav-link.active {
   padding-bottom: 4px;
   color: #FAFAFA;
   border-bottom: 3px solid #F1CDB3;
+}
+.header-container .nav .nav-link:hover {
+  color: #FAFAFA;
 }
 
 .main {
@@ -133,6 +137,8 @@ body {
   align-items: center;
   border-radius: 9px;
   gap: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
 }
 .pets-container .pets-slider .pets-cards .pets-card-title {
   font-family: "Georgia", serif;
@@ -160,18 +166,29 @@ body {
   border-radius: 100px;
   cursor: pointer;
   margin: 0;
+  transition: all 0.5s;
   margin-bottom: 30px;
+}
+.pets-container .pets-slider .pets-cards .pets-card:hover {
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  background-color: #FFFFFF;
+}
+.pets-container .pets-slider .pets-cards .pets-card:hover .pets-button {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
 }
 
 .navigation-button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   height: 52px;
   width: 52px;
   background-color: inherit;
   border: 2px solid #F1CDB3;
   border-radius: 100px;
+  transition: all 0.5s;
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -181,9 +198,9 @@ body {
   color: #292929;
   cursor: pointer;
 }
-.navigation-button:disabled {
-  border-color: #CDCDCD;
-  color: #CDCDCD;
+.navigation-button:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
 }
 
 .footer {
@@ -236,12 +253,14 @@ body {
   max-width: 280px;
   display: flex;
   flex-flow: column;
-  gap: 40px;
+  gap: 42px;
 }
 .footer-container .contacts .e-mail,
 .footer-container .contacts .tel {
   padding-left: 60px;
-  padding-top: 4px;
+}
+.footer-container .contacts .e-mail .footer-link,
+.footer-container .contacts .tel .footer-link {
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -257,7 +276,7 @@ body {
   flex-flow: column;
   gap: 33px;
 }
-.footer-container .locations .location {
+.footer-container .locations .location .footer-link {
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -266,7 +285,7 @@ body {
   letter-spacing: 0.06em;
   color: #F1CDB3;
 }
-.footer-container .locations .location.boston {
+.footer-container .locations .location .footer-link.boston {
   display: flex;
   flex-flow: column;
 }

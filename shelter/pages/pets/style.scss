@@ -26,29 +26,44 @@
             &.active {
                 color: all.$color-dark-3xl;
             }
+
+            &:hover {
+                color: all.$color-dark-3xl;
+            }
         }
     }
 }
 
 .pets-container {
-    gap: 60px; //исправить после проверки
+    gap: 59px; //исправить после проверки
 
     .pets-slider {
         .pets-cards {
             flex-wrap: wrap;
-            gap: 31px 40px; //исправить после проверки
+            gap: 30px 40px;
         }
     }
 
     .navigation-buttons {
-        margin-top: 2px; //исправить после проверки
+        margin-top: 1px; //исправить после проверки
         display: flex;
         gap: 20px;
         
         .navigation-button {
             &.current {
                 background-color: all.$color-primary;
+
+                &:hover {
+                    background-color: all.$color-primary-light;
+                    border-color: all.$color-primary-light;
+                }
             }
+
+            &:disabled {
+                background-color: inherit;
+                border-color: all.$color-dark-s;
+                color: all.$color-dark-s;    
+            }        
         }
     }
 }

@@ -15,6 +15,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 html {
@@ -85,7 +86,6 @@ body {
   list-style: none;
 }
 .header-container .nav .nav-link {
-  text-decoration: none;
   font-family: "Arial", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -160,17 +160,24 @@ body {
   border-radius: 100px;
   cursor: pointer;
   margin: 0;
+  transition: all 0.5s;
   margin-bottom: 30px;
+}
+.pets-container .pets-slider .pets-cards .pets-card .pets-button:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
 }
 
 .navigation-button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px 19px;
+  height: 52px;
+  width: 52px;
   background-color: inherit;
   border: 2px solid #F1CDB3;
   border-radius: 100px;
+  transition: all 0.5s;
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -180,9 +187,9 @@ body {
   color: #292929;
   cursor: pointer;
 }
-.navigation-button:disabled {
-  border-color: #CDCDCD;
-  color: #CDCDCD;
+.navigation-button:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
 }
 
 .footer {
@@ -235,12 +242,14 @@ body {
   max-width: 280px;
   display: flex;
   flex-flow: column;
-  gap: 40px;
+  gap: 42px;
 }
 .footer-container .contacts .e-mail,
 .footer-container .contacts .tel {
   padding-left: 60px;
-  padding-top: 4px;
+}
+.footer-container .contacts .e-mail .footer-link,
+.footer-container .contacts .tel .footer-link {
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -256,7 +265,7 @@ body {
   flex-flow: column;
   gap: 33px;
 }
-.footer-container .locations .location {
+.footer-container .locations .location .footer-link {
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -265,7 +274,7 @@ body {
   letter-spacing: 0.06em;
   color: #F1CDB3;
 }
-.footer-container .locations .location.boston {
+.footer-container .locations .location .footer-link.boston {
   display: flex;
   flex-flow: column;
 }
@@ -291,21 +300,33 @@ body {
 .header-container .nav .nav-link.active {
   color: #292929;
 }
+.header-container .nav .nav-link:hover {
+  color: #292929;
+}
 
 .pets-container {
-  gap: 60px;
+  gap: 59px;
 }
 .pets-container .pets-slider .pets-cards {
   flex-wrap: wrap;
-  gap: 31px 40px;
+  gap: 30px 40px;
 }
 .pets-container .navigation-buttons {
-  margin-top: 2px;
+  margin-top: 1px;
   display: flex;
   gap: 20px;
 }
 .pets-container .navigation-buttons .navigation-button.current {
   background-color: #F1CDB3;
+}
+.pets-container .navigation-buttons .navigation-button.current:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+.pets-container .navigation-buttons .navigation-button:disabled {
+  background-color: inherit;
+  border-color: #CDCDCD;
+  color: #CDCDCD;
 }
 
 /*# sourceMappingURL=style.css.map */

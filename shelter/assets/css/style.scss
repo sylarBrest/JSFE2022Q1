@@ -124,6 +124,7 @@ $color-light-xl: #FFFFFF;
     padding: 15px 45px;
     border-radius: 100px;
     cursor: pointer;
+    transition: all 0.5s;
 }
 
 @mixin button-secondary {
@@ -145,12 +146,14 @@ $color-light-xl: #FFFFFF;
     border-radius: 100px;
     cursor: pointer;
     margin: 0;
+    transition: all 0.5s;
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    text-decoration: none;
 }
 
 html {
@@ -214,12 +217,17 @@ body {
         }
 
         .nav-link {
-            text-decoration: none;
             @include paragraph-l;
+            transition: all 0.5s;
+
             &.active {
                 padding-bottom: 4px;
                 color: $color-light-s;
-                border-bottom: 3px solid #F1CDB3;
+                border-bottom: 3px solid $color-primary;
+            }
+
+            &:hover {
+                color: $color-light-s;
             }
         }
     }
@@ -262,6 +270,8 @@ body {
                 align-items: center;
                 border-radius: 9px;
                 gap: 30px;
+                transition: all 0.5s;
+                cursor: pointer;
 
                 &-title {
                     @include h4;
@@ -270,6 +280,16 @@ body {
                 .pets-button {
                     @include button-secondary;
                     margin-bottom: 30px;
+                }
+
+                &:hover {
+                    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+                    background-color: $color-light-xl;
+
+                    .pets-button {
+                        background-color: $color-primary-light;
+                        border-color: $color-primary-light;
+                    }
                 }
             }
         }
@@ -280,17 +300,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 52px;
     width: 52px;
     background-color: inherit;
     border: 2px solid $color-primary;
     border-radius: 100px;
+    transition: all 0.5s;
     @include h4($color-dark-3xl);
     cursor: pointer;
 
-    &:disabled {
-        border-color: $color-dark-s;
-        color: $color-dark-s;
+    &:hover {
+        background-color: $color-primary-light;
+        border-color: $color-primary-light;
     }
 }
 
@@ -340,13 +362,15 @@ body {
         max-width: 280px;
         display: flex;
         flex-flow: column;
-        gap: 40px;
+        gap: 42px;
 
         .e-mail,
         .tel {
             padding-left: 60px;
-            padding-top: 4px;
-            @include h4($color-primary);
+
+            .footer-link {
+                @include h4($color-primary);
+            }
         }
     }
 
@@ -356,11 +380,15 @@ body {
         display: flex;
         flex-flow: column;
         gap: 33px;
+
         .location {
-            @include h4($color-primary);
-            &.boston {
-                display: flex;
-                flex-flow: column;
+            .footer-link {
+                @include h4($color-primary);
+
+                &.boston {
+                    display: flex;
+                    flex-flow: column;
+                }
             }
         }
     }

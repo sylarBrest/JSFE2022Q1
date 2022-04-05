@@ -26,6 +26,17 @@ $color-light-l: #F6F6F6;
 $color-light-xl: #FFFFFF;
 
 // Mixins for Typography
+@mixin h1 {
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 32px;
+    }
+    line-height: 110%;
+    letter-spacing: 0.06em;
+}
+
 @mixin h2($color: $color-light-xl) {
     font: {
         family: 'Georgia', serif;
@@ -49,7 +60,7 @@ $color-light-xl: #FFFFFF;
     color: $color;
 }
 
-@mixin h4 {
+@mixin h4($color: $color-dark-l) {
     font: {
         family: 'Georgia', serif;
         style: normal;
@@ -58,9 +69,10 @@ $color-light-xl: #FFFFFF;
     }
     line-height: 115%;
     letter-spacing: 0.06em;
+    color: $color;
 }
 
-@mixin h5 {
+@mixin h5($color: $color-dark-l) {
     font: {
         family: 'Georgia', serif;
         style: normal;
@@ -69,6 +81,7 @@ $color-light-xl: #FFFFFF;
     }
     line-height: 110%;
     letter-spacing: 0.06em;
+    color: $color;
 }
 
 @mixin paragraph-l($color: $color-dark-s) {
@@ -82,7 +95,7 @@ $color-light-xl: #FFFFFF;
     color: $color;
 }
 
-@mixin paragraph-s {
+@mixin paragraph-s($color: $color-dark-m) {
     font: {
         family: 'Arial', sans-serif;
         style: italic;
@@ -90,6 +103,48 @@ $color-light-xl: #FFFFFF;
         size: 12px;
     }
     line-height: 150%;
+    color: $color;
+}
+
+@mixin button-primary {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 17px;
+    }
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: $color-dark-3xl;
+    border: 0;
+    background-color: $color-primary;
+    padding: 15px 45px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+@mixin button-secondary {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 17px;
+    }
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: $color-dark-3xl;
+    border: 2px solid $color-primary;
+    background-color: inherit;
+    padding: 13px 43px;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 0;
 }
 
 * {
@@ -121,16 +176,14 @@ body {
 }
 
 .title {
+    margin: 0;
     @include h3;
 }
 
 .header-container {
-    margin: 0 auto;
     display: flex;
-    padding: 30px 40px;
     align-items: center;
-    color: #FFFFFF;
-    font: normal 13px/15px Arial, sans-serif;
+    padding: 30px 40px;
 
     .logo {
         display: flex;
@@ -140,12 +193,12 @@ body {
         margin-right: auto;
 
         .title {
-            margin: 0;
-            font: normal 32px/35.2px Georgia, serif;
-            letter-spacing: 0.06em;
+            @include h1;
         }
 
         .subtitle {
+            color: $color-light-xl;
+            font: normal 400 13px/15px Arial, sans-serif;
             letter-spacing: 0.1em;
         }
     }
@@ -155,8 +208,8 @@ body {
 
         .nav-list {
             display: flex;
-            gap: 36px;
             align-items: center;
+            gap: 36px;
             list-style: none;
         }
 
@@ -182,7 +235,7 @@ body {
     width: 100%;
 
     .wrapper {
-        background-color: #F6F6F6;
+        background-color: $color-light-l;
     }
 }
 
@@ -203,19 +256,19 @@ body {
 
             .pets-card {
                 max-width: 270px;
-                background-color: #FAFAFA;
+                background-color: $color-light-s;
                 display: flex;
                 flex-flow: column;
                 align-items: center;
                 border-radius: 9px;
-                gap: 29px;
+                gap: 30px;
 
                 &-title {
-                    font: normal 20px/23px Georgia, serif;
-                    letter-spacing: 0.06em;
+                    @include h4;
                 }
 
                 .pets-button {
+                    @include button-secondary;
                     margin-bottom: 30px;
                 }
             }
@@ -224,26 +277,21 @@ body {
 }
 
 .navigation-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     height: 52px;
     width: 52px;
     background-color: inherit;
-    border: 2px solid #F1CDB3;
+    border: 2px solid $color-primary;
     border-radius: 100px;
+    @include h4($color-dark-3xl);
     cursor: pointer;
 
-    &.disabled {
+    &:disabled {
         border-color: $color-dark-s;
+        color: $color-dark-s;
     }
-}
-
-.pets-button {
-    font: normal 17px/22px Georgia, serif;
-    background-color: #FAFAFA;
-    border: 2px solid #F1CDB3;
-    padding: 15px 45px;
-    border-radius: 100px;
-    cursor: pointer;
-    letter-spacing: 0.06em;
 }
 
 .footer {
@@ -270,11 +318,11 @@ body {
         }
 
         &.e-mail-info {
-            @include info-svg($bgi: url('../../assets/icons/mail.svg'));
+            @include info-svg(url('../../assets/icons/mail.svg'));
         }
 
         &.tel-info {
-            @include info-svg($bgi: url('../../assets/icons/phone.svg'));
+            @include info-svg(url('../../assets/icons/phone.svg'));
         }
 
         &.location-info {
@@ -282,7 +330,7 @@ body {
             align-items: center;
             .location-info-image {
                 width: 40px;
-                @include info-svg($bgi: url('../../assets/icons/pin.svg'), $bgs: 22px 32px);
+                @include info-svg(url('../../assets/icons/pin.svg'), '22px 32px');
             }
         }
     }
@@ -298,9 +346,7 @@ body {
         .tel {
             padding-left: 60px;
             padding-top: 4px;
-            font: normal 20px/23px Georgia, serif;
-            letter-spacing: 0.06em;
-            color: #F1CDB3;
+            @include h4($color-primary);
         }
     }
 
@@ -311,9 +357,7 @@ body {
         flex-flow: column;
         gap: 33px;
         .location {
-            font: normal 20px/23px Georgia, serif;
-            letter-spacing: 0.06em;
-            color: #F1CDB3;
+            @include h4($color-primary);
             &.boston {
                 display: flex;
                 flex-flow: column;

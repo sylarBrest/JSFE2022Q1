@@ -1,23 +1,53 @@
+@use '../../assets/css/style.scss' as all;
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: all.$color-light-xl;
+}
+
+.header-container {
+    .logo {
+        .title {
+            color: all.$color-dark-l;
+        }
+
+        .subtitle {
+            color: all.$color-dark-3xl;
+        }
+    }
+
+    .nav {
+        margin-top: -5px; //исправить после проверки
+
+        .nav-link {
+            color: all.$color-dark-l;
+
+            &.active {
+                color: all.$color-dark-3xl;
+            }
+        }
+    }
+}
+
 .pets-container {
-    gap: 59px; //исправить после проверки
+    gap: 60px; //исправить после проверки
 
     .pets-slider {
         .pets-cards {
             flex-wrap: wrap;
-            gap: 28px 40px; //исправить после проверки
+            gap: 31px 40px; //исправить после проверки
         }
     }
 
     .navigation-buttons {
-        margin-top: -1px; //исправить после проверки
+        margin-top: 2px; //исправить после проверки
         display: flex;
         gap: 20px;
-        font: normal 400 20px/23px Georgia, serif;
-        letter-spacing: 0.06em;
         
         .navigation-button {
             &.current {
-                background-color: #F1CDB3;
+                background-color: all.$color-primary;
             }
         }
     }

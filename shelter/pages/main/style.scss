@@ -1,15 +1,5 @@
 @use '../../assets/css/style.scss' as all;
 
-@mixin orange-button {
-    font: normal 17px/22.1px Georgia, serif;
-    background-color: #F1CDB3;
-    padding: 15px 45px;
-    border: 0;
-    border-radius: 100px;
-    cursor: pointer;
-    letter-spacing: 0.06em;
-}
-
 .header-container {
     position: absolute;
     left: 50%;
@@ -18,7 +8,7 @@
 
     .logo {
         .title {
-            color: #F1CDB3;
+            color: all.$color-primary;
         }
     }
 }
@@ -32,8 +22,8 @@
     }
 }
 
-.orange-button {
-    @include orange-button;
+.primary-button {
+    @include all.button-primary;
 }
 
 .hero-container {
@@ -81,14 +71,6 @@
     }
 }
 
-.donation-section {
-    width: 100%;
-
-    .wrapper {
-        background-color: #f6f6f6;
-    }
-}
-
 .pets-container {
     .pets-slider {
         display: flex;
@@ -115,7 +97,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 56px 120px;
+        gap: 58px 120px;
 
         .help-card {
             background-position: top center;
@@ -161,11 +143,18 @@
 
             &-title {
                 padding-top: 87px;
-                font: normal 20px/23px Georgia, serif;
-                letter-spacing: 0.06em;
+                @include all.h4;
                 text-align: center;
             }
         }
+    }
+}
+
+.donation-section {
+    width: 100%;
+
+    .wrapper {
+        background-color: all.$color-light-l;
     }
 }
 
@@ -186,19 +175,19 @@
         }
 
         .donation-subtitle {
-            font: normal 15px/16.5px Georgia, serif;
-            letter-spacing: 0.06em;
+            @include all.h5;
         }
 
         .credit-card {
             width: 350px;
             border-radius: 9px;
-            background-color: #F1CDB3;
+            background-color: all.$color-primary;
             padding: 10px 15px;
             display: flex;
             gap: 15px;
 
             &-image {
+                color: all.$color-dark-3xl;
                 width: 30px;
                 background-image: url('../../assets/icons/credit-card.svg');
                 background-position: left center;
@@ -207,8 +196,7 @@
             }
 
             &-number {
-                font: normal 20px/23px Georgia, serif;
-                letter-spacing: 0.06em;
+                @include all.h4;
             }
         }
 

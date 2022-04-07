@@ -1,13 +1,13 @@
 /* Connect fonts as they not available in Linux/OS X */
 @font-face {
   font-family: "Georgia";
-  src: url("../../assets/fonts/GeorgiaRegular.ttf") format("truetype");
+  src: url("../../assets/fonts/Georgia.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
 }
 @font-face {
   font-family: "Arial";
-  src: url("../../assets/fonts/GeorgiaRegular.ttf") format("truetype");
+  src: url("../../assets/fonts/Georgia.ttf") format("truetype");
   font-style: normal;
   font-weight: 400;
 }
@@ -73,7 +73,7 @@ body {
 }
 .header-container .logo .subtitle {
   color: #FFFFFF;
-  font: normal 400 13px/15px Arial, sans-serif;
+  font: normal 400 13px/15px "ArialRegular", sans-serif;
   letter-spacing: 0.1em;
 }
 .header-container .nav {
@@ -86,7 +86,7 @@ body {
   list-style: none;
 }
 .header-container .nav .nav-link {
-  font-family: "Arial", sans-serif;
+  font-family: "ArialRegular", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -223,6 +223,7 @@ body {
   color: #FFFFFF;
 }
 .footer-container .info.e-mail-info {
+  margin-top: -3px;
   background-image: url("../../assets/icons/mail.svg");
   height: 32px;
   background-position: left center;
@@ -230,6 +231,7 @@ body {
   background-size: 40px 32px;
 }
 .footer-container .info.tel-info {
+  margin-top: -2px;
   background-image: url("../../assets/icons/phone.svg");
   height: 32px;
   background-position: left center;
@@ -258,6 +260,7 @@ body {
 .footer-container .contacts .e-mail,
 .footer-container .contacts .tel {
   padding-left: 60px;
+  padding-top: 5px;
 }
 .footer-container .contacts .e-mail .footer-link,
 .footer-container .contacts .tel .footer-link {

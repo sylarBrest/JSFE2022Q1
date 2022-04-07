@@ -1,14 +1,14 @@
 /* Connect fonts as they not available in Linux/OS X */
 @font-face { 
     font-family: 'Georgia';
-    src: url('../../assets/fonts/GeorgiaRegular.ttf') format('truetype');
+    src: url('../../assets/fonts/Georgia.ttf') format('truetype');
     font-style: normal;
     font-weight: 400;
 }
 
 @font-face { 
     font-family: 'Arial';
-    src: url('../../assets/fonts/GeorgiaRegular.ttf') format('truetype');
+    src: url('../../assets/fonts/Georgia.ttf') format('truetype');
     font-style: normal;
     font-weight: 400;
 }
@@ -86,7 +86,7 @@ $color-light-xl: #FFFFFF;
 
 @mixin paragraph-l($color: $color-dark-s) {
     font: {
-        family: 'Arial', sans-serif;
+        family: 'ArialRegular', sans-serif;
         style: normal;
         weight: 400;
         size: 15px;
@@ -97,7 +97,7 @@ $color-light-xl: #FFFFFF;
 
 @mixin paragraph-s($color: $color-dark-m) {
     font: {
-        family: 'Arial', sans-serif;
+        family: 'ArialRegular', sans-serif;
         style: italic;
         weight: 400;
         size: 12px;
@@ -201,7 +201,7 @@ body {
 
         .subtitle {
             color: $color-light-xl;
-            font: normal 400 13px/15px Arial, sans-serif;
+            font: normal 400 13px/15px 'ArialRegular', sans-serif;
             letter-spacing: 0.1em;
         }
     }
@@ -340,10 +340,12 @@ body {
         }
 
         &.e-mail-info {
+            margin-top: -3px;
             @include info-svg(url('../../assets/icons/mail.svg'));
         }
 
         &.tel-info {
+            margin-top: -2px;
             @include info-svg(url('../../assets/icons/phone.svg'));
         }
 
@@ -367,6 +369,7 @@ body {
         .e-mail,
         .tel {
             padding-left: 60px;
+            padding-top: 5px;
 
             .footer-link {
                 @include h4($color-primary);

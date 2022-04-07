@@ -1,0 +1,293 @@
+/* Connect fonts as they not available in Linux/OS X */
+@font-face {
+  font-family: "Georgia";
+  src: url("../fonts/GeorgiaRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Arial";
+  src: url("../fonts/ArialRegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  display: flex;
+  flex-flow: column;
+  color: #545454;
+}
+
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 80px 40px 100px;
+}
+
+.title {
+  margin: 0;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  padding: 30px 40px;
+}
+.header-container .logo {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+}
+.header-container .logo .title {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+}
+.header-container .logo .subtitle {
+  color: #FFFFFF;
+  font: normal 400 13px/15px Arial, sans-serif;
+  letter-spacing: 0.1em;
+}
+.header-container .nav {
+  margin-top: -4px;
+}
+.header-container .nav .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+}
+.header-container .nav .nav-link {
+  font-family: "Arial", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 160%;
+  color: #CDCDCD;
+  transition: all 0.5s;
+}
+.header-container .nav .nav-link.active {
+  padding-bottom: 4px;
+  color: #FAFAFA;
+  border-bottom: 3px solid #F1CDB3;
+}
+.header-container .nav .nav-link:hover {
+  color: #FAFAFA;
+}
+
+.main {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.pets-section {
+  width: 100%;
+}
+.pets-section .wrapper {
+  background-color: #F6F6F6;
+}
+
+.pets-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 60px;
+}
+.pets-container .pets-title {
+  max-width: 400px;
+  text-align: center;
+}
+.pets-container .pets-slider .pets-cards {
+  display: flex;
+}
+.pets-container .pets-slider .pets-cards .pets-card {
+  max-width: 270px;
+  background-color: #FAFAFA;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  border-radius: 9px;
+  gap: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+.pets-container .pets-slider .pets-cards .pets-card-title {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #545454;
+}
+.pets-container .pets-slider .pets-cards .pets-card .pets-button {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #292929;
+  border: 2px solid #F1CDB3;
+  background-color: inherit;
+  padding: 13px 43px;
+  border-radius: 100px;
+  cursor: pointer;
+  margin: 0;
+  transition: all 0.5s;
+  margin-bottom: 30px;
+}
+.pets-container .pets-slider .pets-cards .pets-card:hover {
+  box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+  background-color: #FFFFFF;
+}
+.pets-container .pets-slider .pets-cards .pets-card:hover .pets-button {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+
+.navigation-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  width: 52px;
+  background-color: inherit;
+  border: 2px solid #F1CDB3;
+  border-radius: 100px;
+  transition: all 0.5s;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #292929;
+  cursor: pointer;
+}
+.navigation-button:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+
+.footer {
+  background: url("../../assets/images/noise.png"), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%), #211F20;
+}
+
+.footer-container {
+  display: flex;
+  gap: 160px;
+  padding: 40px 40px 0;
+}
+.footer-container .contacts-title,
+.footer-container .locations-title {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+}
+.footer-container .info.e-mail-info {
+  background-image: url("../../assets/icons/mail.svg");
+  height: 32px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 40px 32px;
+}
+.footer-container .info.tel-info {
+  background-image: url("../../assets/icons/phone.svg");
+  height: 32px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: 40px 32px;
+}
+.footer-container .info.location-info {
+  display: flex;
+  align-items: center;
+}
+.footer-container .info.location-info .location-info-image {
+  width: 40px;
+  background-image: url("../../assets/icons/pin.svg");
+  height: 32px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  background-size: "22px 32px";
+}
+.footer-container .contacts {
+  padding-top: 16px;
+  max-width: 280px;
+  display: flex;
+  flex-flow: column;
+  gap: 42px;
+}
+.footer-container .contacts .e-mail,
+.footer-container .contacts .tel {
+  padding-left: 60px;
+}
+.footer-container .contacts .e-mail .footer-link,
+.footer-container .contacts .tel .footer-link {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #F1CDB3;
+}
+.footer-container .locations {
+  padding-top: 16px;
+  max-width: 302px;
+  display: flex;
+  flex-flow: column;
+  gap: 33px;
+}
+.footer-container .locations .location .footer-link {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #F1CDB3;
+}
+.footer-container .locations .location .footer-link.boston {
+  display: flex;
+  flex-flow: column;
+}
+
+/*# sourceMappingURL=style.css.map */

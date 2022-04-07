@@ -1,0 +1,395 @@
+/* Connect fonts as they not available in Linux/OS X */
+@font-face { 
+    font-family: 'Georgia';
+    src: url('../fonts/GeorgiaRegular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face { 
+    font-family: 'Arial';
+    src: url('../fonts/ArialRegular.ttf') format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+// Variables for colors
+$color-dark-s: #CDCDCD;
+$color-dark-m: #B2B2B2;
+$color-dark-l: #545454;
+$color-dark-xl: #4C4C4C;
+$color-dark-3xl: #292929;
+$color-primary: #F1CDB3;
+$color-primary-light: #FDDCC4;
+$color-light-s: #FAFAFA;
+$color-light-l: #F6F6F6;
+$color-light-xl: #FFFFFF;
+
+// Mixins for Typography
+@mixin h1 {
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 32px;
+    }
+    line-height: 110%;
+    letter-spacing: 0.06em;
+}
+
+@mixin h2($color: $color-light-xl) {
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 44px;
+    }
+    line-height: 130%;
+    color: $color;
+}
+
+@mixin h3($color: $color-dark-l) {
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 35px;
+    }
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: $color;
+}
+
+@mixin h4($color: $color-dark-l) {
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 20px;
+    }
+    line-height: 115%;
+    letter-spacing: 0.06em;
+    color: $color;
+}
+
+@mixin h5($color: $color-dark-l) {
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 15px;
+    }
+    line-height: 110%;
+    letter-spacing: 0.06em;
+    color: $color;
+}
+
+@mixin paragraph-l($color: $color-dark-s) {
+    font: {
+        family: 'Arial', sans-serif;
+        style: normal;
+        weight: 400;
+        size: 15px;
+    }
+    line-height: 160%;
+    color: $color;
+}
+
+@mixin paragraph-s($color: $color-dark-m) {
+    font: {
+        family: 'Arial', sans-serif;
+        style: italic;
+        weight: 400;
+        size: 12px;
+    }
+    line-height: 150%;
+    color: $color;
+}
+
+@mixin button-primary {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 17px;
+    }
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: $color-dark-3xl;
+    border: 0;
+    background-color: $color-primary;
+    padding: 15px 45px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+@mixin button-secondary {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    font: {
+        family: 'Georgia', serif;
+        style: normal;
+        weight: 400;
+        size: 17px;
+    }
+    line-height: 130%;
+    letter-spacing: 0.06em;
+    color: $color-dark-3xl;
+    border: 2px solid $color-primary;
+    background-color: inherit;
+    padding: 13px 43px;
+    border-radius: 100px;
+    cursor: pointer;
+    margin: 0;
+    transition: all 0.5s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+html {
+    scroll-behavior: smooth; 
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    color: $color-dark-l;
+}
+
+.container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding: 80px 40px 100px;
+}
+
+.title {
+    margin: 0;
+    @include h3;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    padding: 30px 40px;
+
+    .logo {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        gap: 10px;
+        margin-right: auto;
+
+        .title {
+            @include h1;
+        }
+
+        .subtitle {
+            color: $color-light-xl;
+            font: normal 400 13px/15px Arial, sans-serif;
+            letter-spacing: 0.1em;
+        }
+    }
+
+    .nav {
+        margin-top: -4px;
+
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-link {
+            @include paragraph-l;
+            transition: all 0.5s;
+
+            &.active {
+                padding-bottom: 4px;
+                color: $color-light-s;
+                border-bottom: 3px solid $color-primary;
+            }
+
+            &:hover {
+                color: $color-light-s;
+            }
+        }
+    }
+}
+
+.main {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.pets-section {
+    width: 100%;
+
+    .wrapper {
+        background-color: $color-light-l;
+    }
+}
+
+.pets-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    gap: 60px;
+
+    .pets-title {
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .pets-slider {
+        .pets-cards {
+            display: flex;
+
+            .pets-card {
+                max-width: 270px;
+                background-color: $color-light-s;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                border-radius: 9px;
+                gap: 30px;
+                transition: all 0.5s;
+                cursor: pointer;
+
+                &-title {
+                    @include h4;
+                }
+
+                .pets-button {
+                    @include button-secondary;
+                    margin-bottom: 30px;
+                }
+
+                &:hover {
+                    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+                    background-color: $color-light-xl;
+
+                    .pets-button {
+                        background-color: $color-primary-light;
+                        border-color: $color-primary-light;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.navigation-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    width: 52px;
+    background-color: inherit;
+    border: 2px solid $color-primary;
+    border-radius: 100px;
+    transition: all 0.5s;
+    @include h4($color-dark-3xl);
+    cursor: pointer;
+
+    &:hover {
+        background-color: $color-primary-light;
+        border-color: $color-primary-light;
+    }
+}
+
+.footer {
+    background: url('../../assets/images/noise.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%) , #211F20;
+}
+
+.footer-container {
+    display: flex;
+    gap: 160px;
+    padding: 40px 40px 0;
+
+    .contacts-title,
+    .locations-title {
+        @include h3($color-light-xl);
+    }
+
+    .info {
+        @mixin info-svg($bgi: '', $bgs: 40px 32px) {
+            background-image: $bgi;
+            height: 32px;
+            background-position: left center;
+            background-repeat: no-repeat;
+            background-size: $bgs;
+        }
+
+        &.e-mail-info {
+            @include info-svg(url('../../assets/icons/mail.svg'));
+        }
+
+        &.tel-info {
+            @include info-svg(url('../../assets/icons/phone.svg'));
+        }
+
+        &.location-info {
+            display: flex;
+            align-items: center;
+            .location-info-image {
+                width: 40px;
+                @include info-svg(url('../../assets/icons/pin.svg'), '22px 32px');
+            }
+        }
+    }
+
+    .contacts {
+        padding-top: 16px;
+        max-width: 280px;
+        display: flex;
+        flex-flow: column;
+        gap: 42px;
+
+        .e-mail,
+        .tel {
+            padding-left: 60px;
+
+            .footer-link {
+                @include h4($color-primary);
+            }
+        }
+    }
+
+    .locations {
+        padding-top: 16px;
+        max-width: 302px;
+        display: flex;
+        flex-flow: column;
+        gap: 33px;
+
+        .location {
+            .footer-link {
+                @include h4($color-primary);
+
+                &.boston {
+                    display: flex;
+                    flex-flow: column;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,69 @@
+@use '../../assets/css/style.scss' as all;
+
+.header {
+    position: sticky;
+    top: 0;
+    background-color: all.$color-light-xl;
+}
+
+.header-container {
+    .logo {
+        .title {
+            color: all.$color-dark-l;
+        }
+
+        .subtitle {
+            color: all.$color-dark-3xl;
+        }
+    }
+
+    .nav {
+        margin-top: -5px; //исправить после проверки
+
+        .nav-link {
+            color: all.$color-dark-l;
+
+            &.active {
+                color: all.$color-dark-3xl;
+            }
+
+            &:hover {
+                color: all.$color-dark-3xl;
+            }
+        }
+    }
+}
+
+.pets-container {
+    gap: 59px; //исправить после проверки
+
+    .pets-slider {
+        .pets-cards {
+            flex-wrap: wrap;
+            gap: 30px 40px;
+        }
+    }
+
+    .navigation-buttons {
+        margin-top: 1px; //исправить после проверки
+        display: flex;
+        gap: 20px;
+        
+        .navigation-button {
+            &.current {
+                background-color: all.$color-primary;
+
+                &:hover {
+                    background-color: all.$color-primary-light;
+                    border-color: all.$color-primary-light;
+                }
+            }
+
+            &:disabled {
+                background-color: inherit;
+                border-color: all.$color-dark-s;
+                color: all.$color-dark-s;    
+            }        
+        }
+    }
+}

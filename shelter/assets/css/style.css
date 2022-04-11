@@ -261,9 +261,6 @@ body {
 .footer-container .contacts .tel {
   padding-left: 60px;
   padding-top: 5px;
-}
-.footer-container .contacts .e-mail .footer-link,
-.footer-container .contacts .tel .footer-link {
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -279,7 +276,7 @@ body {
   flex-flow: column;
   gap: 33px;
 }
-.footer-container .locations .location .footer-link {
+.footer-container .locations .location {
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -288,7 +285,7 @@ body {
   letter-spacing: 0.06em;
   color: #F1CDB3;
 }
-.footer-container .locations .location .footer-link.boston {
+.footer-container .locations .location.boston {
   display: flex;
   flex-flow: column;
 }

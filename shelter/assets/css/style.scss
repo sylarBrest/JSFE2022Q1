@@ -370,10 +370,7 @@ body {
         .tel {
             padding-left: 60px;
             padding-top: 5px;
-
-            .footer-link {
-                @include h4($color-primary);
-            }
+            @include h4($color-primary);
         }
     }
 
@@ -385,13 +382,11 @@ body {
         gap: 33px;
 
         .location {
-            .footer-link {
-                @include h4($color-primary);
+            @include h4($color-primary);
 
-                &.boston {
-                    display: flex;
-                    flex-flow: column;
-                }
+            &.boston {
+                display: flex;
+                flex-flow: column;
             }
         }
     }

@@ -8,7 +8,7 @@
 
 @font-face { 
     font-family: 'Arial';
-    src: url('../../assets/fonts/Georgia.ttf') format('truetype');
+    src: url('../../assets/fonts/Arial.ttf') format('truetype');
     font-style: normal;
     font-weight: 400;
 }
@@ -86,7 +86,7 @@ $color-light-xl: #FFFFFF;
 
 @mixin paragraph-l($color: $color-dark-s) {
     font: {
-        family: 'ArialRegular', sans-serif;
+        family: 'Arial', sans-serif;
         style: normal;
         weight: 400;
         size: 15px;
@@ -97,7 +97,7 @@ $color-light-xl: #FFFFFF;
 
 @mixin paragraph-s($color: $color-dark-m) {
     font: {
-        family: 'ArialRegular', sans-serif;
+        family: 'Arial', sans-serif;
         style: italic;
         weight: 400;
         size: 12px;

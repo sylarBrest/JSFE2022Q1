@@ -331,8 +331,8 @@ body {
   background-color: #F1CDB3;
 }
 .pets-container .navigation-buttons .navigation-button.current:hover {
-  background-color: #FDDCC4;
-  border-color: #FDDCC4;
+  background-color: #F1CDB3;
+  border-color: #F1CDB3;
 }
 .pets-container .navigation-buttons .navigation-button:disabled {
   background-color: inherit;

@@ -15,10 +15,9 @@
 
 .hero-section {
     width: 100%;
-
-    
+   
     .wrapper {
-        padding: 0 40px;
+        padding: 0;
         background: url('../../assets/images/noise.png'), radial-gradient(100% 215.42% at 0% 0%, #5B483A 0%, #262425 100%) , #211F20;
     }
 }
@@ -33,7 +32,7 @@
 }
 
 .hero-container {
-    padding: 180px 0 0;
+    padding-top: 180px;
     display: flex;
     align-items: center;
     gap: 42px;
@@ -60,6 +59,7 @@
     display: flex;
     align-items: center;
     gap: 120px;
+    padding: 80px 40px 100px;
 
     .about-content {
         display: flex;
@@ -90,6 +90,7 @@
 }
 
 .help-container {
+    padding: 80px 40px 100px;
     display: flex;
     align-items: center;
     flex-flow: column;
@@ -165,6 +166,7 @@
 }
 
 .donation-container {
+    padding: 80px 40px 100px;
     display: flex;
     align-items: center;
     justify-content: center;

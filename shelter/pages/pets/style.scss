@@ -24,7 +24,7 @@
             color: all.$color-dark-l;
 
             &.active {
-                color: all.$color-dark-3xl;
+                color: all.$color-dark-l;
             }
 
             &:hover {
@@ -56,13 +56,15 @@
                 &:hover {
                     background-color: all.$color-primary;
                     border-color: all.$color-primary;
+                    cursor: default;
                 }
             }
 
             &:disabled {
                 background-color: inherit;
                 border-color: all.$color-dark-s;
-                color: all.$color-dark-s;    
+                color: all.$color-dark-s;
+                pointer-events: none;
             }        
         }
     }

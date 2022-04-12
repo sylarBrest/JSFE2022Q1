@@ -175,7 +175,6 @@ body {
 
 .wrapper {
     margin: 0 auto;
-    padding: 80px 40px 100px;
 }
 
 .title {
@@ -218,12 +217,16 @@ body {
 
         .nav-link {
             @include paragraph-l;
-            transition: all 0.5s;
+            transition: color 0.5s;
 
             &.active {
                 padding-bottom: 4px;
                 color: $color-light-s;
                 border-bottom: 3px solid $color-primary;
+                
+                &:hover {
+                    border: 0;
+                }
             }
 
             &:hover {
@@ -249,10 +252,10 @@ body {
 
 .pets-container {
     display: flex;
-    padding: 0;
     flex-flow: column;
     align-items: center;
     gap: 60px;
+    padding: 80px 40px 100px;
 
     .pets-title {
         max-width: 400px;

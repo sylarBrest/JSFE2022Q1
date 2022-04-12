@@ -37,7 +37,6 @@ body {
 
 .wrapper {
   margin: 0 auto;
-  padding: 80px 40px 100px;
 }
 
 .title {
@@ -92,12 +91,15 @@ body {
   font-size: 15px;
   line-height: 160%;
   color: #CDCDCD;
-  transition: all 0.5s;
+  transition: color 0.5s;
 }
 .header-container .nav .nav-link.active {
   padding-bottom: 4px;
   color: #FAFAFA;
   border-bottom: 3px solid #F1CDB3;
+}
+.header-container .nav .nav-link.active:hover {
+  border: 0;
 }
 .header-container .nav .nav-link:hover {
   color: #FAFAFA;
@@ -118,10 +120,10 @@ body {
 
 .pets-container {
   display: flex;
-  padding: 0;
   flex-flow: column;
   align-items: center;
   gap: 60px;
+  padding: 80px 40px 100px;
 }
 .pets-container .pets-title {
   max-width: 400px;

@@ -118,6 +118,7 @@ body {
 
 .pets-container {
   display: flex;
+  padding: 0;
   flex-flow: column;
   align-items: center;
   gap: 60px;

@@ -11,6 +11,10 @@
             color: all.$color-primary;
         }
     }
+
+    @media screen and (max-width: 1279px) {
+        padding: 30px;
+    }
 }
 
 .hero-section {
@@ -47,10 +51,27 @@
         .hero-title {
             @include all.h2;
             max-width: 310px;
+            align-self: flex-start
         }
 
         .hero-subtitle {
             @include all.paragraph-l;
+            max-width: 460px;
+        }
+
+        @media screen and (max-width: 1279px) {
+            align-items: center;
+        }
+    }
+
+    @media screen and (max-width: 1279px) {
+        flex-flow: column;
+        gap: 100px;
+        padding: 230px 30px 0;
+
+        .start-screen-puppy {
+            max-width: 100%;
+            padding-left: 140px;
         }
     }
 }
@@ -74,6 +95,11 @@
         .about-subtitle {
             @include all.paragraph-l(all.$color-dark-xl);
         }
+    }
+
+    @media screen and (max-width: 1279px) {
+        flex-flow: column-reverse;
+        gap: 80px;
     }
 }
 

@@ -111,6 +111,20 @@
 
         .pets-cards {
             gap: 90px;
+
+            @media screen and (max-width: 1279px) {
+                gap: 40px;
+
+                .pets-card {
+                    &:last-child {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: 1279px) {
+            gap: 12px;
         }
     }
 }
@@ -179,6 +193,18 @@
                 @include all.h4;
                 text-align: center;
             }
+
+            @media screen and (max-width: 1279px) {
+                width: 170px;
+                
+                &:nth-child(3) {
+                    width: 170px;
+                }
+            }
+        }
+
+        @media screen and (max-width: 1279px) {
+            gap: 58px 60px;
         }
     }
 }

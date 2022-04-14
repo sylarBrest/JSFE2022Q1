@@ -171,6 +171,10 @@ body {
     width: 100%;
     margin: 0 auto;
     padding: 0 40px;
+
+    @media screen and (max-width: 1279px) {
+        padding: 0 30px;
+    }
 }
 
 .wrapper {
@@ -200,7 +204,7 @@ body {
 
         .subtitle {
             color: $color-light-xl;
-            font: normal 400 13px/15px 'ArialRegular', sans-serif;
+            font: normal 400 13px/15px 'Arial', sans-serif;
             letter-spacing: 0.1em;
         }
     }

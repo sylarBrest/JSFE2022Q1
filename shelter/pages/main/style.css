@@ -39,6 +39,11 @@ body {
     padding: 0 30px;
   }
 }
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 0 10px;
+  }
+}
 
 .wrapper {
   margin: 0 auto;
@@ -406,6 +411,14 @@ body {
   max-width: 310px;
   align-self: flex-start;
 }
+@media screen and (max-width: 767px) {
+  .hero-container .hero .hero-title {
+    font-size: 25px;
+    letter-spacing: 0.06em;
+    align-self: center;
+    text-align: center;
+  }
+}
 .hero-container .hero .hero-subtitle {
   font-family: "Arial", sans-serif;
   font-style: normal;
@@ -414,6 +427,11 @@ body {
   line-height: 160%;
   color: #CDCDCD;
   max-width: 460px;
+}
+@media screen and (max-width: 767px) {
+  .hero-container .hero .hero-subtitle {
+    text-align: center;
+  }
 }
 @media screen and (max-width: 1279px) {
   .hero-container .hero {
@@ -424,11 +442,19 @@ body {
   .hero-container {
     flex-flow: column;
     gap: 100px;
-    padding: 230px 30px 0;
+    padding-top: 230px;
   }
   .hero-container .start-screen-puppy {
     max-width: 100%;
     padding-left: 140px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hero-container {
+    gap: 105px;
+  }
+  .hero-container .start-screen-puppy {
+    padding-left: 40px;
   }
 }
 

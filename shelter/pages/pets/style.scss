@@ -7,6 +7,9 @@
 }
 
 .header-container {
+    padding-top: 30px;
+    padding-bottom: 30px;
+
     .logo {
         .title {
             color: all.$color-dark-l;
@@ -44,6 +47,8 @@
             gap: 30px 40px;
 
             @media screen and (max-width: 1279px) {
+                gap: 30px calc(30.5% - 170px);
+
                 .pets-card:nth-child(7),
                 .pets-card:nth-child(8) {
                     display: none;
@@ -80,11 +85,9 @@
             padding-top: 8px;
         }
     }
-
     
     @media screen and (max-width: 1279px) {
         gap: 30px;
         padding-bottom: 77px;
     }
-
 }

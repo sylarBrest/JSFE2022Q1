@@ -317,6 +317,10 @@ body {
   background-color: #FFFFFF;
 }
 
+.header-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 .header-container .logo .title {
   color: #545454;
 }
@@ -345,6 +349,9 @@ body {
   gap: 30px 40px;
 }
 @media screen and (max-width: 1279px) {
+  .pets-container .pets-slider .pets-cards {
+    gap: 30px calc(30.5% - 170px);
+  }
   .pets-container .pets-slider .pets-cards .pets-card:nth-child(7),
 .pets-container .pets-slider .pets-cards .pets-card:nth-child(8) {
     display: none;

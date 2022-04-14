@@ -4,7 +4,6 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    padding: 60px 40px;
 
     .logo {
         .title {
@@ -200,7 +199,7 @@
         }
 
         @media screen and (max-width: 1279px) {
-            gap: 58px 60px;
+            gap: 58px calc(35% - 180px);
         }
     }
 }

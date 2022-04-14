@@ -238,6 +238,10 @@ body {
             }
         }
     }
+    
+    @media screen and (max-width: 1279px) {
+        padding: 30px;
+    }
 }
 
 .main {

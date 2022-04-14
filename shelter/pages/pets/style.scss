@@ -40,7 +40,15 @@
     .pets-slider {
         .pets-cards {
             flex-wrap: wrap;
+            justify-content: center;
             gap: 30px 40px;
+
+            @media screen and (max-width: 1279px) {
+                .pets-card:nth-child(7),
+                .pets-card:nth-child(8) {
+                    display: none;
+                }
+            }
         }
     }
 
@@ -67,5 +75,16 @@
                 pointer-events: none;
             }        
         }
+
+        @media screen and (max-width: 1279px) {
+            padding-top: 8px;
+        }
     }
+
+    
+    @media screen and (max-width: 1279px) {
+        gap: 30px;
+        padding-bottom: 77px;
+    }
+
 }

@@ -109,6 +109,11 @@ body {
 .header-container .nav .nav-link:hover {
   color: #FAFAFA;
 }
+@media screen and (max-width: 1279px) {
+  .header-container {
+    padding: 30px;
+  }
+}
 
 .main {
   display: flex;

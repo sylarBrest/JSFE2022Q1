@@ -109,6 +109,11 @@ body {
 .header-container .nav .nav-link:hover {
   color: #FAFAFA;
 }
+@media screen and (max-width: 1279px) {
+  .header-container {
+    padding: 30px;
+  }
+}
 
 .main {
   display: flex;
@@ -217,7 +222,8 @@ body {
 
 .footer-container {
   display: flex;
-  gap: 160px;
+  flex-wrap: wrap;
+  gap: 159px;
   padding: 40px 40px 0;
 }
 .footer-container .contacts-title,
@@ -297,6 +303,13 @@ body {
   display: flex;
   flex-flow: column;
 }
+@media screen and (max-width: 1279px) {
+  .footer-container {
+    gap: 63px calc(19.4% - 73px);
+    justify-content: center;
+    padding-top: 14px;
+  }
+}
 
 .header {
   position: sticky;
@@ -328,7 +341,14 @@ body {
 }
 .pets-container .pets-slider .pets-cards {
   flex-wrap: wrap;
+  justify-content: center;
   gap: 30px 40px;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .pets-slider .pets-cards .pets-card:nth-child(7),
+.pets-container .pets-slider .pets-cards .pets-card:nth-child(8) {
+    display: none;
+  }
 }
 .pets-container .navigation-buttons {
   margin-top: 1px;
@@ -348,6 +368,17 @@ body {
   border-color: #CDCDCD;
   color: #CDCDCD;
   pointer-events: none;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .navigation-buttons {
+    padding-top: 8px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .pets-container {
+    gap: 30px;
+    padding-bottom: 77px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

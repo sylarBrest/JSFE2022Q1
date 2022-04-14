@@ -109,9 +109,41 @@ body {
 .header-container .nav .nav-link:hover {
   color: #FAFAFA;
 }
+@media screen and (max-width: 767px) {
+  .header-container .nav {
+    visibility: hidden;
+    width: 0;
+  }
+}
+.header-container .hamburger {
+  display: none;
+  width: 30px;
+  height: 22px;
+}
+@media screen and (max-width: 767px) {
+  .header-container .hamburger {
+    display: flex;
+    position: relative;
+    flex-flow: column;
+    justify-content: space-between;
+  }
+  .header-container .hamburger .line {
+    width: 30px;
+    height: 2px;
+    background: #F1CDB3;
+    display: block;
+    transition: all 0.5s ease-in-out;
+  }
+}
 @media screen and (max-width: 1279px) {
   .header-container {
     padding: 30px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-container {
+    gap: unset;
+    padding: 26px 53px 30px 10px;
   }
 }
 

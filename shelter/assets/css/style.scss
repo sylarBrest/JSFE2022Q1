@@ -237,10 +237,41 @@ body {
                 color: $color-light-s;
             }
         }
+
+        @media screen and (max-width: 767px) {
+            visibility: hidden;
+            width: 0;
+        }
     }
+
+    .hamburger {
+        display: none;
+        width: 30px;
+        height: 22px;
+
+        @media screen and (max-width: 767px) {
+            display: flex;
+            position: relative;
+            flex-flow: column;
+            justify-content: space-between;
+        
+            .line {
+                width: 30px;
+                height: 2px;
+                background: $color-primary;
+                display: block;
+                transition: all 0.5s ease-in-out;
+            }
+        }
+    }    
     
     @media screen and (max-width: 1279px) {
         padding: 30px;
+    }
+
+    @media screen and (max-width: 767px) {
+        gap: unset;
+        padding: 26px 53px 30px 10px;
     }
 }
 

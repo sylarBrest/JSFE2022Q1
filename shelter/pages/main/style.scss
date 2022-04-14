@@ -196,7 +196,7 @@
 
             @media screen and (max-width: 1279px) {
                 width: 170px;
-                
+
                 &:nth-child(3) {
                     width: 170px;
                 }
@@ -263,5 +263,10 @@
         .legal-information {
             @include all.paragraph-s;
         }
+    }
+
+    @media screen and (max-width: 1279px) {
+        flex-flow: column-reverse;
+        gap: 60px;
     }
 }

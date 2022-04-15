@@ -123,7 +123,16 @@ body {
 @media screen and (max-width: 767px) {
   .header-container .nav {
     visibility: hidden;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 50;
+    height: 100%;
     width: 0;
+    transition: all 0.5s;
   }
 }
 .header-container .hamburger {
@@ -154,7 +163,7 @@ body {
 @media screen and (max-width: 767px) {
   .header-container {
     gap: unset;
-    padding: 26px 53px 30px 10px;
+    padding: 30px 53px 30px 10px;
   }
 }
 
@@ -388,6 +397,10 @@ body {
     align-items: center;
     gap: 40px;
     padding: 14px 10px 0;
+  }
+  .footer-container .footer-puppy {
+    width: 100%;
+    padding: 0 20px;
   }
 }
 
@@ -643,6 +656,14 @@ body {
 .help-container .help-cards .help-card:nth-child(9) {
   background-image: url("../../assets/icons/sleeping-area.svg");
 }
+.help-container .help-cards .help-card:last-child {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .help-container .help-cards .help-card:last-child {
+    display: block;
+  }
+}
 .help-container .help-cards .help-card-title {
   padding-top: 87px;
   font-family: "Georgia", serif;
@@ -685,8 +706,7 @@ body {
 }
 @media screen and (max-width: 767px) {
   .help-container .help-cards {
-    justify-content: space-between;
-    gap: 30px calc(25% - 50px);
+    gap: 30px calc(33.3% - 67px);
   }
 }
 @media screen and (max-width: 767px) {

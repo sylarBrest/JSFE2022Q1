@@ -387,6 +387,10 @@ body {
     .contacts-title,
     .locations-title {
         @include h3($color-light-xl);
+
+        @media screen and (max-width: 767px) {
+            padding: 0 10px;
+        }
     }
 
     .info {
@@ -411,6 +415,7 @@ body {
         &.location-info {
             display: flex;
             align-items: center;
+
             .location-info-image {
                 width: 40px;
                 @include info-svg(url('../../assets/icons/pin.svg'), '22px 32px');
@@ -431,6 +436,10 @@ body {
             padding-top: 5px;
             @include h4($color-primary);
         }
+
+        @media screen and (max-width: 767px) {
+            align-items: center;
+        }
     }
 
     .locations {
@@ -448,11 +457,27 @@ body {
                 flex-flow: column;
             }
         }
+
+        @media screen and (max-width: 767px) {
+            padding-top: 0;
+            gap: 40px;
+        }
     }
 
     @media screen and (max-width: 1279px) {
         gap: 63px calc(19.4% - 73px);
         justify-content: center;
         padding-top: 14px;
+    }
+
+    @media screen and (max-width: 767px) {
+        align-items: center;
+        gap: 40px;
+        padding: 14px 10px 0;
+
+        .footer-puppy {
+            width: 100%;
+            padding: 0 20px;
+        }
     }
 }

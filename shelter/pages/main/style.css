@@ -292,6 +292,12 @@ body {
     text-align: center;
   }
 }
+@media screen and (max-width: 767px) {
+  .footer-container .contacts-title,
+.footer-container .locations-title {
+    padding: 0 10px;
+  }
+}
 .footer-container .info.e-mail-info {
   margin-top: -3px;
   background-image: url("../../assets/icons/mail.svg");
@@ -339,6 +345,11 @@ body {
   letter-spacing: 0.06em;
   color: #F1CDB3;
 }
+@media screen and (max-width: 767px) {
+  .footer-container .contacts {
+    align-items: center;
+  }
+}
 .footer-container .locations {
   padding-top: 16px;
   max-width: 302px;
@@ -359,11 +370,24 @@ body {
   display: flex;
   flex-flow: column;
 }
+@media screen and (max-width: 767px) {
+  .footer-container .locations {
+    padding-top: 0;
+    gap: 40px;
+  }
+}
 @media screen and (max-width: 1279px) {
   .footer-container {
     gap: 63px calc(19.4% - 73px);
     justify-content: center;
     padding-top: 14px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .footer-container {
+    align-items: center;
+    gap: 40px;
+    padding: 14px 10px 0;
   }
 }
 

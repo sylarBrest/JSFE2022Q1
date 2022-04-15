@@ -76,7 +76,8 @@
         padding-top: 230px;
 
         .start-screen-puppy {
-            max-width: 100%;
+            max-width: 708px;
+            width: 100%;
             padding-left: 140px;
         }
     }
@@ -86,6 +87,7 @@
         
         .start-screen-puppy {
             padding-left: 40px;
+            max-width: 569px;
         }
     }
 }
@@ -126,7 +128,7 @@
 
     @media screen and (max-width: 1279px) {
         flex-flow: column-reverse;
-        gap: 80px;
+        gap: 79px;
     }
 
     @media screen and (max-width: 767px) {
@@ -134,6 +136,7 @@
         gap: 40px;
 
         .about-pets {
+            max-width: 300px;
             width: 100%;
             padding: 0 20px;
         }
@@ -390,6 +393,7 @@
         gap: 43px;
 
         .donation-dog {
+            max-width: 505px;
             width: 100%;
             padding: 0 19px;
         }

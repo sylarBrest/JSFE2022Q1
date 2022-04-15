@@ -389,16 +389,18 @@ body {
   .footer-container {
     gap: 63px calc(19.4% - 73px);
     justify-content: center;
-    padding-top: 14px;
+    padding-top: 15px;
   }
 }
 @media screen and (max-width: 767px) {
   .footer-container {
+    flex-flow: column;
     align-items: center;
     gap: 40px;
-    padding: 14px 10px 0;
+    padding: 13px 10px 0;
   }
   .footer-container .footer-puppy {
+    max-width: 300px;
     width: 100%;
     padding: 0 20px;
   }
@@ -501,7 +503,8 @@ body {
     padding-top: 230px;
   }
   .hero-container .start-screen-puppy {
-    max-width: 100%;
+    max-width: 708px;
+    width: 100%;
     padding-left: 140px;
   }
 }
@@ -511,6 +514,7 @@ body {
   }
   .hero-container .start-screen-puppy {
     padding-left: 40px;
+    max-width: 569px;
   }
 }
 
@@ -556,7 +560,7 @@ body {
 @media screen and (max-width: 1279px) {
   .about-container {
     flex-flow: column-reverse;
-    gap: 80px;
+    gap: 79px;
   }
 }
 @media screen and (max-width: 767px) {
@@ -565,6 +569,7 @@ body {
     gap: 40px;
   }
   .about-container .about-pets {
+    max-width: 300px;
     width: 100%;
     padding: 0 20px;
   }
@@ -829,6 +834,7 @@ body {
     gap: 43px;
   }
   .donation-container .donation-dog {
+    max-width: 505px;
     width: 100%;
     padding: 0 19px;
   }

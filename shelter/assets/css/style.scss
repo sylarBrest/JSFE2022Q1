@@ -476,16 +476,17 @@ body {
     @media screen and (max-width: 1279px) {
         gap: 63px calc(19.4% - 73px);
         justify-content: center;
-        padding-top: 14px;
+        padding-top: 15px;
     }
 
     @media screen and (max-width: 767px) {
         flex-flow: column;
         align-items: center;
         gap: 40px;
-        padding: 14px 10px 0;
+        padding: 13px 10px 0;
 
         .footer-puppy {
+            max-width: 300px;
             width: 100%;
             padding: 0 20px;
         }

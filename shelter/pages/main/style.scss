@@ -104,16 +104,39 @@
 
         .about-title {
             max-width: 370px;
+
+            @media screen and (max-width: 767px) {
+                padding: 0 15px;
+            }
         }
 
         .about-subtitle {
             @include all.paragraph-l(all.$color-dark-xl);
+
+            @media screen and (max-width: 767px) {
+                text-align: justify;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            padding: 0 15px;
+            gap: 23px;
         }
     }
 
     @media screen and (max-width: 1279px) {
         flex-flow: column-reverse;
         gap: 80px;
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: 42px 10px;
+        gap: 40px;
+
+        .about-pets {
+            width: 100%;
+            padding: 0 20px;
+        }
     }
 }
 
@@ -135,10 +158,25 @@
                     }
                 }
             }
+
+            @media screen and (max-width: 767px) {
+                order: 1;
+                .pets-card {
+                    &:nth-child(2) {
+                        display: none;
+                    }
+                }
+            }
         }
 
         @media screen and (max-width: 1279px) {
             gap: 12px;
+        }
+
+        @media screen and (max-width: 767px) {
+            flex-wrap: wrap-reverse;
+            justify-content: center;
+            gap: 20px calc(30% - 10px);
         }
     }
 }
@@ -206,6 +244,12 @@
                 padding-top: 87px;
                 @include all.h4;
                 text-align: center;
+
+                @media screen and (max-width: 767px) {
+                    padding-top: 70.4px;
+                    font-size: 15px;
+                    line-height: 110%;            
+                }
             }
 
             @media screen and (max-width: 1279px) {
@@ -215,11 +259,31 @@
                     width: 170px;
                 }
             }
+
+            @media screen and (max-width: 767px) {
+                background-size: 50px 50px;
+                width: 130px;
+
+                &:nth-child(3) {
+                    width: 130px;
+                }
+
+            }
         }
 
         @media screen and (max-width: 1279px) {
             gap: 58px calc(35% - 180px);
         }
+
+        @media screen and (max-width: 767px) {
+            justify-content: space-between;
+            gap: 30px calc(25% - 50px);
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: 42px 15px;
+        gap: 42px;
     }
 }
 
@@ -246,10 +310,19 @@
 
         .donation-title {
             max-width: 300px;
+
+            @media screen and (max-width: 767px) {
+                padding: 0 40px;
+            }
         }
 
         .donation-subtitle {
             @include all.h5;
+
+            @media screen and (max-width: 767px) {
+                line-height: 160%;
+                letter-spacing: normal;
+            }
         }
 
         .credit-card {
@@ -263,6 +336,7 @@
             &-image {
                 color: all.$color-dark-3xl;
                 width: 30px;
+                height: 23px;
                 background-image: url('../../assets/icons/credit-card.svg');
                 background-position: left center;
                 background-repeat: no-repeat;
@@ -271,16 +345,46 @@
 
             &-number {
                 @include all.h4;
+
+                @media screen and (max-width: 767px) {
+                    margin-top: 4px;
+                    font-size: 15px;
+                    line-height: 110%;
+                }
+            }
+
+            @media screen and (max-width: 767px) {
+                width: 281px;
             }
         }
 
         .legal-information {
             @include all.paragraph-s;
+            
+            @media screen and (max-width: 767px) {
+                text-align: justify;
+                padding: 0 10px;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            align-items: center;
+            gap: 19px;
         }
     }
 
     @media screen and (max-width: 1279px) {
         flex-flow: column-reverse;
         gap: 60px;
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: 42px 10px;
+        gap: 43px;
+
+        .donation-dog {
+            width: 100%;
+            padding: 0 19px;
+        }
     }
 }

@@ -58,6 +58,11 @@ $color-light-xl: #FFFFFF;
     line-height: 130%;
     letter-spacing: 0.06em;
     color: $color;
+
+    @media screen and (max-width: 767px) {
+        font-size: 25px;
+        text-align: center;
+    }
 }
 
 @mixin h4($color: $color-dark-l) {
@@ -341,6 +346,11 @@ body {
                 }
             }
         }
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: 42px 10px;
+        gap: 42px;
     }
 }
 

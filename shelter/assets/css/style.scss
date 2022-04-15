@@ -58,6 +58,11 @@ $color-light-xl: #FFFFFF;
     line-height: 130%;
     letter-spacing: 0.06em;
     color: $color;
+
+    @media screen and (max-width: 767px) {
+        font-size: 25px;
+        text-align: center;
+    }
 }
 
 @mixin h4($color: $color-dark-l) {
@@ -171,6 +176,15 @@ body {
     width: 100%;
     margin: 0 auto;
     padding: 0 40px;
+
+    @media screen and (max-width: 1279px) {
+        padding: 0 30px;
+    }
+
+    @media screen and (max-width: 767px) {
+        padding: 0 10px;
+    }
+
 }
 
 .wrapper {
@@ -185,7 +199,7 @@ body {
 .header-container {
     display: flex;
     align-items: center;
-    padding: 30px 40px;
+    padding: 60px 40px;
 
     .logo {
         display: flex;
@@ -200,7 +214,7 @@ body {
 
         .subtitle {
             color: $color-light-xl;
-            font: normal 400 13px/15px 'ArialRegular', sans-serif;
+            font: normal 400 13px/15px 'Arial', sans-serif;
             letter-spacing: 0.1em;
         }
     }
@@ -233,6 +247,50 @@ body {
                 color: $color-light-s;
             }
         }
+
+        @media screen and (max-width: 767px) {
+            visibility: hidden;
+            position: absolute;
+            overflow: hidden;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            z-index: 50;
+            height: 100%;
+            width: 0;
+            transition: all 0.5s;
+        }
+    }
+
+    .hamburger {
+        display: none;
+        width: 30px;
+        height: 22px;
+
+        @media screen and (max-width: 767px) {
+            display: flex;
+            position: relative;
+            flex-flow: column;
+            justify-content: space-between;
+        
+            .line {
+                width: 30px;
+                height: 2px;
+                background: $color-primary;
+                display: block;
+                transition: all 0.5s ease-in-out;
+            }
+        }
+    }    
+    
+    @media screen and (max-width: 1279px) {
+        padding: 30px;
+    }
+
+    @media screen and (max-width: 767px) {
+        gap: unset;
+        padding: 30px 53px 30px 10px;
     }
 }
 
@@ -298,6 +356,11 @@ body {
             }
         }
     }
+
+    @media screen and (max-width: 767px) {
+        padding: 42px 10px;
+        gap: 42px;
+    }
 }
 
 .navigation-button {
@@ -326,12 +389,17 @@ body {
 
 .footer-container {
     display: flex;
-    gap: 160px;
+    flex-wrap: wrap;
+    gap: 159px;
     padding: 40px 40px 0;
 
     .contacts-title,
     .locations-title {
         @include h3($color-light-xl);
+
+        @media screen and (max-width: 767px) {
+            padding: 0 10px;
+        }
     }
 
     .info {
@@ -356,6 +424,7 @@ body {
         &.location-info {
             display: flex;
             align-items: center;
+
             .location-info-image {
                 width: 40px;
                 @include info-svg(url('../../assets/icons/pin.svg'), '22px 32px');
@@ -376,6 +445,10 @@ body {
             padding-top: 5px;
             @include h4($color-primary);
         }
+
+        @media screen and (max-width: 767px) {
+            align-items: center;
+        }
     }
 
     .locations {
@@ -392,6 +465,30 @@ body {
                 display: flex;
                 flex-flow: column;
             }
+        }
+
+        @media screen and (max-width: 767px) {
+            padding-top: 0;
+            gap: 40px;
+        }
+    }
+
+    @media screen and (max-width: 1279px) {
+        gap: 63px calc(19.4% - 73px);
+        justify-content: center;
+        padding-top: 15px;
+    }
+
+    @media screen and (max-width: 767px) {
+        flex-flow: column;
+        align-items: center;
+        gap: 40px;
+        padding: 13px 10px 0;
+
+        .footer-puppy {
+            max-width: 300px;
+            width: 100%;
+            padding: 0 20px;
         }
     }
 }

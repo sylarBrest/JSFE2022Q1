@@ -34,6 +34,16 @@ body {
   margin: 0 auto;
   padding: 0 40px;
 }
+@media screen and (max-width: 1279px) {
+  .container {
+    padding: 0 30px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .container {
+    padding: 0 10px;
+  }
+}
 
 .wrapper {
   margin: 0 auto;
@@ -49,11 +59,17 @@ body {
   letter-spacing: 0.06em;
   color: #545454;
 }
+@media screen and (max-width: 767px) {
+  .title {
+    font-size: 25px;
+    text-align: center;
+  }
+}
 
 .header-container {
   display: flex;
   align-items: center;
-  padding: 30px 40px;
+  padding: 60px 40px;
 }
 .header-container .logo {
   display: flex;
@@ -72,7 +88,7 @@ body {
 }
 .header-container .logo .subtitle {
   color: #FFFFFF;
-  font: normal 400 13px/15px "ArialRegular", sans-serif;
+  font: normal 400 13px/15px "Arial", sans-serif;
   letter-spacing: 0.1em;
 }
 .header-container .nav {
@@ -103,6 +119,52 @@ body {
 }
 .header-container .nav .nav-link:hover {
   color: #FAFAFA;
+}
+@media screen and (max-width: 767px) {
+  .header-container .nav {
+    visibility: hidden;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 50;
+    height: 100%;
+    width: 0;
+    transition: all 0.5s;
+  }
+}
+.header-container .hamburger {
+  display: none;
+  width: 30px;
+  height: 22px;
+}
+@media screen and (max-width: 767px) {
+  .header-container .hamburger {
+    display: flex;
+    position: relative;
+    flex-flow: column;
+    justify-content: space-between;
+  }
+  .header-container .hamburger .line {
+    width: 30px;
+    height: 2px;
+    background: #F1CDB3;
+    display: block;
+    transition: all 0.5s ease-in-out;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .header-container {
+    padding: 30px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .header-container {
+    gap: unset;
+    padding: 30px 53px 30px 10px;
+  }
 }
 
 .main {
@@ -180,6 +242,12 @@ body {
   background-color: #FDDCC4;
   border-color: #FDDCC4;
 }
+@media screen and (max-width: 767px) {
+  .pets-container {
+    padding: 42px 10px;
+    gap: 42px;
+  }
+}
 
 .navigation-button {
   display: flex;
@@ -212,7 +280,8 @@ body {
 
 .footer-container {
   display: flex;
-  gap: 160px;
+  flex-wrap: wrap;
+  gap: 159px;
   padding: 40px 40px 0;
 }
 .footer-container .contacts-title,
@@ -224,6 +293,19 @@ body {
   line-height: 130%;
   letter-spacing: 0.06em;
   color: #FFFFFF;
+}
+@media screen and (max-width: 767px) {
+  .footer-container .contacts-title,
+.footer-container .locations-title {
+    font-size: 25px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 767px) {
+  .footer-container .contacts-title,
+.footer-container .locations-title {
+    padding: 0 10px;
+  }
 }
 .footer-container .info.e-mail-info {
   margin-top: -3px;
@@ -272,6 +354,11 @@ body {
   letter-spacing: 0.06em;
   color: #F1CDB3;
 }
+@media screen and (max-width: 767px) {
+  .footer-container .contacts {
+    align-items: center;
+  }
+}
 .footer-container .locations {
   padding-top: 16px;
   max-width: 302px;
@@ -292,12 +379,37 @@ body {
   display: flex;
   flex-flow: column;
 }
+@media screen and (max-width: 767px) {
+  .footer-container .locations {
+    padding-top: 0;
+    gap: 40px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .footer-container {
+    gap: 63px calc(19.4% - 73px);
+    justify-content: center;
+    padding-top: 15px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .footer-container {
+    flex-flow: column;
+    align-items: center;
+    gap: 40px;
+    padding: 13px 10px 0;
+  }
+  .footer-container .footer-puppy {
+    max-width: 300px;
+    width: 100%;
+    padding: 0 20px;
+  }
+}
 
 .header-container {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  padding: 60px 40px;
 }
 .header-container .logo .title {
   color: #F1CDB3;
@@ -355,6 +467,15 @@ body {
   line-height: 130%;
   color: #FFFFFF;
   max-width: 310px;
+  align-self: flex-start;
+}
+@media screen and (max-width: 767px) {
+  .hero-container .hero .hero-title {
+    font-size: 25px;
+    letter-spacing: 0.06em;
+    align-self: center;
+    text-align: center;
+  }
 }
 .hero-container .hero .hero-subtitle {
   font-family: "Arial", sans-serif;
@@ -363,6 +484,38 @@ body {
   font-size: 15px;
   line-height: 160%;
   color: #CDCDCD;
+  max-width: 460px;
+}
+@media screen and (max-width: 767px) {
+  .hero-container .hero .hero-subtitle {
+    text-align: center;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .hero-container .hero {
+    align-items: center;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .hero-container {
+    flex-flow: column;
+    gap: 100px;
+    padding-top: 230px;
+  }
+  .hero-container .start-screen-puppy {
+    max-width: 708px;
+    width: 100%;
+    padding-left: 140px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hero-container {
+    gap: 105px;
+  }
+  .hero-container .start-screen-puppy {
+    padding-left: 40px;
+    max-width: 569px;
+  }
 }
 
 .about-container {
@@ -380,6 +533,11 @@ body {
 .about-container .about-content .about-title {
   max-width: 370px;
 }
+@media screen and (max-width: 767px) {
+  .about-container .about-content .about-title {
+    padding: 0 15px;
+  }
+}
 .about-container .about-content .about-subtitle {
   font-family: "Arial", sans-serif;
   font-style: normal;
@@ -387,6 +545,34 @@ body {
   font-size: 15px;
   line-height: 160%;
   color: #4C4C4C;
+}
+@media screen and (max-width: 767px) {
+  .about-container .about-content .about-subtitle {
+    text-align: justify;
+  }
+}
+@media screen and (max-width: 767px) {
+  .about-container .about-content {
+    padding: 0 15px;
+    gap: 23px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .about-container {
+    flex-flow: column-reverse;
+    gap: 79px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .about-container {
+    padding: 42px 10px;
+    gap: 40px;
+  }
+  .about-container .about-pets {
+    max-width: 300px;
+    width: 100%;
+    padding: 0 20px;
+  }
 }
 
 .pets-container .pets-slider {
@@ -396,6 +582,34 @@ body {
 }
 .pets-container .pets-slider .pets-cards {
   gap: 90px;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .pets-slider .pets-cards {
+    gap: 40px;
+  }
+  .pets-container .pets-slider .pets-cards .pets-card:last-child {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .pets-slider .pets-cards {
+    order: 1;
+  }
+  .pets-container .pets-slider .pets-cards .pets-card:nth-child(2) {
+    display: none;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .pets-slider {
+    gap: 12px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .pets-slider {
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+    gap: 20px calc(30% - 10px);
+  }
 }
 
 .help-container {
@@ -447,6 +661,14 @@ body {
 .help-container .help-cards .help-card:nth-child(9) {
   background-image: url("../../assets/icons/sleeping-area.svg");
 }
+.help-container .help-cards .help-card:last-child {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .help-container .help-cards .help-card:last-child {
+    display: block;
+  }
+}
 .help-container .help-cards .help-card-title {
   padding-top: 87px;
   font-family: "Georgia", serif;
@@ -457,6 +679,46 @@ body {
   letter-spacing: 0.06em;
   color: #545454;
   text-align: center;
+}
+@media screen and (max-width: 767px) {
+  .help-container .help-cards .help-card-title {
+    padding-top: 70.4px;
+    font-size: 15px;
+    line-height: 110%;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .help-container .help-cards .help-card {
+    width: 170px;
+  }
+  .help-container .help-cards .help-card:nth-child(3) {
+    width: 170px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .help-container .help-cards .help-card {
+    background-size: 50px 50px;
+    width: 130px;
+  }
+  .help-container .help-cards .help-card:nth-child(3) {
+    width: 130px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .help-container .help-cards {
+    gap: 58px calc(35% - 180px);
+  }
+}
+@media screen and (max-width: 767px) {
+  .help-container .help-cards {
+    gap: 30px calc(33.3% - 67px);
+  }
+}
+@media screen and (max-width: 767px) {
+  .help-container {
+    padding: 42px 15px;
+    gap: 42px;
+  }
 }
 
 .donation-section {
@@ -482,6 +744,11 @@ body {
 .donation-container .donation-content .donation-title {
   max-width: 300px;
 }
+@media screen and (max-width: 767px) {
+  .donation-container .donation-content .donation-title {
+    padding: 0 40px;
+  }
+}
 .donation-container .donation-content .donation-subtitle {
   font-family: "Georgia", serif;
   font-style: normal;
@@ -490,6 +757,12 @@ body {
   line-height: 110%;
   letter-spacing: 0.06em;
   color: #545454;
+}
+@media screen and (max-width: 767px) {
+  .donation-container .donation-content .donation-subtitle {
+    line-height: 160%;
+    letter-spacing: normal;
+  }
 }
 .donation-container .donation-content .credit-card {
   width: 350px;
@@ -502,6 +775,7 @@ body {
 .donation-container .donation-content .credit-card-image {
   color: #292929;
   width: 30px;
+  height: 23px;
   background-image: url("../../assets/icons/credit-card.svg");
   background-position: left center;
   background-repeat: no-repeat;
@@ -516,6 +790,18 @@ body {
   letter-spacing: 0.06em;
   color: #545454;
 }
+@media screen and (max-width: 767px) {
+  .donation-container .donation-content .credit-card-number {
+    margin-top: 4px;
+    font-size: 15px;
+    line-height: 110%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .donation-container .donation-content .credit-card {
+    width: 282px;
+  }
+}
 .donation-container .donation-content .legal-information {
   font-family: "Arial", sans-serif;
   font-style: italic;
@@ -523,6 +809,35 @@ body {
   font-size: 12px;
   line-height: 150%;
   color: #B2B2B2;
+}
+@media screen and (max-width: 767px) {
+  .donation-container .donation-content .legal-information {
+    text-align: justify;
+    padding: 0 10px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .donation-container .donation-content {
+    align-items: center;
+    gap: 19px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .donation-container {
+    flex-flow: column-reverse;
+    gap: 60px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .donation-container {
+    padding: 42px 10px;
+    gap: 43px;
+  }
+  .donation-container .donation-dog {
+    max-width: 505px;
+    width: 100%;
+    padding: 0 19px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

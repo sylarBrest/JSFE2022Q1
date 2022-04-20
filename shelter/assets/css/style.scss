@@ -169,6 +169,12 @@ body {
     display: flex;
     flex-flow: column;
     color: $color-dark-l;
+
+    @media screen and (max-width: 767px) {
+        &.open {
+            overflow: hidden;
+        }
+    }
 }
 
 .container {
@@ -207,6 +213,7 @@ body {
         align-items: center;
         gap: 10px;
         margin-right: auto;
+        transition: 0.5s all;
 
         .title {
             @include h1;
@@ -216,6 +223,11 @@ body {
             color: $color-light-xl;
             font: normal 400 13px/15px 'Arial', sans-serif;
             letter-spacing: 0.1em;
+        }
+
+        &.open {
+            z-index: 100;
+            margin-left: calc(100vw - 320px);
         }
     }
 
@@ -227,6 +239,15 @@ body {
             align-items: center;
             gap: 36px;
             list-style: none;
+
+            @media screen and (max-width: 767px) {
+                flex-flow: column;
+                gap: 41px;
+            }
+        }
+
+        .nav-item {
+            white-space: nowrap;
         }
 
         .nav-link {
@@ -246,27 +267,65 @@ body {
             &:hover {
                 color: $color-light-s;
             }
+
+            @media screen and (max-width: 767px) {
+                font-size: 32px;
+            }
         }
 
         @media screen and (max-width: 767px) {
             visibility: hidden;
             position: absolute;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             top: 0;
             right: 0;
             margin: 0;
             padding: 0;
             z-index: 50;
-            height: 100%;
+            height: 100vh;
             width: 0;
             transition: all 0.5s;
+            background-color: $color-dark-3xl;
+
+            &.open {
+                visibility: visible;
+                width: 320px;
+            }
+
+            &.open ~ .darken {
+                visibility: visible;
+                opacity: 1;
+                transition: all 0.5s;
+            }
         }
     }
+
+    .darken {
+        display: none;
+
+        @media screen and (max-width: 767px) {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 30;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(41, 41, 41, 0.6);
+            visibility: hidden;
+            opacity: 0;
+        }
+    }    
 
     .hamburger {
         display: none;
         width: 30px;
         height: 22px;
+        z-index: 100;
+        transition: 0.5s all;
 
         @media screen and (max-width: 767px) {
             display: flex;
@@ -281,8 +340,16 @@ body {
                 display: block;
                 transition: all 0.5s ease-in-out;
             }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.open {
+                transform: rotate(90deg);
+            }
         }
-    }    
+    }
     
     @media screen and (max-width: 1279px) {
         padding: 30px;

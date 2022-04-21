@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Connect fonts as they not available in Linux/OS X */
 @font-face {
   font-family: "Georgia";
@@ -169,7 +170,6 @@ body {
   .header-container .nav.open ~ .darken {
     visibility: visible;
     opacity: 1;
-    transition: all 0.5s;
   }
 }
 .header-container .darken {
@@ -186,6 +186,7 @@ body {
     height: 100vh;
     background-color: rgba(41, 41, 41, 0.6);
     visibility: hidden;
+    transition: 0.5s all;
     opacity: 0;
   }
 }
@@ -355,11 +356,16 @@ body {
   line-height: 110%;
   letter-spacing: 0.06em;
   color: #000000;
+  line-height: 17px;
 }
 .pets-container .popup .popup-info .popup-add-info {
+  padding-left: 15px;
   display: flex;
   flex-flow: column;
-  gap: 10px;
+  gap: 11px;
+  list-style: none;
+}
+.pets-container .popup .popup-info .popup-add-info-line {
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -367,12 +373,36 @@ body {
   line-height: 110%;
   letter-spacing: 0.06em;
   color: #000000;
+  line-height: 17px;
+}
+.pets-container .popup .popup-info .popup-add-info-line::before {
+  content: "•";
+  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+  color: #F1CDB3;
+  /* Change the color */
+  font-weight: bold;
+  /* If you want it to be bold */
+  display: inline-block;
+  /* Needed to add space between the bullet and the text */
+  width: 1em;
+  /* Also needed for space (tweak if needed) */
+  margin-left: -1em;
+  /* Also needed for space (tweak if needed) */
+}
+.pets-container .popup .popup-info .popup-add-info-line .bold {
+  font-weight: 700;
+  letter-spacing: 0.13em;
 }
 .pets-container .popup.open {
   display: flex;
-  position: absolute;
+  position: fixed;
+  top: 15%;
+  left: auto;
+  right: auto;
+  bottom: auto;
   background-color: #FAFAFA;
   z-index: 100;
+  border-radius: 9px;
   color: #000000;
 }
 @media screen and (max-width: 767px) {

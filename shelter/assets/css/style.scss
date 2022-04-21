@@ -171,10 +171,8 @@ body {
     flex-flow: column;
     color: $color-dark-l;
 
-    @media screen and (max-width: 767px) {
-        &.open {
-            overflow: hidden;
-        }
+    &.open {
+        overflow: hidden;
     }
 }
 

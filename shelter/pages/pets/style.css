@@ -310,7 +310,19 @@ body {
   display: none;
 }
 .pets-container .popup .popup-pet-image {
+  max-width: 500px;
   width: 500px;
+  border-radius: 9px;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-pet-image {
+    max-width: 350px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-pet-image {
+    display: none;
+  }
 }
 .pets-container .popup .popup-info {
   display: flex;
@@ -339,6 +351,11 @@ body {
     text-align: center;
   }
 }
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-title .popup-pet-name {
+    font-size: 35px;
+  }
+}
 .pets-container .popup .popup-info .popup-title .popup-pet-typebreed {
   font-family: "Georgia", serif;
   font-style: normal;
@@ -347,6 +364,11 @@ body {
   line-height: 115%;
   letter-spacing: 0.06em;
   color: #000000;
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-title .popup-pet-typebreed {
+    align-self: center;
+  }
 }
 .pets-container .popup .popup-info .popup-pet-description {
   font-family: "Georgia", serif;
@@ -357,6 +379,18 @@ body {
   letter-spacing: 0.06em;
   color: #000000;
   line-height: 17px;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info .popup-pet-description {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-pet-description {
+    margin-top: 1px;
+    text-align: justify;
+  }
 }
 .pets-container .popup .popup-info .popup-add-info {
   padding-left: 15px;
@@ -377,33 +411,111 @@ body {
 }
 .pets-container .popup .popup-info .popup-add-info-line::before {
   content: "•";
-  /* Add content: \2022 is the CSS Code/unicode for a bullet */
   color: #F1CDB3;
-  /* Change the color */
-  font-weight: bold;
-  /* If you want it to be bold */
+  font-weight: 700;
   display: inline-block;
-  /* Needed to add space between the bullet and the text */
   width: 1em;
-  /* Also needed for space (tweak if needed) */
   margin-left: -1em;
-  /* Also needed for space (tweak if needed) */
 }
 .pets-container .popup .popup-info .popup-add-info-line .bold {
   font-weight: 700;
   letter-spacing: 0.13em;
 }
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info .popup-add-info {
+    gap: 6px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-add-info {
+    padding-top: 5px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info {
+    padding: 10px 9px 37px 10px;
+    max-width: 280px;
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info {
+    padding: 10px;
+    max-width: 240px;
+    gap: 20px;
+  }
+}
 .pets-container .popup.open {
   display: flex;
   position: fixed;
-  top: 15%;
+  top: 50%;
+  height: auto;
   left: auto;
   right: auto;
-  bottom: auto;
+  transform: translateY(-50%);
   background-color: #FAFAFA;
   z-index: 100;
   border-radius: 9px;
   color: #000000;
+}
+.pets-container .popup.open ~ .darken.open {
+  visibility: visible;
+  opacity: 1;
+}
+.pets-container .popup .button-close {
+  position: absolute;
+  right: -42px;
+  top: -52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  width: 52px;
+  background-color: rgba(123, 123, 123, 0.4);
+  border: 2px solid #F1CDB3;
+  border-radius: 100px;
+  transition: all 0.5s;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #292929;
+  cursor: pointer;
+}
+.pets-container .popup .button-close:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .button-close {
+    right: -30px;
+  }
+}
+.pets-container .popup:not(:hover) .button-close {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+.pets-container .darken {
+  display: none;
+}
+.pets-container .darken.open {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(41, 41, 41, 0.6);
+  visibility: hidden;
+  transition: 0.5s all;
+  opacity: 0;
+}
+.pets-container .darken.open:hover {
+  cursor: pointer;
 }
 @media screen and (max-width: 767px) {
   .pets-container {

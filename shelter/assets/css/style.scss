@@ -19,6 +19,7 @@ $color-dark-m: #B2B2B2;
 $color-dark-l: #545454;
 $color-dark-xl: #4C4C4C;
 $color-dark-3xl: #292929;
+$color-black: #000000;
 $color-primary: #F1CDB3;
 $color-primary-light: #FDDCC4;
 $color-light-s: #FAFAFA;
@@ -298,7 +299,6 @@ body {
             &.open ~ .darken {
                 visibility: visible;
                 opacity: 1;
-                transition: all 0.5s;
             }
         }
     }
@@ -316,6 +316,7 @@ body {
             height: 100vh;
             background-color: rgba(41, 41, 41, 0.6);
             visibility: hidden;
+            transition: 0.5s all;
             opacity: 0;
         }
     }    
@@ -379,6 +380,7 @@ body {
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: center;
     gap: 60px;
     padding: 80px 40px 100px;
 
@@ -421,6 +423,82 @@ body {
                     }
                 }
             }
+        }
+    }
+
+    .popup {
+        display: none;
+
+        .popup-pet-image {
+            width: 500px;
+        }
+
+        .popup-info {
+            display: flex;
+            flex-flow: column;
+            padding: 50px 20px 90px 30px;
+            gap: 40px;
+            max-width: 400px;
+
+            .popup-title {
+                display: flex;
+                flex-flow: column;
+                gap: 8px;
+
+                .popup-pet-name {
+                    @include h3($color-black);
+                }
+
+                .popup-pet-typebreed {
+                    @include h4($color-black);
+                }
+            }
+
+            .popup-pet-description {
+                @include h5($color-black);
+                line-height: 17px;
+            }
+
+            .popup-add-info {
+                padding-left: 15px;
+                display: flex;
+                flex-flow: column;
+                gap: 11px;
+                list-style: none;
+
+                &-line {
+                    &::before {
+                        content: "\2022";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+                        color: $color-primary; /* Change the color */
+                        font-weight: bold; /* If you want it to be bold */
+                        display: inline-block; /* Needed to add space between the bullet and the text */
+                        width: 1em; /* Also needed for space (tweak if needed) */
+                        margin-left: -1em; /* Also needed for space (tweak if needed) */
+                    }
+    
+                    @include h5($color-black);
+                    line-height: 17px;
+
+                    .bold {
+                        font-weight: 700;
+                        letter-spacing: 0.13em;
+                    }
+                }
+
+            }
+        }
+
+        &.open {
+            display: flex;
+            position: fixed;
+            top: 15%;
+            left: auto;
+            right: auto;
+            bottom: auto;
+            background-color: $color-light-s;
+            z-index: 100;
+            border-radius: 9px;
+            color: $color-black;
         }
     }
 

@@ -246,6 +246,7 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
+  justify-content: center;
   gap: 60px;
   padding: 80px 40px 100px;
 }
@@ -303,6 +304,76 @@ body {
 .pets-container .pets-slider .pets-cards .pets-card:hover .pets-button {
   background-color: #FDDCC4;
   border-color: #FDDCC4;
+}
+.pets-container .popup {
+  display: none;
+}
+.pets-container .popup .popup-pet-image {
+  width: 500px;
+}
+.pets-container .popup .popup-info {
+  display: flex;
+  flex-flow: column;
+  padding: 50px 20px 90px 30px;
+  gap: 40px;
+  max-width: 400px;
+}
+.pets-container .popup .popup-info .popup-title {
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+}
+.pets-container .popup .popup-info .popup-title .popup-pet-name {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #000000;
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-title .popup-pet-name {
+    font-size: 25px;
+    text-align: center;
+  }
+}
+.pets-container .popup .popup-info .popup-title .popup-pet-typebreed {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #000000;
+}
+.pets-container .popup .popup-info .popup-pet-description {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #000000;
+}
+.pets-container .popup .popup-info .popup-add-info {
+  display: flex;
+  flex-flow: column;
+  gap: 10px;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #000000;
+}
+.pets-container .popup.open {
+  display: flex;
+  position: absolute;
+  background-color: #FAFAFA;
+  z-index: 100;
+  color: #000000;
 }
 @media screen and (max-width: 767px) {
   .pets-container {

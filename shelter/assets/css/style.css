@@ -310,8 +310,19 @@ body {
   display: none;
 }
 .pets-container .popup .popup-pet-image {
+  max-width: 500px;
   width: 500px;
   border-radius: 9px;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-pet-image {
+    max-width: 350px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-pet-image {
+    display: none;
+  }
 }
 .pets-container .popup .popup-info {
   display: flex;
@@ -340,6 +351,11 @@ body {
     text-align: center;
   }
 }
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-title .popup-pet-name {
+    font-size: 35px;
+  }
+}
 .pets-container .popup .popup-info .popup-title .popup-pet-typebreed {
   font-family: "Georgia", serif;
   font-style: normal;
@@ -348,6 +364,11 @@ body {
   line-height: 115%;
   letter-spacing: 0.06em;
   color: #000000;
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-title .popup-pet-typebreed {
+    align-self: center;
+  }
 }
 .pets-container .popup .popup-info .popup-pet-description {
   font-family: "Georgia", serif;
@@ -358,6 +379,18 @@ body {
   letter-spacing: 0.06em;
   color: #000000;
   line-height: 17px;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info .popup-pet-description {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-pet-description {
+    margin-top: 1px;
+    text-align: justify;
+  }
 }
 .pets-container .popup .popup-info .popup-add-info {
   padding-left: 15px;
@@ -387,6 +420,30 @@ body {
 .pets-container .popup .popup-info .popup-add-info-line .bold {
   font-weight: 700;
   letter-spacing: 0.13em;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info .popup-add-info {
+    gap: 6px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-add-info {
+    padding-top: 5px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info {
+    padding: 10px 9px 37px 10px;
+    max-width: 280px;
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info {
+    padding: 10px;
+    max-width: 240px;
+    gap: 20px;
+  }
 }
 .pets-container .popup.open {
   display: flex;
@@ -431,6 +488,11 @@ body {
 .pets-container .popup .button-close:hover {
   background-color: #FDDCC4;
   border-color: #FDDCC4;
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .button-close {
+    right: -30px;
+  }
 }
 .pets-container .popup:not(:hover) .button-close {
   background-color: #FDDCC4;

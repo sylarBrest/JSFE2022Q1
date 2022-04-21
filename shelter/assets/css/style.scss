@@ -430,8 +430,17 @@ body {
         display: none;
 
         .popup-pet-image {
+            max-width: 500px;
             width: 500px;
             border-radius: 9px;
+
+            @media screen and (max-width: 1279px) {
+                max-width: 350px;
+            }
+
+            @media screen and (max-width: 767px) {
+                display: none;
+            }
         }
 
         .popup-info {
@@ -448,16 +457,34 @@ body {
 
                 .popup-pet-name {
                     @include h3($color-black);
+
+                    @media screen and (max-width: 767px) {
+                        font-size: 35px;
+                    }
                 }
 
                 .popup-pet-typebreed {
                     @include h4($color-black);
+
+                    @media screen and (max-width: 767px) {
+                        align-self: center;
+                    }
                 }
             }
 
             .popup-pet-description {
                 @include h5($color-black);
                 line-height: 17px;
+
+                @media screen and (max-width: 1279px) {
+                    font-size: 13px;
+                    line-height: 14px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    margin-top: 1px;
+                    text-align: justify;
+                }
             }
 
             .popup-add-info {
@@ -486,6 +513,25 @@ body {
                     }
                 }
 
+                @media screen and (max-width: 1279px) {
+                    gap: 6px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    padding-top: 5px;
+                }
+            }
+
+            @media screen and (max-width: 1279px) {
+                padding: 10px 9px 37px 10px;
+                max-width: 280px;
+                gap: 20px;
+            }
+
+            @media screen and (max-width: 767px) {
+                padding: 10px;
+                max-width: 240px;
+                gap: 20px;
             }
         }
 
@@ -528,6 +574,10 @@ body {
             &:hover {
                 background-color: $color-primary-light;
                 border-color: $color-primary-light;
+            }
+
+            @media screen and (max-width: 767px) {
+                right: -30px;
             }
         }
 

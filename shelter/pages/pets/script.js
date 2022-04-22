@@ -1,5 +1,19 @@
 //for pets
 import petsData from '../../assets/js/pets.js';
+import { openPopup } from '../../assets/js/script.js';
+
+const petsCards = document.querySelector('.pets-cards');
+function arrangeCards() {
+    for (let i = 0; i < 8; i++) {
+        const card = `<div class="pets-card" data-pet="${pets[i]}">
+        <img src="${pets[i]['img']}" alt="${pets[i]['name']}" class="pets-card-image">
+        <h4 class="pets-card-title">${pets[i]['name']}</h4>
+        <button class="pets-button">Learn more</button>
+        </div>
+        `;
+        petsCards.insertAdjacentHTML('beforeend', card);
+    }
+}
 
 const getRndArray = () => {
     let res = [];
@@ -31,7 +45,7 @@ const getPetsArray = () => {
 const pets = getPetsArray();
 
 const fillCards = () => {
-    console.log(petsData)
+    arrangeCards();
     const card = document.querySelectorAll('.pets-card'),
           temp = pets.slice(0, 8);
     card.forEach((el, ind) => {
@@ -41,6 +55,8 @@ const fillCards = () => {
         cardTitle.textContent = petsData[temp[ind]]['name'];
         el.dataset['pet'] = temp[ind];
     })
+    const petsCard = document.querySelectorAll('.pets-card');
+    petsCard.forEach(el => el.addEventListener('click', openPopup));
 }
-    
+
 window.addEventListener('load', fillCards);

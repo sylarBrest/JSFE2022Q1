@@ -60,3 +60,5 @@ const closePopup = (event) => {
 variable['pets-card'].forEach(el => el.addEventListener('click', openPopup));
 variable['popup'].addEventListener('click', closePopup);
 variable['darken'][1].addEventListener('click', closePopup);
+
+export { openPopup };

@@ -2,6 +2,8 @@
 import petsData from '../../assets/js/pets.js';
 import { openPopup } from '../../assets/js/script.js';
 
+//Arrange cards with pets
+let currentPage = 1;
 const petsCards = document.querySelector('.pets-cards');
 function arrangeCards() {
     for (let i = 0; i < 8; i++) {
@@ -15,6 +17,7 @@ function arrangeCards() {
     }
 }
 
+//Pseudo-random array of 8 pets
 const getRndArray = () => {
     let res = [];
     res.push(Math.floor(8 * Math.random()));
@@ -27,6 +30,7 @@ const getRndArray = () => {
     return res;
 }
 
+//Get Arrayof 8 pets by 6
 const getPetsArray = () => {
     let pets = getRndArray();
     for (let j = 1; j < 6; j++) {
@@ -44,10 +48,10 @@ const getPetsArray = () => {
 
 const pets = getPetsArray();
 
-const fillCards = () => {
-    arrangeCards();
+//Fill card with pets of current page
+const fillCard = (page) => {
     const card = document.querySelectorAll('.pets-card'),
-          temp = pets.slice(0, 8);
+          temp = pets.slice((page - 1) * 8, page * 8);
     card.forEach((el, ind) => {
         const cardImage = el.querySelector('.pets-card-image'),
               cardTitle = el.querySelector('.pets-card-title');
@@ -55,8 +59,72 @@ const fillCards = () => {
         cardTitle.textContent = petsData[temp[ind]]['name'];
         el.dataset['pet'] = temp[ind];
     })
+}
+
+//Fill cards with pagination
+const fillCards = () => {
+    arrangeCards();
+    fillCard(currentPage);
     const petsCard = document.querySelectorAll('.pets-card');
     petsCard.forEach(el => el.addEventListener('click', openPopup));
 }
 
 window.addEventListener('load', fillCards);
+
+//Pagination
+const firstPage = document.querySelector('.first-page');
+const prevPage = document.querySelector('.prev-page');
+const curPage = document.querySelector('.current-page');
+const nextPage = document.querySelector('.next-page');
+const lastPage = document.querySelector('.last-page');
+
+const fillNextPage = () => {
+    currentPage++;
+    fillCard(currentPage);
+    curPage.textContent = currentPage;
+    firstPage.removeAttribute('disabled');
+    prevPage.removeAttribute('disabled');
+    if (currentPage === 6) {
+        nextPage.setAttribute('disabled', 'disabled');
+        lastPage.setAttribute('disabled', 'disabled');
+    }
+}
+
+const fillPrevPage = () => {
+    currentPage--;
+    fillCard(currentPage);
+    curPage.textContent = currentPage;
+    lastPage.removeAttribute('disabled');
+    nextPage.removeAttribute('disabled');
+    if (currentPage === 1) {
+        prevPage.setAttribute('disabled', 'disabled');
+        firstPage.setAttribute('disabled', 'disabled');
+    }
+}
+
+const fillLastPage = () => {
+    currentPage = Math.floor(pets.length / 8);
+    fillCard(currentPage);
+    curPage.textContent = currentPage;
+    firstPage.removeAttribute('disabled');
+    prevPage.removeAttribute('disabled');
+    nextPage.setAttribute('disabled', 'disabled');
+    lastPage.setAttribute('disabled', 'disabled');
+}
+
+const fillFirstPage = () => {
+    currentPage = 1;
+    fillCard(currentPage);
+    curPage.textContent = currentPage;
+    lastPage.removeAttribute('disabled');
+    nextPage.removeAttribute('disabled');
+    prevPage.setAttribute('disabled', 'disabled');
+    firstPage.setAttribute('disabled', 'disabled');
+}
+
+console.log(pets);
+
+nextPage.addEventListener('click', fillNextPage);
+prevPage.addEventListener('click', fillPrevPage);
+lastPage.addEventListener('click', fillLastPage);
+firstPage.addEventListener('click', fillFirstPage);

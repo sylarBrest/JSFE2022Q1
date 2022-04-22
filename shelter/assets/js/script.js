@@ -1,4 +1,5 @@
 import variable from './params.js';
+import petsData from './pets.js';
 // Hamburger menu
 const toggleMenu = () => {
   variable['hamburger'].classList.toggle('open');
@@ -19,19 +20,6 @@ const closeMenu = (event) => {
 variable['hamburger'].addEventListener('click', toggleMenu);
 variable['nav'].addEventListener('click', closeMenu);
 variable['darken'][0].addEventListener('click', closeMenu);
-
-// Popup (modal window)
-let petsData;
-const fillData = data => petsData = data;
-
-async function getPetsInfo() {  
-  const pets = '../../assets/pets.json';
-  const res = await fetch(pets);
-  const data = await res.json(); 
-  fillData(data);
-}
-
-getPetsInfo();
 
 const fillPopup = (number) => {
   const popupPetImage = variable['popup'].querySelector('.popup-pet-image');

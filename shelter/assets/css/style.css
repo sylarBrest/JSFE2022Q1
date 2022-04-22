@@ -305,7 +305,20 @@ body.open {
   border-color: #FDDCC4;
 }
 .pets-container .popup {
-  display: none;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  height: auto;
+  left: auto;
+  right: auto;
+  transform: translateY(-50%);
+  background-color: #FAFAFA;
+  z-index: 100;
+  border-radius: 9px;
+  color: #000000;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s all;
 }
 .pets-container .popup .popup-pet-image {
   max-width: 500px;
@@ -444,17 +457,8 @@ body.open {
   }
 }
 .pets-container .popup.open {
-  display: flex;
-  position: fixed;
-  top: 50%;
-  height: auto;
-  left: auto;
-  right: auto;
-  transform: translateY(-50%);
-  background-color: #FAFAFA;
-  z-index: 100;
-  border-radius: 9px;
-  color: #000000;
+  visibility: visible;
+  opacity: 1;
 }
 .pets-container .popup.open ~ .darken.open {
   visibility: visible;

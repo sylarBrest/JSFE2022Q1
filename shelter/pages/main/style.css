@@ -28,10 +28,8 @@ body {
   flex-flow: column;
   color: #545454;
 }
-@media screen and (max-width: 767px) {
-  body.open {
-    overflow: hidden;
-  }
+body.open {
+  overflow: hidden;
 }
 
 .container {
@@ -307,7 +305,20 @@ body {
   border-color: #FDDCC4;
 }
 .pets-container .popup {
-  display: none;
+  display: flex;
+  position: fixed;
+  top: 50%;
+  height: auto;
+  left: auto;
+  right: auto;
+  transform: translateY(-50%);
+  background-color: #FAFAFA;
+  z-index: 100;
+  border-radius: 9px;
+  color: #000000;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s all;
 }
 .pets-container .popup .popup-pet-image {
   max-width: 500px;
@@ -388,6 +399,7 @@ body {
 }
 @media screen and (max-width: 767px) {
   .pets-container .popup .popup-info .popup-pet-description {
+    margin-top: 1px;
     text-align: justify;
   }
 }
@@ -427,7 +439,7 @@ body {
 }
 @media screen and (max-width: 767px) {
   .pets-container .popup .popup-info .popup-add-info {
-    margin-top: -2px;
+    padding-top: 5px;
   }
 }
 @media screen and (max-width: 1279px) {
@@ -445,17 +457,8 @@ body {
   }
 }
 .pets-container .popup.open {
-  display: flex;
-  position: fixed;
-  top: 50%;
-  height: auto;
-  left: auto;
-  right: auto;
-  transform: translateY(-50%);
-  background-color: #FAFAFA;
-  z-index: 100;
-  border-radius: 9px;
-  color: #000000;
+  visibility: visible;
+  opacity: 1;
 }
 .pets-container .popup.open ~ .darken.open {
   visibility: visible;

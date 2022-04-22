@@ -425,7 +425,20 @@ body {
     }
 
     .popup {
-        display: none;
+        display: flex;
+        position: fixed;
+        top: 50%;
+        height: auto;
+        left: auto;
+        right: auto;
+        transform: translateY(-50%);
+        background-color: $color-light-s;
+        z-index: 100;
+        border-radius: 9px;
+        color: $color-black;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s all;
 
         .popup-pet-image {
             max-width: 500px;
@@ -534,17 +547,8 @@ body {
         }
 
         &.open {
-            display: flex;
-            position: fixed;
-            top: 50%;
-            height: auto;
-            left: auto;
-            right: auto;
-            transform: translateY(-50%);
-            background-color: $color-light-s;
-            z-index: 100;
-            border-radius: 9px;
-            color: $color-black;
+            visibility: visible;
+            opacity: 1;
         }
 
         &.open ~ .darken.open {

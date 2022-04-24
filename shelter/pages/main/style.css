@@ -318,7 +318,7 @@ body.open {
   color: #000000;
   visibility: hidden;
   opacity: 0;
-  transition: 0.5s all;
+  transition: 1.5s all;
 }
 .pets-container .popup .popup-pet-image {
   max-width: 500px;
@@ -852,19 +852,32 @@ body.open {
   }
 }
 
+.pets-container {
+  height: 877px;
+  justify-content: space-between;
+}
 .pets-container .pets-slider {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   gap: 53px;
 }
 .pets-container .pets-slider .pets-cards {
+  display: none;
   gap: 90px;
+  position: relative;
+  animation: 0.5s ease-in-out;
+}
+.pets-container .pets-slider .pets-cards.active, .pets-container .pets-slider .pets-cards.next {
+  display: flex;
 }
 @media screen and (max-width: 1279px) {
   .pets-container .pets-slider .pets-cards {
     gap: 40px;
   }
-  .pets-container .pets-slider .pets-cards .pets-card:last-child {
+  .pets-container .pets-slider .pets-cards .pets-card:nth-child(3) {
     display: none;
   }
 }
@@ -874,6 +887,36 @@ body.open {
   }
   .pets-container .pets-slider .pets-cards .pets-card:nth-child(2) {
     display: none;
+  }
+}
+.pets-container .pets-slider .pets-cards .to-left {
+  animation-name: left;
+}
+.pets-container .pets-slider .pets-cards .from-right {
+  animation-name: right;
+}
+.pets-container .pets-slider .pets-cards .to-right {
+  animation-name: right;
+  animation-direction: reverse;
+}
+.pets-container .pets-slider .pets-cards .from-left {
+  animation-name: left;
+  animation-direction: reverse;
+}
+@keyframes left {
+  from {
+    left: 0;
+  }
+  to {
+    left: -100%;
+  }
+}
+@keyframes right {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 0;
   }
 }
 @media screen and (max-width: 1279px) {
@@ -886,6 +929,15 @@ body.open {
     flex-wrap: wrap-reverse;
     justify-content: center;
     gap: 20px calc(30% - 10px);
+    transform: translateY(-48.7%);
+  }
+}
+.pets-container .pets-slider .pets-next {
+  order: 1;
+}
+@media screen and (max-width: 767px) {
+  .pets-container {
+    height: 792px;
   }
 }
 

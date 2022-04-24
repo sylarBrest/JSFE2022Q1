@@ -144,19 +144,32 @@
 }
 
 .pets-container {
+    height: 877px;
+    justify-content: space-between;
     .pets-slider {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         display: flex;
         align-items: center;
         gap: 53px;
 
         .pets-cards {
+            display: none;
             gap: 90px;
+            position: relative;
+            animation: 0.5s ease-in-out;
+
+            &.active,
+            &.next {
+                display: flex;
+            }
 
             @media screen and (max-width: 1279px) {
                 gap: 40px;
 
                 .pets-card {
-                    &:last-child {
+                    &:nth-child(3) {
                         display: none;
                     }
                 }
@@ -164,10 +177,47 @@
 
             @media screen and (max-width: 767px) {
                 order: 1;
+                
                 .pets-card {
                     &:nth-child(2) {
                         display: none;
                     }
+                }
+            }
+
+            .to-left {
+                animation-name: left;
+            }
+              
+            .from-right {
+                animation-name: right;
+            }
+              
+            .to-right {
+                animation-name: right;
+                animation-direction: reverse;
+            }
+              
+            .from-left {
+                animation-name: left;
+                animation-direction: reverse;
+            }
+              
+            @keyframes left {
+                from {
+                    left: 0;
+                }
+                to {
+                    left: -100%;
+                }
+            }
+              
+            @keyframes right {
+                from {
+                    left: 100%;
+                }
+                to {
+                    left: 0;
                 }
             }
         }
@@ -180,7 +230,15 @@
             flex-wrap: wrap-reverse;
             justify-content: center;
             gap: 20px calc(30% - 10px);
+            transform: translateY(-48.7%);
         }
+
+        .pets-next {
+            order: 1;
+        }
+    }
+    @media screen and (max-width: 767px) {
+        height: 792px;
     }
 }
 

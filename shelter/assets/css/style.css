@@ -242,6 +242,7 @@ body.open {
 }
 
 .pets-container {
+  position: relative;
   display: flex;
   flex-flow: column;
   align-items: center;

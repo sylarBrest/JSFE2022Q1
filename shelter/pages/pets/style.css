@@ -318,7 +318,7 @@ body.open {
   color: #000000;
   visibility: hidden;
   opacity: 0;
-  transition: 0.5s all;
+  transition: 1.5s all;
 }
 .pets-container .popup .popup-pet-image {
   max-width: 500px;
@@ -686,6 +686,7 @@ body.open {
 .header {
   position: sticky;
   top: 0;
+  z-index: 101;
   background-color: #FFFFFF;
 }
 

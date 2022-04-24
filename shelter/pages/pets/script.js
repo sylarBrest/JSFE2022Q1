@@ -1,4 +1,3 @@
-//for pets
 import petsData from '../../assets/js/pets.js';
 import { openPopup } from '../../assets/js/script.js';
 

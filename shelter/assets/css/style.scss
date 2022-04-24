@@ -375,7 +375,6 @@ body {
 }
 
 .pets-container {
-    position: relative;
     display: flex;
     flex-flow: column;
     align-items: center;
@@ -386,43 +385,6 @@ body {
     .pets-title {
         max-width: 400px;
         text-align: center;
-    }
-
-    .pets-slider {
-        .pets-cards {
-            display: flex;
-
-            .pets-card {
-                max-width: 270px;
-                background-color: $color-light-s;
-                display: flex;
-                flex-flow: column;
-                align-items: center;
-                border-radius: 9px;
-                gap: 30px;
-                transition: all 0.5s;
-                cursor: pointer;
-
-                &-title {
-                    @include h4;
-                }
-
-                .pets-button {
-                    @include button-secondary;
-                    margin-bottom: 30px;
-                }
-
-                &:hover {
-                    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
-                    background-color: $color-light-xl;
-
-                    .pets-button {
-                        background-color: $color-primary-light;
-                        border-color: $color-primary-light;
-                    }
-                }
-            }
-        }
     }
 
     .popup {
@@ -617,6 +579,41 @@ body {
     @media screen and (max-width: 767px) {
         padding: 42px 10px;
         gap: 42px;
+    }
+}
+
+.pets-cards {
+    display: flex;
+
+    .pets-card {
+        max-width: 270px;
+        background-color: $color-light-s;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        border-radius: 9px;
+        gap: 30px;
+        transition: all 0.5s;
+        cursor: pointer;
+
+        &-title {
+            @include h4;
+        }
+
+        .pets-button {
+            @include button-secondary;
+            margin-bottom: 30px;
+        }
+
+        &:hover {
+            box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+            background-color: $color-light-xl;
+
+            .pets-button {
+                background-color: $color-primary-light;
+                border-color: $color-primary-light;
+            }
+        }
     }
 }
 

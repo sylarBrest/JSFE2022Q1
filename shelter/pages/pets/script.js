@@ -6,9 +6,9 @@ let currentPage = 1;
 const petsCards = document.querySelector('.pets-cards');
 function arrangeCards(amount) {
     for (let i = 0; i < amount; i++) {
-        const card = `<div class="pets-card" data-pet="${pets[i]}">
-        <img src="${pets[i]['img']}" alt="${pets[i]['name']}" class="pets-card-image">
-        <h4 class="pets-card-title">${pets[i]['name']}</h4>
+        const card = `<div class="pets-card" data-pet="">
+        <img src="" alt="" class="pets-card-image">
+        <h4 class="pets-card-title"></h4>
         <button class="pets-button">Learn more</button>
         </div>
         `;
@@ -40,7 +40,7 @@ const getRndArray = () => {
     return res;
 }
 
-//Get Arrayof 8 pets by 6
+//Get Array of 8 pets by 6
 const getPetsArray = () => {
     let pets = getRndArray();
     for (let j = 1; j < 6; j++) {
@@ -51,7 +51,7 @@ const getPetsArray = () => {
                 ? pets.push(res[i])
                 : temp.push(res[i]);
         }
-        pets.push(...temp);
+        pets.push(...temp.reverse());
     }
     return pets;
 }
@@ -66,7 +66,7 @@ const letAnimate = () => {
         { 
             opacity: 1,
         },
-    ], 1500));
+    ], 1000));
 }
 
 const pets = getPetsArray();

@@ -262,7 +262,7 @@ body.open {
   right: auto;
   transform: translateY(-50%);
   background-color: #FAFAFA;
-  z-index: 100;
+  z-index: 102;
   border-radius: 9px;
   color: #000000;
   visibility: hidden;

@@ -1,5 +1,24 @@
 @use '../../assets/css/style.scss' as all;
 
+:root {
+    --left: -990px;
+    --left-left: -1980px;
+}
+
+@media screen and (max-width: 1279px) {
+    :root {
+        --left: -580px;
+        --left-left: -1160px;
+    }     
+}
+
+@media screen and (max-width: 767px) {
+    :root {
+        --left: -270px;
+        --left-left: -540px;
+    }     
+}
+
 .header-container {
     position: absolute;
     left: 50%;
@@ -149,29 +168,56 @@
         align-items: center;
         gap: 53px;
 
-        .pets-cards {
-            gap: 90px;
+        .carousel-wrapper {
+            width: 990px;
+            overflow: hidden;
 
-            @media screen and (max-width: 1279px) {
-                gap: 40px;
+            .carousel {
+                display: flex;
+                position: relative;
+                left: -990px;
 
-                .pets-card {
-                    &:last-child {
-                        display: none;
+                .pets-cards {
+                    gap: 90px;
+                    align-self: center;
+        
+                    @media screen and (max-width: 1279px) {
+                        gap: 40px;
+        
+                        .pets-card {
+                            &:nth-child(3) {
+                                display: none;
+                            }
+                        }
+                    }
+        
+                    @media screen and (max-width: 767px) {
+                        .pets-card {
+                            &:nth-child(2) {
+                                display: none;
+                            }
+                        }
                     }
                 }
+
+                @media screen and (max-width: 1279px) {
+                    left: -580px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    left: -270px;
+                }
+            }
+
+            @media screen and (max-width: 1279px) {
+                width: 580px;
             }
 
             @media screen and (max-width: 767px) {
                 order: 1;
-                .pets-card {
-                    &:nth-child(2) {
-                        display: none;
-                    }
-                }
+                width: 270px;
             }
         }
-
         @media screen and (max-width: 1279px) {
             gap: 12px;
         }
@@ -181,9 +227,37 @@
             justify-content: center;
             gap: 20px calc(30% - 10px);
         }
-    }
+    }    
 }
 
+@keyframes move-right {
+    from {
+        left: var(--left);
+    }
+    to {
+        left: var(--left-left);
+    }
+}
+  
+.transition-right {
+    animation-name: move-right;
+    animation-duration: 1s;
+}
+  
+@keyframes move-left {
+    from {
+        left: var(--left);
+    }
+    to {
+        left: 0px;
+    }
+}
+  
+.transition-left {
+    animation-name: move-left;
+    animation-duration: 1s;
+}
+  
 .help-container {
     padding: 80px 40px 100px;
     display: flex;

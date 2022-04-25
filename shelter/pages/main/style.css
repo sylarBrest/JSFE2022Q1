@@ -262,7 +262,7 @@ body.open {
   right: auto;
   transform: translateY(-50%);
   background-color: #FAFAFA;
-  z-index: 100;
+  z-index: 102;
   border-radius: 9px;
   color: #000000;
   visibility: hidden;
@@ -684,6 +684,23 @@ body.open {
   }
 }
 
+:root {
+  --left: -990px;
+  --left-left: -1980px;
+}
+
+@media screen and (max-width: 1279px) {
+  :root {
+    --left: -580px;
+    --left-left: -1160px;
+  }
+}
+@media screen and (max-width: 767px) {
+  :root {
+    --left: -270px;
+    --left-left: -540px;
+  }
+}
 .header-container {
   position: absolute;
   left: 50%;
@@ -869,6 +886,7 @@ body.open {
 }
 .pets-container .pets-slider .carousel-wrapper .carousel .pets-cards {
   gap: 90px;
+  align-self: center;
 }
 @media screen and (max-width: 1279px) {
   .pets-container .pets-slider .carousel-wrapper .carousel .pets-cards {
@@ -885,26 +903,44 @@ body.open {
 }
 @media screen and (max-width: 1279px) {
   .pets-container .pets-slider .carousel-wrapper .carousel {
-    gap: 12px;
+    left: -580px;
   }
 }
 @media screen and (max-width: 767px) {
   .pets-container .pets-slider .carousel-wrapper .carousel {
+    left: -270px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .pets-slider .carousel-wrapper {
+    width: 580px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .pets-slider .carousel-wrapper {
+    order: 1;
+    width: 270px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .pets-slider {
+    gap: 12px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .pets-slider {
     flex-wrap: wrap-reverse;
     justify-content: center;
     gap: 20px calc(30% - 10px);
   }
 }
-.pets-container .pets-slider .carousel-wrapper .carousel .pets-next {
-  order: 1;
-}
 
 @keyframes move-right {
   from {
-    left: -990px;
+    left: var(--left);
   }
   to {
-    left: -1980px;
+    left: var(--left-left);
   }
 }
 .transition-right {
@@ -914,7 +950,7 @@ body.open {
 
 @keyframes move-left {
   from {
-    left: -990px;
+    left: var(--left);
   }
   to {
     left: 0px;

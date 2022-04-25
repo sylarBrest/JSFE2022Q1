@@ -47,9 +47,20 @@ const amountCards = function() {
 }
 
 //Pseudo-random array of 3 pets
-const getRndArray = (init = [-1, -1, -1]) => {
+const getNewRndArray = () => {
     let res = [];
-    while (res.length < 3) {
+    while (res.length < amountCards()) {
+        const r = Math.floor(8 * Math.random());
+        if (res.indexOf(r) === -1) {
+            res.push(r);
+        }
+    }
+    return res;
+}
+
+const getRndArray = (init) => {
+    let res = [];
+    while (res.length < amountCards()) {
         const r = Math.floor(8 * Math.random());
         if ((res.indexOf(r) === -1) && (init.indexOf(r) === -1)) {
             res.push(r);
@@ -60,9 +71,9 @@ const getRndArray = (init = [-1, -1, -1]) => {
 
 //Get Array of 3 pets by 3
 const getPetsArray = () => {
-    let pets = getRndArray();
+    let pets = getNewRndArray();
     for (let j = 1; j < 3; j++) {
-        pets.push(...getRndArray(pets.slice((j - 1) * 3, 3 * j)));
+        pets.push(...getRndArray(pets.slice((j - 1) * amountCards(), amountCards() * j)));
     }
     return pets;
 }
@@ -103,37 +114,51 @@ const moveRight = () => {
     nextButton.removeEventListener('click', moveRight);
 };
 
-const fillCard = (arr) => {
-    return getRndArray(arr);
-}
-  
 prevButton.addEventListener('click', moveLeft);
 nextButton.addEventListener('click', moveRight);
   
 carousel.addEventListener('animationend', (animationEvent) => {
     const prevCards = document.querySelector('.prev');
     const nextCards = document.querySelector('.next');
+    const actCards = document.querySelector('.pets-cards.active');
     let changedItem,
-        arr = [];
+        arr = [], arrP = [], arrN = [];
+    prevCards.querySelectorAll('.pets-card').forEach(el => arrP.push(+el.dataset['pet']));
+    nextCards.querySelectorAll('.pets-card').forEach(el => arrN.push(+el.dataset['pet']));
     if (animationEvent.animationName === 'move-left') {
         carousel.classList.remove('transition-left');
         changedItem = prevCards;
-        document.querySelector('.pets-cards.active').innerHTML = prevCards.innerHTML;
+        actCards.innerHTML = prevCards.innerHTML;
+        let petArr = getRndArray(arrP);
+        nextCards.querySelectorAll('.pets-card').forEach((el, ind) => {
+            const cardImage = el.querySelector('.pets-card-image'),
+                  cardTitle = el.querySelector('.pets-card-title');
+            cardImage.src = petsData[petArr[ind]]['img'];
+            cardTitle.textContent = petsData[petArr[ind]]['name'];
+            el.dataset['pet'] = petArr[ind];
+        })
     } else {
         carousel.classList.remove('transition-right');
         changedItem = nextCards;
-        document.querySelector('.pets-cards.active').innerHTML = nextCards.innerHTML;
+        actCards.innerHTML = nextCards.innerHTML;
+        let petArr = getRndArray(arrN);
+        prevCards.querySelectorAll('.pets-card').forEach((el, ind) => {
+            const cardImage = el.querySelector('.pets-card-image'),
+                  cardTitle = el.querySelector('.pets-card-title');
+            cardImage.src = petsData[petArr[ind]]['img'];
+            cardTitle.textContent = petsData[petArr[ind]]['name'];
+            el.dataset['pet'] = petArr[ind];
+        })
     }
     changedItem.querySelectorAll('.pets-card').forEach(el => arr.push(+el.dataset['pet']));
 
     changedItem.innerHTML = '';
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < amountCards(); i++) {
         const card = createCardTemplate();
         changedItem.insertAdjacentHTML('beforeend', card);
     }
 
     let petArr = getRndArray(arr);
-    console.log(arr, petArr);
     changedItem.querySelectorAll('.pets-card').forEach((el, ind) => {
         const cardImage = el.querySelector('.pets-card-image'),
               cardTitle = el.querySelector('.pets-card-title');

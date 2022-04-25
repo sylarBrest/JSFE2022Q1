@@ -1,5 +1,24 @@
 @use '../../assets/css/style.scss' as all;
 
+:root {
+    --left: -990px;
+    --left-left: -1980px;
+}
+
+@media screen and (max-width: 1279px) {
+    :root {
+        --left: -580px;
+        --left-left: -1160px;
+    }     
+}
+
+@media screen and (max-width: 767px) {
+    :root {
+        --left: -270px;
+        --left-left: -540px;
+    }     
+}
+
 .header-container {
     position: absolute;
     left: 50%;
@@ -160,6 +179,7 @@
 
                 .pets-cards {
                     gap: 90px;
+                    align-self: center;
         
                     @media screen and (max-width: 1279px) {
                         gap: 40px;
@@ -179,31 +199,43 @@
                         }
                     }
                 }
-        
+
                 @media screen and (max-width: 1279px) {
-                    gap: 12px;
+                    left: -580px;
                 }
-        
+
                 @media screen and (max-width: 767px) {
-                    flex-wrap: wrap-reverse;
-                    justify-content: center;
-                    gap: 20px calc(30% - 10px);
+                    left: -270px;
                 }
-        
-                .pets-next {
-                    order: 1;
-                }        
             }
+
+            @media screen and (max-width: 1279px) {
+                width: 580px;
+            }
+
+            @media screen and (max-width: 767px) {
+                order: 1;
+                width: 270px;
+            }
+        }
+        @media screen and (max-width: 1279px) {
+            gap: 12px;
+        }
+
+        @media screen and (max-width: 767px) {
+            flex-wrap: wrap-reverse;
+            justify-content: center;
+            gap: 20px calc(30% - 10px);
         }
     }    
 }
 
 @keyframes move-right {
     from {
-        left: -990px;
+        left: var(--left);
     }
     to {
-        left: -1980px;
+        left: var(--left-left);
     }
 }
   
@@ -214,7 +246,7 @@
   
 @keyframes move-left {
     from {
-        left: -990px;
+        left: var(--left);
     }
     to {
         left: 0px;

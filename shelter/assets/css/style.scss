@@ -19,6 +19,7 @@ $color-dark-m: #B2B2B2;
 $color-dark-l: #545454;
 $color-dark-xl: #4C4C4C;
 $color-dark-3xl: #292929;
+$color-black: #000000;
 $color-primary: #F1CDB3;
 $color-primary-light: #FDDCC4;
 $color-light-s: #FAFAFA;
@@ -169,6 +170,10 @@ body {
     display: flex;
     flex-flow: column;
     color: $color-dark-l;
+
+    &.open {
+        overflow: hidden;
+    }
 }
 
 .container {
@@ -184,7 +189,6 @@ body {
     @media screen and (max-width: 767px) {
         padding: 0 10px;
     }
-
 }
 
 .wrapper {
@@ -207,6 +211,7 @@ body {
         align-items: center;
         gap: 10px;
         margin-right: auto;
+        transition: 0.5s all;
 
         .title {
             @include h1;
@@ -216,6 +221,11 @@ body {
             color: $color-light-xl;
             font: normal 400 13px/15px 'Arial', sans-serif;
             letter-spacing: 0.1em;
+        }
+
+        &.open {
+            z-index: 100;
+            margin-left: calc(100vw - 320px);
         }
     }
 
@@ -227,6 +237,15 @@ body {
             align-items: center;
             gap: 36px;
             list-style: none;
+
+            @media screen and (max-width: 767px) {
+                flex-flow: column;
+                gap: 41px;
+            }
+        }
+
+        .nav-item {
+            white-space: nowrap;
         }
 
         .nav-link {
@@ -246,27 +265,65 @@ body {
             &:hover {
                 color: $color-light-s;
             }
+
+            @media screen and (max-width: 767px) {
+                font-size: 32px;
+            }
         }
 
         @media screen and (max-width: 767px) {
             visibility: hidden;
             position: absolute;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             top: 0;
             right: 0;
             margin: 0;
             padding: 0;
             z-index: 50;
-            height: 100%;
+            height: 100vh;
             width: 0;
             transition: all 0.5s;
+            background-color: $color-dark-3xl;
+
+            &.open {
+                visibility: visible;
+                width: 320px;
+            }
+
+            &.open ~ .darken {
+                visibility: visible;
+                opacity: 1;
+            }
         }
     }
+
+    .darken {
+        display: none;
+
+        @media screen and (max-width: 767px) {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 30;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(41, 41, 41, 0.6);
+            visibility: hidden;
+            transition: 0.5s all;
+            opacity: 0;
+        }
+    }    
 
     .hamburger {
         display: none;
         width: 30px;
         height: 22px;
+        z-index: 100;
+        transition: 0.5s all;
 
         @media screen and (max-width: 767px) {
             display: flex;
@@ -281,8 +338,16 @@ body {
                 display: block;
                 transition: all 0.5s ease-in-out;
             }
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.open {
+                transform: rotate(90deg);
+            }
         }
-    }    
+    }
     
     @media screen and (max-width: 1279px) {
         padding: 30px;
@@ -312,6 +377,7 @@ body {
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: center;
     gap: 60px;
     padding: 80px 40px 100px;
 
@@ -320,46 +386,233 @@ body {
         text-align: center;
     }
 
-    .pets-slider {
-        .pets-cards {
-            display: flex;
+    .popup {
+        display: flex;
+        position: fixed;
+        top: 50%;
+        height: auto;
+        left: auto;
+        right: auto;
+        transform: translateY(-50%);
+        background-color: $color-light-s;
+        z-index: 102;
+        border-radius: 9px;
+        color: $color-black;
+        visibility: hidden;
+        opacity: 0;
+        transition: 0.5s all;
 
-            .pets-card {
-                max-width: 270px;
-                background-color: $color-light-s;
+        .popup-pet-image {
+            max-width: 500px;
+            width: 500px;
+            border-radius: 9px;
+
+            @media screen and (max-width: 1279px) {
+                max-width: 350px;
+            }
+
+            @media screen and (max-width: 767px) {
+                display: none;
+            }
+        }
+
+        .popup-info {
+            display: flex;
+            flex-flow: column;
+            padding: 50px 20px 90px 30px;
+            gap: 40px;
+            max-width: 400px;
+
+            .popup-title {
                 display: flex;
                 flex-flow: column;
-                align-items: center;
-                border-radius: 9px;
-                gap: 30px;
-                transition: all 0.5s;
-                cursor: pointer;
+                gap: 8px;
 
-                &-title {
-                    @include h4;
-                }
+                .popup-pet-name {
+                    @include h3($color-black);
 
-                .pets-button {
-                    @include button-secondary;
-                    margin-bottom: 30px;
-                }
-
-                &:hover {
-                    box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
-                    background-color: $color-light-xl;
-
-                    .pets-button {
-                        background-color: $color-primary-light;
-                        border-color: $color-primary-light;
+                    @media screen and (max-width: 767px) {
+                        font-size: 35px;
                     }
                 }
+
+                .popup-pet-typebreed {
+                    @include h4($color-black);
+
+                    @media screen and (max-width: 767px) {
+                        align-self: center;
+                    }
+                }
+            }
+
+            .popup-pet-description {
+                @include h5($color-black);
+                line-height: 17px;
+
+                @media screen and (max-width: 1279px) {
+                    font-size: 13px;
+                    line-height: 14px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    margin-top: 1px;
+                    text-align: justify;
+                }
+            }
+
+            .popup-add-info {
+                padding-left: 15px;
+                display: flex;
+                flex-flow: column;
+                gap: 11px;
+                list-style: none;
+
+                &-line {
+                    &::before {
+                        content: "\2022";
+                        color: $color-primary;
+                        font-weight: 700;
+                        display: inline-block;
+                        width: 1em;
+                        margin-left: -1em;
+                    }
+    
+                    @include h5($color-black);
+                    line-height: 17px;
+
+                    .bold {
+                        font-weight: 700;
+                        letter-spacing: 0.13em;
+                    }
+                }
+
+                @media screen and (max-width: 1279px) {
+                    gap: 6px;
+                }
+
+                @media screen and (max-width: 767px) {
+                    padding-top: 5px;
+                }
+            }
+
+            @media screen and (max-width: 1279px) {
+                padding: 10px 9px 37px 10px;
+                max-width: 280px;
+                gap: 20px;
+            }
+
+            @media screen and (max-width: 767px) {
+                padding: 10px;
+                max-width: 240px;
+                gap: 20px;
+            }
+        }
+
+        &.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        &.open ~ .darken.open {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .button-close {
+            position: absolute;
+            right: -42px;
+            top: -52px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 52px;
+            width: 52px;
+            background-color: rgba(123, 123, 123, 0.4);
+            border: 2px solid $color-primary;
+            border-radius: 100px;
+            transition: all 0.5s;
+            @include h4($color-dark-3xl);
+            cursor: pointer;
+        
+            &:hover {
+                background-color: $color-primary-light;
+                border-color: $color-primary-light;
+            }
+
+            @media screen and (max-width: 767px) {
+                right: -30px;
+            }
+        }
+
+        &:not(:hover) {
+            .button-close {
+                background-color: $color-primary-light;
+                border-color: $color-primary-light;
             }
         }
     }
 
+    .darken {
+        display: none;
+
+        &.open {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 30;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(41, 41, 41, 0.6);
+            visibility: hidden;
+            transition: 0.5s all;
+            opacity: 0;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }    
+
     @media screen and (max-width: 767px) {
         padding: 42px 10px;
         gap: 42px;
+    }
+}
+
+.pets-cards {
+    display: flex;
+
+    .pets-card {
+        max-width: 270px;
+        background-color: $color-light-s;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        border-radius: 9px;
+        gap: 30px;
+        transition: all 0.5s;
+        cursor: pointer;
+
+        &-title {
+            @include h4;
+        }
+
+        .pets-button {
+            @include button-secondary;
+            margin-bottom: 30px;
+        }
+
+        &:hover {
+            box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
+            background-color: $color-light-xl;
+
+            .pets-button {
+                background-color: $color-primary-light;
+                border-color: $color-primary-light;
+            }
+        }
     }
 }
 

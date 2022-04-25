@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* Connect fonts as they not available in Linux/OS X */
 @font-face {
   font-family: "Georgia";
@@ -26,6 +27,9 @@ body {
   display: flex;
   flex-flow: column;
   color: #545454;
+}
+body.open {
+  overflow: hidden;
 }
 
 .container {
@@ -77,6 +81,7 @@ body {
   align-items: center;
   gap: 10px;
   margin-right: auto;
+  transition: 0.5s all;
 }
 .header-container .logo .title {
   font-family: "Georgia", serif;
@@ -91,6 +96,10 @@ body {
   font: normal 400 13px/15px "Arial", sans-serif;
   letter-spacing: 0.1em;
 }
+.header-container .logo.open {
+  z-index: 100;
+  margin-left: calc(100vw - 320px);
+}
 .header-container .nav {
   margin-top: -4px;
 }
@@ -99,6 +108,15 @@ body {
   align-items: center;
   gap: 36px;
   list-style: none;
+}
+@media screen and (max-width: 767px) {
+  .header-container .nav .nav-list {
+    flex-flow: column;
+    gap: 41px;
+  }
+}
+.header-container .nav .nav-item {
+  white-space: nowrap;
 }
 .header-container .nav .nav-link {
   font-family: "Arial", sans-serif;
@@ -121,24 +139,61 @@ body {
   color: #FAFAFA;
 }
 @media screen and (max-width: 767px) {
+  .header-container .nav .nav-link {
+    font-size: 32px;
+  }
+}
+@media screen and (max-width: 767px) {
   .header-container .nav {
     visibility: hidden;
     position: absolute;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     top: 0;
     right: 0;
     margin: 0;
     padding: 0;
     z-index: 50;
-    height: 100%;
+    height: 100vh;
     width: 0;
     transition: all 0.5s;
+    background-color: #292929;
+  }
+  .header-container .nav.open {
+    visibility: visible;
+    width: 320px;
+  }
+  .header-container .nav.open ~ .darken {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+.header-container .darken {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  .header-container .darken {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(41, 41, 41, 0.6);
+    visibility: hidden;
+    transition: 0.5s all;
+    opacity: 0;
   }
 }
 .header-container .hamburger {
   display: none;
   width: 30px;
   height: 22px;
+  z-index: 100;
+  transition: 0.5s all;
 }
 @media screen and (max-width: 767px) {
   .header-container .hamburger {
@@ -153,6 +208,12 @@ body {
     background: #F1CDB3;
     display: block;
     transition: all 0.5s ease-in-out;
+  }
+  .header-container .hamburger:hover {
+    cursor: pointer;
+  }
+  .header-container .hamburger.open {
+    transform: rotate(90deg);
   }
 }
 @media screen and (max-width: 1279px) {
@@ -184,6 +245,7 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
+  justify-content: center;
   gap: 60px;
   padding: 80px 40px 100px;
 }
@@ -191,10 +253,232 @@ body {
   max-width: 400px;
   text-align: center;
 }
-.pets-container .pets-slider .pets-cards {
+.pets-container .popup {
+  display: flex;
+  position: fixed;
+  top: 50%;
+  height: auto;
+  left: auto;
+  right: auto;
+  transform: translateY(-50%);
+  background-color: #FAFAFA;
+  z-index: 102;
+  border-radius: 9px;
+  color: #000000;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s all;
+}
+.pets-container .popup .popup-pet-image {
+  max-width: 500px;
+  width: 500px;
+  border-radius: 9px;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-pet-image {
+    max-width: 350px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-pet-image {
+    display: none;
+  }
+}
+.pets-container .popup .popup-info {
+  display: flex;
+  flex-flow: column;
+  padding: 50px 20px 90px 30px;
+  gap: 40px;
+  max-width: 400px;
+}
+.pets-container .popup .popup-info .popup-title {
+  display: flex;
+  flex-flow: column;
+  gap: 8px;
+}
+.pets-container .popup .popup-info .popup-title .popup-pet-name {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 130%;
+  letter-spacing: 0.06em;
+  color: #000000;
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-title .popup-pet-name {
+    font-size: 25px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-title .popup-pet-name {
+    font-size: 35px;
+  }
+}
+.pets-container .popup .popup-info .popup-title .popup-pet-typebreed {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #000000;
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-title .popup-pet-typebreed {
+    align-self: center;
+  }
+}
+.pets-container .popup .popup-info .popup-pet-description {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #000000;
+  line-height: 17px;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info .popup-pet-description {
+    font-size: 13px;
+    line-height: 14px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-pet-description {
+    margin-top: 1px;
+    text-align: justify;
+  }
+}
+.pets-container .popup .popup-info .popup-add-info {
+  padding-left: 15px;
+  display: flex;
+  flex-flow: column;
+  gap: 11px;
+  list-style: none;
+}
+.pets-container .popup .popup-info .popup-add-info-line {
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 110%;
+  letter-spacing: 0.06em;
+  color: #000000;
+  line-height: 17px;
+}
+.pets-container .popup .popup-info .popup-add-info-line::before {
+  content: "•";
+  color: #F1CDB3;
+  font-weight: 700;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+.pets-container .popup .popup-info .popup-add-info-line .bold {
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info .popup-add-info {
+    gap: 6px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info .popup-add-info {
+    padding-top: 5px;
+  }
+}
+@media screen and (max-width: 1279px) {
+  .pets-container .popup .popup-info {
+    padding: 10px 9px 37px 10px;
+    max-width: 280px;
+    gap: 20px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .popup-info {
+    padding: 10px;
+    max-width: 240px;
+    gap: 20px;
+  }
+}
+.pets-container .popup.open {
+  visibility: visible;
+  opacity: 1;
+}
+.pets-container .popup.open ~ .darken.open {
+  visibility: visible;
+  opacity: 1;
+}
+.pets-container .popup .button-close {
+  position: absolute;
+  right: -42px;
+  top: -52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  width: 52px;
+  background-color: rgba(123, 123, 123, 0.4);
+  border: 2px solid #F1CDB3;
+  border-radius: 100px;
+  transition: all 0.5s;
+  font-family: "Georgia", serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 115%;
+  letter-spacing: 0.06em;
+  color: #292929;
+  cursor: pointer;
+}
+.pets-container .popup .button-close:hover {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+@media screen and (max-width: 767px) {
+  .pets-container .popup .button-close {
+    right: -30px;
+  }
+}
+.pets-container .popup:not(:hover) .button-close {
+  background-color: #FDDCC4;
+  border-color: #FDDCC4;
+}
+.pets-container .darken {
+  display: none;
+}
+.pets-container .darken.open {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(41, 41, 41, 0.6);
+  visibility: hidden;
+  transition: 0.5s all;
+  opacity: 0;
+}
+.pets-container .darken.open:hover {
+  cursor: pointer;
+}
+@media screen and (max-width: 767px) {
+  .pets-container {
+    padding: 42px 10px;
+    gap: 42px;
+  }
+}
+
+.pets-cards {
   display: flex;
 }
-.pets-container .pets-slider .pets-cards .pets-card {
+.pets-cards .pets-card {
   max-width: 270px;
   background-color: #FAFAFA;
   display: flex;
@@ -205,7 +489,7 @@ body {
   transition: all 0.5s;
   cursor: pointer;
 }
-.pets-container .pets-slider .pets-cards .pets-card-title {
+.pets-cards .pets-card-title {
   font-family: "Georgia", serif;
   font-style: normal;
   font-weight: 400;
@@ -214,7 +498,7 @@ body {
   letter-spacing: 0.06em;
   color: #545454;
 }
-.pets-container .pets-slider .pets-cards .pets-card .pets-button {
+.pets-cards .pets-card .pets-button {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -234,19 +518,13 @@ body {
   transition: all 0.5s;
   margin-bottom: 30px;
 }
-.pets-container .pets-slider .pets-cards .pets-card:hover {
+.pets-cards .pets-card:hover {
   box-shadow: 0px 2px 35px 14px rgba(13, 13, 13, 0.04);
   background-color: #FFFFFF;
 }
-.pets-container .pets-slider .pets-cards .pets-card:hover .pets-button {
+.pets-cards .pets-card:hover .pets-button {
   background-color: #FDDCC4;
   border-color: #FDDCC4;
-}
-@media screen and (max-width: 767px) {
-  .pets-container {
-    padding: 42px 10px;
-    gap: 42px;
-  }
 }
 
 .navigation-button {
@@ -389,7 +667,7 @@ body {
   .footer-container {
     gap: 63px calc(19.4% - 73px);
     justify-content: center;
-    padding-top: 14px;
+    padding-top: 15px;
   }
 }
 @media screen and (max-width: 767px) {
@@ -397,9 +675,10 @@ body {
     flex-flow: column;
     align-items: center;
     gap: 40px;
-    padding: 14px 10px 0;
+    padding: 13px 10px 0;
   }
   .footer-container .footer-puppy {
+    max-width: 300px;
     width: 100%;
     padding: 0 20px;
   }
@@ -408,6 +687,7 @@ body {
 .header {
   position: sticky;
   top: 0;
+  z-index: 101;
   background-color: #FFFFFF;
 }
 
@@ -432,6 +712,11 @@ body {
 }
 .header-container .nav .nav-link:hover {
   color: #292929;
+}
+@media screen and (max-width: 767px) {
+  .header-container .nav {
+    background-color: #FFFFFF;
+  }
 }
 .header-container .hamburger .line {
   background: #000000;

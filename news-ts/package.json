@@ -17,6 +17,7 @@
     "license": "ISC",
     "homepage": "",
     "devDependencies": {
+        "@types/node": "^18.0.0",
         "@typescript-eslint/eslint-plugin": "^5.30.0",
         "@typescript-eslint/parser": "^5.30.0",
         "clean-webpack-plugin": "^3.0.0",
@@ -29,6 +30,8 @@
         "html-webpack-plugin": "^5.2.0",
         "prettier": "2.2.1",
         "style-loader": "^2.0.0",
+        "ts-loader": "^9.3.1",
+        "tsconfig-paths-webpack-plugin": "^3.5.2",
         "typescript": "^4.7.4",
         "webpack": "^5.37.1",
         "webpack-cli": "^4.5.0",

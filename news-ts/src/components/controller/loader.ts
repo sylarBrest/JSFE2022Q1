@@ -1,12 +1,14 @@
 interface Loader {
+    baseLink: string;
+    options: object;
     getResp(data: object, callback): void;
     errorHandler(res: object): object;
-    makeUrl(options: object, endpoint): string;
-    load(method, endpoint, callback, options: object): void;
+    makeUrl(options: object, endpoint: string): string;
+    load(method: string, endpoint: string, callback, options: object): void;
 }
 
-class Loader {
-    constructor(baseLink, options) {
+class Loader implements Loader {
+    constructor(baseLink: string, options: object) {
         this.baseLink = baseLink;
         this.options = options;
     }
@@ -30,18 +32,18 @@ class Loader {
         return res;
     }
 
-    makeUrl(options, endpoint) {
-        const urlOptions = { ...this.options, ...options };
+    makeUrl(options: object, endpoint: string) {
+        const urlOptions: object = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
-        Object.keys(urlOptions).forEach((key) => {
+        Object.keys(urlOptions).forEach((key: string) => {
             url += `${key}=${urlOptions[key]}&`;
         });
 
         return url.slice(0, -1);
     }
 
-    load(method, endpoint, callback, options = {}) {
+    load(method: string, endpoint: string, callback, options: object = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

@@ -1,5 +1,9 @@
 import './sources.css';
 
+interface Sources {
+    draw(data: object): void;
+}
+
 class Sources {
     draw(data) {
         const fragment = document.createDocumentFragment();

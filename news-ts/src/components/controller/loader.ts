@@ -1,3 +1,10 @@
+interface Loader {
+    getResp(data: object, callback): void;
+    errorHandler(res: object): object;
+    makeUrl(options: object, endpoint): string;
+    load(method, endpoint, callback, options: object): void;
+}
+
 class Loader {
     constructor(baseLink, options) {
         this.baseLink = baseLink;

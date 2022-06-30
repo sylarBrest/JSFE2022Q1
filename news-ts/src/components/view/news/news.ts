@@ -1,5 +1,9 @@
 import './news.css';
 
+interface News {
+    draw(data: object): void;
+}
+
 class News {
     draw(data) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;

@@ -27,10 +27,10 @@ class Sources implements Sources {
 
             data.forEach((item) => {
                 const sourceCloneTemp: HTMLTemplateElement = sourceItem.content.cloneNode(true) as HTMLTemplateElement;
-                const sourceClone: HTMLEl = sourceCloneTemp.querySelector('.source__item-name') as HTMLElement;
-                sourceClone.textContent = item.name;
-                sourceClone.setAttribute('data-source-id', item.id);
-                fragment.append(sourceClone);
+                const sourceClone: HTMLEl = sourceCloneTemp.querySelector('.source__item-name');
+                if (sourceClone) sourceClone.textContent = item.name;
+                sourceClone?.setAttribute('data-source-id', item.id);
+                fragment.append(sourceClone as HTMLElement);
             });
         }
         document.querySelector('.sources')?.append(fragment);

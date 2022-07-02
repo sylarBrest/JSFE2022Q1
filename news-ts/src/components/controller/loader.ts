@@ -6,12 +6,49 @@ interface Loader {
     makeUrl(options: object, endpoint: string): string;
 }
 
+type NewsDataArray = readonly [data: NewsData];
+
+type Source = {
+    id: string;
+    name: string;
+};
+
+type NewsData = {
+    author: string;
+    content: string;
+    description: string;
+    publishedAt: string;
+    source: Source;
+    title: string;
+    url: string;
+    urlToImage: string;
+};
+
+type SourceDataArray = readonly [data: Pick<SourceData, 'id' | 'name'>];
+
+type SourceData = {
+    category: string;
+    country: string;
+    description: string;
+    id: string;
+    language: string;
+    name: string;
+    url: string;
+};
+
+type Data = {
+    status: string;
+    articles?: NewsDataArray;
+    totalResults?: number;
+    sources?: SourceDataArray;
+};
+
 type Resp = {
     endpoint: string;
     options?: URLOptions;
 };
 
-type Callback = (data?: string) => void;
+type Callback = (data?: Data | string) => void;
 
 type URLOptions = {
     [key: string]: string;

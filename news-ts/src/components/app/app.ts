@@ -1,11 +1,10 @@
-import News from './news/news';
-import Sources from './sources/sources';
+import AppController from '../controller/controller';
+import AppView from '../view/appView';
 
-interface AppView {
-    news: News;
-    sources: Sources;
-    drawNews(data: Data): void;
-    drawSources(data: Data): void;
+interface App {
+    controller: AppController;
+    view: AppView;
+    start(): void;
 }
 
 type NewsDataArray = readonly [data: NewsData];
@@ -45,21 +44,20 @@ type Data = {
     sources?: SourceDataArray;
 };
 
-class AppView implements AppView {
+class App implements App {
     constructor() {
-        this.news = new News();
-        this.sources = new Sources();
+        this.controller = new AppController();
+        this.view = new AppView();
     }
 
-    public drawNews(data: Data) {
-        const values = data?.articles ? data?.articles : [];
-        this.news.draw(values as NewsDataArray);
-    }
-
-    public drawSources(data: Data) {
-        const values = data?.sources ? data?.sources : [];
-        this.sources.draw(values as SourceDataArray);
+    public start() {
+        document
+            .querySelector('.sources')
+            ?.addEventListener('click', (e: Event) =>
+                this.controller.getNews(e, (data) => this.view.drawNews(data as Data))
+            );
+        this.controller.getSources((data) => this.view.drawSources(data as Data));
     }
 }
 
-export default AppView;
+export default App;

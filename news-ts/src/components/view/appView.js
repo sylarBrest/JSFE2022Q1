@@ -1,11 +1,6 @@
 import News from './news/news';
 import Sources from './sources/sources';
 
-interface AppView {
-    drawNews(data: object): void;
-    drawSources(data: object): void;
-}
-
 class AppView {
     constructor() {
         this.news = new News();

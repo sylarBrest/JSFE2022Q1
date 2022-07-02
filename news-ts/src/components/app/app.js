@@ -1,10 +1,6 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
 
-interface App {
-    start(): void;
-}
-
 class App {
     constructor() {
         this.controller = new AppController();

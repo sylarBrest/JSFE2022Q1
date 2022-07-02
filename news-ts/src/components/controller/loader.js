@@ -1,14 +1,5 @@
-interface Loader {
-    baseLink: string;
-    options: object;
-    getResp(data: object, callback): void;
-    errorHandler(res: object): object;
-    makeUrl(options: object, endpoint: string): string;
-    load(method: string, endpoint: string, callback, options: object): void;
-}
-
-class Loader implements Loader {
-    constructor(baseLink: string, options: object) {
+class Loader {
+    constructor(baseLink, options) {
         this.baseLink = baseLink;
         this.options = options;
     }
@@ -32,18 +23,18 @@ class Loader implements Loader {
         return res;
     }
 
-    makeUrl(options: object, endpoint: string) {
-        const urlOptions: object = { ...this.options, ...options };
+    makeUrl(options, endpoint) {
+        const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
-        Object.keys(urlOptions).forEach((key: string) => {
+        Object.keys(urlOptions).forEach((key) => {
             url += `${key}=${urlOptions[key]}&`;
         });
 
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback, options: object = {}) {
+    load(method, endpoint, callback, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

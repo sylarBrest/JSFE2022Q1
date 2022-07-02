@@ -8,7 +8,7 @@ interface Loader {
 
 type Resp = {
     endpoint: string;
-    options: object;
+    options?: URLOptions;
 };
 
 type Callback = (data?: string) => void;

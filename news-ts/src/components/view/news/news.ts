@@ -64,7 +64,7 @@ class News implements News {
 
                 newsClone.querySelector('.news__read-more a')?.setAttribute('href', item.url);
 
-                fragment.append(newsClone);
+                fragment.append(newsCloneTemp);
             });
         }
 

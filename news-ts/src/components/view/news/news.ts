@@ -21,7 +21,7 @@ class News implements News {
 
                 const metaPhoto: HTMLEl = newsClone.querySelector('.news__meta-photo');
                 if (metaPhoto) {
-                    metaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+                    metaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news-placeholder.png'})`;
                 }
 
                 const metaAuthor: HTMLEl = newsClone.querySelector('.news__meta-author');

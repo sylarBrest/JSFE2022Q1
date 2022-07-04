@@ -2,6 +2,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const baseConfig = {
     entry: path.resolve(__dirname, './src/index.ts'),
@@ -30,6 +31,12 @@ const baseConfig = {
             template: path.resolve(__dirname, './src/index.html'),
             filename: 'index.html',
         }),
+        new CopyPlugin({
+            patterns: [
+              { from: './src/assets/img/', to: 'img/' },
+              { from: './src/assets/favicon.ico', to: './' },
+            ],
+          }),
         new CleanWebpackPlugin(),
     ],
 };

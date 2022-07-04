@@ -1,6 +1,6 @@
 body {
     color: #fff;
-    background: #17181c;
+    background: #4d4a4a;
     font-family: sans-serif;
 }
 
@@ -19,17 +19,75 @@ footer {
     align-items: center;
     justify-content: center;
 }
-footer .copyright {
-    font-size: 14px;
-    color: #333;
+.copyright {
+    font-size: 20px;
+    color: #aaa;
     text-align: center;
 }
-footer .copyright a {
-    color: #444;
+.copyright a {
+    transition: 0.25s;
+    color: rgb(255, 227, 227);
 }
-footer .copyright a:hover {
-    color: #555;
+.copyright a:hover {
+    color: #bdae82;
 }
-footer .copyright:before {
-    content: '©';
+.copyright:before {
+    content: '© ';
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    gap: 100px;
+}
+
+.footer-data {
+    display: flex;
+    gap: 20px;
+    color: #ffffff;
+    font: normal normal 20px/40px 'Roboto', Verdana, sans-serif;
+    align-self: center;
+    margin-right: auto;
+}
+
+.github-link {
+    transition: 0.25s;
+    color: #ffffff;
+}
+
+.github-link:hover {
+    color: #bdae82;
+}
+
+.rss-logo {
+    background: url('https://rs.school/images/rs_school_js.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: 0.25s;
+    height: 50px;
+    cursor: pointer;
+    width: 135px;
+}
+
+.rss-logo:hover {
+    filter: invert(16%) sepia(45%) saturate(438%) hue-rotate(7deg) brightness(52%) contrast(77%);
+}
+
+@media (max-width: 800px) {
+    .footer-container {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    footer {
+        height: unset;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        gap: 0;
+    }
 }

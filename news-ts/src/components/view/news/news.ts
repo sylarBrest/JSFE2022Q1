@@ -1,38 +1,19 @@
 import './news.css';
+import { HTMLEl, NewsData, NewsDataArray } from '../../types/types';
 
 interface News {
-    draw(data: DataArray): void;
+    draw(data: NewsDataArray): void;
 }
 
-type DataArray = readonly [data: Data];
-
-type Source = {
-    id: string;
-    name: string;
-};
-
-type Data = {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    source: Source;
-    title: string;
-    url: string;
-    urlToImage: string;
-};
-
-type HTMLEl = HTMLElement | null;
-
 class News implements News {
-    public draw(data: DataArray) {
-        const news = data.length >= 10 ? data.filter((_item: Data, idx: number) => idx < 10) : data;
+    public draw(data: NewsDataArray) {
+        const news = data.length >= 10 ? data.filter((_item: NewsData, idx: number) => idx < 10) : data;
 
         const fragment: DocumentFragment = document.createDocumentFragment();
         const newsItemTemp: HTMLEl = document.querySelector('#newsItemTemp');
         if (newsItemTemp) {
             const newsItem: HTMLTemplateElement = newsItemTemp as HTMLTemplateElement;
-            news.forEach((item: Data, idx: number) => {
+            news.forEach((item: NewsData, idx: number) => {
                 const newsCloneTemp: HTMLTemplateElement = newsItem.content.cloneNode(true) as HTMLTemplateElement;
                 const newsClone: HTMLEl = newsCloneTemp;
 

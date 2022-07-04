@@ -1,5 +1,6 @@
 import News from './news/news';
 import Sources from './sources/sources';
+import { Data, NewsDataArray, SourceDataArray } from '../types/types';
 
 interface AppView {
     news: News;
@@ -7,43 +8,6 @@ interface AppView {
     drawNews(data: Data): void;
     drawSources(data: Data): void;
 }
-
-type NewsDataArray = readonly [data: NewsData];
-
-type Source = {
-    id: string;
-    name: string;
-};
-
-type NewsData = {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    source: Source;
-    title: string;
-    url: string;
-    urlToImage: string;
-};
-
-type SourceDataArray = readonly [data: Pick<SourceData, 'id' | 'name'>];
-
-type SourceData = {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
-};
-
-type Data = {
-    status: string;
-    articles?: NewsDataArray;
-    totalResults?: number;
-    sources?: SourceDataArray;
-};
 
 class AppView implements AppView {
     constructor() {

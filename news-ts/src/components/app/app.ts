@@ -1,48 +1,12 @@
 import AppController from '../controller/controller';
 import AppView from '../view/appView';
+import { Data } from '../types/types';
 
 interface App {
     controller: AppController;
     view: AppView;
     start(): void;
 }
-
-type NewsDataArray = readonly [data: NewsData];
-
-type Source = {
-    id: string;
-    name: string;
-};
-
-type NewsData = {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    source: Source;
-    title: string;
-    url: string;
-    urlToImage: string;
-};
-
-type SourceDataArray = readonly [data: Pick<SourceData, 'id' | 'name'>];
-
-type SourceData = {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
-};
-
-type Data = {
-    status: string;
-    articles?: NewsDataArray;
-    totalResults?: number;
-    sources?: SourceDataArray;
-};
 
 class App implements App {
     constructor() {

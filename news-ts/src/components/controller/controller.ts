@@ -1,43 +1,5 @@
 import AppLoader from './appLoader';
-
-type NewsDataArray = readonly [data: NewsData];
-
-type Source = {
-    id: string;
-    name: string;
-};
-
-type NewsData = {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    source: Source;
-    title: string;
-    url: string;
-    urlToImage: string;
-};
-
-type SourceDataArray = readonly [data: Pick<SourceData, 'id' | 'name'>];
-
-type SourceData = {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
-};
-
-type Data = {
-    status: string;
-    articles?: NewsDataArray;
-    totalResults?: number;
-    sources?: SourceDataArray;
-};
-
-type Callback = (data?: Data | string) => void;
+import { Callback } from '../types/types';
 
 interface AppController {
     getSources(callback: Callback): void;

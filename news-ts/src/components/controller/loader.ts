@@ -1,58 +1,13 @@
+import { Resp, Callback, URLOptions } from '../types/types';
+
 interface Loader {
     baseLink: string;
     options: object;
     getResp(options: Resp, callback: Callback): void;
     errorHandler(res: Response): Response;
     makeUrl(options: object, endpoint: string): string;
+    load(method: string, endpoint: string, callback: Callback, options: URLOptions): void;
 }
-
-type NewsDataArray = readonly [data: NewsData];
-
-type Source = {
-    id: string;
-    name: string;
-};
-
-type NewsData = {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
-    source: Source;
-    title: string;
-    url: string;
-    urlToImage: string;
-};
-
-type SourceDataArray = readonly [data: Pick<SourceData, 'id' | 'name'>];
-
-type SourceData = {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
-};
-
-type Data = {
-    status: string;
-    articles?: NewsDataArray;
-    totalResults?: number;
-    sources?: SourceDataArray;
-};
-
-type Resp = {
-    endpoint: string;
-    options?: URLOptions;
-};
-
-type Callback = (data?: Data | string) => void;
-
-type URLOptions = {
-    [key: string]: string;
-};
 
 class Loader implements Loader {
     constructor(baseLink: string, options: object) {
@@ -79,7 +34,7 @@ class Loader implements Loader {
         return res;
     }
 
-    public makeUrl(options: object, endpoint: string) {
+    public makeUrl(options: object, endpoint: string): string {
         const urlOptions: URLOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -90,7 +45,7 @@ class Loader implements Loader {
         return url.slice(0, -1);
     }
 
-    private load(method: string, endpoint: string, callback: Callback, options: object = {}) {
+    public load(method: string, endpoint: string, callback: Callback, options: URLOptions = {}): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res: Response) => res.json())

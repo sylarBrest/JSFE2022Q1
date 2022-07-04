@@ -1,25 +1,12 @@
 import './sources.css';
+import { HTMLEl, SourceDataArray } from '../../types/types';
 
 interface Sources {
-    draw(data: DataArray): void;
+    draw(data: SourceDataArray): void;
 }
 
-type DataArray = readonly [data: Pick<Data, 'id' | 'name'>];
-
-type Data = {
-    category: string;
-    country: string;
-    description: string;
-    id: string;
-    language: string;
-    name: string;
-    url: string;
-};
-
-type HTMLEl = HTMLElement | null;
-
 class Sources implements Sources {
-    public draw(data: DataArray) {
+    public draw(data: SourceDataArray) {
         const fragment: DocumentFragment = document.createDocumentFragment();
         const sourceItemTemp: HTMLEl = document.getElementById('sourceItemTemp');
         if (sourceItemTemp) {

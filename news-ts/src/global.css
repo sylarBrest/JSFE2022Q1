@@ -1,9 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     color: #fff;
     background: #4d4a4a;
+    height: 100%;
+    min-height: 100vh;
+    margin: 0 1rem;
+    display: flex;
+    flex-flow: column;
 }
 
 header {
+    margin-top: 20px;
     padding: 10px 30px;
 }
 
@@ -13,7 +25,12 @@ header h1 {
     font-weight: 800;
 }
 
+main {
+    height: 100%;
+}
+
 footer {
+    margin-top: auto;
     height: 100px;
     display: flex;
     align-items: center;
@@ -40,13 +57,13 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px;
-    gap: 100px;
+    padding: 5px 10px;
+    gap: 80px;
 }
 
 .footer-data {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     color: #ffffff;
     align-self: center;
     margin-right: auto;

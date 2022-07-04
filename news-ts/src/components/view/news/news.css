@@ -1,7 +1,14 @@
+.news {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
 .news__item {
     display: flex;
     flex-direction: column;
-    margin: 1rem auto;
+    margin: 1rem;
     margin-bottom: 1.6%;
     background: #fff;
     color: #333;

@@ -1,4 +1,4 @@
-type NewsDataArray = readonly [data: NewsData];
+type NewsDataArray = [data: NewsData];
 
 type NewsData = {
     author: string;

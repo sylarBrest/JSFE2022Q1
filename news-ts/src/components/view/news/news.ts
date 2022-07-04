@@ -19,7 +19,7 @@ class News implements News {
 
                 if (idx % 2) newsClone.querySelector('.news__item')?.classList.add('alt');
 
-                const metaPhoto: HTMLEl = newsClone.querySelector<HTMLElement>('.news__meta-photo');
+                const metaPhoto: HTMLEl = newsClone.querySelector('.news__meta-photo');
                 if (metaPhoto) {
                     metaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
                 }

@@ -14,6 +14,7 @@ const config = {
     path: path.resolve(__dirname, "dist"),
     filename: "script.js",
     assetModuleFilename: 'assets/[name][ext]',
+    clean: true,
   },
   devServer: {
     open: true,
@@ -22,6 +23,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      favicon: "./src/assets/svg/favicon.svg",
     }),
 
     // Add your plugins here

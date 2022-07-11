@@ -1,0 +1,52 @@
+:root {
+  --color-white: #fff;
+  --color-blue: #00f;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-white);
+  background-color: aquamarine;
+}
+
+.header-container {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+
+.store-logo {
+  width: 70px;
+  height: 70px;
+  background: url("../../assets/svg/logo.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.store-name {
+  color: var(--color-white);
+  font: normal normal 30px/50px Roboto, Verdana, sans-serif;
+}
+
+.store-cart {
+  width: 60px;
+  height: 60px;
+  margin-left: auto;
+  background: url("../../assets/svg/cart.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.store-logo:hover,
+.store-cart:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+}

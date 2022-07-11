@@ -1,0 +1,51 @@
+:root {
+  --color-white: #fff;
+  --color-blue: #00f;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+}
+
+.footer-data {
+  display: flex;
+  gap: 20px;
+  align-self: center;
+  margin-right: auto;
+  color: var(--color-white);
+  font: normal normal 20px/40px Roboto, Verdana, sans-serif;
+}
+
+.github-link {
+  color: var(--color-white);
+  text-decoration: none;
+  transition: 1s;
+}
+
+.github-link:hover {
+  color: var(--color-blue);
+}
+
+.rss-logo {
+  width: 135px;
+  height: 50px;
+  background: url("../../assets/svg/rss.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  transition: 1s;
+}
+
+.rss-logo:hover {
+  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
+    contrast(87%);
+}

@@ -11,8 +11,7 @@ class Filters {
   public drawFilters() {
     const filters = document.createElement('section');
     filters.className = 'filters';
-    const main = document.getElementsByClassName('main')[0];
-    main.append(filters);
+    document.getElementsByClassName('main-container')[0].append(filters);
     this.values.drawValues();
   }
 }

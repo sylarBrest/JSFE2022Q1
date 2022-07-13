@@ -1,3 +1,37 @@
-.values-filter {
+.values-filter-container {
   display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .filter-name {
+    font: normal normal 20px/30px sans-serif;
+    text-transform: uppercase;
+  }
+
+  .values-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .label {
+      display: flex;
+      gap: 5px;
+      width: 30%;
+    }
+
+    .wheels-label,
+    .frame-label {
+      width: 21%;
+    }
+
+    .category-label {
+      width: 47%;
+    }
+
+    .popular-label {
+      width: 100%;
+      padding-top: 10px;
+      text-transform: uppercase;
+    }
+  }
 }

@@ -19,6 +19,15 @@ class Header implements Header {
     const storeCart = document.createElement('div');
     storeCart.className = 'store-cart';
 
+    const storeCartCount = document.createElement('p');
+    storeCartCount.className = 'store-cart-count';
+
+    const spanCount = document.createElement('span');
+    spanCount.textContent = '3';
+
+    storeCartCount.append(spanCount);
+    storeCart.append(storeCartCount);
+
     headerContainer.append(storeLogo, storeName, storeCart);
 
     document.getElementsByClassName('header')[0].append(headerContainer);

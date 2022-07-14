@@ -35,6 +35,7 @@
 }
 
 .store-cart {
+  position: relative;
   width: 60px;
   height: 60px;
   margin-left: auto;
@@ -43,6 +44,20 @@
   background-size: contain;
   cursor: pointer;
   transition: 1s;
+
+  &-count {
+    position: absolute;
+    top: 5%;
+    left: 45%;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    width: 30px;
+    font: normal normal 30px/30px Roboto, Verdana, sans-serif;
+    background-color: #040a0a;
+    border-radius: 50%;
+    transform: translateX(-55%);
+  }
 }
 
 .store-logo:hover,

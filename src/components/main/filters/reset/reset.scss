@@ -1,0 +1,13 @@
+.reset-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 20px;
+
+  .reset-button {
+    font: normal normal 18px/25px sans-serif;
+    text-transform: uppercase;
+    background-color: coral;
+    cursor: pointer;
+  }
+}

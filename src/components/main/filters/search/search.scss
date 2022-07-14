@@ -1,0 +1,10 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .search-name {
+    font: normal normal 18px/25px sans-serif;
+    text-transform: uppercase;
+  }
+}

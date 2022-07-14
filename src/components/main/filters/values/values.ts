@@ -10,8 +10,6 @@ class Values implements Values {
   public drawValues(): void {
     const valuesWindow: HTMLElement = document.createElement('div');
     valuesWindow.className = 'values-filter-container';
-    
-    
     document.getElementsByClassName('filters')[0].append(valuesWindow);
     this.fillManufacturersFilter(valuesWindow);
     this.fillWheelSizeFilter(valuesWindow);
@@ -19,7 +17,6 @@ class Values implements Values {
     this.fillColorFilter(valuesWindow);
     this.fillCategoryFilter(valuesWindow);
     this.addOnlyPopular(valuesWindow);
-
   }
 
   private fillManufacturersFilter(parent: HTMLElement) {
@@ -31,7 +28,7 @@ class Values implements Values {
     const manName = document.createElement('p');
     manName.classList.add('filter-name', 'manufacturer-filter-name');
     manName.textContent = 'Производитель';
-    parent .append(manName);
+    parent.append(manName);
   
     bikeManufacturer.forEach((element) => {
       const label = document.createElement('label');

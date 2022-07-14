@@ -1,0 +1,39 @@
+.ranges-filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .ranges-name {
+    padding-bottom: 20px;
+    font: normal normal 18px/25px sans-serif;
+    text-transform: uppercase;
+  }
+
+  .slider,
+  .slider .noUi-handle {
+    box-shadow: none;
+    cursor: pointer;
+  }
+
+  .slider .noUi-handle::before,
+  .slider .noUi-handle::after {
+    display: none;
+  }
+
+  .year-slider,
+  .stock-slider {
+    align-self: center;
+    width: 80%;
+    border-radius: 5px;
+  }
+
+  .year-slider .noUi-handle,
+  .stock-slider .noUi-handle {
+    top: -1px;
+    right: -9px;
+    width: 18px;
+    height: 18px;
+    background: #2980b9;
+    border-radius: 5px;
+  }
+}

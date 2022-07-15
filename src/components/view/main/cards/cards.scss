@@ -4,6 +4,13 @@
   gap: 30px;
   justify-content: center;
   width: calc(100% - 250px);
+  height: 100%;
   padding: 20px;
   background-color: aqua;
+
+  .no-results {
+    display: none;
+    font: normal normal 25px/30px sans-serif;
+    text-transform: uppercase;
+  }
 }

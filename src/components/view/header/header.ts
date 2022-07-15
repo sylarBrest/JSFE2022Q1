@@ -23,7 +23,8 @@ class Header implements Header {
     storeCartCount.className = 'store-cart-count';
 
     const spanCount = document.createElement('span');
-    spanCount.textContent = '3';
+    spanCount.className = 'store-cart-count-number';
+    spanCount.textContent = '0';
 
     storeCartCount.append(spanCount);
     storeCart.append(storeCartCount);

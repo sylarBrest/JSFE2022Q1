@@ -8,7 +8,6 @@ class Card {
     bikes.forEach((bike: BikeData) => {
       const card = document.createElement('div');
       card.className = 'card';
-      card.style.backgroundColor = bike.buy ? '#7789ab' : '#ffffff';
       card.setAttribute('data-bike-name', bike.name);
       
       const cardName = document.createElement('h3');
@@ -18,6 +17,12 @@ class Card {
       const cardImage = document.createElement('img');
       cardImage.className = 'card-image';
       cardImage.src = bike.photo;
+
+      const cardInfoDiv = document.createElement('div');
+      cardInfoDiv.className = 'card-info-all';
+
+      const cardBagImage = document.createElement('div');
+      cardBagImage.className = 'card-bag';
 
       const cardInfo = document.createElement('div');
       cardInfo.className = 'card-info';
@@ -54,13 +59,10 @@ class Card {
       cardPopular.className = 'card-popular';
       cardPopular.textContent = `Популярный: ${bike.popular ? 'да' : 'нет'}`;
 
-      const cardInCartButton = document.createElement('button');
-      cardInCartButton.className = 'card-buy';
-      cardInCartButton.style.visibility = bike.buy ? 'visible' : 'hidden';
-
       cardInfo.append(cardManufacturer, cardYear, cardCategory,
         cardWheelSize, cardFrameSize, cardColor, cardStockAmount, cardPopular);
-      card.append(cardName, cardImage, cardInfo);
+      cardInfoDiv.append(cardInfo, cardBagImage);
+      card.append(cardName, cardImage, cardInfoDiv);
       document.getElementsByClassName('cards')[0].append(card);
     })
   }

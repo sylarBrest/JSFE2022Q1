@@ -17,6 +17,21 @@ class Main {
     document.getElementsByClassName('main')[0].append(mainContainer);
     this.filters.drawFilters();
     this.cards.drawCards();
+    this.drawModal();
+  }
+
+  private drawModal() {
+    const modalWindow = document.createElement('div');
+    modalWindow.className = 'modal';
+    const noMore = document.createElement('p');
+    noMore.className = 'no-more-buy';
+    noMore.textContent = 'Извините, все слоты заполнены';
+    modalWindow.append(noMore);
+
+    const darkenWindow = document.createElement('div');
+    darkenWindow.className = 'darken';
+
+    document.getElementsByClassName('main')[0].append(modalWindow, darkenWindow);
   }
 }
 

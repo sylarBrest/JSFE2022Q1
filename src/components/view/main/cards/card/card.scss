@@ -9,6 +9,10 @@
   border-radius: 10px;
   cursor: pointer;
 
+  &.in-cart {
+    background-color: #adadad;
+  }
+
   &-name {
     align-self: center;
   }
@@ -17,10 +21,28 @@
     width: 100%;
   }
 
-  &-info {
+  &-info-all {
     display: flex;
-    flex-direction: column;
-    padding: 0 5px 5px;
+    justify-content: space-between;
+
+    .card-info {
+      display: flex;
+      flex-direction: column;
+      padding: 0 5px 5px;
+    }
+
+    .card-bag {
+      align-self: flex-end;
+      width: 50px;
+      height: 50px;
+      margin: 0 10px 15px 0;
+      background: url("../../../../../assets/svg/bag.svg");
+      visibility: hidden;
+
+      &.in-cart {
+        visibility: visible;
+      }
+    }
   }
 
   &[hidden] {

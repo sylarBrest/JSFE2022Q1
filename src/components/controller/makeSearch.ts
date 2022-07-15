@@ -1,5 +1,9 @@
-export default class MakeSearch {
-  public searchOnPage() {
+interface MakeSearch {
+  searchOnPage(): void;
+}
+
+class MakeSearch implements MakeSearch {
+  public searchOnPage(): void {
     const bikeCards = document.getElementsByClassName('card');
     const inputSearch = document.getElementsByClassName('search')[0] as HTMLInputElement;
     const noResults = document.getElementsByClassName('no-results')[0] as HTMLElement;
@@ -13,6 +17,7 @@ export default class MakeSearch {
           element.style.display = 'none';
           count += 1;
         }
+        
         if (count === bikeCards.length) {
           noResults.style.display = 'block';
         } else {
@@ -24,3 +29,5 @@ export default class MakeSearch {
     inputSearch.addEventListener('input', searchInDataSets);
   }
 }
+
+export default MakeSearch;

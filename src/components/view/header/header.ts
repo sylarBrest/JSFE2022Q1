@@ -35,11 +35,3 @@ class Header implements Header {
 }
 
 export default Header;
-
-/* <div class="container header-container">
-            <div class="logo"></div>
-            <form class="search-form">
-                <input class="search-input" type="search" placeholder="Search">
-                <button class="search-button" type="submit"></button>
-            </form>
-        </div> */

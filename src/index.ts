@@ -1,12 +1,7 @@
 import './style.scss';
-import Components from './components/components';
+import App from './components/app';
 
 console.log("Hello World!");
 
-/* const main = document.getElementsByClassName('main')[0];
-
-main.textContent = 'HELLO WORLD!';
-footer.textContent = 'hu is hu!';
- */
-const app = new Components();
-app.drawComponents();
+const app = new App();
+app.start();

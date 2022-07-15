@@ -165,7 +165,7 @@ export const bikes: BikeDataArray = [
     "wheels": 27.5,
     "size": "M",
     "category": "Горный",
-    "color": "оранж.",
+    "color": "оранжевый",
     "stock": 1,
     "buy": false,
     "popular": false
@@ -230,7 +230,7 @@ export const bikes: BikeDataArray = [
     "wheels": 26,
     "size": "S",
     "category": "Городской",
-    "color": "оранж.",
+    "color": "оранжевый",
     "stock": 20,
     "buy": false,
     "popular": true

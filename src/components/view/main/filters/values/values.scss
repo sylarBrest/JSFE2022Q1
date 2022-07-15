@@ -4,7 +4,7 @@
   gap: 10px;
 
   .filter-name {
-    font: normal normal 18px/25px sans-serif;
+    font: normal normal 18px/23px sans-serif;
     text-transform: uppercase;
   }
 
@@ -17,6 +17,14 @@
       display: flex;
       gap: 5px;
       width: 30%;
+
+      input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        background-color: #fff;
+        border-radius: 2px;
+        appearance: none;
+      }
     }
 
     .wheels-label,
@@ -24,14 +32,14 @@
       width: 21%;
     }
 
+    .color-label,
     .category-label {
       width: 47%;
     }
 
     .popular-label {
       width: 100%;
-      padding-top: 10px;
-      font: normal normal 18px/25px sans-serif;
+      font: normal normal 18px/24px sans-serif;
       text-transform: uppercase;
     }
   }

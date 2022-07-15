@@ -15,7 +15,10 @@ class Search implements Search {
     searchDiv.append(searchName);
 
     const search = document.createElement('input');
+    search.className = 'search';
+    search.autofocus = true;
     search.type = 'search';
+    search.placeholder = 'Что ищем?';
     searchDiv.append(search);
     document.getElementsByClassName('filters')[0].append(searchDiv);
   }

@@ -1,6 +1,6 @@
 import './values.scss';
 
-import { bikes } from '../../../bikes';
+import { bikes } from '../../../../bikeData';
 
 interface Values {
   drawValues(): void;

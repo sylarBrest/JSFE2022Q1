@@ -1,5 +1,5 @@
-import { bikes } from '../../../bikes';
-import { BikeData } from '../../../types';
+import { bikes } from '../../../../bikeData';
+import { BikeData } from '../../../../types';
 
 import './card.scss';
 
@@ -9,6 +9,7 @@ class Card {
       const card = document.createElement('div');
       card.className = 'card';
       card.style.backgroundColor = bike.buy ? '#7789ab' : '#ffffff';
+      card.setAttribute('data-bike-name', bike.name);
       
       const cardName = document.createElement('h3');
       cardName.className = 'card-name';

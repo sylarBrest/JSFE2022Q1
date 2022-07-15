@@ -2,7 +2,7 @@ import './range.scss';
 
 import noUiSlider from '../../../nouislider/nouislider';
 import '../../../nouislider/nouislider.scss';
-import { bikes } from '../../../bikes';
+import { bikes } from '../../../../bikeData';
 
 interface Slider {
   drawSliders(): void;

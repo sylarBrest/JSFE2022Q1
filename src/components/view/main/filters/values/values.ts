@@ -36,6 +36,7 @@ class Values implements Values {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.classList.add('checkbox', 'checkbox-manufacturer');
       checkbox.value = element;
 
       const labelText = document.createElement('span');
@@ -66,6 +67,7 @@ class Values implements Values {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.classList.add('checkbox', 'checkbox-wheels');
       checkbox.value = element.toString();
 
       const labelText = document.createElement('span');
@@ -99,6 +101,7 @@ class Values implements Values {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.classList.add('checkbox', 'checkbox-frame');
       checkbox.value = element.toString();
 
       const labelText = document.createElement('span');
@@ -129,6 +132,7 @@ class Values implements Values {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.classList.add('checkbox', 'checkbox-color');
       checkbox.value = element;
 
       const labelText = document.createElement('span');
@@ -143,7 +147,7 @@ class Values implements Values {
   }
 
   private fillCategoryFilter(parent: HTMLElement) {
-    const bikeManufacturers = [...new Set(bikes.map((el) => el.category))].sort();
+    const bikeCategories = [...new Set(bikes.map((el) => el.category))].sort();
 
     const manufacturersDiv = document.createElement('div');
     manufacturersDiv.classList.add('values-filter', 'category-filter');
@@ -153,12 +157,13 @@ class Values implements Values {
     manName.textContent = 'Категория';
     parent.append(manName);
   
-    bikeManufacturers.forEach((element) => {
+    bikeCategories.forEach((element) => {
       const label = document.createElement('label');
       label.classList.add('label', 'category-label');
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.classList.add('checkbox', 'checkbox-category');
       checkbox.value = element;
 
       const labelText = document.createElement('span');
@@ -181,6 +186,7 @@ class Values implements Values {
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    checkbox.classList.add('checkbox', 'checkbox-popular');
     checkbox.value = 'false';
   
     const labelText = document.createElement('span');

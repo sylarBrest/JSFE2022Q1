@@ -1,23 +1,27 @@
+import BikeStorage from './bikeStorage';
+
 interface Sorting {
   sortElements(): void;
 }
 
 class Sorting implements Sorting {
-  private bikeCards;
+  private bikeCards: HTMLCollectionOf<HTMLDivElement>;
+  private bikeStorage: BikeStorage;
 
   constructor() {
-    this.bikeCards = document.getElementsByClassName('card');
+    this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
+    this.bikeStorage = new BikeStorage(this.bikeCards);
   }
   
   sortElements(): void {
     const sortOptions = document.getElementsByClassName('sort')[0] as HTMLSelectElement;
+
+    this.bikeStorage.initBikeStorage();
     
     const sortBy = () => {
-      const allBikes = [...this.bikeCards] as HTMLDivElement[];
+      const allBikes = this.bikeStorage.getBikesFromStorage();
 
-      for (const element of this.bikeCards) {
-        element.remove();
-      }
+      this.bikeStorage.removeBikesFromStorage();
 
       switch (sortOptions.selectedOptions[0]) {
         case sortOptions.options[0]:
@@ -28,15 +32,15 @@ class Sorting implements Sorting {
           break;
         case sortOptions.options[2]:
           allBikes.sort((a, b) => {
-            const yearA = +(a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string);
-            const yearB = +(b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string);
+            const yearA = a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
+            const yearB = b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
             return (yearA < yearB) ? -1 : 1;
           });
           break;
         case sortOptions.options[3]:
           allBikes.sort((a, b) => {
-            const yearA = +(a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string);
-            const yearB = +(b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string);
+            const yearA = a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
+            const yearB = b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
             return (yearA > yearB) ? -1 : 1;
           });
           break;
@@ -44,7 +48,7 @@ class Sorting implements Sorting {
           break;
       }
 
-      document.getElementsByClassName('cards')[0].append(...allBikes);
+      this.bikeStorage.writeBikeStorageToDOM(allBikes);
     }
 
     sortOptions.addEventListener('change', sortBy);

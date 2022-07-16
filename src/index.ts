@@ -1,7 +1,6 @@
 import './style.scss';
 import App from './components/app';
-
-console.log("Hello World!");
+import './components/helpers/selfcheck';
 
 const app = new App();
 app.start();

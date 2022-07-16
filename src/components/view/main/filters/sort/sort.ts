@@ -14,8 +14,10 @@ class Sort implements Sort {
     sortName.textContent = 'Сортировать';
     
     const sort = document.createElement('select');
+    sort.className = 'sort';
 
     const sortNameUp = document.createElement('option');
+    sortNameUp.setAttribute('selected', '');
     sortNameUp.textContent = 'По названию, от A до Z';
 
     const sortNameDown = document.createElement('option');

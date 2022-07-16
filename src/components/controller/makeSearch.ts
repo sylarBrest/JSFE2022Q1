@@ -10,14 +10,20 @@ class MakeSearch implements MakeSearch {
 
     function searchInDataSets(): void {
       let count = 0;
+
       for (let index: number = 0; index < bikeCards.length; index++) {
         const element = bikeCards[index] as HTMLDivElement;
-        element.style.display = 'flex';
-        if (!element.dataset.bikeName?.toLowerCase().includes(inputSearch.value)) {
-          element.style.display = 'none';
+        element.removeAttribute('hidden');
+      
+        if (element.classList.contains('unfiltered')) {
           count += 1;
+        } else {
+          if (!element.dataset.bikeName?.toLowerCase().includes(inputSearch.value)) {
+            element.setAttribute('hidden', '');
+            count += 1;
+          }
         }
-        
+      
         if (count === bikeCards.length) {
           noResults.style.display = 'block';
         } else {

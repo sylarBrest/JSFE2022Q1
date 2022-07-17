@@ -25,10 +25,18 @@ class Sorting implements Sorting {
 
       switch (sortOptions.selectedOptions[0]) {
         case sortOptions.options[0]:
-          allBikes.sort((a, b) => ((a.dataset.bikeName?.toLowerCase() as string) < (b.dataset.bikeName?.toLowerCase() as string) ? -1 : 1));
+          allBikes.sort((a, b) => {
+            const nameA = a.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+            const nameB = b.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+            return (nameA < nameB) ? -1 : 1;
+          });
           break;
         case sortOptions.options[1]:
-          allBikes.sort((a, b) => ((a.dataset.bikeName?.toLowerCase() as string) > (b.dataset.bikeName?.toLowerCase() as string) ? -1 : 1));
+          allBikes.sort((a, b) => {
+            const nameA = a.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+            const nameB = b.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+            return (nameA > nameB) ? -1 : 1;
+          });
           break;
         case sortOptions.options[2]:
           allBikes.sort((a, b) => {
@@ -51,6 +59,7 @@ class Sorting implements Sorting {
       this.bikeStorage.writeBikeStorageToDOM(allBikes);
     }
 
+    document.addEventListener('DOMContentLoaded', sortBy);
     sortOptions.addEventListener('change', sortBy);
   }
 }

@@ -8,7 +8,7 @@ class Card {
     bikes.forEach((bike: BikeData) => {
       const card = document.createElement('div');
       card.className = 'card';
-      card.setAttribute('data-bike-name', bike.name);
+      card.setAttribute('data-bike-num', bike.num.toString());
       
       const cardName = document.createElement('h3');
       cardName.className = 'card-name';

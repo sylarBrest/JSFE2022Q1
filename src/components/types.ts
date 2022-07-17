@@ -1,4 +1,5 @@
 export type BikeData = {
+  num: number,
   buy: boolean,
   category: string,
   color: string,

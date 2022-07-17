@@ -18,7 +18,7 @@ class MakeSearch implements MakeSearch {
         if (element.classList.contains('unfiltered')) {
           count += 1;
         } else {
-          if (!element.dataset.bikeName?.toLowerCase().includes(inputSearch.value)) {
+          if (!element.getElementsByClassName('card-name')[0].textContent?.toLowerCase().includes(inputSearch.value)) {
             element.setAttribute('hidden', '');
             count += 1;
           }

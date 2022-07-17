@@ -2,6 +2,7 @@ import { BikeDataArray } from "./types";
 
 export const bikes: BikeDataArray = [
   {
+    "num": 1,
     "photo": "./assets/images/ktm-prowler.jpg",
     "manufacturer": "KTM",
     "name": "KTM Prowler Master",
@@ -15,6 +16,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 2,
     "photo": "./assets/images/ktm-x-strada.jpg",
     "manufacturer": "KTM",
     "name": "KTM X-Strada Prime",
@@ -28,6 +30,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 3,
     "photo": "./assets/images/ktm-city-fun.jpg",
     "manufacturer": "KTM",
     "name": "KTM City Fun 28",
@@ -41,6 +44,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 4,
     "photo": "./assets/images/ktm-revelator-alto.jpg",
     "manufacturer": "KTM",
     "name": "KTM Revelator Alto Master",
@@ -54,6 +58,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 5,
     "photo": "./assets/images/merida-big-nine.jpg",
     "manufacturer": "Merida",
     "name": "Merida Big.Nine 9000",
@@ -67,6 +72,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 6,
     "photo": "./assets/images/merida-silex.jpg",
     "manufacturer": "Merida",
     "name": "Merida Silex 200",
@@ -80,6 +86,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 7,
     "photo": "./assets/images/merida-scultura.jpg",
     "manufacturer": "Merida",
     "name": "Merida Scultura Disc 400",
@@ -93,6 +100,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 8,
     "photo": "./assets/images/merida-speeder.jpg",
     "manufacturer": "Merida",
     "name": "Merida Speeder 10-V (L)",
@@ -106,6 +114,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 9,
     "photo": "./assets/images/giant-cypress.jpg",
     "manufacturer": "Giant",
     "name": "Giant Cypress 1",
@@ -119,6 +128,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 10,
     "photo": "./assets/images/giant-stp.jpg",
     "manufacturer": "Giant",
     "name": "Giant STP 26",
@@ -132,6 +142,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 11,
     "photo": "./assets/images/giant-revolt.jpg",
     "manufacturer": "Giant",
     "name": "Giant Revolt 0",
@@ -145,6 +156,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 12,
     "photo": "./assets/images/giant-tcr-advanced.jpg",
     "manufacturer": "Giant",
     "name": "Giant TCR Advanced 3",
@@ -158,6 +170,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 13,
     "photo": "./assets/images/fuji-traverse.jpg",
     "manufacturer": "FUJI",
     "name": "FUJI Traverse 1.3",
@@ -171,6 +184,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 14,
     "photo": "./assets/images/fuji-absolute.jpg",
     "manufacturer": "FUJI",
     "name": "FUJI Absolute 1.9",
@@ -184,6 +198,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 15,
     "photo": "./assets/images/fuji-sl-a.jpg",
     "manufacturer": "FUJI",
     "name": "FUJI SL-A 1.3",
@@ -197,6 +212,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 16,
     "photo": "./assets/images/aist-mach.jpg",
     "manufacturer": "AIST",
     "name": "AIST Mach 1.0",
@@ -210,6 +226,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 17,
     "photo": "./assets/images/aist-slide.jpg",
     "manufacturer": "AIST",
     "name": "AIST Slide 3.0",
@@ -223,6 +240,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 18,
     "photo": "./assets/images/aist-tracker.jpg",
     "manufacturer": "AIST",
     "name": "AIST Tracker 2.0",
@@ -236,6 +254,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 19,
     "photo": "./assets/images/aist-cross.jpg",
     "manufacturer": "AIST",
     "name": "AIST Cross 2.0",
@@ -249,6 +268,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 20,
     "photo": "./assets/images/format-1411.jpg",
     "manufacturer": "Format",
     "name": "Format 1411 27,5",
@@ -262,6 +282,7 @@ export const bikes: BikeDataArray = [
     "popular": true
   },
   {
+    "num": 21,
     "photo": "./assets/images/format-2221.jpg",
     "manufacturer": "Format",
     "name": "Format 2221",
@@ -275,6 +296,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 22,
     "photo": "./assets/images/format-5211.jpg",
     "manufacturer": "Format",
     "name": "Format 5211",
@@ -288,6 +310,7 @@ export const bikes: BikeDataArray = [
     "popular": false
   },
   {
+    "num": 23,
     "photo": "./assets/images/format-5522.jpg",
     "manufacturer": "Format",
     "name": "Format 5522",

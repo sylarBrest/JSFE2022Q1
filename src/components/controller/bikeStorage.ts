@@ -21,13 +21,11 @@ class BikeStorage implements BikeStorage {
   }
 
   getBikesFromStorage(): HTMLDivElement[] {
-    console.log('2', this.bikeCards);
     return this.bikeCards;
   }
 
   setBikesToStorage(items: HTMLDivElement[]): void {
     this.bikeCards.push(...items);
-    console.log('1', this.bikeCards);
   }
 
   removeBikesFromStorage(): void {

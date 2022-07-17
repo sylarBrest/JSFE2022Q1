@@ -13,9 +13,10 @@ interface Filters {
 
 class Filters implements Filters {
   private filters: BikeFilterObject;
+  private bikeCards;
   private popularFilter;
   private manufacturerFilter;
-  private bikeCards;
+  private wheelSizeFilter;
 
   constructor() {
     this.filters = {
@@ -29,6 +30,7 @@ class Filters implements Filters {
     this.bikeCards = document.getElementsByClassName('card');
     this.popularFilter = document.getElementsByClassName('checkbox-popular');
     this.manufacturerFilter = document.getElementsByClassName('checkbox-manufacturer');
+    this.wheelSizeFilter = document.getElementsByClassName('checkbox-wheels');
   }
 
   public applyFilters(): void {
@@ -60,6 +62,20 @@ class Filters implements Filters {
           if (element.classList.contains('unfiltered2'))
             element.classList.remove('unfiltered2');
         }
+
+        if (this.filters.wheelSize.length > 0) {
+          const wheelSize = element.getElementsByClassName('card-wheel-size')[0].textContent?.split(': ')[1].replace('"', '') as string;
+          if (!this.filters.wheelSize.includes(wheelSize)) {
+            if (!element.classList.contains('unfiltered3'))
+              element.classList.add('unfiltered3');
+          } else {
+            if (element.classList.contains('unfiltered3'))
+              element.classList.remove('unfiltered3');
+          }
+        } else {
+          if (element.classList.contains('unfiltered3'))
+            element.classList.remove('unfiltered3');
+        }
       }
     }
   
@@ -73,9 +89,21 @@ class Filters implements Filters {
       const manF = e.target as HTMLInputElement;
 
       if (manF.checked) {
-        this.filters['manufacturers'].push(manF.value)     
+        this.filters.manufacturers.push(manF.value)     
       } else {
-        this.filters.manufacturers = this.filters.manufacturers.filter((el) => el !== manF.value);  
+        this.filters.manufacturers = this.filters.manufacturers.filter((el) => el !== manF.value);
+      }
+
+      checkAndApply();
+    }
+
+    const applyWheelSizeFilter = (e: Event) => {
+      const wheelF = e.target as HTMLInputElement;
+
+      if (wheelF.checked) {
+        this.filters.wheelSize.push(wheelF.value)     
+      } else {
+        this.filters.wheelSize = this.filters.wheelSize.filter((el) => el !== wheelF.value);
       }
 
       checkAndApply();
@@ -85,6 +113,9 @@ class Filters implements Filters {
     this.popularFilter.item(0)?.addEventListener('click', applyPopularFilter);
     for (const element of this.manufacturerFilter) {
       element.addEventListener('click', applyManufacturerFilter);
+    }
+    for (const element of this.wheelSizeFilter) {
+      element.addEventListener('click', applyWheelSizeFilter);
     }
   }
 }

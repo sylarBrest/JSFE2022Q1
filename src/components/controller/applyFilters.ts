@@ -18,6 +18,7 @@ class Filters implements Filters {
   private manufacturerFilter;
   private wheelSizeFilter;
   private frameSizeFilter;
+  private colorFilter;
 
   constructor() {
     this.filters = {
@@ -33,6 +34,7 @@ class Filters implements Filters {
     this.manufacturerFilter = document.getElementsByClassName('checkbox-manufacturer');
     this.wheelSizeFilter = document.getElementsByClassName('checkbox-wheels');
     this.frameSizeFilter = document.getElementsByClassName('checkbox-frame');
+    this.colorFilter = document.getElementsByClassName('checkbox-color');
   }
 
   public applyFilters(): void {
@@ -93,6 +95,19 @@ class Filters implements Filters {
             element.classList.remove('unfiltered4');
         }
 
+        if (this.filters.colors.length > 0) {
+          const color = element.getElementsByClassName('card-color')[0].textContent?.split(': ')[1] as string;
+          if (!this.filters.colors.includes(color)) {
+            if (!element.classList.contains('unfiltered5'))
+              element.classList.add('unfiltered5');
+          } else {
+            if (element.classList.contains('unfiltered5'))
+              element.classList.remove('unfiltered5');
+          }
+        } else {
+          if (element.classList.contains('unfiltered5'))
+            element.classList.remove('unfiltered5');
+        }
       }
     }
   
@@ -138,6 +153,19 @@ class Filters implements Filters {
       checkAndApply();
     }
 
+    const applyColorFilter = (e: Event) => {
+      const colorF = e.target as HTMLInputElement;
+
+      if (colorF.checked) {
+        this.filters.colors.push(colorF.value);   
+      } else {
+        this.filters.colors = this.filters.colors.filter((el) => el !== colorF.value);
+      }
+
+      checkAndApply();
+    }
+
+
     // All listeners
     this.popularFilter.item(0)?.addEventListener('click', applyPopularFilter);
     for (const element of this.manufacturerFilter) {
@@ -148,6 +176,9 @@ class Filters implements Filters {
     }
     for (const element of this.frameSizeFilter) {
       element.addEventListener('click', applyFrameSizeFilter);
+    }
+    for (const element of this.colorFilter) {
+      element.addEventListener('click', applyColorFilter);
     }
   }
 }

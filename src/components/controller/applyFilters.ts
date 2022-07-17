@@ -19,6 +19,7 @@ class Filters implements Filters {
   private wheelSizeFilter;
   private frameSizeFilter;
   private colorFilter;
+  private categoryFilter;
 
   constructor() {
     this.filters = {
@@ -35,6 +36,7 @@ class Filters implements Filters {
     this.wheelSizeFilter = document.getElementsByClassName('checkbox-wheels');
     this.frameSizeFilter = document.getElementsByClassName('checkbox-frame');
     this.colorFilter = document.getElementsByClassName('checkbox-color');
+    this.categoryFilter = document.getElementsByClassName('checkbox-category');
   }
 
   public applyFilters(): void {
@@ -108,6 +110,20 @@ class Filters implements Filters {
           if (element.classList.contains('unfiltered5'))
             element.classList.remove('unfiltered5');
         }
+
+        if (this.filters.categories.length > 0) {
+          const category = element.getElementsByClassName('card-category')[0].textContent?.split(': ')[1] as string;
+          if (!this.filters.categories.includes(category)) {
+            if (!element.classList.contains('unfiltered6'))
+              element.classList.add('unfiltered6');
+          } else {
+            if (element.classList.contains('unfiltered6'))
+              element.classList.remove('unfiltered6');
+          }
+        } else {
+          if (element.classList.contains('unfiltered6'))
+            element.classList.remove('unfiltered6');
+        }
       }
     }
   
@@ -165,6 +181,17 @@ class Filters implements Filters {
       checkAndApply();
     }
 
+    const applyCategoryFilter = (e: Event) => {
+      const catF = e.target as HTMLInputElement;
+
+      if (catF.checked) {
+        this.filters.categories.push(catF.value);   
+      } else {
+        this.filters.categories = this.filters.categories.filter((el) => el !== catF.value);
+      }
+
+      checkAndApply();
+    }
 
     // All listeners
     this.popularFilter.item(0)?.addEventListener('click', applyPopularFilter);
@@ -179,6 +206,9 @@ class Filters implements Filters {
     }
     for (const element of this.colorFilter) {
       element.addEventListener('click', applyColorFilter);
+    }
+    for (const element of this.categoryFilter) {
+      element.addEventListener('click', applyCategoryFilter);
     }
   }
 }

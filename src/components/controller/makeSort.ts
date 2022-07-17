@@ -61,6 +61,10 @@ class Sorting implements Sorting {
 
     document.addEventListener('DOMContentLoaded', sortBy);
     sortOptions.addEventListener('change', sortBy);
+    const checkBox = document.getElementsByClassName('checkbox');
+    for (const item of checkBox) {
+      item.addEventListener('click', sortBy);      
+    }
   }
 }
 

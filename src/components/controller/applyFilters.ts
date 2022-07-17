@@ -1,5 +1,3 @@
-import BikeStorage from './bikeStorage';
-
 type BikeFilterObject = {
   manufacturers: string[],
   wheelSize: string[],
@@ -18,7 +16,6 @@ class Filters implements Filters {
   private popularFilter;
   private manufacturerFilter;
   private bikeCards;
-  private bikeStorage: BikeStorage;
 
   constructor() {
     this.filters = {
@@ -29,68 +26,41 @@ class Filters implements Filters {
       categories: [],
       popular: false
     };
-    this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
+    this.bikeCards = document.getElementsByClassName('card');
     this.popularFilter = document.getElementsByClassName('checkbox-popular');
     this.manufacturerFilter = document.getElementsByClassName('checkbox-manufacturer');
-    this.bikeStorage = new BikeStorage(this.bikeCards);
   }
 
-/* TODO:
-  1. Помещать в найденные по условию датасета, написать для этого функцию
-  2. Аналогично у аделнием из найденных
-
-
-   */
   public applyFilters(): void {
 
-    this.bikeStorage.initBikeStorage();
-    console.log(this.bikeStorage)
     const checkAndApply = () => {
-      const allBikes = this.bikeStorage.getBikesFromStorage();
-      let foundBikes: HTMLDivElement[] = [];
-      this.bikeStorage.setBikesToRemovedStorage(allBikes);
-      let lostBikes = this.bikeStorage.getBikesFromRemovedStorage();
 
       for (let index: number = 0; index < this.bikeCards.length; index += 1) {
         const element = this.bikeCards[index] as HTMLDivElement;
         
         if (this.filters.popular) {
           if (element.getElementsByClassName('card-popular')[0].textContent?.split(': ')[1] === 'нет')
-            if (!foundBikes.includes(element)) {
-              console.log(element)
-              foundBikes.push(element);
-              console.log(foundBikes)
-            }
-            lostBikes = lostBikes.filter((el) => el !== element);
-          } else {
-          if (foundBikes.includes(element)) {
-            foundBikes = foundBikes.filter((el) => el !== element);
-          }
-          lostBikes.push(element);
+            if (!element.classList.contains('unfiltered1'))
+              element.classList.add('unfiltered1');
+        } else {
+          if (element.classList.contains('unfiltered1'))
+            element.classList.remove('unfiltered1');
         }
 
         if (this.filters.manufacturers.length > 0) {
           const manName = element.getElementsByClassName('card-manufacturer')[0].textContent?.split(': ')[1] as string;
           if (!this.filters.manufacturers.includes(manName)) {
-            if (!foundBikes.includes(element)) {
-              foundBikes.push(element);
-              lostBikes = lostBikes.filter((el) => el !== element);
-            }
+            if (!element.classList.contains('unfiltered2'))
+              element.classList.add('unfiltered2');
           } else {
-            if (foundBikes.includes(element)) {
-              foundBikes = foundBikes.filter((el) => el !== element);
-              lostBikes.push(element);
-            }
+            if (element.classList.contains('unfiltered2'))
+              element.classList.remove('unfiltered2');
           }
         } else {
-          if (foundBikes.includes(element)) {
-            foundBikes = foundBikes.filter((el) => el !== element);
-            lostBikes.push(element);
-          }
+          if (element.classList.contains('unfiltered2'))
+            element.classList.remove('unfiltered2');
         }
       }
-
-      console.log('f', foundBikes, 'l', lostBikes);
     }
   
     const applyPopularFilter = () => {

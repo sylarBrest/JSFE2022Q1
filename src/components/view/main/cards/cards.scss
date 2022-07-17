@@ -9,7 +9,10 @@
 
   .no-results {
     display: none;
+    align-self: center;
+    width: 100%;
     font: normal normal 25px/30px sans-serif;
+    text-align: center;
     text-transform: uppercase;
   }
 }

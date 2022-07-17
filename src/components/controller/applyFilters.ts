@@ -1,4 +1,4 @@
-type BikeFilterObject = {
+interface BikeFilterObject {
   manufacturers: string[],
   wheelSize: string[],
   frameSize: string[],
@@ -17,6 +17,7 @@ class Filters implements Filters {
   private popularFilter;
   private manufacturerFilter;
   private wheelSizeFilter;
+  private frameSizeFilter;
 
   constructor() {
     this.filters = {
@@ -31,6 +32,7 @@ class Filters implements Filters {
     this.popularFilter = document.getElementsByClassName('checkbox-popular');
     this.manufacturerFilter = document.getElementsByClassName('checkbox-manufacturer');
     this.wheelSizeFilter = document.getElementsByClassName('checkbox-wheels');
+    this.frameSizeFilter = document.getElementsByClassName('checkbox-frame');
   }
 
   public applyFilters(): void {
@@ -76,6 +78,21 @@ class Filters implements Filters {
           if (element.classList.contains('unfiltered3'))
             element.classList.remove('unfiltered3');
         }
+
+        if (this.filters.frameSize.length > 0) {
+          const frameSize = element.getElementsByClassName('card-frame-size')[0].textContent?.split(': ')[1] as string;
+          if (!this.filters.frameSize.includes(frameSize)) {
+            if (!element.classList.contains('unfiltered4'))
+              element.classList.add('unfiltered4');
+          } else {
+            if (element.classList.contains('unfiltered4'))
+              element.classList.remove('unfiltered4');
+          }
+        } else {
+          if (element.classList.contains('unfiltered4'))
+            element.classList.remove('unfiltered4');
+        }
+
       }
     }
   
@@ -109,6 +126,18 @@ class Filters implements Filters {
       checkAndApply();
     }
 
+    const applyFrameSizeFilter = (e: Event) => {
+      const frameF = e.target as HTMLInputElement;
+
+      if (frameF.checked) {
+        this.filters.frameSize.push(frameF.value);   
+      } else {
+        this.filters.frameSize = this.filters.frameSize.filter((el) => el !== frameF.value);
+      }
+
+      checkAndApply();
+    }
+
     // All listeners
     this.popularFilter.item(0)?.addEventListener('click', applyPopularFilter);
     for (const element of this.manufacturerFilter) {
@@ -116,6 +145,9 @@ class Filters implements Filters {
     }
     for (const element of this.wheelSizeFilter) {
       element.addEventListener('click', applyWheelSizeFilter);
+    }
+    for (const element of this.frameSizeFilter) {
+      element.addEventListener('click', applyFrameSizeFilter);
     }
   }
 }

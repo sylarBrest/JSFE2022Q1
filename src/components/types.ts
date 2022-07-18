@@ -2,8 +2,6 @@ export type VoidEmptyFunction = () => void;
 
 export type VoidEventFunction = (e: Event, param: string) => void;
 
-export type VoidHTMLFunction = (items: HTMLDivElement[]) => void;
-
 export type BikeData = {
   num: number,
   buy: boolean,

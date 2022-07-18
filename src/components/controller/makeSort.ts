@@ -1,3 +1,5 @@
+import { VoidEmptyFunction } from '../types';
+
 import BikeStorage from './bikeStorage';
 
 interface Sorting {
@@ -15,41 +17,41 @@ class Sorting implements Sorting {
   }
 
   sortElements(): void {
-    const sortOptions = document.getElementsByClassName('sort')[0] as HTMLSelectElement;
+    const sortOptions: HTMLSelectElement = document.getElementsByClassName('sort')[0] as HTMLSelectElement;
 
     this.bikeStorage.initBikeStorage();
 
-    const sortBy = () => {
-      const allBikes = this.bikeStorage.getBikesFromStorage();
+    const sortBy: VoidEmptyFunction = () => {
+      const allBikes: HTMLDivElement[] = this.bikeStorage.getBikesFromStorage();
 
       this.bikeStorage.removeBikesFromStorage();
 
       switch (sortOptions.selectedOptions[0]) {
         case sortOptions.options[0]:
-          allBikes.sort((a, b) => {
-            const nameA = a.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
-            const nameB = b.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+          allBikes.sort((a: HTMLDivElement, b: HTMLDivElement) => {
+            const nameA: string = a.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+            const nameB: string = b.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
             return (nameA < nameB) ? -1 : 1;
           });
           break;
         case sortOptions.options[1]:
-          allBikes.sort((a, b) => {
-            const nameA = a.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
-            const nameB = b.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+          allBikes.sort((a: HTMLDivElement, b: HTMLDivElement) => {
+            const nameA: string = a.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+            const nameB: string = b.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
             return (nameA > nameB) ? -1 : 1;
           });
           break;
         case sortOptions.options[2]:
-          allBikes.sort((a, b) => {
-            const yearA = a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
-            const yearB = b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
+          allBikes.sort((a: HTMLDivElement, b: HTMLDivElement) => {
+            const yearA: string = a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
+            const yearB: string = b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
             return (yearA < yearB) ? -1 : 1;
           });
           break;
         case sortOptions.options[3]:
-          allBikes.sort((a, b) => {
-            const yearA = a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
-            const yearB = b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
+          allBikes.sort((a: HTMLDivElement, b: HTMLDivElement) => {
+            const yearA: string = a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
+            const yearB: string = b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
             return (yearA > yearB) ? -1 : 1;
           });
           break;
@@ -62,7 +64,7 @@ class Sorting implements Sorting {
 
     document.addEventListener('DOMContentLoaded', sortBy);
     sortOptions.addEventListener('change', sortBy);
-    const checkBox = document.getElementsByClassName('checkbox');
+    const checkBox: HTMLCollectionOf<HTMLInputElement> = document.getElementsByClassName('checkbox') as HTMLCollectionOf<HTMLInputElement>;
 
     for (let index = 0; index < checkBox.length; index += 1) {
       checkBox[index].addEventListener('click', sortBy);

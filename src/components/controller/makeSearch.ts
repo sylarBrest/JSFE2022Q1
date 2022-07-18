@@ -1,22 +1,24 @@
+import { VoidEmptyFunction } from '../types';
+
 interface MakeSearch {
   searchOnPage(): void;
 }
 
 class MakeSearch implements MakeSearch {
-  private bikeCards;
+  private bikeCards: HTMLCollectionOf<HTMLDivElement>;
 
   constructor() {
-    this.bikeCards = document.getElementsByClassName('card');
+    this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
   }
 
   public searchOnPage(): void {
     const inputSearch = document.getElementsByClassName('search')[0] as HTMLInputElement;
     const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
 
-    const searchInDataSets = (): void => {
+    const searchInDataSets: VoidEmptyFunction = () => {
       for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const element = this.bikeCards[index] as HTMLDivElement;
-        const name = element.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+        const element: HTMLDivElement = this.bikeCards[index] as HTMLDivElement;
+        const name: string = element.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
 
         if (!name.includes(inputSearch.value)) {
           element.classList.add('unfiltered');

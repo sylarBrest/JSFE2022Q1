@@ -1,3 +1,5 @@
+import { VoidEventFunction } from '../types';
+
 interface Shopping {
   makeShopping(): void;
 }
@@ -10,9 +12,9 @@ class Shopping implements Shopping {
   }
 
   public makeShopping(): void {
-    const bikeCards = document.getElementsByClassName('card');
+    const bikeCards: HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
 
-    const closeModal = (event: Event) => {
+    const closeModal: VoidEventFunction = (event: Event) => {
       if (event.target) {
         if (event.target instanceof HTMLElement) {
           if (event.target.classList.contains('darken')) {
@@ -24,10 +26,10 @@ class Shopping implements Shopping {
       }
     };
 
-    const styleCard = (e: Event): void => {
-      const el = e.currentTarget as HTMLDivElement;
-      const bagImage = el.getElementsByClassName('card-bag')[0] as HTMLDivElement;
-      const countCart = document.getElementsByClassName('store-cart-count-number')[0] as HTMLSpanElement;
+    const styleCard: VoidEventFunction = (e: Event) => {
+      const el: HTMLDivElement = e.currentTarget as HTMLDivElement;
+      const bagImage: HTMLDivElement = el.getElementsByClassName('card-bag')[0] as HTMLDivElement;
+      const countCart: HTMLSpanElement = document.getElementsByClassName('store-cart-count-number')[0] as HTMLSpanElement;
 
       if (bagImage.classList.contains('in-cart')) {
         bagImage.classList.remove('in-cart');
@@ -46,8 +48,7 @@ class Shopping implements Shopping {
     };
 
     for (let index = 0; index < bikeCards.length; index += 1) {
-      const element = bikeCards[index];
-      element.addEventListener('click', (e: Event) => styleCard(e));
+      bikeCards[index].addEventListener('click', styleCard);
     }
 
     document.getElementsByClassName('darken')[0].addEventListener('click', closeModal);

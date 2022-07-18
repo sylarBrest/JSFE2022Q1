@@ -1,5 +1,5 @@
 interface Shopping {
-  makeShopping(): void; 
+  makeShopping(): void;
 }
 
 class Shopping implements Shopping {
@@ -19,7 +19,7 @@ class Shopping implements Shopping {
             document.getElementsByClassName('modal')[0].classList.remove('open');
             document.getElementsByClassName('darken')[0].classList.remove('open');
             document.getElementsByTagName('body')[0].classList.remove('open');
-          }  
+          }
         }
       }
     };
@@ -28,26 +28,24 @@ class Shopping implements Shopping {
       const el = e.currentTarget as HTMLDivElement;
       const bagImage = el.getElementsByClassName('card-bag')[0] as HTMLDivElement;
       const countCart = document.getElementsByClassName('store-cart-count-number')[0] as HTMLSpanElement;
-      
+
       if (bagImage.classList.contains('in-cart')) {
         bagImage.classList.remove('in-cart');
         el.classList.remove('in-cart');
         this.count -= 1;
+      } else if (this.count < 20) {
+        bagImage.classList.add('in-cart');
+        el.classList.add('in-cart');
+        this.count += 1;
       } else {
-        if (this.count < 20) {
-          bagImage.classList.add('in-cart');
-          el.classList.add('in-cart');
-          this.count += 1;
-        } else {
-          document.getElementsByClassName('modal')[0].classList.add('open');
-          document.getElementsByClassName('darken')[0].classList.add('open');
-          document.getElementsByTagName('body')[0].classList.add('open');
-        }
+        document.getElementsByClassName('modal')[0].classList.add('open');
+        document.getElementsByClassName('darken')[0].classList.add('open');
+        document.getElementsByTagName('body')[0].classList.add('open');
       }
       countCart.textContent = `${this.count}`;
-    }
+    };
 
-    for (let index: number = 0; index < bikeCards.length; index += 1) {
+    for (let index = 0; index < bikeCards.length; index += 1) {
       const element = bikeCards[index];
       element.addEventListener('click', (e: Event) => styleCard(e));
     }

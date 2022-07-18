@@ -12,7 +12,7 @@ class Sort implements Sort {
     const sortName = document.createElement('p');
     sortName.className = 'sort-name';
     sortName.textContent = 'Сортировать';
-    
+
     const sort = document.createElement('select');
     sort.className = 'sort';
 

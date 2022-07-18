@@ -8,7 +8,7 @@ class Header implements Header {
   public drawHeader(): void {
     const headerContainer = document.createElement('div');
     headerContainer.classList.add('container', 'header-container');
-    
+
     const storeLogo = document.createElement('div');
     storeLogo.className = 'store-logo';
 

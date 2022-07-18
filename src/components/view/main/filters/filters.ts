@@ -1,6 +1,6 @@
 import './filters.scss';
 
-import Values from "./values/values";
+import Values from './values/values';
 import Slider from './range/range';
 import Search from './search/search';
 import Sort from './sort/sort';
@@ -8,10 +8,15 @@ import Reset from './reset/reset';
 
 class Filters {
   private values: Values;
+
   private range: Slider;
+
   private search: Search;
+
   private sort: Sort;
+
   private reset: Reset;
+
   constructor() {
     this.values = new Values();
     this.range = new Slider();

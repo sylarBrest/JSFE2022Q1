@@ -6,18 +6,19 @@ interface Sorting {
 
 class Sorting implements Sorting {
   private bikeCards: HTMLCollectionOf<HTMLDivElement>;
+
   private bikeStorage: BikeStorage;
 
   constructor() {
     this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
     this.bikeStorage = new BikeStorage(this.bikeCards);
   }
-  
+
   sortElements(): void {
     const sortOptions = document.getElementsByClassName('sort')[0] as HTMLSelectElement;
 
     this.bikeStorage.initBikeStorage();
-    
+
     const sortBy = () => {
       const allBikes = this.bikeStorage.getBikesFromStorage();
 
@@ -57,13 +58,14 @@ class Sorting implements Sorting {
       }
 
       this.bikeStorage.writeBikeStorageToDOM(allBikes);
-    }
+    };
 
     document.addEventListener('DOMContentLoaded', sortBy);
     sortOptions.addEventListener('change', sortBy);
     const checkBox = document.getElementsByClassName('checkbox');
-    for (const item of checkBox) {
-      item.addEventListener('click', sortBy);      
+
+    for (let index = 0; index < checkBox.length; index += 1) {
+      checkBox[index].addEventListener('click', sortBy);
     }
   }
 }

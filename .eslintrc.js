@@ -22,6 +22,8 @@ module.exports = {
   ],
   rules: {
     'no-console': 'off',
-    'no-explicit-any': 'on'
+    'class-methods-use-this': 'off',
+    '@typescript-eslint/no-explicit-any': 'error'
   },
+  ignorePatterns: ['src/components/view/nouislider/*'],
 };

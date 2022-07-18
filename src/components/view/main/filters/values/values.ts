@@ -1,6 +1,6 @@
 import './values.scss';
 
-import { bikes } from '../../../../bikeData';
+import bikes from '../../../../bikeData';
 
 interface Values {
   drawValues(): void;
@@ -29,7 +29,7 @@ class Values implements Values {
     manName.classList.add('filter-name', 'manufacturer-filter-name');
     manName.textContent = 'Производитель';
     parent.append(manName);
-  
+
     bikeManufacturer.forEach((element) => {
       const label = document.createElement('label');
       label.classList.add('label', 'manufacturer-label');
@@ -60,7 +60,7 @@ class Values implements Values {
     manName.classList.add('filter-name', 'wheels-filter-name');
     manName.textContent = 'Размер колёс';
     parent.append(manName);
-  
+
     bikeWheelSize.forEach((element) => {
       const label = document.createElement('label');
       label.classList.add('label', 'wheels-label');
@@ -83,9 +83,12 @@ class Values implements Values {
 
   private fillFrameSizeFilter(parent: HTMLElement) {
     type Size = { [key: string]: number };
-    const frameSize: Size = { S: 0, M: 1, L: 2, XL: 3 }; 
+    const frameSize: Size = {
+      S: 0, M: 1, L: 2, XL: 3,
+    };
 
-    const bikeFrameSize = [...new Set(bikes.map((el) => el.size))].sort((a, b) => frameSize[a] - frameSize[b]);
+    const bikeFrameSize = [...new Set(bikes.map((el) => el.size))]
+      .sort((a, b) => frameSize[a] - frameSize[b]);
 
     const manufacturersDiv = document.createElement('div');
     manufacturersDiv.classList.add('values-filter', 'frame-filter');
@@ -94,7 +97,7 @@ class Values implements Values {
     manName.classList.add('filter-name', 'frame-filter-name');
     manName.textContent = 'Размер рамы';
     parent.append(manName);
-  
+
     bikeFrameSize.forEach((element) => {
       const label = document.createElement('label');
       label.classList.add('label', 'frame-label');
@@ -125,7 +128,7 @@ class Values implements Values {
     manName.classList.add('filter-name', 'color-filter-name');
     manName.textContent = 'Цвет';
     parent.append(manName);
-  
+
     bikeColor.forEach((element) => {
       const label = document.createElement('label');
       label.classList.add('label', 'color-label');
@@ -156,7 +159,7 @@ class Values implements Values {
     manName.classList.add('filter-name', 'category-filter-name');
     manName.textContent = 'Категория';
     parent.append(manName);
-  
+
     bikeCategories.forEach((element) => {
       const label = document.createElement('label');
       label.classList.add('label', 'category-label');
@@ -188,7 +191,7 @@ class Values implements Values {
     checkbox.type = 'checkbox';
     checkbox.classList.add('checkbox', 'checkbox-popular');
     checkbox.value = 'false';
-  
+
     const labelText = document.createElement('span');
     labelText.textContent = 'Только популярные';
 
@@ -196,7 +199,6 @@ class Values implements Values {
     popularDiv.append(label);
     parent.append(popularDiv);
   }
-
 }
 
 export default Values;

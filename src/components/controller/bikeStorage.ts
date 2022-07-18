@@ -7,7 +7,9 @@ interface BikeStorage {
 
 class BikeStorage implements BikeStorage {
   private bikeCards: HTMLDivElement[];
+
   private bikeCardsAll;
+
   private removedBikeCards: HTMLDivElement[];
 
   constructor(startCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>) {

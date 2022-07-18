@@ -13,12 +13,15 @@
     background-color: #adadad;
   }
 
+  &.unfiltered,
   &.unfiltered1,
   &.unfiltered2,
   &.unfiltered3,
   &.unfiltered4,
   &.unfiltered5,
-  &.unfiltered6 {
+  &.unfiltered6,
+  &.unfiltered7,
+  &.unfiltered8 {
     display: none;
   }
 

@@ -5,7 +5,9 @@ import Cards from './cards/cards';
 
 class Main {
   private filters: Filters;
+
   private cards: Cards;
+
   constructor() {
     this.filters = new Filters();
     this.cards = new Cards();

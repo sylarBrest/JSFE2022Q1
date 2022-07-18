@@ -1,4 +1,4 @@
-import { bikes } from '../../../../bikeData';
+import bikes from '../../../../bikeData';
 import { BikeData } from '../../../../types';
 
 import './card.scss';
@@ -9,11 +9,11 @@ class Card {
       const card = document.createElement('div');
       card.className = 'card';
       card.setAttribute('data-bike-num', bike.num.toString());
-      
+
       const cardName = document.createElement('h3');
       cardName.className = 'card-name';
       cardName.textContent = bike.name;
-      
+
       const cardImage = document.createElement('img');
       cardImage.className = 'card-image';
       cardImage.src = bike.photo;
@@ -59,12 +59,20 @@ class Card {
       cardPopular.className = 'card-popular';
       cardPopular.textContent = `Популярный: ${bike.popular ? 'да' : 'нет'}`;
 
-      cardInfo.append(cardManufacturer, cardYear, cardCategory,
-        cardWheelSize, cardFrameSize, cardColor, cardStockAmount, cardPopular);
+      cardInfo.append(
+        cardManufacturer,
+        cardYear,
+        cardCategory,
+        cardWheelSize,
+        cardFrameSize,
+        cardColor,
+        cardStockAmount,
+        cardPopular,
+      );
       cardInfoDiv.append(cardInfo, cardBagImage);
       card.append(cardName, cardImage, cardInfoDiv);
       document.getElementsByClassName('cards')[0].append(card);
-    })
+    });
   }
 }
 

@@ -2,8 +2,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
+  justify-content: center;
   width: calc(100% - 250px);
   height: 100%;
+  margin: 0 auto;
   padding: 20px;
   background-color: aqua;
 

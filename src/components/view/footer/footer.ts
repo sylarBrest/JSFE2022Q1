@@ -8,7 +8,7 @@ class Footer implements Footer {
   public drawFooter(): void {
     const footerContainer = document.createElement('div');
     footerContainer.classList.add('container', 'footer-container');
-    
+
     const footerData = document.createElement('div');
     footerData.className = 'footer-data';
 
@@ -21,9 +21,9 @@ class Footer implements Footer {
 
     const linkGithub = document.createElement('a');
     linkGithub.className = 'github-link';
-    linkGithub.setAttribute('href','https://github.com/sylarBrest');
-    linkGithub.setAttribute('target','_blank');
-    linkGithub.setAttribute('rel','noopener noreferrer');
+    linkGithub.setAttribute('href', 'https://github.com/sylarBrest');
+    linkGithub.setAttribute('target', '_blank');
+    linkGithub.setAttribute('rel', 'noopener noreferrer');
     linkGithub.textContent = 'sylarBrest';
 
     githubData.append(linkGithub);
@@ -32,10 +32,10 @@ class Footer implements Footer {
 
     const linkRSS = document.createElement('a');
     linkRSS.className = 'rss-logo';
-    linkRSS.setAttribute('href','https://rs.school/js-stage0/');
-    linkRSS.setAttribute('target','_blank');
-    linkRSS.setAttribute('rel','noopener noreferrer');
-    linkRSS.setAttribute('title','Rolling Scope School');
+    linkRSS.setAttribute('href', 'https://rs.school/js-stage0/');
+    linkRSS.setAttribute('target', '_blank');
+    linkRSS.setAttribute('rel', 'noopener noreferrer');
+    linkRSS.setAttribute('title', 'Rolling Scope School');
 
     footerContainer.append(footerData, linkRSS);
 

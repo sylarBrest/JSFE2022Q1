@@ -4,7 +4,9 @@ import Header from './header/header';
 
 class AppView {
   private main: Main;
+
   private footer: Footer;
+
   private header: Header;
 
   constructor() {

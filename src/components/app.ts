@@ -9,12 +9,17 @@ interface App {
   start(): void;
 }
 
-class App implements App{
+class App implements App {
   private search: MakeSearch;
+
   private appView: AppView;
+
   private shopping: Shopping;
+
   private filters: Filters;
+
   private sorting: Sorting;
+
   private bikeStorage: BikeStorage;
 
   constructor() {

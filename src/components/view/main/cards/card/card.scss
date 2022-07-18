@@ -4,6 +4,7 @@
   justify-content: space-between;
   width: 300px;
   height: 375px;
+  padding: 5px;
   font: normal normal 16px/20px Verdana, sans-serif;
   background-color: white;
   border-radius: 10px;
@@ -27,6 +28,7 @@
 
   &-name {
     align-self: center;
+    font: normal bold 19px/25px Verdana, sans-serif;
   }
 
   &-image {

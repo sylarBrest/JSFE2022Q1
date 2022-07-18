@@ -1,7 +1,12 @@
-import './cards.scss';
 import Card from './card/card';
 
-class Cards {
+import './cards.scss';
+
+interface Cards {
+  drawCards(): void;
+}
+
+class Cards implements Cards {
   private card: Card;
 
   constructor() {

@@ -1,7 +1,7 @@
-import './main.scss';
-
 import Filters from './filters/filters';
 import Cards from './cards/cards';
+
+import './main.scss';
 
 class Main {
   private filters: Filters;
@@ -14,26 +14,27 @@ class Main {
   }
 
   public drawMain() {
+    const main = document.getElementsByClassName('main')[0];
+
     const mainContainer = document.createElement('div');
     mainContainer.classList.add('container', 'main-container');
-    document.getElementsByClassName('main')[0].append(mainContainer);
+    main.append(mainContainer);
     this.filters.drawFilters();
     this.cards.drawCards();
-    this.drawModal();
-  }
 
-  private drawModal() {
     const modalWindow = document.createElement('div');
     modalWindow.className = 'modal';
+
     const noMore = document.createElement('p');
     noMore.className = 'no-more-buy';
     noMore.textContent = 'Извините, все слоты заполнены';
+
     modalWindow.append(noMore);
 
     const darkenWindow = document.createElement('div');
     darkenWindow.className = 'darken';
 
-    document.getElementsByClassName('main')[0].append(modalWindow, darkenWindow);
+    main.append(modalWindow, darkenWindow);
   }
 }
 

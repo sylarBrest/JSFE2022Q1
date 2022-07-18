@@ -1,10 +1,10 @@
-import './filters.scss';
-
 import Values from './values/values';
 import Slider from './range/range';
 import Search from './search/search';
 import Sort from './sort/sort';
 import Reset from './reset/reset';
+
+import './filters.scss';
 
 class Filters {
   private values: Values;
@@ -28,7 +28,7 @@ class Filters {
   public drawFilters() {
     const filters = document.createElement('section');
     filters.className = 'filters';
-    document.getElementsByClassName('main-container')[0].append(filters);
+    document.getElementsByClassName('main-container')[0].prepend(filters);
     this.search.drawSearchField();
     this.sort.drawSortField();
     this.values.drawValues();

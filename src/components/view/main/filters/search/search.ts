@@ -20,7 +20,7 @@ class Search implements Search {
     search.type = 'search';
     search.placeholder = 'Что ищем?';
     searchDiv.append(search);
-    document.getElementsByClassName('filters')[0].append(searchDiv);
+    document.getElementsByClassName('filters')[0].prepend(searchDiv);
   }
 }
 

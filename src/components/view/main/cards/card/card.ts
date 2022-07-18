@@ -3,19 +3,24 @@ import { BikeData } from '../../../../types';
 
 import './card.scss';
 
-class Card {
-  public drawCard() {
+interface Card {
+  drawCard(): void;
+}
+
+class Card implements Card {
+  public drawCard(): void {
     bikes.forEach((bike: BikeData) => {
       const card = document.createElement('div');
       card.className = 'card';
       card.setAttribute('data-bike-num', bike.num.toString());
 
-      const cardName = document.createElement('h3');
+      const cardName = document.createElement('h2');
       cardName.className = 'card-name';
       cardName.textContent = bike.name;
 
       const cardImage = document.createElement('img');
       cardImage.className = 'card-image';
+      cardImage.alt = `${bike.name}`;
       cardImage.src = bike.photo;
 
       const cardInfoDiv = document.createElement('div');

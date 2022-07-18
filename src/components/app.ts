@@ -3,7 +3,7 @@ import MakeSearch from './controller/makeSearch';
 import Shopping from './controller/shop';
 import Filters from './controller/applyFilters';
 import Sorting from './controller/makeSort';
-import BikeStorage from './controller/bikeStorage';
+import Resetting from './controller/makeReset';
 
 interface App {
   start(): void;
@@ -20,7 +20,7 @@ class App implements App {
 
   private sorting: Sorting;
 
-  private bikeStorage: BikeStorage;
+  private resetting: Resetting;
 
   constructor() {
     this.search = new MakeSearch();
@@ -28,16 +28,16 @@ class App implements App {
     this.shopping = new Shopping();
     this.filters = new Filters();
     this.sorting = new Sorting();
-    this.bikeStorage = new BikeStorage();
+    this.resetting = new Resetting();
   }
 
   public start(): void {
     this.appView.drawComponents();
-    this.bikeStorage.initBikeStorage();
     this.sorting.sortElements();
     this.search.searchOnPage();
     this.shopping.makeShopping();
     this.filters.applyFilters();
+    this.resetting.resetFilters();
   }
 }
 

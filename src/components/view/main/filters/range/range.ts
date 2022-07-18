@@ -1,8 +1,8 @@
-import './range.scss';
-
 import noUiSlider, { API } from '../../../nouislider/nouislider';
-import '../../../nouislider/nouislider.scss';
 import bikes from '../../../../bikeData';
+
+import './range.scss';
+import '../../../nouislider/nouislider.scss';
 
 interface Slider {
   drawSliders(): void;

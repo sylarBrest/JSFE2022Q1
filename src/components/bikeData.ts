@@ -3,7 +3,7 @@ import { BikeDataArray } from './types';
 const bikes: BikeDataArray = [
   {
     num: 1,
-    photo: './assets/images/ktm-prowler.jpg',
+    photo: './assets/images/ktm-prowler.webp',
     manufacturer: 'KTM',
     name: 'KTM Prowler Master',
     year: 2020,
@@ -17,7 +17,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 2,
-    photo: './assets/images/ktm-x-strada.jpg',
+    photo: './assets/images/ktm-x-strada.webp',
     manufacturer: 'KTM',
     name: 'KTM X-Strada Prime',
     year: 2022,
@@ -31,7 +31,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 3,
-    photo: './assets/images/ktm-city-fun.jpg',
+    photo: './assets/images/ktm-city-fun.webp',
     manufacturer: 'KTM',
     name: 'KTM City Fun 28',
     year: 2021,
@@ -45,7 +45,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 4,
-    photo: './assets/images/ktm-revelator-alto.jpg',
+    photo: './assets/images/ktm-revelator-alto.webp',
     manufacturer: 'KTM',
     name: 'KTM Revelator Alto Master',
     year: 2022,
@@ -59,7 +59,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 5,
-    photo: './assets/images/merida-big-nine.jpg',
+    photo: './assets/images/merida-big-nine.webp',
     manufacturer: 'Merida',
     name: 'Merida Big.Nine 9000',
     year: 2022,
@@ -73,7 +73,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 6,
-    photo: './assets/images/merida-silex.jpg',
+    photo: './assets/images/merida-silex.webp',
     manufacturer: 'Merida',
     name: 'Merida Silex 200',
     year: 2019,
@@ -87,7 +87,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 7,
-    photo: './assets/images/merida-scultura.jpg',
+    photo: './assets/images/merida-scultura.webp',
     manufacturer: 'Merida',
     name: 'Merida Scultura Disc 400',
     year: 2019,
@@ -101,7 +101,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 8,
-    photo: './assets/images/merida-speeder.jpg',
+    photo: './assets/images/merida-speeder.webp',
     manufacturer: 'Merida',
     name: 'Merida Speeder 10-V (L)',
     year: 2022,
@@ -115,7 +115,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 9,
-    photo: './assets/images/giant-cypress.jpg',
+    photo: './assets/images/giant-cypress.webp',
     manufacturer: 'Giant',
     name: 'Giant Cypress 1',
     year: 2021,
@@ -129,7 +129,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 10,
-    photo: './assets/images/giant-stp.jpg',
+    photo: './assets/images/giant-stp.webp',
     manufacturer: 'Giant',
     name: 'Giant STP 26',
     year: 2020,
@@ -143,7 +143,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 11,
-    photo: './assets/images/giant-revolt.jpg',
+    photo: './assets/images/giant-revolt.webp',
     manufacturer: 'Giant',
     name: 'Giant Revolt 0',
     year: 2022,
@@ -157,7 +157,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 12,
-    photo: './assets/images/giant-tcr-advanced.jpg',
+    photo: './assets/images/giant-tcr-advanced.webp',
     manufacturer: 'Giant',
     name: 'Giant TCR Advanced 3',
     year: 2020,
@@ -171,7 +171,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 13,
-    photo: './assets/images/fuji-traverse.jpg',
+    photo: './assets/images/fuji-traverse.webp',
     manufacturer: 'FUJI',
     name: 'FUJI Traverse 1.3',
     year: 2018,
@@ -185,7 +185,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 14,
-    photo: './assets/images/fuji-absolute.jpg',
+    photo: './assets/images/fuji-absolute.webp',
     manufacturer: 'FUJI',
     name: 'FUJI Absolute 1.9',
     year: 2020,
@@ -199,7 +199,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 15,
-    photo: './assets/images/fuji-sl-a.jpg',
+    photo: './assets/images/fuji-sl-a.webp',
     manufacturer: 'FUJI',
     name: 'FUJI SL-A 1.3',
     year: 2022,
@@ -213,7 +213,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 16,
-    photo: './assets/images/aist-mach.jpg',
+    photo: './assets/images/aist-mach.webp',
     manufacturer: 'AIST',
     name: 'AIST Mach 1.0',
     year: 2017,
@@ -227,7 +227,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 17,
-    photo: './assets/images/aist-slide.jpg',
+    photo: './assets/images/aist-slide.webp',
     manufacturer: 'AIST',
     name: 'AIST Slide 3.0',
     year: 2017,
@@ -241,7 +241,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 18,
-    photo: './assets/images/aist-tracker.jpg',
+    photo: './assets/images/aist-tracker.webp',
     manufacturer: 'AIST',
     name: 'AIST Tracker 2.0',
     year: 2018,
@@ -255,7 +255,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 19,
-    photo: './assets/images/aist-cross.jpg',
+    photo: './assets/images/aist-cross.webp',
     manufacturer: 'AIST',
     name: 'AIST Cross 2.0',
     year: 2019,
@@ -269,7 +269,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 20,
-    photo: './assets/images/format-1411.jpg',
+    photo: './assets/images/format-1411.webp',
     manufacturer: 'Format',
     name: 'Format 1411 27,5',
     year: 2021,
@@ -283,7 +283,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 21,
-    photo: './assets/images/format-2221.jpg',
+    photo: './assets/images/format-2221.webp',
     manufacturer: 'Format',
     name: 'Format 2221',
     year: 2022,
@@ -297,7 +297,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 22,
-    photo: './assets/images/format-5211.jpg',
+    photo: './assets/images/format-5211.webp',
     manufacturer: 'Format',
     name: 'Format 5211',
     year: 2022,
@@ -311,7 +311,7 @@ const bikes: BikeDataArray = [
   },
   {
     num: 23,
-    photo: './assets/images/format-5522.jpg',
+    photo: './assets/images/format-5522.webp',
     manufacturer: 'Format',
     name: 'Format 5522',
     year: 2022,

@@ -1,6 +1,8 @@
 export type VoidEmptyFunction = () => void;
 
-export type VoidEventFunction = (e: Event, param: string) => void;
+export type VoidEventFunction = (e: Event) => void;
+
+export type VoidEventParamFunction = (e: Event, param: string) => void;
 
 export type BikeData = {
   num: number,

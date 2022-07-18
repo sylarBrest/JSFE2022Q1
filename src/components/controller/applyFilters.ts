@@ -1,4 +1,4 @@
-import { BikeFilterObject, VoidEmptyFunction, VoidEventFunction } from '../types';
+import { BikeFilterObject, VoidEmptyFunction, VoidEventParamFunction } from '../types';
 
 interface Filters {
   resetFilters(): void;
@@ -78,7 +78,7 @@ class Filters implements Filters {
         let num = 0;
         for (let j = 0; j < this.bikeCards.length; j += 1) {
           const card: HTMLDivElement = this.bikeCards[j];
-          if (card.classList.length > 1) num += 1;
+          if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
         }
 
         if (num === this.bikeCards.length) {
@@ -95,7 +95,7 @@ class Filters implements Filters {
       checkAndApply();
     };
 
-    const applyFilterByParam: VoidEventFunction = (e: Event, param: string) => {
+    const applyFilterByParam: VoidEventParamFunction = (e: Event, param: string) => {
       const filter: HTMLInputElement = e.target as HTMLInputElement;
 
       if (filter.checked) {

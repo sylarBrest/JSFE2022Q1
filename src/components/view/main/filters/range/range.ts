@@ -43,7 +43,7 @@ class Slider implements Slider {
         let num = 0;
         for (let j = 0; j < this.bikeCards.length; j += 1) {
           const card = this.bikeCards[j];
-          if (card.classList.length > 1) num += 1;
+          if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
         }
 
         if (num === this.bikeCards.length) {
@@ -77,7 +77,7 @@ class Slider implements Slider {
         let num = 0;
         for (let j = 0; j < this.bikeCards.length; j += 1) {
           const card = this.bikeCards[j];
-          if (card.classList.length > 1) num += 1;
+          if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
         }
 
         if (num === this.bikeCards.length) {

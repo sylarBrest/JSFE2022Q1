@@ -1,3 +1,5 @@
+import { VoidEmptyFunction } from '../types';
+
 import Search from '../view/main/filters/search/search';
 import MakeSearch from './makeSearch';
 import Values from '../view/main/filters/values/values';
@@ -28,10 +30,10 @@ class Resetting implements Resetting {
   }
 
   resetFilters() {
-    const resetFiltersButton = document.getElementsByClassName('reset-filters-button')[0] as HTMLButtonElement;
-    const bikeCards = document.getElementsByClassName('card');
+    const resetFiltersButton: HTMLButtonElement = document.getElementsByClassName('reset-filters-button')[0] as HTMLButtonElement;
+    const bikeCards: HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
 
-    const reDrawFilters = () => {
+    const reDrawFilters: VoidEmptyFunction = () => {
       document.getElementsByClassName('search-container')[0].remove();
       this.search.drawSearchField();
       this.makeSearch.searchOnPage();
@@ -45,8 +47,8 @@ class Resetting implements Resetting {
       this.ranges.drawSliders();
 
       for (let index = 0; index < bikeCards.length; index += 1) {
-        const element = bikeCards[index];
-        const unFil = ['unfiltered', 'unfiltered1', 'unfiltered2',
+        const element: HTMLDivElement = bikeCards[index];
+        const unFil: string[] = ['unfiltered', 'unfiltered1', 'unfiltered2',
           'unfiltered3', 'unfiltered4', 'unfiltered5',
           'unfiltered6', 'unfiltered7', 'unfiltered8'];
 
@@ -55,13 +57,7 @@ class Resetting implements Resetting {
         }
       }
 
-      const checkBoxes = document.getElementsByClassName('checkbox') as HTMLCollectionOf<HTMLInputElement>;
-
-      for (let index = 0; index < checkBoxes.length; index += 1) {
-        checkBoxes[index].checked = false;
-      }
-
-      const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
+      const noResults: HTMLParagraphElement = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
       noResults.removeAttribute('style');
     };
 

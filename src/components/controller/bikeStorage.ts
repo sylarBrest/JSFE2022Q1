@@ -15,7 +15,7 @@ class BikeStorage implements BikeStorage {
     this.bikeCards = [];
   }
 
-  public initBikeStorage() {
+  public initBikeStorage(): void {
     this.bikeCards.push(...this.bikeCardsAll);
   }
 

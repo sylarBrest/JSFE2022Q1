@@ -3,7 +3,6 @@ import MakeSearch from './makeSearch';
 import Values from '../view/main/filters/values/values';
 import ApplyFilters from './applyFilters';
 import Ranges from '../view/main/filters/range/range';
-import Reset from '../view/main/filters/reset/reset';
 
 interface Resetting {
   resetFilters(): void;
@@ -20,15 +19,12 @@ class Resetting implements Resetting {
 
   private ranges: Ranges;
 
-  private reset: Reset;
-
   constructor() {
     this.search = new Search();
     this.makeSearch = new MakeSearch();
     this.values = new Values();
     this.applyFilters = new ApplyFilters();
     this.ranges = new Ranges();
-    this.reset = new Reset();
   }
 
   resetFilters() {
@@ -42,13 +38,11 @@ class Resetting implements Resetting {
 
       document.getElementsByClassName('values-filter-container')[0].remove();
       this.values.drawValues();
+      this.applyFilters.resetFilters();
       this.applyFilters.applyFilters();
 
       document.getElementsByClassName('ranges-filter-container')[0].remove();
       this.ranges.drawSliders();
-
-      document.getElementsByClassName('reset-buttons')[0].remove();
-      this.reset.drawResetButtons();
 
       for (let index = 0; index < bikeCards.length; index += 1) {
         const element = bikeCards[index];
@@ -59,6 +53,12 @@ class Resetting implements Resetting {
         for (let j = 0; j < unFil.length; j += 1) {
           if (element.classList.contains(unFil[j])) element.classList.remove(unFil[j]);
         }
+      }
+
+      const checkBoxes = document.getElementsByClassName('checkbox') as HTMLCollectionOf<HTMLInputElement>;
+
+      for (let index = 0; index < checkBoxes.length; index += 1) {
+        checkBoxes[index].checked = false;
       }
 
       const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;

@@ -46,7 +46,19 @@ class Filters implements Filters {
     this.categoryFilter = document.getElementsByClassName('checkbox-category');
   }
 
+  public resetFilters() {
+    this.filters = {
+      manufacturers: [],
+      wheelSize: [],
+      frameSize: [],
+      colors: [],
+      categories: [],
+      popular: false,
+    };
+  }
+
   public applyFilters(): void {
+    console.log(this.filters);
     const checkAndApply = () => {
       for (let index = 0; index < this.bikeCards.length; index += 1) {
         const element = this.bikeCards[index] as HTMLDivElement;

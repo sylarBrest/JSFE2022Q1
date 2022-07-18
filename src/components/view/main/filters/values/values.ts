@@ -10,7 +10,7 @@ class Values implements Values {
   public drawValues(): void {
     const valuesWindow: HTMLElement = document.createElement('div');
     valuesWindow.className = 'values-filter-container';
-    document.getElementsByClassName('filters')[0].append(valuesWindow);
+    document.getElementsByClassName('sort-container')[0].after(valuesWindow);
     this.fillManufacturersFilter(valuesWindow);
     this.fillWheelSizeFilter(valuesWindow);
     this.fillFrameSizeFilter(valuesWindow);
@@ -37,6 +37,7 @@ class Values implements Values {
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
       checkbox.classList.add('checkbox', 'checkbox-manufacturer');
+      checkbox.checked = false;
       checkbox.value = element;
 
       const labelText = document.createElement('span');
@@ -67,6 +68,7 @@ class Values implements Values {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.checked = false;
       checkbox.classList.add('checkbox', 'checkbox-wheels');
       checkbox.value = element.toString();
 
@@ -104,6 +106,7 @@ class Values implements Values {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.checked = false;
       checkbox.classList.add('checkbox', 'checkbox-frame');
       checkbox.value = element.toString();
 
@@ -135,6 +138,7 @@ class Values implements Values {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.checked = false;
       checkbox.classList.add('checkbox', 'checkbox-color');
       checkbox.value = element;
 
@@ -166,6 +170,7 @@ class Values implements Values {
 
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.checked = false;
       checkbox.classList.add('checkbox', 'checkbox-category');
       checkbox.value = element;
 
@@ -189,6 +194,7 @@ class Values implements Values {
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    checkbox.checked = false;
     checkbox.classList.add('checkbox', 'checkbox-popular');
     checkbox.value = 'false';
 

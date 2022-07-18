@@ -18,7 +18,7 @@ class Slider implements Slider {
   public drawSliders(): void {
     const rangesWindow: HTMLElement = document.createElement('div');
     rangesWindow.className = 'ranges-filter-container';
-    document.getElementsByClassName('filters')[0].append(rangesWindow);
+    document.getElementsByClassName('values-filter-container')[0].after(rangesWindow);
     this.drawSliderByYear(rangesWindow);
     this.drawSliderByStock(rangesWindow);
   }

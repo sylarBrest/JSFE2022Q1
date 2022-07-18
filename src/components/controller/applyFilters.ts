@@ -1,32 +1,26 @@
-interface BikeFilterObject {
-  manufacturers: string[],
-  wheelSize: string[],
-  frameSize: string[],
-  colors: string[],
-  categories: string[],
-  popular: boolean
-}
+import { BikeFilterObject, VoidEmptyFunction, VoidEventFunction } from '../types';
 
 interface Filters {
+  resetFilters(): void;
   applyFilters(): void;
 }
 
 class Filters implements Filters {
   private filters: BikeFilterObject;
 
-  private bikeCards;
+  private bikeCards: HTMLCollectionOf<HTMLDivElement>;
 
-  private popularFilter;
+  private popularFilter: HTMLCollectionOf<HTMLInputElement>;
 
-  private manufacturerFilter;
+  private manufacturerFilter: HTMLCollectionOf<HTMLInputElement>;
 
-  private wheelSizeFilter;
+  private wheelSizeFilter: HTMLCollectionOf<HTMLInputElement>;
 
-  private frameSizeFilter;
+  private frameSizeFilter: HTMLCollectionOf<HTMLInputElement>;
 
-  private colorFilter;
+  private colorFilter: HTMLCollectionOf<HTMLInputElement>;
 
-  private categoryFilter;
+  private categoryFilter: HTMLCollectionOf<HTMLInputElement>;
 
   constructor() {
     this.filters = {
@@ -37,16 +31,16 @@ class Filters implements Filters {
       categories: [],
       popular: false,
     };
-    this.bikeCards = document.getElementsByClassName('card');
-    this.popularFilter = document.getElementsByClassName('checkbox-popular');
-    this.manufacturerFilter = document.getElementsByClassName('checkbox-manufacturer');
-    this.wheelSizeFilter = document.getElementsByClassName('checkbox-wheels');
-    this.frameSizeFilter = document.getElementsByClassName('checkbox-frame');
-    this.colorFilter = document.getElementsByClassName('checkbox-color');
-    this.categoryFilter = document.getElementsByClassName('checkbox-category');
+    this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
+    this.popularFilter = document.getElementsByClassName('checkbox-popular') as HTMLCollectionOf<HTMLInputElement>;
+    this.manufacturerFilter = document.getElementsByClassName('checkbox-manufacturer') as HTMLCollectionOf<HTMLInputElement>;
+    this.wheelSizeFilter = document.getElementsByClassName('checkbox-wheels') as HTMLCollectionOf<HTMLInputElement>;
+    this.frameSizeFilter = document.getElementsByClassName('checkbox-frame') as HTMLCollectionOf<HTMLInputElement>;
+    this.colorFilter = document.getElementsByClassName('checkbox-color') as HTMLCollectionOf<HTMLInputElement>;
+    this.categoryFilter = document.getElementsByClassName('checkbox-category') as HTMLCollectionOf<HTMLInputElement>;
   }
 
-  public resetFilters() {
+  public resetFilters(): void {
     this.filters = {
       manufacturers: [],
       wheelSize: [],
@@ -58,10 +52,9 @@ class Filters implements Filters {
   }
 
   public applyFilters(): void {
-    console.log(this.filters);
-    const checkAndApply = () => {
+    const checkAndApply: VoidEmptyFunction = () => {
       for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const element = this.bikeCards[index] as HTMLDivElement;
+        const element: HTMLDivElement = this.bikeCards[index] as HTMLDivElement;
 
         if (this.filters.popular) {
           if (element.getElementsByClassName('card-popular')[0].textContent?.split(': ')[1] === 'нет') {
@@ -69,116 +62,46 @@ class Filters implements Filters {
           }
         } else if (element.classList.contains('unfiltered1')) element.classList.remove('unfiltered1');
 
-        if (this.filters.manufacturers.length > 0) {
-          const manName = element.getElementsByClassName('card-manufacturer')[0].textContent?.split(': ')[1] as string;
-          if (!this.filters.manufacturers.includes(manName)) {
-            if (!element.classList.contains('unfiltered2')) element.classList.add('unfiltered2');
-          } else if (element.classList.contains('unfiltered2')) element.classList.remove('unfiltered2');
-        } else if (element.classList.contains('unfiltered2')) element.classList.remove('unfiltered2');
+        const myFilters: string[] = ['manufacturers', 'wheelSize', 'frameSize', 'colors', 'categories'];
 
-        if (this.filters.wheelSize.length > 0) {
-          const wheelSize = element.getElementsByClassName('card-wheel-size')[0].textContent?.split(': ')[1].replace('"', '') as string;
-          if (!this.filters.wheelSize.includes(wheelSize)) {
-            if (!element.classList.contains('unfiltered3')) element.classList.add('unfiltered3');
-          } else if (element.classList.contains('unfiltered3')) element.classList.remove('unfiltered3');
-        } else if (element.classList.contains('unfiltered3')) element.classList.remove('unfiltered3');
+        const myClass: string[] = ['manufacturer', 'wheel-size', 'frame-size', 'color', 'category'];
 
-        if (this.filters.frameSize.length > 0) {
-          const frameSize = element.getElementsByClassName('card-frame-size')[0].textContent?.split(': ')[1] as string;
-          if (!this.filters.frameSize.includes(frameSize)) {
-            if (!element.classList.contains('unfiltered4')) element.classList.add('unfiltered4');
-          } else if (element.classList.contains('unfiltered4')) element.classList.remove('unfiltered4');
-        } else if (element.classList.contains('unfiltered4')) element.classList.remove('unfiltered4');
-
-        if (this.filters.colors.length > 0) {
-          const color = element.getElementsByClassName('card-color')[0].textContent?.split(': ')[1] as string;
-          if (!this.filters.colors.includes(color)) {
-            if (!element.classList.contains('unfiltered5')) element.classList.add('unfiltered5');
-          } else if (element.classList.contains('unfiltered5')) element.classList.remove('unfiltered5');
-        } else if (element.classList.contains('unfiltered5')) element.classList.remove('unfiltered5');
-
-        if (this.filters.categories.length > 0) {
-          const category = element.getElementsByClassName('card-category')[0].textContent?.split(': ')[1] as string;
-          if (!this.filters.categories.includes(category)) {
-            if (!element.classList.contains('unfiltered6')) element.classList.add('unfiltered6');
-          } else if (element.classList.contains('unfiltered6')) element.classList.remove('unfiltered6');
-        } else if (element.classList.contains('unfiltered6')) element.classList.remove('unfiltered6');
+        for (let ind = 0; ind < myFilters.length; ind += 1) {
+          if ((this.filters[myFilters[ind]] as string[]).length > 0) {
+            const value = element.getElementsByClassName(`card-${myClass[ind]}`)[0].textContent?.split(': ')[1].replace('"', '') as string;
+            if (!(this.filters[myFilters[ind]] as string[]).includes(value)) {
+              if (!element.classList.contains(`unfiltered${ind + 2}`)) element.classList.add(`unfiltered${ind + 2}`);
+            } else if (element.classList.contains(`unfiltered${ind + 2}`)) element.classList.remove(`unfiltered${ind + 2}`);
+          } else if (element.classList.contains(`unfiltered${ind + 2}`)) element.classList.remove(`unfiltered${ind + 2}`);
+        }
 
         let num = 0;
         for (let j = 0; j < this.bikeCards.length; j += 1) {
-          const card = this.bikeCards[j];
+          const card: HTMLDivElement = this.bikeCards[j];
           if (card.classList.length > 1) num += 1;
         }
 
         if (num === this.bikeCards.length) {
-          (document.getElementsByClassName('no-results')[0] as HTMLElement).style.display = 'block';
+          (document.getElementsByClassName('no-results')[0] as HTMLParagraphElement).style.display = 'block';
         } else {
-          (document.getElementsByClassName('no-results')[0] as HTMLElement).style.display = 'none';
+          (document.getElementsByClassName('no-results')[0] as HTMLParagraphElement).style.display = 'none';
         }
       }
     };
 
-    const applyPopularFilter = () => {
+    const applyPopularFilter: VoidEmptyFunction = () => {
       this.filters.popular = !this.filters.popular;
 
       checkAndApply();
     };
 
-    const applyManufacturerFilter = (e: Event) => {
-      const manF = e.target as HTMLInputElement;
+    const applyFilterByParam: VoidEventFunction = (e: Event, param: string) => {
+      const filter: HTMLInputElement = e.target as HTMLInputElement;
 
-      if (manF.checked) {
-        this.filters.manufacturers.push(manF.value);
+      if (filter.checked) {
+        (this.filters[param] as string[]).push(filter.value);
       } else {
-        this.filters.manufacturers = this.filters.manufacturers.filter((el) => el !== manF.value);
-      }
-
-      checkAndApply();
-    };
-
-    const applyWheelSizeFilter = (e: Event) => {
-      const wheelF = e.target as HTMLInputElement;
-
-      if (wheelF.checked) {
-        this.filters.wheelSize.push(wheelF.value);
-      } else {
-        this.filters.wheelSize = this.filters.wheelSize.filter((el) => el !== wheelF.value);
-      }
-
-      checkAndApply();
-    };
-
-    const applyFrameSizeFilter = (e: Event) => {
-      const frameF = e.target as HTMLInputElement;
-
-      if (frameF.checked) {
-        this.filters.frameSize.push(frameF.value);
-      } else {
-        this.filters.frameSize = this.filters.frameSize.filter((el) => el !== frameF.value);
-      }
-
-      checkAndApply();
-    };
-
-    const applyColorFilter = (e: Event) => {
-      const colorF = e.target as HTMLInputElement;
-
-      if (colorF.checked) {
-        this.filters.colors.push(colorF.value);
-      } else {
-        this.filters.colors = this.filters.colors.filter((el) => el !== colorF.value);
-      }
-
-      checkAndApply();
-    };
-
-    const applyCategoryFilter = (e: Event) => {
-      const catF = e.target as HTMLInputElement;
-
-      if (catF.checked) {
-        this.filters.categories.push(catF.value);
-      } else {
-        this.filters.categories = this.filters.categories.filter((el) => el !== catF.value);
+        this.filters[param] = (this.filters[param] as string[]).filter((el) => el !== filter.value);
       }
 
       checkAndApply();
@@ -188,23 +111,23 @@ class Filters implements Filters {
     this.popularFilter.item(0)?.addEventListener('click', applyPopularFilter);
 
     for (let index = 0; index < this.manufacturerFilter.length; index += 1) {
-      this.manufacturerFilter[index].addEventListener('click', applyManufacturerFilter);
+      this.manufacturerFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'manufacturers'));
     }
 
     for (let index = 0; index < this.wheelSizeFilter.length; index += 1) {
-      this.wheelSizeFilter[index].addEventListener('click', applyWheelSizeFilter);
+      this.wheelSizeFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'wheelSize'));
     }
 
     for (let index = 0; index < this.frameSizeFilter.length; index += 1) {
-      this.frameSizeFilter[index].addEventListener('click', applyFrameSizeFilter);
+      this.frameSizeFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'frameSize'));
     }
 
     for (let index = 0; index < this.colorFilter.length; index += 1) {
-      this.colorFilter[index].addEventListener('click', applyColorFilter);
+      this.colorFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'colors'));
     }
 
     for (let index = 0; index < this.categoryFilter.length; index += 1) {
-      this.categoryFilter[index].addEventListener('click', applyCategoryFilter);
+      this.categoryFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'categories'));
     }
   }
 }

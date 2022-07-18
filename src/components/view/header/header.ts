@@ -1,7 +1,7 @@
 import './header.scss';
 
 interface Header {
-  drawFooter(): void;
+  drawHeader(): void;
 }
 
 class Header implements Header {

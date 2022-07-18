@@ -9,7 +9,7 @@ class Shopping implements Shopping {
     this.count = 0;
   }
 
-  makeShopping(): void {
+  public makeShopping(): void {
     const bikeCards = document.getElementsByClassName('card');
 
     const closeModal = (event: Event) => {

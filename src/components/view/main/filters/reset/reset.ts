@@ -5,7 +5,7 @@ interface Reset {
 }
 
 class Reset implements Reset {
-  drawResetButtons(): void {
+  public drawResetButtons(): void {
     const resetDiv = document.createElement('div');
     resetDiv.className = 'reset-buttons';
 

@@ -5,7 +5,7 @@ interface Sort {
 }
 
 class Sort implements Sort {
-  drawSortField(): void {
+  public drawSortField(): void {
     const sortDiv = document.createElement('div');
     sortDiv.className = 'sort-container';
 

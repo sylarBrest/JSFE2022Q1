@@ -130,7 +130,7 @@ class Slider implements Slider {
     parent.append(divSlider);
   }
 
-  public drawSliderByStock(parent: HTMLElement): void {
+  private drawSliderByStock(parent: HTMLElement): void {
     const stockName = document.createElement('p');
     stockName.classList.add('ranges-name', 'stock-ranges-name');
     stockName.textContent = 'Количество на складе';

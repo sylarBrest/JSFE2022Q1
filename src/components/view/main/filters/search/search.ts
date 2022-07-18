@@ -5,7 +5,7 @@ interface Search {
 }
 
 class Search implements Search {
-  drawSearchField(): void {
+  public drawSearchField(): void {
     const searchDiv = document.createElement('div');
     searchDiv.className = 'search-container';
 

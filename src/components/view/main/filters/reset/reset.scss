@@ -7,8 +7,13 @@
   .reset-button {
     font: normal normal 18px/25px sans-serif;
     text-transform: uppercase;
-    background-color: coral;
+    background-color: #6964a8;
     border-radius: 10px;
     cursor: pointer;
+    transition: 0.5s all;
+
+    &:hover {
+      background-color: #d1d0e0;
+    }
   }
 }

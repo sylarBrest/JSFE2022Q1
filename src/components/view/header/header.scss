@@ -1,6 +1,5 @@
 :root {
   --color-white: #fff;
-  --color-blue: #00f;
 }
 
 .header {
@@ -8,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   color: var(--color-white);
-  background-color: aquamarine;
+  background-color: #1c1c24;
 }
 
 .header-container {
@@ -60,8 +59,7 @@
   }
 }
 
-.store-logo:hover,
-.store-cart:hover {
-  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
-    contrast(87%);
+.store-logo:hover {
+  filter: brightness(0) saturate(100%) invert(35%) sepia(31%) saturate(473%)
+    hue-rotate(201deg) brightness(98%) contrast(92%);
 }

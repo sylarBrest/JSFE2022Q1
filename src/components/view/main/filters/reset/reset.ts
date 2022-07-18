@@ -13,11 +13,11 @@ class Reset implements Reset {
     resetFilters.classList.add('reset-button', 'reset-filters-button');
     resetFilters.textContent = 'Сбросить фильтры';
 
-    const resetSettings = document.createElement('button');
+    /*     const resetSettings = document.createElement('button');
     resetSettings.classList.add('reset-button', 'reset-settings-button');
     resetSettings.textContent = 'Сбросить настройки';
-
-    resetDiv.append(resetFilters, resetSettings);
+    */
+    resetDiv.append(resetFilters/* , resetSettings */);
 
     document.getElementsByClassName('filters')[0].append(resetDiv);
   }

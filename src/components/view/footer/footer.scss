@@ -1,6 +1,5 @@
 :root {
   --color-white: #fff;
-  --color-blue: #00f;
 }
 
 .footer {
@@ -8,7 +7,7 @@
   align-items: center;
   justify-content: center;
   height: 60px;
-  background-color: brown;
+  background-color: #1c1c24;
 }
 
 .footer-container {
@@ -33,7 +32,7 @@
 }
 
 .github-link:hover {
-  color: var(--color-blue);
+  color: #5959a8;
 }
 
 .rss-logo {
@@ -47,6 +46,6 @@
 }
 
 .rss-logo:hover {
-  filter: invert(26%) sepia(15%) saturate(638%) hue-rotate(7deg) brightness(92%)
-    contrast(87%);
+  filter: brightness(0) saturate(100%) invert(35%) sepia(31%) saturate(473%)
+    hue-rotate(201deg) brightness(98%) contrast(92%);
 }

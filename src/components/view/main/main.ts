@@ -14,24 +14,24 @@ class Main {
   }
 
   public drawMain() {
-    const main = document.getElementsByClassName('main')[0];
+    const main: HTMLElement = document.getElementsByClassName('main')[0] as HTMLElement;
 
-    const mainContainer = document.createElement('div');
+    const mainContainer: HTMLDivElement = document.createElement('div');
     mainContainer.classList.add('container', 'main-container');
     main.append(mainContainer);
     this.filters.drawFilters();
     this.cards.drawCards();
 
-    const modalWindow = document.createElement('div');
+    const modalWindow: HTMLDivElement = document.createElement('div');
     modalWindow.className = 'modal';
 
-    const noMore = document.createElement('p');
+    const noMore: HTMLParagraphElement = document.createElement('p');
     noMore.className = 'no-more-buy';
     noMore.textContent = 'Извините, все слоты заполнены';
 
     modalWindow.append(noMore);
 
-    const darkenWindow = document.createElement('div');
+    const darkenWindow: HTMLDivElement = document.createElement('div');
     darkenWindow.className = 'darken';
 
     main.append(modalWindow, darkenWindow);

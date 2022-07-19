@@ -26,7 +26,7 @@ class Filters {
   }
 
   public drawFilters() {
-    const filters = document.createElement('section');
+    const filters: HTMLElement = document.createElement('section');
     filters.className = 'filters';
     document.getElementsByClassName('main-container')[0].prepend(filters);
     this.search.drawSearchField();

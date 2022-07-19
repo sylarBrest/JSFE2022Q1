@@ -2,7 +2,11 @@ import Main from './main/main';
 import Footer from './footer/footer';
 import Header from './header/header';
 
-class AppView {
+interface AppView {
+  drawComponents(): void;
+}
+
+class AppView implements AppView {
   private main: Main;
 
   private footer: Footer;
@@ -15,7 +19,7 @@ class AppView {
     this.header = new Header();
   }
 
-  public drawComponents() {
+  public drawComponents(): void {
     this.header.drawHeader();
     this.main.drawMain();
     this.footer.drawFooter();

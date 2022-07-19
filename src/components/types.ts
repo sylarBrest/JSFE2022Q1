@@ -33,8 +33,6 @@ export type BikeData = {
   year: number
 };
 
-export type BikeDataArray = BikeData[];
-
 export type BikeFilterObject = {
   [key: string]: string[] | boolean,
   manufacturers: string[],

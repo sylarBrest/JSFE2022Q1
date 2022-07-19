@@ -1,6 +1,6 @@
-import { BikeDataArray } from './types';
+import { BikeData } from './types';
 
-const bikes: BikeDataArray = [
+const bikes: BikeData[] = [
   {
     num: 1,
     photo: './assets/images/ktm-prowler.webp',

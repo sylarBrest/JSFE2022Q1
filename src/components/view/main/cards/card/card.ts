@@ -51,7 +51,7 @@ class Card implements Card {
 
       const cardFrameSize: HTMLParagraphElement = document.createElement('p');
       cardFrameSize.className = 'card-frame-size';
-      cardFrameSize.textContent = `Размер рамы: ${bike.size}`;
+      cardFrameSize.textContent = `Размер рамы: ${bike.frame}`;
 
       const cardColor: HTMLParagraphElement = document.createElement('p');
       cardColor.className = 'card-color';

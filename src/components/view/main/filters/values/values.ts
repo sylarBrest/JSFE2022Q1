@@ -1,6 +1,8 @@
-import './values.scss';
+import { BikeData, Size, TextContent } from '../../../../types';
 
 import bikes from '../../../../bikeData';
+
+import './values.scss';
 
 interface Values {
   drawValues(): void;
@@ -8,202 +10,94 @@ interface Values {
 
 class Values implements Values {
   public drawValues(): void {
-    const valuesWindow: HTMLElement = document.createElement('div');
+    const valuesWindow: HTMLDivElement = document.createElement('div');
     valuesWindow.className = 'values-filter-container';
     document.getElementsByClassName('sort-container')[0].after(valuesWindow);
-    this.fillManufacturersFilter(valuesWindow);
-    this.fillWheelSizeFilter(valuesWindow);
-    this.fillFrameSizeFilter(valuesWindow);
-    this.fillColorFilter(valuesWindow);
-    this.fillCategoryFilter(valuesWindow);
-    this.addOnlyPopular(valuesWindow);
+
+    const params = ['manufacturer', 'wheels', 'frame', 'color', 'category'];
+
+    for (let index = 0; index < params.length; index += 1) {
+      valuesWindow.append(...this.fillFilterByParam(params[index] as keyof BikeData));
+    }
+
+    valuesWindow.append(this.addOnlyPopular());
   }
 
-  private fillManufacturersFilter(parent: HTMLElement) {
-    const bikeManufacturer = [...new Set(bikes.map((el) => el.manufacturer))].sort();
+  private fillFilterByParam(param: keyof BikeData): HTMLDivElement[] {
+    function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
+      return obj[key];
+    }
 
-    const manufacturersDiv = document.createElement('div');
-    manufacturersDiv.classList.add('values-filter', 'manufacturer-filter');
+    function getTextContent<K extends keyof TextContent>(str: K): TextContent[K] {
+      const textContent: TextContent = {
+        manufacturer: 'Производитель',
+        wheels: 'Размер колёс',
+        frame: 'Размер рамы',
+        color: 'Цвет',
+        category: 'Категория',
+      };
+      return textContent[str];
+    }
 
-    const manName = document.createElement('p');
-    manName.classList.add('filter-name', 'manufacturer-filter-name');
-    manName.textContent = 'Производитель';
-    parent.append(manName);
+    const bikeParam: string[] = [
+      ...new Set(bikes.map((el: BikeData) => getProperty(el, param))),
+    ].sort() as string[];
 
-    bikeManufacturer.forEach((element) => {
-      const label = document.createElement('label');
-      label.classList.add('label', 'manufacturer-label');
+    if (param === 'frame') {
+      const frameSize: Size = {
+        S: 0, M: 1, L: 2, XL: 3,
+      };
+      bikeParam.sort((a: string, b: string) => frameSize[a] - frameSize[b]);
+    }
 
-      const checkbox = document.createElement('input');
+    const filterDiv: HTMLDivElement = document.createElement('div');
+    filterDiv.classList.add('values-filter', `${param}-filter`);
+
+    const filterName: HTMLParagraphElement = document.createElement('p');
+    filterName.classList.add('filter-name', `${param}-filter-name`);
+    filterName.textContent = getTextContent(param as keyof TextContent);
+
+    bikeParam.forEach((element: string) => {
+      const label: HTMLLabelElement = document.createElement('label');
+      label.classList.add('label', `${param}-label`);
+
+      const checkbox: HTMLInputElement = document.createElement('input');
       checkbox.type = 'checkbox';
-      checkbox.classList.add('checkbox', 'checkbox-manufacturer');
+      checkbox.classList.add('checkbox', `checkbox-${param}`);
       checkbox.checked = false;
       checkbox.value = element;
 
-      const labelText = document.createElement('span');
+      const labelText: HTMLSpanElement = document.createElement('span');
       labelText.textContent = element;
 
       label.append(checkbox, labelText);
 
-      manufacturersDiv.append(label);
+      filterDiv.append(label);
     });
 
-    parent.append(manufacturersDiv);
+    return [filterName, filterDiv];
   }
 
-  private fillWheelSizeFilter(parent: HTMLElement) {
-    const bikeWheelSize = [...new Set(bikes.map((el) => el.wheels))].sort();
-
-    const manufacturersDiv = document.createElement('div');
-    manufacturersDiv.classList.add('values-filter', 'wheels-filter');
-
-    const manName = document.createElement('p');
-    manName.classList.add('filter-name', 'wheels-filter-name');
-    manName.textContent = 'Размер колёс';
-    parent.append(manName);
-
-    bikeWheelSize.forEach((element) => {
-      const label = document.createElement('label');
-      label.classList.add('label', 'wheels-label');
-
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.checked = false;
-      checkbox.classList.add('checkbox', 'checkbox-wheels');
-      checkbox.value = element.toString();
-
-      const labelText = document.createElement('span');
-      labelText.textContent = element.toString();
-
-      label.append(checkbox, labelText);
-
-      manufacturersDiv.append(label);
-    });
-
-    parent.append(manufacturersDiv);
-  }
-
-  private fillFrameSizeFilter(parent: HTMLElement) {
-    type Size = { [key: string]: number };
-    const frameSize: Size = {
-      S: 0, M: 1, L: 2, XL: 3,
-    };
-
-    const bikeFrameSize = [...new Set(bikes.map((el) => el.size))]
-      .sort((a, b) => frameSize[a] - frameSize[b]);
-
-    const manufacturersDiv = document.createElement('div');
-    manufacturersDiv.classList.add('values-filter', 'frame-filter');
-
-    const manName = document.createElement('p');
-    manName.classList.add('filter-name', 'frame-filter-name');
-    manName.textContent = 'Размер рамы';
-    parent.append(manName);
-
-    bikeFrameSize.forEach((element) => {
-      const label = document.createElement('label');
-      label.classList.add('label', 'frame-label');
-
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.checked = false;
-      checkbox.classList.add('checkbox', 'checkbox-frame');
-      checkbox.value = element.toString();
-
-      const labelText = document.createElement('span');
-      labelText.textContent = element.toString();
-
-      label.append(checkbox, labelText);
-
-      manufacturersDiv.append(label);
-    });
-
-    parent.append(manufacturersDiv);
-  }
-
-  private fillColorFilter(parent: HTMLElement) {
-    const bikeColor = [...new Set(bikes.map((el) => el.color))].sort();
-
-    const manufacturersDiv = document.createElement('div');
-    manufacturersDiv.classList.add('values-filter', 'color-filter');
-
-    const manName = document.createElement('p');
-    manName.classList.add('filter-name', 'color-filter-name');
-    manName.textContent = 'Цвет';
-    parent.append(manName);
-
-    bikeColor.forEach((element) => {
-      const label = document.createElement('label');
-      label.classList.add('label', 'color-label');
-
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.checked = false;
-      checkbox.classList.add('checkbox', 'checkbox-color');
-      checkbox.value = element;
-
-      const labelText = document.createElement('span');
-      labelText.textContent = element;
-
-      label.append(checkbox, labelText);
-
-      manufacturersDiv.append(label);
-    });
-
-    parent.append(manufacturersDiv);
-  }
-
-  private fillCategoryFilter(parent: HTMLElement) {
-    const bikeCategories = [...new Set(bikes.map((el) => el.category))].sort();
-
-    const manufacturersDiv = document.createElement('div');
-    manufacturersDiv.classList.add('values-filter', 'category-filter');
-
-    const manName = document.createElement('p');
-    manName.classList.add('filter-name', 'category-filter-name');
-    manName.textContent = 'Категория';
-    parent.append(manName);
-
-    bikeCategories.forEach((element) => {
-      const label = document.createElement('label');
-      label.classList.add('label', 'category-label');
-
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.checked = false;
-      checkbox.classList.add('checkbox', 'checkbox-category');
-      checkbox.value = element;
-
-      const labelText = document.createElement('span');
-      labelText.textContent = element;
-
-      label.append(checkbox, labelText);
-
-      manufacturersDiv.append(label);
-    });
-
-    parent.append(manufacturersDiv);
-  }
-
-  private addOnlyPopular(parent: HTMLElement) {
-    const popularDiv = document.createElement('div');
+  private addOnlyPopular(): HTMLElement {
+    const popularDiv: HTMLDivElement = document.createElement('div');
     popularDiv.classList.add('values-filter', 'popular-filter');
 
-    const label = document.createElement('label');
+    const label: HTMLLabelElement = document.createElement('label');
     label.classList.add('label', 'popular-label');
 
-    const checkbox = document.createElement('input');
+    const checkbox: HTMLInputElement = document.createElement('input');
     checkbox.type = 'checkbox';
     checkbox.checked = false;
     checkbox.classList.add('checkbox', 'checkbox-popular');
     checkbox.value = 'false';
 
-    const labelText = document.createElement('span');
+    const labelText: HTMLSpanElement = document.createElement('span');
     labelText.textContent = 'Только популярные';
 
     label.append(labelText, checkbox);
     popularDiv.append(label);
-    parent.append(popularDiv);
+
+    return popularDiv;
   }
 }
 

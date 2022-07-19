@@ -6,6 +6,18 @@ export type VoidEventFunction = (e: Event) => void;
 
 export type VoidEventParamFunction = (e: Event, param: string) => void;
 
+export type Size = {
+  [key: string]: number
+};
+
+export type TextContent = {
+  manufacturer: string,
+  wheels: string,
+  frame: string,
+  color: string,
+  category: string
+};
+
 export type BikeData = {
   num: number,
   buy: boolean,
@@ -15,7 +27,7 @@ export type BikeData = {
   name: string,
   photo: string,
   popular: boolean,
-  size: string,
+  frame: string,
   stock: number,
   wheels: number,
   year: number

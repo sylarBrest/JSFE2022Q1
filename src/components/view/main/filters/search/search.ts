@@ -6,15 +6,15 @@ interface Search {
 
 class Search implements Search {
   public drawSearchField(): void {
-    const searchDiv = document.createElement('div');
+    const searchDiv: HTMLDivElement = document.createElement('div');
     searchDiv.className = 'search-container';
 
-    const searchName = document.createElement('p');
+    const searchName: HTMLParagraphElement = document.createElement('p');
     searchName.className = 'search-name';
     searchName.textContent = 'Поиск';
     searchDiv.append(searchName);
 
-    const search = document.createElement('input');
+    const search:HTMLInputElement = document.createElement('input');
     search.className = 'search';
     search.autofocus = true;
     search.type = 'search';

@@ -13,16 +13,16 @@ class Cards implements Cards {
     this.card = new Card();
   }
 
-  public drawCards() {
-    const cardsContainer = document.createElement('div');
+  public drawCards(): void {
+    const cardsContainer: HTMLElement = document.createElement('section');
     cardsContainer.className = 'cards';
     document.getElementsByClassName('main-container')[0].append(cardsContainer);
     this.card.drawCard();
     this.drawNoResultsStub(cardsContainer);
   }
 
-  private drawNoResultsStub(parent: HTMLElement) {
-    const noResults = document.createElement('p');
+  private drawNoResultsStub(parent: HTMLElement): void {
+    const noResults: HTMLParagraphElement = document.createElement('p');
     noResults.className = 'no-results';
     noResults.textContent = 'Извините, совпадений не обнаружено';
     parent.append(noResults);

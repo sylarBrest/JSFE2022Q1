@@ -1,5 +1,7 @@
 export type VoidEmptyFunction = () => void;
 
+export type VoidStringArrayFunction = (arr: string[]) => void;
+
 export type VoidEventFunction = (e: Event) => void;
 
 export type VoidEventParamFunction = (e: Event, param: string) => void;

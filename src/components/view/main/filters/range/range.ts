@@ -1,4 +1,7 @@
+import { VoidStringArrayFunction, BikeData } from '../../../../types';
+
 import noUiSlider, { API } from '../../../nouislider/nouislider';
+
 import bikes from '../../../../bikeData';
 
 import './range.scss';
@@ -9,41 +12,43 @@ interface Slider {
 }
 
 class Slider implements Slider {
-  private bikeCards;
+  private bikeCards: HTMLCollectionOf<HTMLDivElement>;
 
   constructor() {
-    this.bikeCards = document.getElementsByClassName('card');
+    this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
   }
 
   public drawSliders(): void {
-    const rangesWindow: HTMLElement = document.createElement('div');
+    const rangesWindow: HTMLDivElement = document.createElement('div');
     rangesWindow.className = 'ranges-filter-container';
     document.getElementsByClassName('values-filter-container')[0].after(rangesWindow);
     this.drawSliderByYear(rangesWindow);
     this.drawSliderByStock(rangesWindow);
   }
 
-  private workWithYearSlider(slider: API) {
-    const doWithYearSlider = (values: string[]) => {
-      const years = values.map((el) => +el.split('.')[0]);
-      const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
+  private workWithSlider(slider: API): void {
+    const doWithSlider: VoidStringArrayFunction = (values: string[]) => {
+      const startEnd: number[] = values.map((el: string) => +el.split('.')[0]);
+      const noResults: HTMLParagraphElement = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
 
       for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const element = this.bikeCards[index];
-        const cardYear = element.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
+        const element: HTMLDivElement = this.bikeCards[index];
+        const property: string = slider.target.classList.contains('stock-slider') ? 'stock-amount' : 'year';
+        const num: number = slider.target.classList.contains('stock-slider') ? 8 : 7;
+        const cardProperty: string = element.getElementsByClassName(`card-${property}`)[0].textContent?.split(': ')[1] as string;
 
-        if ((+cardYear >= years[0]) && (+cardYear <= years[1])) {
-          if (element.classList.contains('unfiltered7')) {
-            element.classList.remove('unfiltered7');
+        if ((+cardProperty >= startEnd[0]) && (+cardProperty <= startEnd[1])) {
+          if (element.classList.contains(`unfiltered${num}`)) {
+            element.classList.remove(`unfiltered${num}`);
           }
-        } else if (!element.classList.contains('unfiltered7')) {
-          element.classList.add('unfiltered7');
+        } else if (!element.classList.contains(`unfiltered${num}`)) {
+          element.classList.add(`unfiltered${num}`);
         }
       }
 
       let num = 0;
       for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const card = this.bikeCards[index];
+        const card: HTMLDivElement = this.bikeCards[index];
         if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
       }
 
@@ -54,117 +59,83 @@ class Slider implements Slider {
       }
     };
 
-    slider.on('change', (values) => doWithYearSlider(values as string[]));
-  }
-
-  private workWithStockSlider(slider: API) {
-    const doWithStockSlider = (values: string[]) => {
-      const stocks = values.map((el) => +el.split('.')[0]);
-      const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
-
-      for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const element = this.bikeCards[index];
-        const cardStock = element.getElementsByClassName('card-stock-amount')[0].textContent?.split(': ')[1] as string;
-
-        if ((+cardStock >= stocks[0]) && (+cardStock <= stocks[1])) {
-          if (element.classList.contains('unfiltered8')) {
-            element.classList.remove('unfiltered8');
-          }
-        } else if (!element.classList.contains('unfiltered8')) {
-          element.classList.add('unfiltered8');
-        }
-      }
-
-      let num = 0;
-      for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const card = this.bikeCards[index];
-        if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
-      }
-
-      if (num === this.bikeCards.length) {
-        noResults.style.display = 'block';
-      } else {
-        noResults.style.display = 'none';
-      }
-    };
-
-    slider.on('change', (values) => doWithStockSlider(values as string[]));
+    slider.on('change', (values) => doWithSlider(values as string[]));
   }
 
   private drawSliderByYear(parent: HTMLElement): void {
-    const yearName = document.createElement('p');
+    const yearName: HTMLParagraphElement = document.createElement('p');
     yearName.classList.add('ranges-name', 'year-ranges-name');
     yearName.textContent = 'Модельный год';
     parent.append(yearName);
 
-    const divSlider = document.createElement('div');
+    const divSlider: HTMLDivElement = document.createElement('div');
     divSlider.classList.add('slider', 'year-slider');
-    const slider = noUiSlider.create(divSlider, {
-      start: [Math.min(...bikes.map((el) => el.year)),
-        Math.max(...bikes.map((el) => el.year))],
+    const slider: API = noUiSlider.create(divSlider, {
+      start: [Math.min(...bikes.map((el: BikeData) => el.year)),
+        Math.max(...bikes.map((el: BikeData) => el.year))],
       range: {
-        min: Math.min(...bikes.map((el) => el.year)),
-        max: Math.max(...bikes.map((el) => el.year)),
+        min: Math.min(...bikes.map((el: BikeData) => el.year)),
+        max: Math.max(...bikes.map((el: BikeData) => el.year)),
       },
       step: 1,
       tooltips: [{
-        from(value) {
+        from(value: string) {
           return +value;
         },
-        to(value) {
+        to(value: number) {
           return value;
         },
       }, {
-        from(value) {
+        from(value: string) {
           return +value;
         },
-        to(value) {
+        to(value: number) {
           return value;
         },
       }],
       connect: true,
     });
 
-    this.workWithYearSlider(slider);
+    this.workWithSlider(slider);
 
     parent.append(divSlider);
   }
 
   private drawSliderByStock(parent: HTMLElement): void {
-    const stockName = document.createElement('p');
+    const stockName: HTMLParagraphElement = document.createElement('p');
     stockName.classList.add('ranges-name', 'stock-ranges-name');
     stockName.textContent = 'Количество на складе';
     parent.append(stockName);
 
-    const divSlider = document.createElement('div');
+    const divSlider: HTMLDivElement = document.createElement('div');
     divSlider.classList.add('slider', 'stock-slider');
-    const slider = noUiSlider.create(divSlider, {
-      start: [Math.min(...bikes.map((el) => el.stock)),
-        Math.max(...bikes.map((el) => el.stock))],
+    const slider: API = noUiSlider.create(divSlider, {
+      start: [Math.min(...bikes.map((el: BikeData) => el.stock)),
+        Math.max(...bikes.map((el: BikeData) => el.stock))],
       range: {
-        min: Math.min(...bikes.map((el) => el.stock)),
-        max: Math.max(...bikes.map((el) => el.stock)),
+        min: Math.min(...bikes.map((el: BikeData) => el.stock)),
+        max: Math.max(...bikes.map((el: BikeData) => el.stock)),
       },
       step: 1,
       tooltips: [{
-        from(value) {
+        from(value: string) {
           return +value;
         },
-        to(value) {
+        to(value: number) {
           return value.toFixed(0);
         },
       }, {
-        from(value) {
+        from(value: string) {
           return +value;
         },
-        to(value) {
+        to(value: number) {
           return value.toFixed(0);
         },
       }],
       connect: true,
     });
 
-    this.workWithStockSlider(slider);
+    this.workWithSlider(slider);
     parent.append(divSlider);
   }
 }

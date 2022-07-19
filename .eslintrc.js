@@ -25,5 +25,9 @@ module.exports = {
     'class-methods-use-this': 'off',
     '@typescript-eslint/no-explicit-any': 'error'
   },
-  ignorePatterns: ['src/components/view/nouislider/*'],
+  ignorePatterns: [
+    'src/components/view/nouislider/*',
+    'tests/*',
+    '.eslintrc.js'
+  ],
 };

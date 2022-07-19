@@ -6,20 +6,20 @@ interface Footer {
 
 class Footer implements Footer {
   public drawFooter(): void {
-    const footerContainer = document.createElement('div');
+    const footerContainer: HTMLDivElement = document.createElement('div');
     footerContainer.classList.add('container', 'footer-container');
 
-    const footerData = document.createElement('div');
+    const footerData: HTMLDivElement = document.createElement('div');
     footerData.className = 'footer-data';
 
-    const copyYearData = document.createElement('span');
+    const copyYearData: HTMLSpanElement = document.createElement('span');
     copyYearData.className = 'copy-year';
     copyYearData.textContent = '\u00A9 2022';
 
-    const githubData = document.createElement('span');
+    const githubData: HTMLSpanElement = document.createElement('span');
     githubData.className = 'github';
 
-    const linkGithub = document.createElement('a');
+    const linkGithub: HTMLAnchorElement = document.createElement('a');
     linkGithub.className = 'github-link';
     linkGithub.setAttribute('href', 'https://github.com/sylarBrest');
     linkGithub.setAttribute('target', '_blank');
@@ -30,7 +30,7 @@ class Footer implements Footer {
 
     footerData.append(copyYearData, githubData);
 
-    const linkRSS = document.createElement('a');
+    const linkRSS: HTMLAnchorElement = document.createElement('a');
     linkRSS.className = 'rss-logo';
     linkRSS.setAttribute('href', 'https://rs.school/js-stage0/');
     linkRSS.setAttribute('target', '_blank');

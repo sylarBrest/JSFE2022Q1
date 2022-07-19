@@ -6,23 +6,23 @@ interface Header {
 
 class Header implements Header {
   public drawHeader(): void {
-    const headerContainer = document.createElement('div');
+    const headerContainer: HTMLDivElement = document.createElement('div');
     headerContainer.classList.add('container', 'header-container');
 
-    const storeLogo = document.createElement('div');
+    const storeLogo: HTMLDivElement = document.createElement('div');
     storeLogo.className = 'store-logo';
 
-    const storeName = document.createElement('h1');
+    const storeName: HTMLHeadingElement = document.createElement('h1');
     storeName.className = 'store-name';
     storeName.textContent = 'Bicycle Online Store';
 
-    const storeCart = document.createElement('div');
+    const storeCart: HTMLDivElement = document.createElement('div');
     storeCart.className = 'store-cart';
 
-    const storeCartCount = document.createElement('p');
+    const storeCartCount: HTMLParagraphElement = document.createElement('p');
     storeCartCount.className = 'store-cart-count';
 
-    const spanCount = document.createElement('span');
+    const spanCount: HTMLSpanElement = document.createElement('span');
     spanCount.className = 'store-cart-count-number';
     spanCount.textContent = '0';
 

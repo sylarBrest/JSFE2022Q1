@@ -26,31 +26,31 @@ class Slider implements Slider {
   private workWithYearSlider(slider: API) {
     const doWithYearSlider = (values: string[]) => {
       const years = values.map((el) => +el.split('.')[0]);
+      const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
+
       for (let index = 0; index < this.bikeCards.length; index += 1) {
         const element = this.bikeCards[index];
         const cardYear = element.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
-        const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
 
-        if ((+cardYear >= years[0])
-          && (+cardYear <= years[1])) {
+        if ((+cardYear >= years[0]) && (+cardYear <= years[1])) {
           if (element.classList.contains('unfiltered7')) {
             element.classList.remove('unfiltered7');
           }
         } else if (!element.classList.contains('unfiltered7')) {
           element.classList.add('unfiltered7');
         }
+      }
 
-        let num = 0;
-        for (let j = 0; j < this.bikeCards.length; j += 1) {
-          const card = this.bikeCards[j];
-          if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
-        }
+      let num = 0;
+      for (let index = 0; index < this.bikeCards.length; index += 1) {
+        const card = this.bikeCards[index];
+        if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
+      }
 
-        if (num === this.bikeCards.length) {
-          noResults.style.display = 'block';
-        } else {
-          noResults.style.display = 'none';
-        }
+      if (num === this.bikeCards.length) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
       }
     };
 
@@ -60,31 +60,31 @@ class Slider implements Slider {
   private workWithStockSlider(slider: API) {
     const doWithStockSlider = (values: string[]) => {
       const stocks = values.map((el) => +el.split('.')[0]);
+      const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
+
       for (let index = 0; index < this.bikeCards.length; index += 1) {
         const element = this.bikeCards[index];
         const cardStock = element.getElementsByClassName('card-stock-amount')[0].textContent?.split(': ')[1] as string;
-        const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
 
-        if ((+cardStock >= stocks[0])
-          && (+cardStock <= stocks[1])) {
+        if ((+cardStock >= stocks[0]) && (+cardStock <= stocks[1])) {
           if (element.classList.contains('unfiltered8')) {
             element.classList.remove('unfiltered8');
           }
         } else if (!element.classList.contains('unfiltered8')) {
           element.classList.add('unfiltered8');
         }
+      }
 
-        let num = 0;
-        for (let j = 0; j < this.bikeCards.length; j += 1) {
-          const card = this.bikeCards[j];
-          if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
-        }
+      let num = 0;
+      for (let index = 0; index < this.bikeCards.length; index += 1) {
+        const card = this.bikeCards[index];
+        if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
+      }
 
-        if (num === this.bikeCards.length) {
-          noResults.style.display = 'block';
-        } else {
-          noResults.style.display = 'none';
-        }
+      if (num === this.bikeCards.length) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
       }
     };
 

@@ -74,18 +74,18 @@ class Filters implements Filters {
             } else if (element.classList.contains(`unfiltered${ind + 2}`)) element.classList.remove(`unfiltered${ind + 2}`);
           } else if (element.classList.contains(`unfiltered${ind + 2}`)) element.classList.remove(`unfiltered${ind + 2}`);
         }
+      }
 
-        let num = 0;
-        for (let j = 0; j < this.bikeCards.length; j += 1) {
-          const card: HTMLDivElement = this.bikeCards[j];
-          if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
-        }
+      let num = 0;
+      for (let index = 0; index < this.bikeCards.length; index += 1) {
+        const card: HTMLDivElement = this.bikeCards[index];
+        if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
+      }
 
-        if (num === this.bikeCards.length) {
-          (document.getElementsByClassName('no-results')[0] as HTMLParagraphElement).style.display = 'block';
-        } else {
-          (document.getElementsByClassName('no-results')[0] as HTMLParagraphElement).style.display = 'none';
-        }
+      if (num === this.bikeCards.length) {
+        (document.getElementsByClassName('no-results')[0] as HTMLParagraphElement).style.display = 'block';
+      } else {
+        (document.getElementsByClassName('no-results')[0] as HTMLParagraphElement).style.display = 'none';
       }
     };
 

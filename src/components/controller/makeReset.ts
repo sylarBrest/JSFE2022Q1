@@ -29,7 +29,7 @@ class Resetting implements Resetting {
     this.ranges = new Ranges();
   }
 
-  resetFilters() {
+  public resetFilters(): void {
     const resetFiltersButton: HTMLButtonElement = document.getElementsByClassName('reset-filters-button')[0] as HTMLButtonElement;
     const bikeCards: HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
 

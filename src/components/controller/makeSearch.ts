@@ -25,18 +25,18 @@ class MakeSearch implements MakeSearch {
         } else if (element.classList.contains('unfiltered')) {
           element.classList.remove('unfiltered');
         }
+      }
 
-        let num = 0;
-        for (let j = 0; j < this.bikeCards.length; j += 1) {
-          const card: HTMLDivElement = this.bikeCards[j];
-          if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
-        }
+      let num = 0;
+      for (let index = 0; index < this.bikeCards.length; index += 1) {
+        const card: HTMLDivElement = this.bikeCards[index];
+        if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
+      }
 
-        if (num === this.bikeCards.length) {
-          noResults.style.display = 'block';
-        } else {
-          noResults.style.display = 'none';
-        }
+      if (num === this.bikeCards.length) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
       }
     };
 

@@ -1,5 +1,7 @@
 import { BikeData, Size, TextContent } from '../../../../types';
 
+import Utils from '../../../../helpers/utils';
+
 import bikes from '../../../../bikeData';
 
 import './values.scss';
@@ -24,23 +26,8 @@ class Values implements Values {
   }
 
   private fillFilterByParam(param: keyof BikeData): HTMLDivElement[] {
-    function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
-      return obj[key];
-    }
-
-    function getTextContent<K extends keyof TextContent>(str: K): TextContent[K] {
-      const textContent: TextContent = {
-        manufacturer: 'Производитель',
-        wheels: 'Размер колёс',
-        frame: 'Размер рамы',
-        color: 'Цвет',
-        category: 'Категория',
-      };
-      return textContent[str];
-    }
-
     const bikeParam: string[] = [
-      ...new Set(bikes.map((el: BikeData) => getProperty(el, param))),
+      ...new Set(bikes.map((el: BikeData) => Utils.getProperty(el, param))),
     ].sort() as string[];
 
     if (param === 'frame') {
@@ -55,7 +42,7 @@ class Values implements Values {
 
     const filterName: HTMLParagraphElement = document.createElement('p');
     filterName.classList.add('filter-name', `${param}-filter-name`);
-    filterName.textContent = getTextContent(param as keyof TextContent);
+    filterName.textContent = Utils.getTextContent(param as keyof TextContent);
 
     bikeParam.forEach((element: string) => {
       const label: HTMLLabelElement = document.createElement('label');

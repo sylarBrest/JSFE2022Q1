@@ -16,7 +16,7 @@ class Sorting implements Sorting {
     this.bikeStorage = new BikeStorage(this.bikeCards);
   }
 
-  sortElements(): void {
+  public sortElements(): void {
     const sortOptions: HTMLSelectElement = document.getElementsByClassName('sort')[0] as HTMLSelectElement;
 
     this.bikeStorage.initBikeStorage();

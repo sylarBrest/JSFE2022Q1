@@ -2,20 +2,26 @@ import AppView from '../src/components/view/appView';
 import BikeStorage from '../src/components/controller/bikeStorage';
 import Filters from '../src/components/controller/applyFilters';
 
-describe('Class objects', () => {
-  it('should be instance of class', () => {
-    expect(new AppView()).toBeInstanceOf(AppView);
+describe('Class', () => {
+  describe('AppView', () => {
+    it('should be instance of class AppView', () => {
+      expect(new AppView()).toBeInstanceOf(AppView);
+    });
   });
 
-  it('should be instance of class', () => {
-    expect(new BikeStorage()).toBeInstanceOf(BikeStorage);
-  });
+  describe('BikeStorage', () => {
+    it('should be instance of class BikeStorage', () => {
+      expect(new BikeStorage()).toBeInstanceOf(BikeStorage);
+    });
 
-  it('should be defined', () => {
-    expect(new BikeStorage().getBikesFromStorage()).toBeDefined();
-  });
+    describe('method', () => {
+      it('getBikesFromStorage() should return defined value', () => {
+        expect(new BikeStorage().getBikesFromStorage()).toBeDefined();
+      });
 
-  it('should be undefined', () => {
-    expect(new Filters().resetFilters()).toBeUndefined();
+      it('resetFilters() should be void', () => {
+        expect(new Filters().resetFilters()).toBeUndefined();
+      });
+    });
   });
 });

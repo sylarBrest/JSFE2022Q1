@@ -28,6 +28,7 @@ module.exports = {
   ignorePatterns: [
     'src/components/view/nouislider/*',
     'tests/*',
-    '.eslintrc.js'
+    '.eslintrc.js',
+    'webpack.config.js'
   ],
 };

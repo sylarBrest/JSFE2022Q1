@@ -1,4 +1,5 @@
 import { VoidEmptyFunction } from '@components/types';
+import { UNFILTERED_CLASSES } from '@components/constants';
 
 import Search from '@view/main/filters/search/search';
 import Values from '@view/main/filters/values/values';
@@ -44,13 +45,12 @@ class Resetting implements Resetting {
 
       for (let index = 0; index < bikeCards.length; index += 1) {
         const element: HTMLDivElement = bikeCards[index];
-        const unFil: string[] = ['unfiltered', 'unfiltered1', 'unfiltered2',
-          'unfiltered3', 'unfiltered4', 'unfiltered5',
-          'unfiltered6', 'unfiltered7', 'unfiltered8'];
 
-        for (let j = 0; j < unFil.length; j += 1) {
-          if (element.classList.contains(unFil[j])) element.classList.remove(unFil[j]);
-        }
+        UNFILTERED_CLASSES.forEach((unfilteredClass) => {
+          if (element.classList.contains(unfilteredClass)) {
+            element.classList.remove(unfilteredClass);
+          }
+        });
       }
 
       const noResults: HTMLParagraphElement = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;

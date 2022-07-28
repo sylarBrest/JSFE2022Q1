@@ -1,4 +1,5 @@
 import { BikeFilterObject, VoidEmptyFunction, VoidEventParamFunction } from '@components/types';
+import { FILTER_NAMES, CLASS_NAMES } from '@components/constants';
 
 interface Filtering {
   resetFilters(): void;
@@ -55,18 +56,14 @@ class Filtering implements Filtering {
           }
         } else if (element.classList.contains('unfiltered1')) element.classList.remove('unfiltered1');
 
-        const myFilters: string[] = ['manufacturers', 'wheelSize', 'frameSize', 'colors', 'categories'];
-
-        const myClass: string[] = ['manufacturer', 'wheel-size', 'frame-size', 'color', 'category'];
-
-        for (let ind = 0; ind < myFilters.length; ind += 1) {
-          if ((this.filters[myFilters[ind]] as string[]).length > 0) {
-            const value = element.getElementsByClassName(`card-${myClass[ind]}`)[0].textContent?.split(': ')[1].replace('"', '') as string;
-            if (!(this.filters[myFilters[ind]] as string[]).includes(value)) {
+        FILTER_NAMES.forEach((filter, ind) => {
+          if (this.filters[filter].length > 0) {
+            const value: string = element.getElementsByClassName(`card-${CLASS_NAMES[ind]}`)[0].textContent?.split(': ')[1].replace('"', '') || '';
+            if (!this.filters[filter].includes(value)) {
               if (!element.classList.contains(`unfiltered${ind + 2}`)) element.classList.add(`unfiltered${ind + 2}`);
             } else if (element.classList.contains(`unfiltered${ind + 2}`)) element.classList.remove(`unfiltered${ind + 2}`);
           } else if (element.classList.contains(`unfiltered${ind + 2}`)) element.classList.remove(`unfiltered${ind + 2}`);
-        }
+        });
       }
 
       let num = 0;
@@ -88,7 +85,7 @@ class Filtering implements Filtering {
       checkAndApply();
     };
 
-    const applyFilterByParam: VoidEventParamFunction = (e: Event, param: string) => {
+    const applyFilterByParam: VoidEventParamFunction = (e: Event, param: 'manufacturers' | 'wheelSize' | 'frameSize' | 'colors' | 'categories') => {
       const filter: HTMLInputElement = e.target as HTMLInputElement;
 
       if (filter.checked) {

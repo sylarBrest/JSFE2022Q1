@@ -1,4 +1,5 @@
-import { BikeData, Size, TextContent } from '@components/types';
+import { BikeData, TextContent } from '@components/types';
+import { FILTER_VALUES, FRAME_SIZES } from '@components/constants';
 
 import Utils from '@components/helpers/utils';
 
@@ -16,11 +17,9 @@ class Values implements Values {
     valuesWindow.className = 'values-filter-container';
     document.getElementsByClassName('sort-container')[0].after(valuesWindow);
 
-    const params = ['manufacturer', 'wheels', 'frame', 'color', 'category'];
-
-    for (let index = 0; index < params.length; index += 1) {
-      valuesWindow.append(...this.fillFilterByParam(params[index] as keyof BikeData));
-    }
+    FILTER_VALUES.forEach((value) => {
+      valuesWindow.append(...this.fillFilterByParam(value as keyof BikeData));
+    });
 
     valuesWindow.append(this.addOnlyPopular());
   }
@@ -31,10 +30,7 @@ class Values implements Values {
     ].sort() as string[];
 
     if (param === 'frame') {
-      const frameSize: Size = {
-        S: 0, M: 1, L: 2, XL: 3,
-      };
-      bikeParam.sort((a: string, b: string) => frameSize[a] - frameSize[b]);
+      bikeParam.sort((a: string, b: string) => FRAME_SIZES[a] - FRAME_SIZES[b]);
     }
 
     const filterDiv: HTMLDivElement = document.createElement('div');

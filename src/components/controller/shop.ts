@@ -1,4 +1,5 @@
 import { VoidEventFunction } from '@components/types';
+import { MAX_BIKES_IN_CART } from '@components/constants';
 
 interface Shopping {
   makeShopping(): void;
@@ -35,7 +36,7 @@ class Shopping implements Shopping {
         bagImage.classList.remove('in-cart');
         el.classList.remove('in-cart');
         this.count -= 1;
-      } else if (this.count < 20) {
+      } else if (this.count < MAX_BIKES_IN_CART) {
         bagImage.classList.add('in-cart');
         el.classList.add('in-cart');
         this.count += 1;

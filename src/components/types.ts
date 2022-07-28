@@ -4,7 +4,9 @@ export type VoidStringArrayFunction = (arr: string[]) => void;
 
 export type VoidEventFunction = (e: Event) => void;
 
-export type VoidEventParamFunction = (e: Event, param: string) => void;
+export type UnionFilters = 'manufacturers' | 'wheelSize' | 'frameSize' | 'colors' | 'categories';
+
+export type VoidEventParamFunction = (e: Event, param: UnionFilters) => void;
 
 export type Size = {
   [key: string]: number
@@ -34,11 +36,12 @@ export type BikeData = {
 };
 
 export type BikeFilterObject = {
-  [key: string]: string[] | boolean,
   manufacturers: string[],
   wheelSize: string[],
   frameSize: string[],
   colors: string[],
   categories: string[],
-  popular: boolean
+  popular?: boolean
 };
+
+export type BikeFilters = Pick<BikeFilterObject, UnionFilters>;

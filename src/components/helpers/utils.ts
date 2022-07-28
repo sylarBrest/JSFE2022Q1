@@ -1,4 +1,4 @@
-import { TextContent } from '../types';
+import { TextContent } from '@components/types';
 
 export default class Utils {
   static getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {

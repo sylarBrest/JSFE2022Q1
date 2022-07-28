@@ -1,34 +1,30 @@
-import AppView from './view/appView';
-import MakeSearch from './controller/makeSearch';
-import Shopping from './controller/shop';
-import Filters from './controller/applyFilters';
-import Sorting from './controller/makeSort';
-import Resetting from './controller/makeReset';
+import * as Controllers from '@controller/index';
+import AppView from '@view/appView';
 
 interface App {
   start(): void;
 }
 
 class App implements App {
-  private search: MakeSearch;
+  private search: Controllers.Searching;
 
   private appView: AppView;
 
-  private shopping: Shopping;
+  private shopping: Controllers.Shopping;
 
-  private filters: Filters;
+  private filters: Controllers.Filtering;
 
-  private sorting: Sorting;
+  private sorting: Controllers.Sorting;
 
-  private resetting: Resetting;
+  private resetting: Controllers.Resetting;
 
   constructor() {
-    this.search = new MakeSearch();
+    this.search = new Controllers.Searching();
     this.appView = new AppView();
-    this.shopping = new Shopping();
-    this.filters = new Filters();
-    this.sorting = new Sorting();
-    this.resetting = new Resetting();
+    this.shopping = new Controllers.Shopping();
+    this.filters = new Controllers.Filtering();
+    this.sorting = new Controllers.Sorting();
+    this.resetting = new Controllers.Resetting();
   }
 
   public start(): void {

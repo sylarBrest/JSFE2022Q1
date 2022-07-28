@@ -1,8 +1,8 @@
-import { BikeData, Size, TextContent } from '../../../../types';
+import { BikeData, Size, TextContent } from '@components/types';
 
-import Utils from '../../../../helpers/utils';
+import Utils from '@components/helpers/utils';
 
-import bikes from '../../../../bikeData';
+import bikes from '@components/bikeData';
 
 import './values.scss';
 

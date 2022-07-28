@@ -1,4 +1,4 @@
-import { VoidEmptyFunction } from '../types';
+import { VoidEmptyFunction } from '@components/types';
 
 import BikeStorage from './bikeStorage';
 

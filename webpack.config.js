@@ -49,6 +49,11 @@ const config = {
   },
   resolve: {
     extensions: [".ts", ".js"],
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@controller': path.resolve(__dirname, 'src/components/controller'),
+      '@view': path.resolve(__dirname, 'src/components/view'),
+    },
   },
 };
 

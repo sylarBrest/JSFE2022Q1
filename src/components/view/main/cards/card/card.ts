@@ -1,6 +1,6 @@
-import { BikeData } from '../../../../types';
+import { BikeData } from '@components/types';
 
-import bikes from '../../../../bikeData';
+import bikes from '@components/bikeData';
 
 import './card.scss';
 

@@ -1,4 +1,4 @@
-import { VoidEventFunction } from '../types';
+import { VoidEventFunction } from '@components/types';
 
 interface Shopping {
   makeShopping(): void;

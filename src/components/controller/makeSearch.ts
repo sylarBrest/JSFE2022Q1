@@ -1,10 +1,10 @@
-import { VoidEmptyFunction } from '../types';
+import { VoidEmptyFunction } from '@components/types';
 
-interface MakeSearch {
+interface Searching {
   searchOnPage(): void;
 }
 
-class MakeSearch implements MakeSearch {
+class Searching implements Searching {
   private bikeCards: HTMLCollectionOf<HTMLDivElement>;
 
   constructor() {
@@ -44,4 +44,4 @@ class MakeSearch implements MakeSearch {
   }
 }
 
-export default MakeSearch;
+export default Searching;

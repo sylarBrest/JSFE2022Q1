@@ -1,11 +1,11 @@
-import { BikeFilterObject, VoidEmptyFunction, VoidEventParamFunction } from '../types';
+import { BikeFilterObject, VoidEmptyFunction, VoidEventParamFunction } from '@components/types';
 
-interface Filters {
+interface Filtering {
   resetFilters(): void;
   applyFilters(): void;
 }
 
-class Filters implements Filters {
+class Filtering implements Filtering {
   private filters: BikeFilterObject;
 
   private bikeCards: HTMLCollectionOf<HTMLDivElement>;
@@ -132,4 +132,4 @@ class Filters implements Filters {
   }
 }
 
-export default Filters;
+export default Filtering;

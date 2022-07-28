@@ -1,10 +1,10 @@
-import { VoidEmptyFunction } from '../types';
+import { VoidEmptyFunction } from '@components/types';
 
-import Search from '../view/main/filters/search/search';
+import Search from '@view/main/filters/search/search';
+import Values from '@view/main/filters/values/values';
+import Ranges from '@view/main/filters/range/range';
 import MakeSearch from './makeSearch';
-import Values from '../view/main/filters/values/values';
 import ApplyFilters from './applyFilters';
-import Ranges from '../view/main/filters/range/range';
 
 interface Resetting {
   resetFilters(): void;

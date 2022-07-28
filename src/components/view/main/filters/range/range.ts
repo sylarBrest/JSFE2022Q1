@@ -1,11 +1,11 @@
-import { VoidStringArrayFunction, BikeData } from '../../../../types';
+import { VoidStringArrayFunction, BikeData } from '@components/types';
 
-import noUiSlider, { API } from '../../../nouislider/nouislider';
+import noUiSlider, { API } from '@view/nouislider/nouislider';
 
-import bikes from '../../../../bikeData';
+import bikes from '@components/bikeData';
 
 import './range.scss';
-import '../../../nouislider/nouislider.scss';
+import '@view/nouislider/nouislider.scss';
 
 interface Slider {
   drawSliders(): void;

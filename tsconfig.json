@@ -5,6 +5,12 @@
     "module": "es6",
     "target": "es6",
     "strict": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@controller/*": ["components/controller/*"],
+      "@view/*": ["components/view/*"],
+    }
   },
   "exclude": [
     "node_modules",

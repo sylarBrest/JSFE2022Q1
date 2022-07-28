@@ -22,6 +22,7 @@ class Slider implements Slider {
     const rangesWindow: HTMLDivElement = document.createElement('div');
     rangesWindow.className = 'ranges-filter-container';
     document.getElementsByClassName('values-filter-container')[0].after(rangesWindow);
+
     this.drawSliderByYear(rangesWindow);
     this.drawSliderByStock(rangesWindow);
   }
@@ -66,10 +67,12 @@ class Slider implements Slider {
     const yearName: HTMLParagraphElement = document.createElement('p');
     yearName.classList.add('ranges-name', 'year-ranges-name');
     yearName.textContent = 'Модельный год';
+
     parent.append(yearName);
 
     const divSlider: HTMLDivElement = document.createElement('div');
     divSlider.classList.add('slider', 'year-slider');
+
     const slider: API = noUiSlider.create(divSlider, {
       start: [Math.min(...bikes.map((el: BikeData) => el.year)),
         Math.max(...bikes.map((el: BikeData) => el.year))],
@@ -105,10 +108,12 @@ class Slider implements Slider {
     const stockName: HTMLParagraphElement = document.createElement('p');
     stockName.classList.add('ranges-name', 'stock-ranges-name');
     stockName.textContent = 'Количество на складе';
+
     parent.append(stockName);
 
     const divSlider: HTMLDivElement = document.createElement('div');
     divSlider.classList.add('slider', 'stock-slider');
+
     const slider: API = noUiSlider.create(divSlider, {
       start: [Math.min(...bikes.map((el: BikeData) => el.stock)),
         Math.max(...bikes.map((el: BikeData) => el.stock))],
@@ -136,6 +141,7 @@ class Slider implements Slider {
     });
 
     this.workWithSlider(slider);
+
     parent.append(divSlider);
   }
 }

@@ -78,6 +78,7 @@ class Values implements Values {
     labelText.textContent = 'Только популярные';
 
     label.append(labelText, checkbox);
+
     popularDiv.append(label);
 
     return popularDiv;

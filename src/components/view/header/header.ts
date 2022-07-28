@@ -27,6 +27,7 @@ class Header implements Header {
     spanCount.textContent = '0';
 
     storeCartCount.append(spanCount);
+
     storeCart.append(storeCartCount);
 
     headerContainer.append(storeLogo, storeName, storeCart);

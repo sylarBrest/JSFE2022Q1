@@ -24,8 +24,8 @@ class Card implements Card {
       cardImage.alt = `${bike.name}`;
       cardImage.src = bike.photo;
 
-      const cardInfoDiv: HTMLDivElement = document.createElement('div');
-      cardInfoDiv.className = 'card-info-all';
+      const cardInfoContainer: HTMLDivElement = document.createElement('div');
+      cardInfoContainer.className = 'card-info-all';
 
       const cardBagImage: HTMLDivElement = document.createElement('div');
       cardBagImage.className = 'card-bag';
@@ -75,8 +75,11 @@ class Card implements Card {
         cardStockAmount,
         cardPopular,
       );
-      cardInfoDiv.append(cardInfo, cardBagImage);
-      card.append(cardName, cardImage, cardInfoDiv);
+
+      cardInfoContainer.append(cardInfo, cardBagImage);
+
+      card.append(cardName, cardImage, cardInfoContainer);
+
       document.getElementsByClassName('cards')[0].append(card);
     });
   }

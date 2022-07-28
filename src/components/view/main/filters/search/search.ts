@@ -12,6 +12,7 @@ class Search implements Search {
     const searchName: HTMLParagraphElement = document.createElement('p');
     searchName.className = 'search-name';
     searchName.textContent = 'Поиск';
+
     searchDiv.append(searchName);
 
     const search:HTMLInputElement = document.createElement('input');
@@ -19,7 +20,9 @@ class Search implements Search {
     search.autofocus = true;
     search.type = 'search';
     search.placeholder = 'Что ищем?';
+
     searchDiv.append(search);
+
     document.getElementsByClassName('filters')[0].prepend(searchDiv);
   }
 }

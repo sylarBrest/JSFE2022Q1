@@ -17,7 +17,9 @@ class Cards implements Cards {
     const cardsContainer: HTMLElement = document.createElement('section');
     cardsContainer.className = 'cards';
     document.getElementsByClassName('main-container')[0].append(cardsContainer);
+
     this.card.drawCard();
+
     this.drawNoResultsStub(cardsContainer);
   }
 
@@ -25,6 +27,7 @@ class Cards implements Cards {
     const noResults: HTMLParagraphElement = document.createElement('p');
     noResults.className = 'no-results';
     noResults.textContent = 'Извините, совпадений не обнаружено';
+
     parent.append(noResults);
   }
 }

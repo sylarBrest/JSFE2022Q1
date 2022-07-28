@@ -13,6 +13,7 @@ export default class Utils {
       color: 'Цвет',
       category: 'Категория',
     };
+
     return textContent[str];
   }
 }

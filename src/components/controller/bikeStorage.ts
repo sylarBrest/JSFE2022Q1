@@ -32,6 +32,7 @@ class BikeStorage implements BikeStorage {
 
   public writeBikeStorageToDOM(items: HTMLDivElement[]): void {
     this.setBikesToStorage(items);
+
     document.getElementsByClassName('cards')[0].append(...items);
   }
 }

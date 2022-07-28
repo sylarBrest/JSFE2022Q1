@@ -28,17 +28,17 @@ class Shopping implements Shopping {
     };
 
     const styleCard: VoidEventFunction = (e: Event) => {
-      const el: HTMLDivElement = e.currentTarget as HTMLDivElement;
-      const bagImage: HTMLDivElement = el.getElementsByClassName('card-bag')[0] as HTMLDivElement;
+      const clickedCard: HTMLDivElement = e.currentTarget as HTMLDivElement;
+      const bagImage: HTMLDivElement = clickedCard.getElementsByClassName('card-bag')[0] as HTMLDivElement;
       const countCart: HTMLSpanElement = document.getElementsByClassName('store-cart-count-number')[0] as HTMLSpanElement;
 
       if (bagImage.classList.contains('in-cart')) {
         bagImage.classList.remove('in-cart');
-        el.classList.remove('in-cart');
+        clickedCard.classList.remove('in-cart');
         this.count -= 1;
       } else if (this.count < MAX_BIKES_IN_CART) {
         bagImage.classList.add('in-cart');
-        el.classList.add('in-cart');
+        clickedCard.classList.add('in-cart');
         this.count += 1;
       } else {
         document.getElementsByClassName('modal')[0].classList.add('open');

@@ -17,7 +17,9 @@ class Main {
 
     const mainContainer: HTMLDivElement = document.createElement('div');
     mainContainer.classList.add('container', 'main-container');
+
     main.append(mainContainer);
+
     this.filters.drawFilters();
     this.cards.drawCards();
 

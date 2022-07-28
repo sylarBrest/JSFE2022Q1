@@ -8,13 +8,9 @@ import './filters.scss';
 
 class Filters {
   private values: Values;
-
   private range: Slider;
-
   private search: Search;
-
   private sort: Sort;
-
   private reset: Reset;
 
   constructor() {

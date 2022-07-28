@@ -8,7 +8,6 @@ interface Sorting {
 
 class Sorting implements Sorting {
   private bikeCards: HTMLCollectionOf<HTMLDivElement>;
-
   private bikeStorage: BikeStorage;
 
   constructor() {

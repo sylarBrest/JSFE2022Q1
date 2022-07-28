@@ -8,9 +8,7 @@ interface AppView {
 
 class AppView implements AppView {
   private main: Main;
-
   private footer: Footer;
-
   private header: Header;
 
   constructor() {

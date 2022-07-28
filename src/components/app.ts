@@ -7,15 +7,10 @@ interface App {
 
 class App implements App {
   private search: Controllers.Searching;
-
   private appView: AppView;
-
   private shopping: Controllers.Shopping;
-
   private filters: Controllers.Filtering;
-
   private sorting: Controllers.Sorting;
-
   private resetting: Controllers.Resetting;
 
   constructor() {

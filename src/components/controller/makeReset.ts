@@ -12,13 +12,9 @@ interface Resetting {
 
 class Resetting implements Resetting {
   private search: Search;
-
   private makeSearch: MakeSearch;
-
   private values: Values;
-
   private applyFilters: ApplyFilters;
-
   private ranges: Ranges;
 
   constructor() {

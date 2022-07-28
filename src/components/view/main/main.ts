@@ -5,7 +5,6 @@ import './main.scss';
 
 class Main {
   private filters: Filters;
-
   private cards: Cards;
 
   constructor() {

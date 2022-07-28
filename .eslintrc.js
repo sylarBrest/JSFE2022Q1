@@ -23,7 +23,9 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'class-methods-use-this': 'off',
-    '@typescript-eslint/no-explicit-any': 'error'
+    'lines-between-class-members': ['error', 'always', { 'exceptAfterSingleLine': true }],
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/lines-between-class-members': ['error', 'always', { 'exceptAfterSingleLine': true }],
   },
   ignorePatterns: [
     'src/components/view/nouislider/*',

@@ -7,19 +7,12 @@ interface Filtering {
 
 class Filtering implements Filtering {
   private filters: BikeFilterObject;
-
   private bikeCards: HTMLCollectionOf<HTMLDivElement>;
-
   private popularFilter: HTMLCollectionOf<HTMLInputElement>;
-
   private manufacturerFilter: HTMLCollectionOf<HTMLInputElement>;
-
   private wheelSizeFilter: HTMLCollectionOf<HTMLInputElement>;
-
   private frameSizeFilter: HTMLCollectionOf<HTMLInputElement>;
-
   private colorFilter: HTMLCollectionOf<HTMLInputElement>;
-
   private categoryFilter: HTMLCollectionOf<HTMLInputElement>;
 
   constructor() {

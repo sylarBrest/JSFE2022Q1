@@ -22,4 +22,22 @@ export default class Utils {
     if (comparison === '<') return curBikeCardParam < nextBikeCardParam ? SortOrder.Ascending : SortOrder.Descending;
     return curBikeCardParam > nextBikeCardParam ? SortOrder.Ascending : SortOrder.Descending;
   }
+
+  static displayNoResultsStub(): void {
+    const bikeCards = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName('card');
+    const noResultsStub = <HTMLParagraphElement>document.getElementsByClassName('no-results')[0];
+    let bikeCardaToHide = 0;
+
+    Array.from(bikeCards).forEach((card: HTMLDivElement) => {
+      if (card.className.split(' ').some((className: string) => /unfiltered(\d)*/.test(className))) {
+        bikeCardaToHide += 1;
+      }
+    });
+
+    if (bikeCardaToHide === bikeCards.length) {
+      noResultsStub.style.display = 'block';
+    } else {
+      noResultsStub.style.display = 'none';
+    }
+  }
 }

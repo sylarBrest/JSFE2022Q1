@@ -1,8 +1,7 @@
 import { VoidStringArrayFunction, BikeData } from '@components/types';
-
 import noUiSlider, { API } from '@view/nouislider/nouislider';
-
 import bikes from '@components/bikeData';
+import Utils from '@components/helpers/utils';
 
 import './range.scss';
 import '@view/nouislider/nouislider.scss';
@@ -30,7 +29,6 @@ class Slider implements Slider {
   private workWithSlider(slider: API): void {
     const doWithSlider: VoidStringArrayFunction = (values: string[]) => {
       const startEnd: number[] = values.map((el: string) => +el.split('.')[0]);
-      const noResults: HTMLParagraphElement = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
 
       for (let index = 0; index < this.bikeCards.length; index += 1) {
         const element: HTMLDivElement = this.bikeCards[index];
@@ -47,17 +45,7 @@ class Slider implements Slider {
         }
       }
 
-      let num = 0;
-      for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const card: HTMLDivElement = this.bikeCards[index];
-        if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
-      }
-
-      if (num === this.bikeCards.length) {
-        noResults.style.display = 'block';
-      } else {
-        noResults.style.display = 'none';
-      }
+      Utils.displayNoResultsStub();
     };
 
     slider.on('change', (values) => doWithSlider(values as string[]));

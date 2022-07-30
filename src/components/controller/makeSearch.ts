@@ -1,4 +1,5 @@
 import { VoidEmptyFunction } from '@components/types';
+import Utils from '@components/helpers/utils';
 
 interface Searching {
   searchOnPage(): void;
@@ -13,7 +14,6 @@ class Searching implements Searching {
 
   public searchOnPage(): void {
     const inputSearch = document.getElementsByClassName('search')[0] as HTMLInputElement;
-    const noResults = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
 
     const searchInDataSets: VoidEmptyFunction = () => {
       for (let index = 0; index < this.bikeCards.length; index += 1) {
@@ -27,17 +27,7 @@ class Searching implements Searching {
         }
       }
 
-      let num = 0;
-      for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const card: HTMLDivElement = this.bikeCards[index];
-        if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
-      }
-
-      if (num === this.bikeCards.length) {
-        noResults.style.display = 'block';
-      } else {
-        noResults.style.display = 'none';
-      }
+      Utils.displayNoResultsStub();
     };
 
     inputSearch.addEventListener('input', searchInDataSets);

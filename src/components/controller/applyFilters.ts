@@ -1,5 +1,11 @@
-import { BikeFilterObject, VoidEmptyFunction, VoidEventParamFunction } from '@components/types';
+import {
+  BikeFilterObject,
+  VoidEmptyFunction,
+  VoidEventParamFunction,
+  UnionFilters,
+} from '@components/types';
 import { FILTER_NAMES, CLASS_NAMES } from '@components/constants';
+import Utils from '@components/helpers/utils';
 
 interface Filtering {
   resetFilters(): void;
@@ -66,17 +72,7 @@ class Filtering implements Filtering {
         });
       }
 
-      let num = 0;
-      for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const card: HTMLDivElement = this.bikeCards[index];
-        if (card.className.split(' ').some((el: string) => /unfiltered(\d)*/.test(el))) num += 1;
-      }
-
-      if (num === this.bikeCards.length) {
-        (document.getElementsByClassName('no-results')[0] as HTMLParagraphElement).style.display = 'block';
-      } else {
-        (document.getElementsByClassName('no-results')[0] as HTMLParagraphElement).style.display = 'none';
-      }
+      Utils.displayNoResultsStub();
     };
 
     const applyPopularFilter: VoidEmptyFunction = () => {
@@ -85,7 +81,7 @@ class Filtering implements Filtering {
       checkAndApply();
     };
 
-    const applyFilterByParam: VoidEventParamFunction = (e: Event, param: 'manufacturers' | 'wheelSize' | 'frameSize' | 'colors' | 'categories') => {
+    const applyFilterByParam: VoidEventParamFunction = (e: Event, param: UnionFilters) => {
       const filter: HTMLInputElement = e.target as HTMLInputElement;
 
       if (filter.checked) {

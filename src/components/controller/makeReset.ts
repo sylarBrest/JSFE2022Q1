@@ -27,8 +27,8 @@ class Resetting implements Resetting {
   }
 
   public resetFilters(): void {
-    const resetFiltersButton: HTMLButtonElement = document.getElementsByClassName('reset-filters-button')[0] as HTMLButtonElement;
-    const bikeCards: HTMLCollectionOf<HTMLDivElement> = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
+    const resetFiltersButton = <HTMLButtonElement>document.getElementsByClassName('reset-filters-button')[0];
+    const bikeCards = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName('card');
 
     const reDrawFilters: VoidEmptyFunction = () => {
       document.getElementsByClassName('search-container')[0].remove();
@@ -53,7 +53,7 @@ class Resetting implements Resetting {
         });
       }
 
-      const noResults: HTMLParagraphElement = document.getElementsByClassName('no-results')[0] as HTMLParagraphElement;
+      const noResults = <HTMLParagraphElement>document.getElementsByClassName('no-results')[0];
       noResults.removeAttribute('style');
     };
 

@@ -1,3 +1,4 @@
+import Utils from '@components/helpers/utils';
 import {
   BikeFilterObject,
   VoidEmptyFunction,
@@ -5,7 +6,6 @@ import {
   UnionFilters,
 } from '@components/types';
 import { FILTER_NAMES, CLASS_NAMES } from '@components/constants';
-import Utils from '@components/helpers/utils';
 
 interface Filtering {
   resetFilters(): void;
@@ -31,13 +31,13 @@ class Filtering implements Filtering {
       categories: [],
       popular: false,
     };
-    this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
-    this.popularFilter = document.getElementsByClassName('checkbox-popular') as HTMLCollectionOf<HTMLInputElement>;
-    this.manufacturerFilter = document.getElementsByClassName('checkbox-manufacturer') as HTMLCollectionOf<HTMLInputElement>;
-    this.wheelSizeFilter = document.getElementsByClassName('checkbox-wheels') as HTMLCollectionOf<HTMLInputElement>;
-    this.frameSizeFilter = document.getElementsByClassName('checkbox-frame') as HTMLCollectionOf<HTMLInputElement>;
-    this.colorFilter = document.getElementsByClassName('checkbox-color') as HTMLCollectionOf<HTMLInputElement>;
-    this.categoryFilter = document.getElementsByClassName('checkbox-category') as HTMLCollectionOf<HTMLInputElement>;
+    this.bikeCards = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName('card');
+    this.popularFilter = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('checkbox-popular');
+    this.manufacturerFilter = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('checkbox-manufacturer');
+    this.wheelSizeFilter = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('checkbox-wheels');
+    this.frameSizeFilter = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('checkbox-frame');
+    this.colorFilter = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('checkbox-color');
+    this.categoryFilter = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('checkbox-category');
   }
 
   public resetFilters(): void {

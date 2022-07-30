@@ -9,16 +9,16 @@ class Searching implements Searching {
   private bikeCards: HTMLCollectionOf<HTMLDivElement>;
 
   constructor() {
-    this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
+    this.bikeCards = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName('card');
   }
 
   public searchOnPage(): void {
-    const inputSearch = document.getElementsByClassName('search')[0] as HTMLInputElement;
+    const inputSearch = <HTMLInputElement>document.getElementsByClassName('search')[0];
 
     const searchInDataSets: VoidEmptyFunction = () => {
       for (let index = 0; index < this.bikeCards.length; index += 1) {
         const element: HTMLDivElement = this.bikeCards[index] as HTMLDivElement;
-        const name: string = element.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
+        const name: string = element.getElementsByClassName('card-name')[0].textContent?.toLowerCase() || '';
 
         if (!name.includes(inputSearch.value)) {
           element.classList.add('unfiltered');

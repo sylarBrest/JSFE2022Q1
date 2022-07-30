@@ -19,7 +19,9 @@ export default class Utils {
   }
 
   static sortingFunction(curBikeCardParam: string, nextBikeCardParam: string, comparison: Comparison = '<'): number {
-    if (comparison === '<') return curBikeCardParam < nextBikeCardParam ? SortOrder.Ascending : SortOrder.Descending;
+    if (comparison === '<') {
+      return curBikeCardParam < nextBikeCardParam ? SortOrder.Ascending : SortOrder.Descending;
+    }
     return curBikeCardParam > nextBikeCardParam ? SortOrder.Ascending : SortOrder.Descending;
   }
 

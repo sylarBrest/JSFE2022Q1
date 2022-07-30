@@ -9,7 +9,7 @@ class BikeStorage implements BikeStorage {
   private bikeCards: HTMLDivElement[];
   private bikeCardsAll: HTMLCollectionOf<HTMLDivElement>;
 
-  constructor(startCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>) {
+  constructor(startCards = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName('card')) {
     this.bikeCardsAll = startCards;
     this.bikeCards = [];
   }

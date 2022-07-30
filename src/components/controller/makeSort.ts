@@ -1,4 +1,5 @@
 import { VoidEmptyFunction } from '@components/types';
+import Utils from '@components/helpers/utils';
 
 import BikeStorage from './bikeStorage';
 
@@ -27,32 +28,46 @@ class Sorting implements Sorting {
 
       switch (sortOptions.selectedOptions[0]) {
         case sortOptions.options[0]:
-          allBikes.sort((a: HTMLDivElement, b: HTMLDivElement) => {
-            const nameA: string = a.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
-            const nameB: string = b.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
-            return (nameA < nameB) ? -1 : 1;
-          });
+          allBikes
+            .sort((
+              curBikeCard: HTMLDivElement,
+              nextBikeCard: HTMLDivElement,
+            ) => Utils.sortingFunction(
+              curBikeCard.getElementsByClassName('card-name')[0].textContent?.toLowerCase() || '',
+              nextBikeCard.getElementsByClassName('card-name')[0].textContent?.toLowerCase() || '',
+            ));
           break;
         case sortOptions.options[1]:
-          allBikes.sort((a: HTMLDivElement, b: HTMLDivElement) => {
-            const nameA: string = a.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
-            const nameB: string = b.getElementsByClassName('card-name')[0].textContent?.toLowerCase() as string;
-            return (nameA > nameB) ? -1 : 1;
-          });
+          allBikes
+            .sort((
+              curBikeCard: HTMLDivElement,
+              nextBikeCard: HTMLDivElement,
+            ) => Utils.sortingFunction(
+              curBikeCard.getElementsByClassName('card-name')[0].textContent?.toLowerCase() || '',
+              nextBikeCard.getElementsByClassName('card-name')[0].textContent?.toLowerCase() || '',
+              '>',
+            ));
           break;
         case sortOptions.options[2]:
-          allBikes.sort((a: HTMLDivElement, b: HTMLDivElement) => {
-            const yearA: string = a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
-            const yearB: string = b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
-            return (yearA < yearB) ? -1 : 1;
-          });
+          allBikes
+            .sort((
+              curBikeCard: HTMLDivElement,
+              nextBikeCard: HTMLDivElement,
+            ) => Utils.sortingFunction(
+              curBikeCard.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] || '',
+              nextBikeCard.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] || '',
+            ));
           break;
         case sortOptions.options[3]:
-          allBikes.sort((a: HTMLDivElement, b: HTMLDivElement) => {
-            const yearA: string = a.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
-            const yearB: string = b.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] as string;
-            return (yearA > yearB) ? -1 : 1;
-          });
+          allBikes
+            .sort((
+              curBikeCard: HTMLDivElement,
+              nextBikeCard: HTMLDivElement,
+            ) => Utils.sortingFunction(
+              curBikeCard.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] || '',
+              nextBikeCard.getElementsByClassName('card-year')[0].textContent?.split(': ')[1] || '',
+              '>',
+            ));
           break;
         default:
           break;

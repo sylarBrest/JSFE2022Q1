@@ -23,3 +23,8 @@ export const UNFILTERED_CLASSES: string[] = [
 export const FRAME_SIZES: Size = {
   S: 0, M: 1, L: 2, XL: 3,
 };
+
+export const enum SortOrder {
+  Ascending = -1,
+  Descending = 1,
+}

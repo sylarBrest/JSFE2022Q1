@@ -1,4 +1,5 @@
-import { TextContent } from '@components/types';
+import { TextContent, Comparison } from '@components/types';
+import { SortOrder } from '@components/constants';
 
 export default class Utils {
   static getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
@@ -15,5 +16,10 @@ export default class Utils {
     };
 
     return textContent[str];
+  }
+
+  static sortingFunction(curBikeCardParam: string, nextBikeCardParam: string, comparison: Comparison = '<'): number {
+    if (comparison === '<') return curBikeCardParam < nextBikeCardParam ? SortOrder.Ascending : SortOrder.Descending;
+    return curBikeCardParam > nextBikeCardParam ? SortOrder.Ascending : SortOrder.Descending;
   }
 }

@@ -6,6 +6,8 @@ export type VoidEventFunction = (e: Event) => void;
 
 export type UnionFilters = 'manufacturers' | 'wheelSize' | 'frameSize' | 'colors' | 'categories';
 
+export type Comparison = '<' | '>';
+
 export type VoidEventParamFunction = (e: Event, param: UnionFilters) => void;
 
 export type Size = {

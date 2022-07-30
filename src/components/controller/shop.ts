@@ -16,12 +16,10 @@ class Shopping implements Shopping {
     const bikeCards = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName('card');
 
     const closeModal: VoidEventFunction = (event: Event) => {
-      if (event.target instanceof HTMLElement) {
-        if (event.target.classList.contains('darken')) {
-          document.getElementsByClassName('modal')[0].classList.remove('open');
-          document.getElementsByClassName('darken')[0].classList.remove('open');
-          document.getElementsByTagName('body')[0].classList.remove('open');
-        }
+      if (event.target instanceof HTMLElement && event.target.classList.contains('darken')) {
+        document.getElementsByClassName('modal')[0].classList.remove('open');
+        document.getElementsByClassName('darken')[0].classList.remove('open');
+        document.getElementsByTagName('body')[0].classList.remove('open');
       }
     };
 

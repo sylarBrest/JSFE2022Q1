@@ -28,18 +28,33 @@ export default class Utils {
   static displayNoResultsStub(): void {
     const bikeCards = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName('card');
     const noResultsStub = <HTMLParagraphElement>document.getElementsByClassName('no-results')[0];
-    let bikeCardaToHide = 0;
+    let bikeCardsToHide = 0;
 
     Array.from(bikeCards).forEach((card: HTMLDivElement) => {
       if (card.className.split(' ').some((className: string) => /unfiltered(\d)*/.test(className))) {
-        bikeCardaToHide += 1;
+        bikeCardsToHide += 1;
       }
     });
 
-    if (bikeCardaToHide === bikeCards.length) {
-      noResultsStub.style.display = 'block';
-    } else {
-      noResultsStub.style.display = 'none';
+    noResultsStub.style.display = bikeCardsToHide === bikeCards.length ? 'block' : 'none';
+  }
+
+  static changeElementClassList(element: HTMLElement, value: string, method: 'add' | 'remove'): void {
+    switch (method) {
+      case 'add': {
+        if (!element.classList.contains(value)) {
+          element.classList.add(value);
+        }
+        break;
+      }
+      case 'remove': {
+        if (element.classList.contains(value)) {
+          element.classList.remove(value);
+        }
+        break;
+      }
+      default:
+        break;
     }
   }
 }

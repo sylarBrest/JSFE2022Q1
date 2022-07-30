@@ -56,19 +56,23 @@ class Filtering implements Filtering {
       for (let index = 0; index < this.bikeCards.length; index += 1) {
         const element: HTMLDivElement = this.bikeCards[index] as HTMLDivElement;
 
-        if (this.filters.popular) {
-          if (element.getElementsByClassName('card-popular')[0].textContent?.split(': ')[1] === 'нет') {
-            if (!element.classList.contains('unfiltered1')) element.classList.add('unfiltered1');
-          }
-        } else if (element.classList.contains('unfiltered1')) element.classList.remove('unfiltered1');
+        if (this.filters.popular && element.getElementsByClassName('card-popular')[0].textContent?.split(': ')[1] === 'нет') {
+          Utils.changeElementClassList(element, 'unfiltered1', 'add');
+        } else {
+          Utils.changeElementClassList(element, 'unfiltered1', 'remove');
+        }
 
         FILTER_NAMES.forEach((filter, ind) => {
           if (this.filters[filter].length > 0) {
             const value: string = element.getElementsByClassName(`card-${CLASS_NAMES[ind]}`)[0].textContent?.split(': ')[1].replace('"', '') || '';
             if (!this.filters[filter].includes(value)) {
-              if (!element.classList.contains(`unfiltered${ind + 2}`)) element.classList.add(`unfiltered${ind + 2}`);
-            } else if (element.classList.contains(`unfiltered${ind + 2}`)) element.classList.remove(`unfiltered${ind + 2}`);
-          } else if (element.classList.contains(`unfiltered${ind + 2}`)) element.classList.remove(`unfiltered${ind + 2}`);
+              Utils.changeElementClassList(element, `unfiltered${ind + 2}`, 'add');
+            } else {
+              Utils.changeElementClassList(element, `unfiltered${ind + 2}`, 'remove');
+            }
+          } else {
+            Utils.changeElementClassList(element, `unfiltered${ind + 2}`, 'remove');
+          }
         });
       }
 

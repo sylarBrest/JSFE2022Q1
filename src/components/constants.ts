@@ -28,3 +28,14 @@ export const enum SortOrder {
   Ascending = -1,
   Descending = 1,
 }
+
+export const enum ClassNumbers {
+  Popular = 1,
+  Manufacturer,
+  WheelSize,
+  FrameSize,
+  Color,
+  Category,
+  Year,
+  Stock,
+}

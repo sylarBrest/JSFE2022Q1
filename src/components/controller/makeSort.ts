@@ -12,12 +12,12 @@ class Sorting implements Sorting {
   private bikeStorage: BikeStorage;
 
   constructor() {
-    this.bikeCards = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLDivElement>;
+    this.bikeCards = <HTMLCollectionOf<HTMLDivElement>>document.getElementsByClassName('card');
     this.bikeStorage = new BikeStorage(this.bikeCards);
   }
 
   public sortElements(): void {
-    const sortOptions: HTMLSelectElement = document.getElementsByClassName('sort')[0] as HTMLSelectElement;
+    const sortOptions = <HTMLSelectElement>document.getElementsByClassName('sort')[0];
 
     this.bikeStorage.initBikeStorage();
 
@@ -78,7 +78,7 @@ class Sorting implements Sorting {
 
     document.addEventListener('DOMContentLoaded', sortBy);
     sortOptions.addEventListener('change', sortBy);
-    const checkBox: HTMLCollectionOf<HTMLInputElement> = document.getElementsByClassName('checkbox') as HTMLCollectionOf<HTMLInputElement>;
+    const checkBox = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('checkbox');
 
     for (let index = 0; index < checkBox.length; index += 1) {
       checkBox[index].addEventListener('click', sortBy);

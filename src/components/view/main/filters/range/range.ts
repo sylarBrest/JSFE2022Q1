@@ -1,7 +1,9 @@
-import { VoidStringArrayFunction, BikeData } from '@components/types';
-import noUiSlider, { API } from '@view/nouislider/nouislider';
-import bikes from '@components/bikeData';
 import Utils from '@components/helpers/utils';
+import noUiSlider, { API } from '@view/nouislider/nouislider';
+import { VoidStringArrayFunction, BikeData } from '@components/types';
+import { ClassNumbers } from '@components/constants';
+
+import bikes from '@components/bikeData';
 
 import './range.scss';
 import '@view/nouislider/nouislider.scss';
@@ -33,16 +35,14 @@ class Slider implements Slider {
       for (let index = 0; index < this.bikeCards.length; index += 1) {
         const element: HTMLDivElement = this.bikeCards[index];
         const property: string = slider.target.classList.contains('stock-slider') ? 'stock-amount' : 'year';
-        const num: number = slider.target.classList.contains('stock-slider') ? 8 : 7;
-        const cardProperty: string = element.getElementsByClassName(`card-${property}`)[0].textContent?.split(': ')[1] as string;
+        const num: number = slider.target.classList.contains('stock-slider')
+          ? ClassNumbers.Stock
+          : ClassNumbers.Year;
+        const cardProperty: string = element.getElementsByClassName(`card-${property}`)[0].textContent?.split(': ')[1] || '';
 
         if ((+cardProperty >= startEnd[0]) && (+cardProperty <= startEnd[1])) {
-          if (element.classList.contains(`unfiltered${num}`)) {
-            element.classList.remove(`unfiltered${num}`);
-          }
-        } else if (!element.classList.contains(`unfiltered${num}`)) {
-          element.classList.add(`unfiltered${num}`);
-        }
+          Utils.changeElementClassList(element, `unfiltered${num}`, 'remove');
+        } else Utils.changeElementClassList(element, `unfiltered${num}`, 'add');
       }
 
       Utils.displayNoResultsStub();

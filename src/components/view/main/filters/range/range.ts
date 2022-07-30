@@ -32,18 +32,17 @@ class Slider implements Slider {
     const doWithSlider: VoidStringArrayFunction = (values: string[]) => {
       const startEnd: number[] = values.map((el: string) => +el.split('.')[0]);
 
-      for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const element: HTMLDivElement = this.bikeCards[index];
+      Array.from(this.bikeCards).forEach((card: HTMLDivElement) => {
         const property: string = slider.target.classList.contains('stock-slider') ? 'stock-amount' : 'year';
         const num: number = slider.target.classList.contains('stock-slider')
           ? ClassNumbers.Stock
           : ClassNumbers.Year;
-        const cardProperty: string = element.getElementsByClassName(`card-${property}`)[0].textContent?.split(': ')[1] || '';
+        const cardProperty: string = card.getElementsByClassName(`card-${property}`)[0].textContent?.split(': ')[1] || '';
 
         if ((+cardProperty >= startEnd[0]) && (+cardProperty <= startEnd[1])) {
-          Utils.changeElementClassList(element, `unfiltered${num}`, 'remove');
-        } else Utils.changeElementClassList(element, `unfiltered${num}`, 'add');
-      }
+          Utils.changeElementClassList(card, `unfiltered${num}`, 'remove');
+        } else Utils.changeElementClassList(card, `unfiltered${num}`, 'add');
+      });
 
       Utils.displayNoResultsStub();
     };

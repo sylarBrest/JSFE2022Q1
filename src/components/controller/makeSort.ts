@@ -80,9 +80,9 @@ class Sorting implements Sorting {
     sortOptions.addEventListener('change', sortBy);
     const checkBox = <HTMLCollectionOf<HTMLInputElement>>document.getElementsByClassName('checkbox');
 
-    for (let index = 0; index < checkBox.length; index += 1) {
-      checkBox[index].addEventListener('click', sortBy);
-    }
+    Array.from(checkBox).forEach((checkbox) => {
+      checkbox.addEventListener('click', sortBy);
+    });
   }
 }
 

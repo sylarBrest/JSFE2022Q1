@@ -1,3 +1,4 @@
+import Utils from '@components/helpers/utils';
 import { VoidEmptyFunction } from '@components/types';
 import { UNFILTERED_CLASSES } from '@components/constants';
 
@@ -43,15 +44,11 @@ class Resetting implements Resetting {
       document.getElementsByClassName('ranges-filter-container')[0].remove();
       this.ranges.drawSliders();
 
-      for (let index = 0; index < bikeCards.length; index += 1) {
-        const element: HTMLDivElement = bikeCards[index];
-
-        UNFILTERED_CLASSES.forEach((unfilteredClass) => {
-          if (element.classList.contains(unfilteredClass)) {
-            element.classList.remove(unfilteredClass);
-          }
+      Array.from(bikeCards).forEach((card: HTMLDivElement) => {
+        UNFILTERED_CLASSES.forEach((unfilteredClass: string) => {
+          Utils.changeElementClassList(card, unfilteredClass, 'remove');
         });
-      }
+      });
 
       const noResults = <HTMLParagraphElement>document.getElementsByClassName('no-results')[0];
       noResults.removeAttribute('style');

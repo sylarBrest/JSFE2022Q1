@@ -53,10 +53,9 @@ class Filtering implements Filtering {
 
   public applyFilters(): void {
     const checkAndApply: VoidEmptyFunction = () => {
-      for (let index = 0; index < this.bikeCards.length; index += 1) {
-        const element: HTMLDivElement = this.bikeCards[index] as HTMLDivElement;
-
-        if (this.filters.popular && element.getElementsByClassName('card-popular')[0].textContent?.split(': ')[1] === 'нет') {
+      Array.from(this.bikeCards).forEach((element: HTMLDivElement) => {
+        if (this.filters.popular
+          && element.getElementsByClassName('card-popular')[0].textContent?.split(': ')[1] === 'нет') {
           Utils.changeElementClassList(element, 'unfiltered1', 'add');
         } else {
           Utils.changeElementClassList(element, 'unfiltered1', 'remove');
@@ -74,7 +73,7 @@ class Filtering implements Filtering {
             Utils.changeElementClassList(element, `unfiltered${ind + 2}`, 'remove');
           }
         });
-      }
+      });
 
       Utils.displayNoResultsStub();
     };
@@ -100,25 +99,25 @@ class Filtering implements Filtering {
     // All listeners
     this.popularFilter.item(0)?.addEventListener('click', applyPopularFilter);
 
-    for (let index = 0; index < this.manufacturerFilter.length; index += 1) {
-      this.manufacturerFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'manufacturers'));
-    }
+    Array.from(this.manufacturerFilter).forEach((filter: HTMLInputElement) => {
+      filter.addEventListener('click', (e: Event) => applyFilterByParam(e, 'manufacturers'));
+    });
 
-    for (let index = 0; index < this.wheelSizeFilter.length; index += 1) {
-      this.wheelSizeFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'wheelSize'));
-    }
+    Array.from(this.wheelSizeFilter).forEach((filter: HTMLInputElement) => {
+      filter.addEventListener('click', (e: Event) => applyFilterByParam(e, 'wheelSize'));
+    });
 
-    for (let index = 0; index < this.frameSizeFilter.length; index += 1) {
-      this.frameSizeFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'frameSize'));
-    }
+    Array.from(this.frameSizeFilter).forEach((filter: HTMLInputElement) => {
+      filter.addEventListener('click', (e: Event) => applyFilterByParam(e, 'frameSize'));
+    });
 
-    for (let index = 0; index < this.colorFilter.length; index += 1) {
-      this.colorFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'colors'));
-    }
+    Array.from(this.colorFilter).forEach((filter: HTMLInputElement) => {
+      filter.addEventListener('click', (e: Event) => applyFilterByParam(e, 'colors'));
+    });
 
-    for (let index = 0; index < this.categoryFilter.length; index += 1) {
-      this.categoryFilter[index].addEventListener('click', (e: Event) => applyFilterByParam(e, 'categories'));
-    }
+    Array.from(this.categoryFilter).forEach((filter: HTMLInputElement) => {
+      filter.addEventListener('click', (e: Event) => applyFilterByParam(e, 'categories'));
+    });
   }
 }
 

@@ -45,9 +45,9 @@ class Shopping implements Shopping {
       countCart.textContent = `${this.count}`;
     };
 
-    for (let index = 0; index < bikeCards.length; index += 1) {
-      bikeCards[index].addEventListener('click', styleCard);
-    }
+    Array.from(bikeCards).forEach((card) => {
+      card.addEventListener('click', styleCard);
+    });
 
     document.getElementsByClassName('darken')[0].addEventListener('click', closeModal);
   }

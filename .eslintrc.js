@@ -22,6 +22,7 @@ module.exports = {
   ],
   rules: {
     'no-console': 'off',
+    'class-methods-use-this': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
   },
   ignorePatterns: [

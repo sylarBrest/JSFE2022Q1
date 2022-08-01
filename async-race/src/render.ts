@@ -7,13 +7,70 @@ export function renderHeader(): string {
     </header>`;
 }
 
-export function renderViewSwitch(): string {
+function renderViewSwitch(): string {
   return `
     <div class="view-switch">
       <button class="button garage-button">To garage</button>
       <button class="button winners-button">To winners</button>
-    </div>
-  `;
+    </div>`;
+}
+
+function renderCreateCarContainer(): string {
+  return `
+    <div class="create-car">
+      <input class="text-input create-car-text" type="text">
+      <input class="color-input update-car-color" type="color" value="#ffffff">
+      <button class="button create-car-button">Create</button>
+    </div>`;
+}
+
+function renderUpdateCarContainer(): string {
+  return `
+    <div class="update-car">
+      <input class="text-input update-car-text" type="text" disabled>
+      <input class="color-input update-car-color" type="color" value="#ffffff" disabled>
+      <button class="button update-car-button" disabled>Update</button>
+    </div>`;
+}
+
+function renderControlButtonsContainer(): string {
+  return `
+    <div class="control-buttons">
+      <button class="button race-button">Race</button>
+      <button class="button reset-button">Reset</button>
+      <button class="button generate-cars-button">Generate cars</button>
+    </div>`;
+}
+
+function renderTrack(): string {
+  return `
+    <div class="track">
+    </div>`;
+}
+
+function renderPaginationButtonsContainer(): string {
+  return `
+    <div class="pagination">
+      <button class="button prev-button" disabled>Prev</button>
+      <button class="button next-button" disabled>Next</button>
+    </div>`;
+}
+
+export function renderGarageView(): string {
+  return `
+    <section class="view garage-view">
+      <div class="controls">
+        ${renderCreateCarContainer()}
+        ${renderUpdateCarContainer()}
+        ${renderControlButtonsContainer()}
+      </div>
+      <div class="garage">
+        <h2 class="title">Garage (0)</h2>
+        <h3 class="page">Page #1</h3>
+        ${renderTrack()}
+      </div>
+      ${renderPaginationButtonsContainer()}
+    </section>`;
 }
 
 export function renderMain(): string {
@@ -21,6 +78,7 @@ export function renderMain(): string {
     <main class="main">
       <div class="container main-container">
         ${renderViewSwitch()}
+        ${renderGarageView()}
       </div>
     </main>`;
 }

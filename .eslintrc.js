@@ -26,6 +26,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'error',
   },
   ignorePatterns: [
+    'dist/*',
     '.eslintrc.js',
     'webpack.config.js'
   ],

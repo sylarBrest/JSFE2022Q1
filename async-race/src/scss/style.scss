@@ -37,8 +37,8 @@ body {
     padding: 5px 20px;
   
     .header-logo {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       background: url("../assets/svg/logo.svg");
       background-repeat: no-repeat;
       background-size: contain;
@@ -66,29 +66,92 @@ body {
 
 .main-container {
   display: flex;
-  padding: 20px;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 20px;
 
   .view-switch {
     display: flex;
     gap: 20px;
     align-items: flex-start;
+  }
 
-    .button {
-      padding: 3px;
-      border: none;
-      border-radius: 3px;
-      outline: none;
-      text-transform: uppercase;
-      cursor: pointer;
+  .garage-view {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 300px;
+
+      .create-car,
+      .update-car {
+        display: flex;
+        gap: 5px;
+
+        .text-input,
+        .color-input {
+          border: none;
+          border-radius: 3px;
+        }
+
+        .text-input {
+          outline: none;
+          padding: 0 5px;
+        }
+
+        .color-input {
+          cursor: pointer;
+        }
+
+        .button {
+          flex-grow: 1;
+        }
+      }
+
+      .control-buttons {
+        display: flex;
+        gap: 5px;
+        .button {
+          flex-grow: 1;
+        }
+      }
+    }
+
+    .garage {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      height: 100%;
+
+      .track {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
     }
   }
+}
+
+.button {
+  padding: 3px;
+  height: 27px;
+  min-width: 60px;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
   background-color: #1c1c24;
 
   .footer-container {
@@ -116,8 +179,8 @@ body {
     }
 
     .rss-logo {
-      width: 135px;
-      height: 50px;
+      width: 109px;
+      height: 40px;
       background: url("../assets/svg/rss.svg");
       background-repeat: no-repeat;
       background-size: contain;

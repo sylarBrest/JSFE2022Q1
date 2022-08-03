@@ -1,26 +1,31 @@
-import storage from './storage';
-import * as Render from './render';
-import { MAX_ITEMS_PER_PAGE_GARAGE } from './constants';
+// import * as Render from './render';
+import { MAX_ITEMS_PER_PAGE_GARAGE, BASE_URL } from './constants';
+import { Car } from './types';
 
-export const getGarage = async (url: string) => {
-  const res: Response = await fetch(`${url}/garage`);
-  const data = await res.json();
-  console.log(data);
-  storage.garage.push(...data);
-  storage.garageLength = data.length;
-  Render.updateGarageLength(data.length);
-  console.log(document.getElementsByClassName('garage')[0]);
-  document.getElementsByClassName('garage')[0].insertAdjacentHTML('beforeend', Render.renderTrack(data));
+export const getAllCars = async (pageNumber = 1) => {
+  const res: Response = await fetch(`${BASE_URL}/garage?_page=${pageNumber}&_limit=${MAX_ITEMS_PER_PAGE_GARAGE}`);
+  // const data = await res.json();
+  return {
+    data: await res.json(),
+    length: +res.headers.get('X-Total-Count'),
+  };
 };
 
-export const getGaragePage = async (
-  pageNumber: number,
-  url = 'http://127.0.0.1:3000',
-  limit: number = MAX_ITEMS_PER_PAGE_GARAGE,
-) => {
-  const res: Response = await fetch(`${url}/garage?_page=${pageNumber}&_limit=${limit}`);
-  const data = await res.json();
-  console.log(data);
-  storage.garageLength = data.length;
-  Render.updateGarageLength(data.length);
+export const getCar = async (id: number) => {
+  const res: Response = await fetch(`${BASE_URL}/garage?id=${id}`);
+  return res.json();
+};
+
+export const createCar = async (car: Car) => {
+  const res: Response = await fetch(
+    `${BASE_URL}/garage`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(car),
+    },
+  );
+  return res.json();
 };

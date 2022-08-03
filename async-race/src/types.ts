@@ -1,12 +1,12 @@
 export type Car = {
   color: string,
-  id: number,
+  id?: number,
   name: string,
 };
 
 export type Storage = {
   view: string,
-  pageGarage: number,
+  garagePage: number,
   garage: Car[],
   garageLength: number,
 };

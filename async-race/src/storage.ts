@@ -1,10 +1,13 @@
 import { Storage } from './types';
+import { getAllCars } from './api';
+
+const { data: garage, length: garageLength } = await getAllCars(1);
 
 const storage: Storage = {
   view: 'Garage',
-  pageGarage: 1,
-  garage: [],
-  garageLength: 0,
+  garagePage: 1,
+  garage,
+  garageLength,
 };
 
 export default storage;

@@ -1,4 +1,5 @@
 import { Car } from './types';
+import storage from './storage';
 
 export function renderHeader(): string {
   return `
@@ -23,7 +24,7 @@ function renderCreateCarContainer(): string {
   return `
     <div class="create-car">
       <input class="text-input create-car-text" type="text">
-      <input class="color-input update-car-color" type="color" value="#ffffff">
+      <input class="color-input create-car-color" type="color" value="#ffffff">
       <button class="button create-car-button">Create</button>
     </div>
   `;
@@ -68,15 +69,15 @@ function drawFinish(): string {
 
 function renderCarPath(car: Car): string {
   return `
-    <div class="car-path" data-car-id="${car.id}">
+    <div class="car-path" data-car-path-id="${car.id}">
       <div class="car-controls">
-        <button class="button select-button">Select</button>
-        <button class="button remove-button">Remove</button>
-        <p class="car-name">${car.name}</p>
+        <button class="button select-button" data-car-select-id="${car.id}">Select</button>
+        <button class="button remove-button" data-car-remove-id="${car.id}">Remove</button>
+        <p class="car-name" data-car-name-id="${car.id}">${car.name}</p>
       </div>
       <div class="path">
-        <button class="button start-button">A</button>
-        <button class="button stop-button" disabled>B</button>
+        <button class="button start-button" data-car-start-id="${car.id}">A</button>
+        <button class="button stop-button" data-car-stop-id="${car.id}" disabled>B</button>
         ${drawCar(car.color)}
         ${drawFinish()}
       </div>
@@ -84,10 +85,10 @@ function renderCarPath(car: Car): string {
   `;
 }
 
-export function renderTrack(cars: Car[]): string {
+function renderTrack(): string {
   return `
     <div class="track">
-      ${cars.reduce((all, car) => all + renderCarPath(car), '')}
+      ${storage.garage.reduce((track: string, car: Car) => track + renderCarPath(car), '')}
     </div>
   `;
 }
@@ -101,12 +102,15 @@ function renderPaginationButtonsContainer(): string {
   `;
 }
 
-export function updateGarageLength(length: number) {
-  const title = document.getElementsByClassName('title')[0];
-  title.innerHTML = `Garage (${length})`;
+export function renderGarage(): string {
+  return `
+    <h2 class="title">Garage (${storage.garageLength})</h2>
+    <h3 class="page">Page #${storage.garagePage}</h3>
+    ${renderTrack()}
+  `;
 }
 
-export function renderGarageView(): string {
+function renderGarageView(): string {
   return `
     <section class="view garage-view">
       <div class="controls">
@@ -115,22 +119,10 @@ export function renderGarageView(): string {
         ${renderControlButtonsContainer()}
       </div>
       <div class="garage">
-        <h2 class="title">Garage (0)</h2>
-        <h3 class="page">Page #1</h3>
+        ${renderGarage()}
       </div>
       ${renderPaginationButtonsContainer()}
     </section>
-  `;
-}
-
-export function renderMain(): string {
-  return `
-    <main class="main">
-      <div class="container main-container">
-        ${renderViewSwitch()}
-        ${renderGarageView()}
-      </div>
-    </main>
   `;
 }
 
@@ -148,4 +140,18 @@ export function renderFooter(): string {
       </div>
     </footer>
   `;
+}
+
+export async function renderMain() {
+  const main = document.createElement('main');
+  main.className = 'main';
+  main.innerHTML = `
+    <div class="container main-container">
+      ${renderViewSwitch()}
+      ${renderGarageView()}
+    </div>`;
+
+  document.body.appendChild(main);
+  document.body.removeChild(document.getElementsByClassName('footer')[0]);
+  document.body.innerHTML += renderFooter();
 }

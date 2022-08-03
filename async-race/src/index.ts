@@ -1,17 +1,18 @@
 import * as Render from './render';
 import * as API from './api';
-import store from './storage';
-import { BASE_URL } from './constants';
+import Listeners from './ui';
 
 import './scss/style.scss';
 
 console.log('Start Async-race task');
 
-API.getGarage(BASE_URL);
+API.getAllCars();
 
 document.getElementsByTagName('body')[0].innerHTML = `
   ${Render.renderHeader()}
-  ${Render.renderMain()}
-  ${Render.renderFooter()}`;
+  ${Render.renderFooter()}
+`;
 
-console.log(store);
+Render.renderMain();
+
+Listeners();

@@ -22,7 +22,7 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.(ts|tsx)$/i,
+        test: /\.(ts)$/i,
         loader: "ts-loader",
         exclude: ["/node_modules/"],
       },
@@ -35,7 +35,7 @@ const config = {
         use: [stylesHandler, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.(svg)$/i,
         type: "asset",
       },
     ],

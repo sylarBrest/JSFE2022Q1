@@ -29,3 +29,17 @@ export const createCar = async (car: Car) => {
   );
   return res.json();
 };
+
+export const updateCar = async (car: Car) => {
+  const res: Response = await fetch(
+    `${BASE_URL}/garage/${car.id}`,
+    {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(car),
+    },
+  );
+  return res.json();
+};

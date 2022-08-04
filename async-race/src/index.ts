@@ -1,14 +1,14 @@
 import * as Render from './render';
 import * as API from './api';
-import Listeners from './ui';
 
 import './scss/style.scss';
+import Listeners from './ui';
 
 console.log('Start Async-race task');
 
 API.getAllCars();
 
-document.getElementsByTagName('body')[0].innerHTML = `
+document.body.innerHTML = `
   ${Render.renderHeader()}
   ${Render.renderFooter()}
 `;

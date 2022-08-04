@@ -1,7 +1,7 @@
 import { Storage } from './types';
 import { getAllCars } from './api';
 
-const { data: garage, length: garageLength } = await getAllCars(1);
+const { cars: garage, length: garageLength } = await getAllCars(1);
 
 const storage: Storage = {
   view: 'Garage',

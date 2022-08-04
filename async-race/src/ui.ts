@@ -1,11 +1,10 @@
 import * as Api from './api';
 import { renderGarage } from './render';
-
 import storage from './storage';
 
 const updateGarageStorage = async () => {
-  const { data, length } = await Api.getAllCars(storage.garagePage);
-  storage.garage = data;
+  const { cars, length } = await Api.getAllCars(storage.garagePage);
+  storage.garage = cars;
   storage.garageLength = length;
 };
 
@@ -21,31 +20,35 @@ const addCar = async () => {
 
 const updateCar = async (event: Event) => {
   const button = event.target as HTMLButtonElement;
-  const car = await Api.getCar(+button.dataset.carSelectId);
+  console.log(Api.getCar(+button.dataset.carSelectId));
+  const selectedCar = await Api.getCar(+button.dataset.carSelectId);
 
   const carName = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
-  carName.removeAttribute('disabled');
-  carName.value = car[0].name;
+  carName.disabled = false;
+  carName.value = selectedCar.name;
 
   const carColor = <HTMLInputElement>document.getElementsByClassName('update-car-color')[0];
-  carColor.removeAttribute('disabled');
-  carColor.value = car[0].color;
+  carColor.disabled = false;
+  carColor.value = selectedCar.color;
 
   const updateButton = <HTMLButtonElement>document.getElementsByClassName('update-car-button')[0];
-  updateButton.removeAttribute('disabled');
+  updateButton.disabled = false;
+
   updateButton.addEventListener('click', async () => {
     await Api.updateCar({
       name: carName.value,
-      id: +button.dataset.carSelectId,
+      id: selectedCar.id,
       color: carColor.value,
     });
     await updateGarageStorage();
+
     document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+
     carName.value = '';
     carColor.value = '#ffffff';
-    carName.setAttribute('disabled', '');
-    carColor.setAttribute('disabled', '');
-    updateButton.setAttribute('disabled', '');
+    carName.disabled = true;
+    carColor.disabled = true;
+    updateButton.disabled = true;
   });
 };
 

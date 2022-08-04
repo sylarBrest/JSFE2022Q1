@@ -1,22 +1,22 @@
-// import * as Render from './render';
 import { MAX_ITEMS_PER_PAGE_GARAGE, BASE_URL } from './constants';
 import { Car } from './types';
 
-export const getAllCars = async (pageNumber = 1) => {
+export const getAllCars = async (pageNumber = 1): Promise<{ cars: Car[], length: number } > => {
   const res: Response = await fetch(`${BASE_URL}/garage?_page=${pageNumber}&_limit=${MAX_ITEMS_PER_PAGE_GARAGE}`);
-  // const data = await res.json();
+  const data: Car[] = await res.json();
   return {
-    data: await res.json(),
+    cars: data,
     length: +res.headers.get('X-Total-Count'),
   };
 };
 
-export const getCar = async (id: number) => {
+export const getCar = async (id: number): Promise<Car> => {
   const res: Response = await fetch(`${BASE_URL}/garage?id=${id}`);
-  return res.json();
+  const data: Car = await res.json();
+  return data;
 };
 
-export const createCar = async (car: Car) => {
+export const createCar = async (car: Car): Promise<Car> => {
   const res: Response = await fetch(
     `${BASE_URL}/garage`,
     {
@@ -27,10 +27,11 @@ export const createCar = async (car: Car) => {
       body: JSON.stringify(car),
     },
   );
-  return res.json();
+  const data: Car = await res.json();
+  return data;
 };
 
-export const updateCar = async (car: Car) => {
+export const updateCar = async (car: Car): Promise<Car> => {
   const res: Response = await fetch(
     `${BASE_URL}/garage/${car.id}`,
     {
@@ -41,10 +42,13 @@ export const updateCar = async (car: Car) => {
       body: JSON.stringify(car),
     },
   );
-  return res.json();
+  const data: Car = await res.json();
+  return data;
 };
 
-export const deleteCar = async (id: number) => {
+export const deleteCar = async (id: number): Promise<Car> => {
   const res: Response = await fetch(`${BASE_URL}/garage/${id}`, { method: 'DELETE' });
-  return res.json();
+  const data: Car = await res.json();
+  console.log(data);
+  return data;
 };

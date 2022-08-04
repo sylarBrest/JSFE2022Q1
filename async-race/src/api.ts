@@ -1,7 +1,7 @@
 import { MAX_ITEMS_PER_PAGE_GARAGE, BASE_URL } from './constants';
 import { Car } from './types';
 
-export const getAllCars = async (pageNumber = 1): Promise<{ cars: Car[], length: number } > => {
+export const getAllCars = async (pageNumber = 1): Promise<{ cars: Car[], length: number }> => {
   const res: Response = await fetch(`${BASE_URL}/garage?_page=${pageNumber}&_limit=${MAX_ITEMS_PER_PAGE_GARAGE}`);
   const data: Car[] = await res.json();
   return {
@@ -11,7 +11,7 @@ export const getAllCars = async (pageNumber = 1): Promise<{ cars: Car[], length:
 };
 
 export const getCar = async (id: number): Promise<Car> => {
-  const res: Response = await fetch(`${BASE_URL}/garage?id=${id}`);
+  const res: Response = await fetch(`${BASE_URL}/garage/${id}`);
   const data: Car = await res.json();
   return data;
 };

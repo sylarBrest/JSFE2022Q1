@@ -1,13 +1,14 @@
-import { CAR_BRANDS, CAR_MODELS } from './constants';
+import { CAR_BRANDS, CAR_MODELS, MAX_CREATED_CARS } from './constants';
+import { Car } from './types';
 
-export const getRandomCarName = () => {
+const getRandomCarName = () => {
   const brand = CAR_BRANDS[Math.floor(Math.random() * CAR_BRANDS.length)];
   const model = CAR_MODELS[Math.floor(Math.random() * CAR_MODELS.length)];
 
   return `${brand} ${model}`;
 };
 
-export const getRandomCarColor = () => {
+const getRandomCarColor = () => {
   const symbols = '0123456789abcdef';
   let color = '#';
 
@@ -17,3 +18,7 @@ export const getRandomCarColor = () => {
 
   return color;
 };
+
+export default (count = MAX_CREATED_CARS): Car[] => new Array<Car>(count)
+  .fill({ name: getRandomCarName(), color: getRandomCarColor() })
+  .map((car) => ({ name: getRandomCarName(), color: getRandomCarColor() }) || car);

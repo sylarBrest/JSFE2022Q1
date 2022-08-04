@@ -1,6 +1,10 @@
 import * as Api from './api';
+import getRandomCars from './utils';
 import { renderGarage } from './render';
 import storage from './storage';
+import { Car } from './types';
+
+let selectedCar: Car = null;
 
 const updateGarageStorage = async () => {
   const { cars, length } = await Api.getAllCars(storage.garagePage);
@@ -8,53 +12,62 @@ const updateGarageStorage = async () => {
   storage.garageLength = length;
 };
 
-const addCar = async () => {
-  const carName = <HTMLInputElement>document.getElementsByClassName('create-car-text')[0];
-  const carColor = <HTMLInputElement>document.getElementsByClassName('create-car-color')[0];
-  await Api.createCar({ color: carColor.value, name: carName.value });
+const addNewCar = async () => {
+  const carNameInput = <HTMLInputElement>document.getElementsByClassName('create-car-text')[0];
+  const carColorInput = <HTMLInputElement>document.getElementsByClassName('create-car-color')[0];
+
+  await Api.createCar({ color: carColorInput.value, name: carNameInput.value });
   await updateGarageStorage();
+
   document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
-  carName.value = '';
-  carColor.value = '#ffffff';
+
+  carNameInput.value = '';
+  carColorInput.value = '#ffffff';
 };
 
-const updateCar = async (event: Event) => {
-  const button = event.target as HTMLButtonElement;
-  console.log(Api.getCar(+button.dataset.carSelectId));
-  const selectedCar = await Api.getCar(+button.dataset.carSelectId);
+const updateSelectedCar = async (event: Event) => {
+  const selectButton = event.target as HTMLButtonElement;
+  selectedCar = await Api.getCar(+selectButton.dataset.carSelectId);
 
-  const carName = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
-  carName.disabled = false;
-  carName.value = selectedCar.name;
+  const carNameInput = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
+  carNameInput.disabled = false;
+  carNameInput.value = selectedCar.name;
 
-  const carColor = <HTMLInputElement>document.getElementsByClassName('update-car-color')[0];
-  carColor.disabled = false;
-  carColor.value = selectedCar.color;
+  const carColorInput = <HTMLInputElement>document.getElementsByClassName('update-car-color')[0];
+  carColorInput.disabled = false;
+  carColorInput.value = selectedCar.color;
 
   const updateButton = <HTMLButtonElement>document.getElementsByClassName('update-car-button')[0];
   updateButton.disabled = false;
 
   updateButton.addEventListener('click', async () => {
     await Api.updateCar({
-      name: carName.value,
+      name: carNameInput.value,
       id: selectedCar.id,
-      color: carColor.value,
+      color: carColorInput.value,
     });
     await updateGarageStorage();
 
     document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
 
-    carName.value = '';
-    carColor.value = '#ffffff';
-    carName.disabled = true;
-    carColor.disabled = true;
+    carNameInput.value = '';
+    carColorInput.value = '#ffffff';
+    carNameInput.disabled = true;
+    carColorInput.disabled = true;
     updateButton.disabled = true;
+    selectedCar = null;
   });
 };
 
-const removeCar = async (event: Event) => {
-  const button = event.target as HTMLButtonElement;
-  await Api.deleteCar(+button.dataset.carRemoveId);
+const removeSelectedCar = async (event: Event) => {
+  const removeButton = event.target as HTMLButtonElement;
+  await Api.deleteCar(+removeButton.dataset.carRemoveId);
+  await updateGarageStorage();
+  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+};
+
+const generateCars = async () => {
+  await Promise.all(getRandomCars().map((car) => Api.createCar(car)));
   await updateGarageStorage();
   document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
 };
@@ -63,13 +76,16 @@ export default function Listeners() {
   document.body.addEventListener('click', (event) => {
     if (event.target instanceof HTMLButtonElement) {
       if (event.target.classList.contains('create-car-button')) {
-        addCar();
+        addNewCar();
       }
       if (event.target.classList.contains('select-button')) {
-        updateCar(event);
+        updateSelectedCar(event);
       }
       if (event.target.classList.contains('remove-button')) {
-        removeCar(event);
+        removeSelectedCar(event);
+      }
+      if (event.target.classList.contains('generate-cars-button')) {
+        generateCars();
       }
     }
   });

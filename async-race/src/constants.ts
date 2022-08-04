@@ -4,6 +4,8 @@ export const MAX_ITEMS_PER_PAGE_GARAGE = 7;
 
 export const MAX_ITEMS_PER_PAGE_WINNERS = 10;
 
+export const MAX_CREATED_CARS = 100;
+
 export const CAR_BRANDS = [
   'Pagani',
   'Porsche',

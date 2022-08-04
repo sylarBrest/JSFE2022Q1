@@ -49,6 +49,13 @@ const updateCar = async (event: Event) => {
   });
 };
 
+const removeCar = async (event: Event) => {
+  const button = event.target as HTMLButtonElement;
+  await Api.deleteCar(+button.dataset.carRemoveId);
+  await updateGarageStorage();
+  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+};
+
 export default function Listeners() {
   document.body.addEventListener('click', (event) => {
     if (event.target instanceof HTMLButtonElement) {
@@ -57,6 +64,9 @@ export default function Listeners() {
       }
       if (event.target.classList.contains('select-button')) {
         updateCar(event);
+      }
+      if (event.target.classList.contains('remove-button')) {
+        removeCar(event);
       }
     }
   });

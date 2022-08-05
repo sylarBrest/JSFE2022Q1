@@ -1,5 +1,5 @@
 import * as Api from './api';
-import getRandomCars from './utils';
+import * as Utils from './utils';
 import { renderGarage } from './render';
 import storage from './storage';
 import { Car } from './types';
@@ -10,6 +10,10 @@ const updateGarageStorage = async () => {
   const { cars, length } = await Api.getAllCars(storage.garagePage);
   storage.garage = cars;
   storage.garageLength = length;
+
+  Utils.prevButtonUpdateState();
+
+  Utils.nextButtonUpdateState();
 };
 
 const addNewCar = async () => {
@@ -67,7 +71,19 @@ const removeSelectedCar = async (event: Event) => {
 };
 
 const generateCars = async () => {
-  await Promise.all(getRandomCars().map((car) => Api.createCar(car)));
+  await Promise.all(Utils.getRandomCars().map((car: Car) => Api.createCar(car)));
+  await updateGarageStorage();
+  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+};
+
+const nextPage = async () => {
+  storage.garagePage += 1;
+  await updateGarageStorage();
+  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+};
+
+const prevPage = async () => {
+  storage.garagePage -= 1;
   await updateGarageStorage();
   document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
 };
@@ -86,6 +102,12 @@ export default function Listeners() {
       }
       if (event.target.classList.contains('generate-cars-button')) {
         generateCars();
+      }
+      if (event.target.classList.contains('next-button')) {
+        nextPage();
+      }
+      if (event.target.classList.contains('prev-button')) {
+        prevPage();
       }
     }
   });

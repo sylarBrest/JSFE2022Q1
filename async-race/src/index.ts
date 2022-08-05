@@ -1,5 +1,6 @@
 import * as Render from './render';
 import * as API from './api';
+import * as Utils from './utils';
 
 import './scss/style.scss';
 import Listeners from './ui';
@@ -14,5 +15,8 @@ document.body.innerHTML = `
 `;
 
 Render.renderMain();
+
+Utils.prevButtonUpdateState();
+Utils.nextButtonUpdateState();
 
 Listeners();

@@ -1,4 +1,5 @@
-import { Car } from './types';
+import { Car, Winners } from './types';
+import * as Api from './api';
 import storage from './storage';
 
 export function renderHeader(): string {
@@ -85,6 +86,18 @@ function renderCarPath(car: Car): string {
   `;
 }
 
+function renderWinnerLine(winner: Winners): string {
+  return `
+    <tr class="winner-line">
+      <td class="td-number">1</td>
+      <td class="td-car">${drawCar(winner.car.color)}</td>
+      <td class="td-name">${winner.car.name}</td>
+      <td class="td-wins">${winner.wins}</td>
+      <td class="td-time">${winner.time}</td>
+    </tr>
+  `;
+}
+
 function renderTrack(): string {
   return `
     <div class="track">
@@ -110,6 +123,19 @@ export function renderGarage(): string {
   `;
 }
 
+export function renderWinners(): string {
+  return `
+    <h2 class="title">Winners (${storage.winnersLength})</h2>
+    <h3 class="page">Page #${storage.winnersPage}</h3>
+    <table class="winners-table">
+      <tr>
+        <th>Number</th><th>Car</th><th>Name</th><th>Wins</th><th>Best time<br>(seconds)</th>
+      </tr>
+      ${storage.winners.reduce((table: string, winner: Winners) => table + renderWinnerLine(winner), '')}
+    </table>
+  `;
+}
+
 function renderGarageView(): string {
   return `
     <section class="view garage-view">
@@ -120,6 +146,17 @@ function renderGarageView(): string {
       </div>
       <div class="garage">
         ${renderGarage()}
+      </div>
+      ${renderPaginationButtonsContainer()}
+    </section>
+  `;
+}
+
+function renderWinnersView(): string {
+  return `
+    <section class="view winners-view">
+      <div class="winners">
+        ${renderWinners()}
       </div>
       ${renderPaginationButtonsContainer()}
     </section>
@@ -148,7 +185,7 @@ export async function renderMain() {
   main.innerHTML = `
     <div class="container main-container">
       ${renderViewSwitch()}
-      ${renderGarageView()}
+      ${renderWinnersView()}
     </div>`;
 
   document.body.appendChild(main);

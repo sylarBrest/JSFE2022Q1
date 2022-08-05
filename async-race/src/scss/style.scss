@@ -181,6 +181,23 @@ body {
       }
     }
   }
+
+  .winners-view {
+    .winners {
+      .winners-table {
+        text-align: center;
+
+        .winner-line {
+          .td-car {
+            .car-image {
+              height: 20px;
+              width: auto;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 .button {

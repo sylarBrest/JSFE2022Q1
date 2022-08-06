@@ -186,7 +186,7 @@ body {
     height: 100%;
 
     .winners {      
-      height: 45%;
+      height: 47%;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -194,8 +194,15 @@ body {
       .winners-table {
         text-align: center;
         align-self: flex-start;
+        border-spacing: 0;
 
         .table-head {
+          background-color: #5959a8;
+
+          .head-cell {
+            padding: 3px 5px;
+          }
+
           .name {
             width: 230px;
           }
@@ -216,9 +223,18 @@ body {
           .wins-sort {
             width: 60px;
           }
+
+          .time-sort {
+            width: 95px;
+          }
         }
 
         .winner-line {
+
+          & > * {
+            padding-top: 3px;
+          }
+
           .td-car {
             .car-image {
               height: 20px;

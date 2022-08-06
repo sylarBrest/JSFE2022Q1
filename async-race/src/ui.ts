@@ -1,6 +1,6 @@
 import * as Api from './api';
 import * as Utils from './utils';
-import { renderGarage, renderWinners } from './render';
+import * as Render from './render';
 import storage from './storage';
 import {
   Car,
@@ -43,7 +43,7 @@ const addNewCar = async () => {
   await Api.createCar({ color: carColorInput.value, name: carNameInput.value });
   await updateGarageStorage();
 
-  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+  document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 
   carNameInput.value = '';
   carColorInput.value = '#ffffff';
@@ -73,7 +73,7 @@ const updateSelectedCar = async (event: Event) => {
     });
     await updateGarageStorage();
 
-    document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+    document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 
     carNameInput.value = '';
     carColorInput.value = '#ffffff';
@@ -92,14 +92,14 @@ const removeSelectedCar = async (event: Event) => {
   await Api.deleteCar(+removeButton.dataset.carRemoveId);
   await updateGarageStorage();
 
-  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+  document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 };
 
 const generateCars = async () => {
   await Promise.all(Utils.getRandomCars().map((car: Car) => Api.createCar(car)));
   await updateGarageStorage();
 
-  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+  document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 };
 
 const nextPage = async () => {
@@ -107,13 +107,13 @@ const nextPage = async () => {
     case Views.garage: {
       storage.garagePage += 1;
       await updateGarageStorage();
-      document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+      document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
       break;
     }
     case Views.winners: {
       storage.winnersPage += 1;
       await updateWinnersStorage();
-      document.getElementsByClassName('winners')[0].innerHTML = renderWinners();
+      document.getElementsByClassName('winners')[0].innerHTML = Render.renderWinners();
       break;
     }
     default:
@@ -126,13 +126,13 @@ const prevPage = async () => {
     case Views.garage: {
       storage.garagePage -= 1;
       await updateGarageStorage();
-      document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+      document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
       break;
     }
     case Views.winners: {
       storage.winnersPage -= 1;
       await updateWinnersStorage();
-      document.getElementsByClassName('winners')[0].innerHTML = renderWinners();
+      document.getElementsByClassName('winners')[0].innerHTML = Render.renderWinners();
       break;
     }
     default:
@@ -161,12 +161,46 @@ const sortWinners = async (sortBy: SortBy) => {
   await Api.getWinners(storage.winnersPage, storage.sortBy, storage.sortOrder);
   await updateWinnersStorage();
 
-  document.getElementsByClassName('winners')[0].innerHTML = renderWinners();
+  document.getElementsByClassName('winners')[0].innerHTML = Render.renderWinners();
+};
+
+const switchToGarageView = async () => {
+  storage.view = Views.garage;
+
+  const currentView = document.getElementsByClassName('winners-view')[0];
+
+  if (currentView) {
+    currentView.remove();
+  }
+
+  document.getElementsByClassName('main-container')[0].innerHTML += Render.renderGarageView();
+
+  await updateGarageStorage();
+};
+
+const switchToWinnersView = async () => {
+  storage.view = Views.winners;
+
+  const currentView = document.getElementsByClassName('garage-view')[0];
+
+  if (currentView) {
+    currentView.remove();
+  }
+
+  document.getElementsByClassName('main-container')[0].innerHTML += Render.renderWinnersView();
+
+  await updateWinnersStorage();
 };
 
 export default function Listeners() {
   document.body.addEventListener('click', (event) => {
     if (event.target instanceof HTMLButtonElement) {
+      if (event.target.classList.contains('garage-button')) {
+        switchToGarageView();
+      }
+      if (event.target.classList.contains('winners-button')) {
+        switchToWinnersView();
+      }
       if (event.target.classList.contains('create-car-button')) {
         addNewCar();
       }

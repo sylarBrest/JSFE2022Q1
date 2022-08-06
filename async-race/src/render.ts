@@ -140,7 +140,7 @@ export function renderWinners(): string {
   `;
 }
 
-function renderGarageView(): string {
+export function renderGarageView(): string {
   return `
     <section class="view garage-view">
       <div class="controls">
@@ -156,7 +156,7 @@ function renderGarageView(): string {
   `;
 }
 
-function renderWinnersView(): string {
+export function renderWinnersView(): string {
   return `
     <section class="view winners-view">
       <div class="winners">
@@ -189,7 +189,7 @@ export async function renderMain() {
   main.innerHTML = `
     <div class="container main-container">
       ${renderViewSwitch()}
-      ${renderWinnersView()}
+      ${renderGarageView()}
     </div>`;
 
   document.body.appendChild(main);

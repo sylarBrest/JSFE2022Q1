@@ -5,7 +5,7 @@ const { cars: garage, length: garageLength } = await getAllCars(1);
 const { winners, length: winnersLength } = await getWinners(1);
 
 const storage: Storage = {
-  view: 'Winners',
+  view: 'Garage',
   garagePage: 1,
   garage,
   garageLength,

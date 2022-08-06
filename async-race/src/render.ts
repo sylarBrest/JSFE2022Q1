@@ -15,7 +15,7 @@ export function renderHeader(): string {
 function renderViewSwitch(): string {
   return `
     <div class="view-switch">
-      <button class="button garage-button">To garage</button>
+      <button class="button garage-button" disabled>To garage</button>
       <button class="button winners-button">To winners</button>
     </div>
   `;

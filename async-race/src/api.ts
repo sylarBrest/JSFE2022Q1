@@ -76,3 +76,10 @@ export const getWinners = async (pageNumber = 1, sort = 'id', order = 'ASC') => 
     length: +res.headers.get('X-Total-Count'),
   };
 };
+
+export const deleteWinner = async (id: number): Promise<Winners> => {
+  const res: Response = await fetch(`${BASE_URL_WINNERS}/${id}`, { method: 'DELETE' });
+  const data: Winners = await res.json();
+
+  return data;
+};

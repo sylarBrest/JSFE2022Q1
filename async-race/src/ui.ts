@@ -88,9 +88,12 @@ const updateSelectedCar = async (event: Event) => {
 
 const removeSelectedCar = async (event: Event) => {
   const removeButton = <HTMLButtonElement>event.target;
+  const selectedCarID = +removeButton.dataset.carRemoveId;
 
-  await Api.deleteCar(+removeButton.dataset.carRemoveId);
+  await Api.deleteCar(selectedCarID);
+  await Api.deleteWinner(selectedCarID);
   await updateGarageStorage();
+  await updateWinnersStorage();
 
   document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 };
@@ -158,13 +161,15 @@ const sortWinners = async (sortBy: SortBy) => {
     }
   }
 
-  await Api.getWinners(storage.winnersPage, storage.sortBy, storage.sortOrder);
   await updateWinnersStorage();
 
   document.getElementsByClassName('winners')[0].innerHTML = Render.renderWinners();
 };
 
 const switchToGarageView = async () => {
+  const winnersButton = <HTMLButtonElement>document.getElementsByClassName('winners-button')[0];
+  winnersButton.disabled = false;
+
   storage.view = Views.garage;
 
   const currentView = document.getElementsByClassName('winners-view')[0];
@@ -176,9 +181,17 @@ const switchToGarageView = async () => {
   document.getElementsByClassName('main-container')[0].innerHTML += Render.renderGarageView();
 
   await updateGarageStorage();
+
+  const garageButton = <HTMLButtonElement>document.getElementsByClassName('garage-button')[0];
+  garageButton.disabled = true;
 };
 
 const switchToWinnersView = async () => {
+  await updateWinnersStorage();
+
+  const garageButton = <HTMLButtonElement>document.getElementsByClassName('garage-button')[0];
+  garageButton.disabled = false;
+
   storage.view = Views.winners;
 
   const currentView = document.getElementsByClassName('garage-view')[0];
@@ -190,6 +203,9 @@ const switchToWinnersView = async () => {
   document.getElementsByClassName('main-container')[0].innerHTML += Render.renderWinnersView();
 
   await updateWinnersStorage();
+
+  const winnersButton = <HTMLButtonElement>document.getElementsByClassName('winners-button')[0];
+  winnersButton.disabled = true;
 };
 
 export default function Listeners() {

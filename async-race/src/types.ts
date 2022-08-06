@@ -37,3 +37,8 @@ export enum SortingOrder {
   asc = 'ASC',
   desc = 'DESC',
 }
+
+export enum Views {
+  garage = 'Garage',
+  winners = 'Winners',
+}

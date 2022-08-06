@@ -7,6 +7,7 @@ import {
   SortBy,
   SortingBy,
   SortingOrder,
+  Views,
 } from './types';
 
 let selectedCar: Car = null;
@@ -102,19 +103,41 @@ const generateCars = async () => {
 };
 
 const nextPage = async () => {
-  storage.garagePage += 1;
-
-  await updateGarageStorage();
-
-  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+  switch (storage.view) {
+    case Views.garage: {
+      storage.garagePage += 1;
+      await updateGarageStorage();
+      document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+      break;
+    }
+    case Views.winners: {
+      storage.winnersPage += 1;
+      await updateWinnersStorage();
+      document.getElementsByClassName('winners')[0].innerHTML = renderWinners();
+      break;
+    }
+    default:
+      break;
+  }
 };
 
 const prevPage = async () => {
-  storage.garagePage -= 1;
-
-  await updateGarageStorage();
-
-  document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+  switch (storage.view) {
+    case Views.garage: {
+      storage.garagePage -= 1;
+      await updateGarageStorage();
+      document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+      break;
+    }
+    case Views.winners: {
+      storage.winnersPage -= 1;
+      await updateWinnersStorage();
+      document.getElementsByClassName('winners')[0].innerHTML = renderWinners();
+      break;
+    }
+    default:
+      break;
+  }
 };
 
 const sortWinners = async (sortBy: SortBy) => {

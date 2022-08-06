@@ -1,5 +1,6 @@
 import { Car, SortingBy, Winners } from './types';
 import storage from './storage';
+import { MAX_ITEMS_PER_PAGE_WINNERS } from './constants';
 
 export function renderHeader(): string {
   return `
@@ -88,7 +89,7 @@ function renderCarPath(car: Car): string {
 function renderWinnerLine(winner: Winners, index: number): string {
   return `
     <tr class="winner-line">
-      <td class="td-number">${index + 1}</td>
+      <td class="td-number">${(storage.winnersPage - 1) * MAX_ITEMS_PER_PAGE_WINNERS + index + 1}</td>
       <td class="td-car">${drawCar(winner.car.color)}</td>
       <td class="td-name">${winner.car.name}</td>
       <td class="td-wins">${winner.wins}</td>

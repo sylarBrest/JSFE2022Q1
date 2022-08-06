@@ -1,18 +1,37 @@
 import * as Api from './api';
 import * as Utils from './utils';
-import { renderGarage } from './render';
+import { renderGarage, renderWinners } from './render';
 import storage from './storage';
-import { Car } from './types';
+import {
+  Car,
+  SortBy,
+  SortingBy,
+  SortingOrder,
+} from './types';
 
 let selectedCar: Car = null;
 
 const updateGarageStorage = async () => {
   const { cars, length } = await Api.getAllCars(storage.garagePage);
+
   storage.garage = cars;
   storage.garageLength = length;
 
   Utils.prevButtonUpdateState();
+  Utils.nextButtonUpdateState();
+};
 
+const updateWinnersStorage = async () => {
+  const { winners, length } = await Api.getWinners(
+    storage.winnersPage,
+    storage.sortBy,
+    storage.sortOrder,
+  );
+
+  storage.winners = winners;
+  storage.winnersLength = length;
+
+  Utils.prevButtonUpdateState();
   Utils.nextButtonUpdateState();
 };
 
@@ -30,7 +49,8 @@ const addNewCar = async () => {
 };
 
 const updateSelectedCar = async (event: Event) => {
-  const selectButton = event.target as HTMLButtonElement;
+  const selectButton = <HTMLButtonElement>event.target;
+
   selectedCar = await Api.getCar(+selectButton.dataset.carSelectId);
 
   const carNameInput = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
@@ -56,36 +76,69 @@ const updateSelectedCar = async (event: Event) => {
 
     carNameInput.value = '';
     carColorInput.value = '#ffffff';
+
     carNameInput.disabled = true;
     carColorInput.disabled = true;
     updateButton.disabled = true;
+
     selectedCar = null;
   });
 };
 
 const removeSelectedCar = async (event: Event) => {
-  const removeButton = event.target as HTMLButtonElement;
+  const removeButton = <HTMLButtonElement>event.target;
+
   await Api.deleteCar(+removeButton.dataset.carRemoveId);
   await updateGarageStorage();
+
   document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
 };
 
 const generateCars = async () => {
   await Promise.all(Utils.getRandomCars().map((car: Car) => Api.createCar(car)));
   await updateGarageStorage();
+
   document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
 };
 
 const nextPage = async () => {
   storage.garagePage += 1;
+
   await updateGarageStorage();
+
   document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
 };
 
 const prevPage = async () => {
   storage.garagePage -= 1;
+
   await updateGarageStorage();
+
   document.getElementsByClassName('garage')[0].innerHTML = renderGarage();
+};
+
+const sortWinners = async (sortBy: SortBy) => {
+  const prevSortBy = storage.sortBy;
+  storage.sortBy = sortBy;
+
+  switch (storage.sortBy) {
+    case SortingBy.id:
+      break;
+    default: {
+      if (prevSortBy === storage.sortBy) {
+        storage.sortOrder = storage.sortOrder === SortingOrder.asc
+          ? SortingOrder.desc
+          : SortingOrder.asc;
+      } else {
+        storage.sortOrder = SortingOrder.asc;
+      }
+    }
+  }
+
+  await Api.getWinners(storage.winnersPage, storage.sortBy, storage.sortOrder);
+  await updateWinnersStorage();
+
+  document.getElementsByClassName('winners')[0].innerHTML = renderWinners();
 };
 
 export default function Listeners() {
@@ -108,6 +161,15 @@ export default function Listeners() {
       }
       if (event.target.classList.contains('prev-button')) {
         prevPage();
+      }
+    }
+
+    if (event.target instanceof HTMLTableCellElement) {
+      if (event.target.classList.contains('wins-sort')) {
+        sortWinners(SortingBy.wins);
+      }
+      if (event.target.classList.contains('time-sort')) {
+        sortWinners(SortingBy.time);
       }
     }
   });

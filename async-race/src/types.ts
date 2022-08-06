@@ -1,3 +1,7 @@
+export type SortBy = 'id' | 'wins' | 'time';
+
+export type SortOrder = 'ASC' | 'DESC';
+
 export type Car = {
   color: string,
   id?: number,
@@ -19,4 +23,17 @@ export type Storage = {
   winnersPage: number,
   winners: Winners[],
   winnersLength: number,
+  sortBy: SortBy,
+  sortOrder: SortOrder,
 };
+
+export enum SortingBy {
+  id = 'id',
+  wins = 'wins',
+  time = 'time',
+}
+
+export enum SortingOrder {
+  asc = 'ASC',
+  desc = 'DESC',
+}

@@ -12,6 +12,8 @@ const storage: Storage = {
   winnersPage: 1,
   winners,
   winnersLength,
+  sortBy: 'id',
+  sortOrder: 'ASC',
 };
 
 export default storage;

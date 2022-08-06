@@ -1,5 +1,4 @@
-import { Car, Winners } from './types';
-import * as Api from './api';
+import { Car, SortingBy, Winners } from './types';
 import storage from './storage';
 
 export function renderHeader(): string {
@@ -86,10 +85,10 @@ function renderCarPath(car: Car): string {
   `;
 }
 
-function renderWinnerLine(winner: Winners): string {
+function renderWinnerLine(winner: Winners, index: number): string {
   return `
     <tr class="winner-line">
-      <td class="td-number">1</td>
+      <td class="td-number">${index + 1}</td>
       <td class="td-car">${drawCar(winner.car.color)}</td>
       <td class="td-name">${winner.car.name}</td>
       <td class="td-wins">${winner.wins}</td>
@@ -128,10 +127,14 @@ export function renderWinners(): string {
     <h2 class="title">Winners (${storage.winnersLength})</h2>
     <h3 class="page">Page #${storage.winnersPage}</h3>
     <table class="winners-table">
-      <tr>
-        <th>Number</th><th>Car</th><th>Name</th><th>Wins</th><th>Best time<br>(seconds)</th>
+      <tr class="table-head">
+        <th class="head-cell">Number</th>
+        <th class="head-cell">Car</th>
+        <th class="head-cell name">Name</th>
+        <th class="head-cell sort wins-sort ${storage.sortBy === SortingBy.wins ? storage.sortOrder.toLowerCase() : ''}">Wins</th>
+        <th class="head-cell sort time-sort ${storage.sortBy === SortingBy.time ? storage.sortOrder.toLowerCase() : ''}">Best time</th>
       </tr>
-      ${storage.winners.reduce((table: string, winner: Winners) => table + renderWinnerLine(winner), '')}
+      ${storage.winners.reduce((lines: string, winner: Winners, index: number) => lines + renderWinnerLine(winner, index), '')}
     </table>
   `;
 }

@@ -187,6 +187,29 @@ body {
       .winners-table {
         text-align: center;
 
+        .table-head {
+          .name {
+            width: 230px;
+          }
+
+          .wins-sort,
+          .time-sort {
+            cursor: pointer;
+
+            &.asc::after {
+              content: '↑';
+            }
+
+            &.desc::after {
+              content: '↓';
+            }
+          }
+
+          .wins-sort {
+            width: 60px;
+          }
+        }
+
         .winner-line {
           .td-car {
             .car-image {

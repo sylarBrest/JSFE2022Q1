@@ -215,12 +215,12 @@ const carStarting = async (event: Event) => {
   const id: number = +startButton.dataset.carStartId;
 
   startButton.disabled = true;
-  startButton.classList.toggle('enabling', true);
+  startButton.classList.add('working');
 
   const { velocity, distance } = await Api.startEngine(id);
   const time: number = Math.round(distance / velocity);
 
-  startButton.classList.toggle('enabling', false);
+  startButton.classList.remove('working');
   const stopButton = <HTMLButtonElement>startButton.parentElement.getElementsByClassName('stop-button')[0];
   stopButton.disabled = false;
 
@@ -244,21 +244,25 @@ const carStopping = async (event: Event) => {
   const id: number = +stopButton.dataset.carStopId;
 
   stopButton.disabled = true;
-  stopButton.classList.toggle('enabling', true);
+  stopButton.classList.add('working');
+
   await Api.stopEngine(id);
-  stopButton.classList.toggle('enabling', false);
+
+  stopButton.classList.remove('working');
+
   const startButton = <HTMLButtonElement>stopButton.parentElement.getElementsByClassName('start-button')[0];
   startButton.disabled = false;
 
   const car = <HTMLDivElement>stopButton.parentElement.getElementsByClassName('car')[0];
   car.style.transform = 'translateX(0)';
+
   if (storage.drivingAnimation[id]) {
     window.cancelAnimationFrame(storage.drivingAnimation[id].id);
   }
 };
 
 export default function Listeners(): void {
-  document.body.addEventListener('click', (event) => {
+  document.body.addEventListener('click', (event: MouseEvent) => {
     if (event.target instanceof HTMLButtonElement) {
       if (event.target.classList.contains('garage-button')) {
         switchToGarageView();

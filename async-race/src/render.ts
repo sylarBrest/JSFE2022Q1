@@ -1,4 +1,9 @@
-import { Car, SortingBy, Winner } from './types';
+import {
+  Car,
+  Initial,
+  SortingBy,
+  Winner,
+} from './types';
 import storage from './storage';
 import { MAX_ITEMS_PER_PAGE_WINNERS } from './constants';
 
@@ -24,8 +29,8 @@ function renderViewSwitch(): string {
 function renderCreateCarContainer(): string {
   return `
     <div class="create-car">
-      <input class="text-input create-car-text" type="text">
-      <input class="color-input create-car-color" type="color" value="#ffffff">
+      <input class="text-input create-car-text" aria-label="Name of new car" type="text">
+      <input class="color-input create-car-color" aria-label="Color of new car" type="color" value="${Initial.color}">
       <button class="button create-car-button">Create</button>
     </div>
   `;
@@ -34,8 +39,8 @@ function renderCreateCarContainer(): string {
 function renderUpdateCarContainer(): string {
   return `
     <div class="update-car">
-      <input class="text-input update-car-text" type="text" disabled>
-      <input class="color-input update-car-color" type="color" value="#ffffff" disabled>
+      <input class="text-input update-car-text" aria-label="Name of selected car" type="text" disabled>
+      <input class="color-input update-car-color" aria-label="Color of selected car" type="color" value="${Initial.color}" disabled>
       <button class="button update-car-button" disabled>Update</button>
     </div>
   `;
@@ -77,8 +82,8 @@ function renderCarPath(car: Car): string {
         <p class="car-name" data-car-name-id="${car.id}">${car.name}</p>
       </div>
       <div class="path">
-        <button class="button start-button" data-car-start-id="${car.id}">A</button>
-        <button class="button stop-button" data-car-stop-id="${car.id}" disabled>B</button>
+        <button class="button start-button" data-car-start-id="${car.id}">➤</button>
+        <button class="button stop-button" data-car-stop-id="${car.id}" disabled>↺</button>
         <div class="car" data-car-id="${car.id}">
           ${drawCar(car.color)}
         </div>
@@ -91,9 +96,11 @@ function renderCarPath(car: Car): string {
 }
 
 function renderWinnerLine(winner: Winner, index: number): string {
+  const winnerNumber = (storage.winnersPage - 1) * MAX_ITEMS_PER_PAGE_WINNERS + index + 1;
+
   return `
     <tr class="winner-line">
-      <td class="td-number">${(storage.winnersPage - 1) * MAX_ITEMS_PER_PAGE_WINNERS + index + 1}</td>
+      <td class="td-number">${winnerNumber}</td>
       <td class="td-car">${drawCar(winner.car.color)}</td>
       <td class="td-name">${winner.car.name}</td>
       <td class="td-wins">${winner.wins}</td>
@@ -128,6 +135,14 @@ export function renderGarage(): string {
 }
 
 export function renderWinners(): string {
+  const styleSortByWins = storage.sortBy === SortingBy.wins ? storage.sortOrder.toLowerCase() : '';
+  const styleSortByTime = storage.sortBy === SortingBy.time ? storage.sortOrder.toLowerCase() : '';
+  const winnersLines = storage.winners.reduce((
+    lines: string,
+    winner: Winner,
+    index: number,
+  ) => lines + renderWinnerLine(winner, index), '');
+
   return `
     <h2 class="title">Winners (${storage.winnersLength})</h2>
     <h3 class="page">Page #${storage.winnersPage}</h3>
@@ -136,10 +151,10 @@ export function renderWinners(): string {
         <th class="head-cell">Number</th>
         <th class="head-cell">Car</th>
         <th class="head-cell name">Name</th>
-        <th class="head-cell sort wins-sort ${storage.sortBy === SortingBy.wins ? storage.sortOrder.toLowerCase() : ''}">Wins</th>
-        <th class="head-cell sort time-sort ${storage.sortBy === SortingBy.time ? storage.sortOrder.toLowerCase() : ''}">Best time</th>
+        <th class="head-cell sort wins-sort ${styleSortByWins}">Wins</th>
+        <th class="head-cell sort time-sort ${styleSortByTime}">Best time</th>
       </tr>
-      ${storage.winners.reduce((lines: string, winner: Winner, index: number) => lines + renderWinnerLine(winner, index), '')}
+      ${winnersLines}
     </table>
   `;
 }

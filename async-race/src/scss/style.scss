@@ -166,13 +166,16 @@ body {
               color: red;
             }
 
-            .car-image,
-            .finish-image {
-              height: 40px;
-              width: auto;
+            .car,
+            .finish {
+              .car-image,
+              .finish-image {
+                height: 40px;
+                width: auto;  
+              }
             }
 
-            .finish-image {
+            .finish {
               margin-left: auto;
               padding-right: 160px;
             }

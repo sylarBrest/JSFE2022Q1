@@ -208,6 +208,36 @@ const switchToWinnersView = async () => {
   winnersButton.disabled = true;
 };
 
+const carStarting = async (event: Event) => {
+  const startButton = <HTMLButtonElement>event.target;
+  const id = +startButton.dataset.carStartId;
+
+  startButton.disabled = true;
+  startButton.classList.toggle('enabling', true);
+
+  const { velocity, distance } = await Api.startEngine(id);
+  const time = Math.round(distance / velocity);
+
+  startButton.classList.toggle('enabling', false);
+  const stopButton = <HTMLButtonElement>startButton.parentElement.getElementsByClassName('stop-button')[0];
+  stopButton.disabled = false;
+
+  const car = <HTMLDivElement>startButton.parentElement.getElementsByClassName('car')[0];
+  const finish = <HTMLDivElement>startButton.parentElement.getElementsByClassName('finish')[0];
+
+  const htmlDistance = Math.floor(Utils.getDistanceToDrive(car, finish)) + 30;
+  const drivingAnimation = Utils.animation(car, htmlDistance, time);
+  console.log(time, htmlDistance);
+
+  const { success } = await Api.drive(id);
+
+  if (!success) {
+    window.cancelAnimationFrame(drivingAnimation.id);
+  }
+
+  return { success, id, time };
+};
+
 export default function Listeners() {
   document.body.addEventListener('click', (event) => {
     if (event.target instanceof HTMLButtonElement) {
@@ -228,6 +258,9 @@ export default function Listeners() {
       }
       if (event.target.classList.contains('generate-cars-button')) {
         generateCars();
+      }
+      if (event.target.classList.contains('start-button')) {
+        carStarting(event);
       }
       if (event.target.classList.contains('next-button')) {
         nextPage();

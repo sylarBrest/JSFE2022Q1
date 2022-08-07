@@ -8,6 +8,19 @@ export type Car = {
   name: string,
 };
 
+export type Engine = {
+  velocity: number,
+  distance: number,
+};
+
+export type Success = {
+  success: boolean,
+};
+
+export type State = {
+  [key: string]: number;
+};
+
 export type Winners = {
   id?: number,
   wins: number,

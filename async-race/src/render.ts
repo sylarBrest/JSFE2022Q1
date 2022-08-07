@@ -79,8 +79,12 @@ function renderCarPath(car: Car): string {
       <div class="path">
         <button class="button start-button" data-car-start-id="${car.id}">A</button>
         <button class="button stop-button" data-car-stop-id="${car.id}" disabled>B</button>
-        ${drawCar(car.color)}
-        ${drawFinish()}
+        <div class="car" data-car-id="${car.id}">
+          ${drawCar(car.color)}
+        </div>
+        <div class="finish" data-finish-id="${car.id}">
+          ${drawFinish()}
+        </div>
       </div>
     </div>
   `;

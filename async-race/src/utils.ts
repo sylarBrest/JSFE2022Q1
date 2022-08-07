@@ -5,7 +5,7 @@ import {
   MAX_ITEMS_PER_PAGE_GARAGE,
   MAX_ITEMS_PER_PAGE_WINNERS,
 } from './constants';
-import { Car, Views } from './types';
+import { Car, State, Views } from './types';
 import storage from './storage';
 
 const getRandomCarName = () => {
@@ -63,3 +63,48 @@ export const nextButtonUpdateState = () => {
 export const getRandomCars = (count = MAX_CREATED_CARS): Car[] => new Array<Car>(count)
   .fill({ name: getRandomCarName(), color: getRandomCarColor() })
   .map((car) => ({ name: getRandomCarName(), color: getRandomCarColor() }) || car);
+
+const getElementCenter = (element: HTMLDivElement) => {
+  const {
+    top,
+    left,
+    width,
+    height,
+  } = element.getBoundingClientRect();
+
+  return {
+    x: left + width / 2,
+    y: top + height / 2,
+  };
+};
+
+export const getDistanceToDrive = (car: HTMLDivElement, flag: HTMLDivElement): number => {
+  const start = getElementCenter(car);
+  const finish = getElementCenter(flag);
+
+  return Math.hypot(start.x - finish.x, start.y - finish.y);
+};
+
+export const animation = (element: HTMLDivElement, distance: number, animationTime: number) => {
+  let start: number = null;
+  const state: State = {};
+  const car = element;
+
+  function step(timestamp: number) {
+    if (!start) {
+      start = timestamp;
+    }
+
+    const time: number = timestamp - start;
+    const passed: number = Math.round(time * (distance / animationTime));
+    car.style.transform = `translateX(${Math.min(passed, distance)}px)`;
+
+    if (passed < distance) {
+      state.id = window.requestAnimationFrame(step);
+    }
+  }
+
+  state.id = window.requestAnimationFrame(step);
+
+  return state;
+};

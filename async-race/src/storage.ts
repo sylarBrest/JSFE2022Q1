@@ -14,6 +14,7 @@ const storage: Storage = {
   winnersLength,
   sortBy: 'id',
   sortOrder: 'ASC',
+  drivingAnimation: {},
 };
 
 export default storage;

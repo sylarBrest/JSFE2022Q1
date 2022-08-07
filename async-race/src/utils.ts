@@ -1,32 +1,37 @@
 import {
   CAR_BRANDS,
   CAR_MODELS,
+  COLOR_SYMBOLS,
   MAX_CREATED_CARS,
   MAX_ITEMS_PER_PAGE_GARAGE,
   MAX_ITEMS_PER_PAGE_WINNERS,
 } from './constants';
-import { Car, State, Views } from './types';
+import {
+  Car,
+  Point,
+  State,
+  Views,
+} from './types';
 import storage from './storage';
 
-const getRandomCarName = () => {
+const getRandomCarName = (): string => {
   const brand = CAR_BRANDS[Math.floor(Math.random() * CAR_BRANDS.length)];
   const model = CAR_MODELS[Math.floor(Math.random() * CAR_MODELS.length)];
 
   return `${brand} ${model}`;
 };
 
-const getRandomCarColor = () => {
-  const symbols = '0123456789abcdef';
+const getRandomCarColor = (): string => {
   let color = '#';
 
   for (let index = 0; index < 6; index += 1) {
-    color += symbols[Math.floor(Math.random() * symbols.length)];
+    color += COLOR_SYMBOLS[Math.floor(Math.random() * COLOR_SYMBOLS.length)];
   }
 
   return color;
 };
 
-export const prevButtonUpdateState = () => {
+export const prevButtonUpdateState = ():void => {
   const prevButton = <HTMLButtonElement>document.getElementsByClassName('prev-button')[0];
 
   switch (storage.view) {
@@ -41,7 +46,7 @@ export const prevButtonUpdateState = () => {
   }
 };
 
-export const nextButtonUpdateState = () => {
+export const nextButtonUpdateState = (): void => {
   const nextButton = <HTMLButtonElement>document.getElementsByClassName('next-button')[0];
 
   switch (storage.view) {
@@ -64,7 +69,7 @@ export const getRandomCars = (count = MAX_CREATED_CARS): Car[] => new Array<Car>
   .fill({ name: getRandomCarName(), color: getRandomCarColor() })
   .map((car) => ({ name: getRandomCarName(), color: getRandomCarColor() }) || car);
 
-const getElementCenter = (element: HTMLDivElement) => {
+const getElementCenter = (element: HTMLDivElement): Point => {
   const {
     top,
     left,
@@ -79,16 +84,20 @@ const getElementCenter = (element: HTMLDivElement) => {
 };
 
 export const getDistanceToDrive = (car: HTMLDivElement, flag: HTMLDivElement): number => {
-  const start = getElementCenter(car);
-  const finish = getElementCenter(flag);
+  const start: Point = getElementCenter(car);
+  const finish: Point = getElementCenter(flag);
 
   return Math.hypot(start.x - finish.x, start.y - finish.y);
 };
 
-export const animation = (element: HTMLDivElement, distance: number, animationTime: number) => {
+export const animateDriving = (
+  car: HTMLDivElement,
+  distance: number,
+  animationTime: number,
+): State => {
   let start: number = null;
   const state: State = {};
-  const car = element;
+  const raceCar: HTMLDivElement = car;
 
   function step(timestamp: number) {
     if (!start) {
@@ -97,7 +106,7 @@ export const animation = (element: HTMLDivElement, distance: number, animationTi
 
     const time: number = timestamp - start;
     const passed: number = Math.round(time * (distance / animationTime));
-    car.style.transform = `translateX(${Math.min(passed, distance)}px)`;
+    raceCar.style.transform = `translateX(${Math.min(passed, distance)}px)`;
 
     if (passed < distance) {
       state.id = window.requestAnimationFrame(step);

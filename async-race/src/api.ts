@@ -7,12 +7,14 @@ import {
 } from './constants';
 import {
   Car,
+  Cars,
   Engine,
   Success,
+  Winner,
   Winners,
 } from './types';
 
-export const getAllCars = async (pageNumber = 1): Promise<{ cars: Car[], length: number }> => {
+export const getAllCars = async (pageNumber = 1): Promise<Cars> => {
   const res: Response = await fetch(`${BASE_URL_GARAGE}?_page=${pageNumber}&_limit=${MAX_ITEMS_PER_PAGE_GARAGE}`);
   const data: Car[] = await res.json();
 
@@ -75,21 +77,28 @@ export const startEngine = async (id: number): Promise<Engine> => {
   return data;
 };
 
-export const drive = async (id: number) => {
-  const res = await fetch(`${BASE_URL_ENGINE}?id=${id}&status=drive`, { method: 'PATCH' }).catch();
+export const stopEngine = async (id: number): Promise<Engine> => {
+  const res: Response = await fetch(`${BASE_URL_ENGINE}?id=${id}&status=stopped`, { method: 'PATCH' });
+  const data: Engine = await res.json();
+
+  return data;
+};
+
+export const drive = async (id: number): Promise<Success> => {
+  const res: Response = await fetch(`${BASE_URL_ENGINE}?id=${id}&status=drive`, { method: 'PATCH' }).catch();
   const data: Success = res.status !== 200 ? { success: false } : { ...(await res.json()) };
 
   return data;
 };
 
-export const getWinners = async (pageNumber = 1, sort = 'id', order = 'ASC') => {
+export const getWinners = async (pageNumber = 1, sort = 'id', order = 'ASC'): Promise<Winners> => {
   const res: Response = await fetch(
     `${BASE_URL_WINNERS}?_page=${pageNumber}&_limit=${MAX_ITEMS_PER_PAGE_WINNERS}&_sort=${sort}&_order=${order}`,
   );
-  const data: Winners[] = await res.json();
+  const data: Winner[] = await res.json();
 
   return {
-    winners: await Promise.all(data.map(async (winner) => ({
+    winners: await Promise.all(data.map(async (winner: Winner) => ({
       ...winner,
       car: await getCar(winner.id),
     }))),
@@ -97,9 +106,16 @@ export const getWinners = async (pageNumber = 1, sort = 'id', order = 'ASC') => 
   };
 };
 
-export const deleteWinner = async (id: number): Promise<Winners> => {
+export const getWinner = async (id: number): Promise<Winner> => {
+  const res: Response = await fetch(`${BASE_URL_WINNERS}/${id}`);
+  const data: Winner = await res.json();
+
+  return data;
+};
+
+export const deleteWinner = async (id: number): Promise<Winner> => {
   const res: Response = await fetch(`${BASE_URL_WINNERS}/${id}`, { method: 'DELETE' });
-  const data: Winners = await res.json();
+  const data: Winner = await res.json();
 
   return data;
 };

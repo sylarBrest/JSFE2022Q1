@@ -1,4 +1,4 @@
-import { Car, SortingBy, Winners } from './types';
+import { Car, SortingBy, Winner } from './types';
 import storage from './storage';
 import { MAX_ITEMS_PER_PAGE_WINNERS } from './constants';
 
@@ -90,7 +90,7 @@ function renderCarPath(car: Car): string {
   `;
 }
 
-function renderWinnerLine(winner: Winners, index: number): string {
+function renderWinnerLine(winner: Winner, index: number): string {
   return `
     <tr class="winner-line">
       <td class="td-number">${(storage.winnersPage - 1) * MAX_ITEMS_PER_PAGE_WINNERS + index + 1}</td>
@@ -139,7 +139,7 @@ export function renderWinners(): string {
         <th class="head-cell sort wins-sort ${storage.sortBy === SortingBy.wins ? storage.sortOrder.toLowerCase() : ''}">Wins</th>
         <th class="head-cell sort time-sort ${storage.sortBy === SortingBy.time ? storage.sortOrder.toLowerCase() : ''}">Best time</th>
       </tr>
-      ${storage.winners.reduce((lines: string, winner: Winners, index: number) => lines + renderWinnerLine(winner, index), '')}
+      ${storage.winners.reduce((lines: string, winner: Winner, index: number) => lines + renderWinnerLine(winner, index), '')}
     </table>
   `;
 }

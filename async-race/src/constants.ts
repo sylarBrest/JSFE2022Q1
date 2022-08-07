@@ -12,6 +12,10 @@ export const MAX_ITEMS_PER_PAGE_WINNERS = 10;
 
 export const MAX_CREATED_CARS = 100;
 
+export const FINISH_FLAG_WIDTH = 30;
+
+export const COLOR_SYMBOLS = '0123456789abcdef';
+
 export const CAR_BRANDS = [
   'Pagani',
   'Porsche',

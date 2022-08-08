@@ -1,4 +1,17 @@
 import {
+  Car,
+  Point,
+  State,
+  Views,
+  EmptyStringFn,
+  EmptyVoidFn,
+  CarArrayFn,
+  PointFn,
+  DistanceFn,
+  AnimationStateFn,
+  NumberVoidFn,
+} from './types';
+import {
   CAR_BRANDS,
   CAR_MODELS,
   COLOR_SYMBOLS,
@@ -6,22 +19,16 @@ import {
   MAX_ITEMS_PER_PAGE_GARAGE,
   MAX_ITEMS_PER_PAGE_WINNERS,
 } from './constants';
-import {
-  Car,
-  Point,
-  State,
-  Views,
-} from './types';
 import storage from './storage';
 
-const getRandomCarName = (): string => {
-  const brand = CAR_BRANDS[Math.floor(Math.random() * CAR_BRANDS.length)];
-  const model = CAR_MODELS[Math.floor(Math.random() * CAR_MODELS.length)];
+const getRandomCarName: EmptyStringFn = (): string => {
+  const brand: string = CAR_BRANDS[Math.floor(Math.random() * CAR_BRANDS.length)];
+  const model: string = CAR_MODELS[Math.floor(Math.random() * CAR_MODELS.length)];
 
   return `${brand} ${model}`;
 };
 
-const getRandomCarColor = (): string => {
+const getRandomCarColor: EmptyStringFn = (): string => {
   let color = '#';
 
   for (let index = 0; index < 6; index += 1) {
@@ -31,7 +38,7 @@ const getRandomCarColor = (): string => {
   return color;
 };
 
-export const prevButtonUpdateState = ():void => {
+export const prevButtonUpdateState: EmptyVoidFn = (): void => {
   const prevButton = <HTMLButtonElement>document.getElementsByClassName('prev-button')[0];
 
   switch (storage.view) {
@@ -46,7 +53,7 @@ export const prevButtonUpdateState = ():void => {
   }
 };
 
-export const nextButtonUpdateState = (): void => {
+export const nextButtonUpdateState: EmptyVoidFn = (): void => {
   const nextButton = <HTMLButtonElement>document.getElementsByClassName('next-button')[0];
 
   switch (storage.view) {
@@ -65,11 +72,13 @@ export const nextButtonUpdateState = (): void => {
   }
 };
 
-export const getRandomCars = (count = MAX_CREATED_CARS): Car[] => new Array<Car>(count)
+export const getRandomCars: CarArrayFn = (
+  count: number = MAX_CREATED_CARS,
+): Car[] => new Array<Car>(count)
   .fill({ name: getRandomCarName(), color: getRandomCarColor() })
-  .map((car) => ({ name: getRandomCarName(), color: getRandomCarColor() }) || car);
+  .map((car: Car) => ({ name: getRandomCarName(), color: getRandomCarColor() }) || car);
 
-const getElementCenter = (element: HTMLDivElement): Point => {
+const getElementCenter: PointFn = (element: HTMLDivElement): Point => {
   const {
     top,
     left,
@@ -83,14 +92,17 @@ const getElementCenter = (element: HTMLDivElement): Point => {
   };
 };
 
-export const getDistanceToDrive = (car: HTMLDivElement, flag: HTMLDivElement): number => {
+export const getDistanceToDrive: DistanceFn = (
+  car: HTMLDivElement,
+  flag: HTMLDivElement,
+): number => {
   const start: Point = getElementCenter(car);
   const finish: Point = getElementCenter(flag);
 
   return Math.hypot(start.x - finish.x, start.y - finish.y);
 };
 
-export const animateDriving = (
+export const animateDriving: AnimationStateFn = (
   car: HTMLDivElement,
   distance: number,
   animationTime: number,
@@ -99,7 +111,7 @@ export const animateDriving = (
   const state: State = {};
   const raceCar: HTMLDivElement = car;
 
-  function step(timestamp: number) {
+  const step: NumberVoidFn = (timestamp: number) => {
     if (!start) {
       start = timestamp;
     }
@@ -111,7 +123,7 @@ export const animateDriving = (
     if (passed < distance) {
       state.id = window.requestAnimationFrame(step);
     }
-  }
+  };
 
   state.id = window.requestAnimationFrame(step);
 

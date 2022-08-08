@@ -112,7 +112,9 @@ export type GetWinnersFn = (
 
 export type GetStatusFn = (id: number) => Promise<number>;
 
-export type RenderFn = () => string;
+export type EmptyStringFn = () => string;
+
+export type EmptyVoidFn = () => void;
 
 export type DrawFn = (color: string) => string;
 
@@ -121,3 +123,17 @@ export type RenderCarFn = (car: Car) => string;
 export type RenderWinnerFn = (winner: WinnerCar, index: number) => string;
 
 export type EmptyPromiseVoidFn = () => Promise<void>;
+
+export type CarArrayFn = (count?: number) => Car[];
+
+export type PointFn = (element: HTMLDivElement) => Point;
+
+export type DistanceFn = (car: HTMLDivElement, flag: HTMLDivElement) => number;
+
+export type AnimationStateFn = (
+  car: HTMLDivElement,
+  distance: number,
+  animationTime: number,
+) => State;
+
+export type NumberVoidFn = (timestamp: number) => void;

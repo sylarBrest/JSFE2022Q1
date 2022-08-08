@@ -100,7 +100,7 @@ export type WinnerResult = {
 
 export type SaveFn<T> = (element: T) => Promise<T>;
 
-export type GetOrDeleteFn<T, U> = (id: T) => Promise<U>;
+export type SpecifiedPromiseFn<T, U> = (param: T) => Promise<U>;
 
 export type GetCarsFn = (page?: number) => Promise<Cars>;
 
@@ -137,3 +137,8 @@ export type AnimationStateFn = (
 ) => State;
 
 export type NumberVoidFn = (timestamp: number) => void;
+
+export type PromisingPromiseFn = (
+  promises: Promise<RaceResult>[],
+  indexes: number[],
+) => Promise<WinnerResult>;

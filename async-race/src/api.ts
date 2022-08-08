@@ -6,7 +6,7 @@ import {
   Winner,
   Winners,
   SaveFn,
-  GetOrDeleteFn,
+  SpecifiedPromiseFn,
   GetCarsFn,
   GetWinnersFn,
   GetStatusFn,
@@ -30,7 +30,7 @@ export const getAllCars: GetCarsFn = async (pageNumber = 1): Promise<Cars> => {
   };
 };
 
-export const getCar: GetOrDeleteFn<number, Car> = async (id: number): Promise<Car> => {
+export const getCar: SpecifiedPromiseFn<number, Car> = async (id: number): Promise<Car> => {
   const res: Response = await fetch(`${BASE_URL_GARAGE}/${id}`);
   const data: Car = await res.json();
 
@@ -69,7 +69,7 @@ export const updateCar: SaveFn<Car> = async (car: Car): Promise<Car> => {
   return data;
 };
 
-export const deleteCar: GetOrDeleteFn<number, Car> = async (id: number): Promise<Car> => {
+export const deleteCar: SpecifiedPromiseFn<number, Car> = async (id: number): Promise<Car> => {
   const res: Response = await fetch(
     `${BASE_URL_GARAGE}/${id}`,
     { method: 'DELETE' },
@@ -79,7 +79,9 @@ export const deleteCar: GetOrDeleteFn<number, Car> = async (id: number): Promise
   return data;
 };
 
-export const startEngine: GetOrDeleteFn<number, Engine> = async (id: number): Promise<Engine> => {
+export const startEngine: SpecifiedPromiseFn<number, Engine> = async (
+  id: number,
+): Promise<Engine> => {
   const res: Response = await fetch(
     `${BASE_URL_ENGINE}?id=${id}&status=started`,
     { method: 'PATCH' },
@@ -89,7 +91,9 @@ export const startEngine: GetOrDeleteFn<number, Engine> = async (id: number): Pr
   return data;
 };
 
-export const stopEngine: GetOrDeleteFn<number, Engine> = async (id: number): Promise<Engine> => {
+export const stopEngine: SpecifiedPromiseFn<number, Engine> = async (
+  id: number,
+): Promise<Engine> => {
   const res: Response = await fetch(
     `${BASE_URL_ENGINE}?id=${id}&status=stopped`,
     { method: 'PATCH' },
@@ -99,7 +103,7 @@ export const stopEngine: GetOrDeleteFn<number, Engine> = async (id: number): Pro
   return data;
 };
 
-export const drive: GetOrDeleteFn<number, Success> = async (id: number): Promise<Success> => {
+export const drive: SpecifiedPromiseFn<number, Success> = async (id: number): Promise<Success> => {
   const res: Response = await fetch(
     `${BASE_URL_ENGINE}?id=${id}&status=drive`,
     { method: 'PATCH' },
@@ -109,7 +113,11 @@ export const drive: GetOrDeleteFn<number, Success> = async (id: number): Promise
   return data;
 };
 
-export const getWinners: GetWinnersFn = async (pageNumber = 1, sort = 'id', order = 'ASC'): Promise<Winners> => {
+export const getWinners: GetWinnersFn = async (
+  pageNumber = 1,
+  sort = 'id',
+  order = 'ASC',
+): Promise<Winners> => {
   const url = `${BASE_URL_WINNERS}?_page=${pageNumber}&_limit=${MAX_ITEMS_PER_PAGE_WINNERS}&_sort=${sort}&_order=${order}`;
   const res: Response = await fetch(url);
   const data: Winner[] = await res.json();
@@ -123,7 +131,9 @@ export const getWinners: GetWinnersFn = async (pageNumber = 1, sort = 'id', orde
   };
 };
 
-export const getWinner: GetOrDeleteFn<number, Winner> = async (id: number): Promise<Winner> => {
+export const getWinner: SpecifiedPromiseFn<number, Winner> = async (
+  id: number,
+): Promise<Winner> => {
   const res: Response = await fetch(`${BASE_URL_WINNERS}/${id}`);
   const data: Winner = await res.json();
 
@@ -168,7 +178,9 @@ export const updateWinner: SaveFn<Winner> = async (winner: Winner): Promise<Winn
   return data;
 };
 
-export const deleteWinner: GetOrDeleteFn<number, Winner> = async (id: number): Promise<Winner> => {
+export const deleteWinner: SpecifiedPromiseFn<number, Winner> = async (
+  id: number,
+): Promise<Winner> => {
   const res: Response = await fetch(
     `${BASE_URL_WINNERS}/${id}`,
     { method: 'DELETE' },

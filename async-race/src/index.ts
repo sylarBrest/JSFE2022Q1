@@ -1,7 +1,7 @@
 import * as Render from './render';
 import * as API from './api';
 import * as Utils from './utils';
-import Listeners from './ui';
+import listeners from './ui';
 import './self-check';
 
 import './scss/style.scss';
@@ -18,4 +18,4 @@ Render.renderMain();
 Utils.prevButtonUpdateState();
 Utils.nextButtonUpdateState();
 
-Listeners();
+listeners();

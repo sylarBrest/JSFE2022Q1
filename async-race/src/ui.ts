@@ -1,7 +1,6 @@
 import * as Api from './api';
 import * as Utils from './utils';
 import * as Render from './render';
-import storage from './storage';
 import {
   Car,
   Initial,
@@ -12,12 +11,16 @@ import {
   Views,
   Winner,
   WinnerResult,
+  EmptyPromiseVoidFn,
+  SpecifiedPromiseFn,
+  PromisingPromiseFn,
 } from './types';
 import { FINISH_FLAG_WIDTH } from './constants';
+import storage from './storage';
 
 let selectedCar: Car = null;
 
-const updateGarageView = async () => {
+const updateGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
   const { cars, length } = await Api.getAllCars(storage.garagePage);
 
   storage.garage = cars;
@@ -27,7 +30,7 @@ const updateGarageView = async () => {
   Utils.nextButtonUpdateState();
 };
 
-const updateWinnersView = async () => {
+const updateWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
   const { winners, length } = await Api.getWinners(
     storage.winnersPage,
     storage.sortBy,
@@ -41,7 +44,7 @@ const updateWinnersView = async () => {
   Utils.nextButtonUpdateState();
 };
 
-const addNewCar = async () => {
+const addNewCar: EmptyPromiseVoidFn = async (): Promise<void> => {
   const carNameInput = <HTMLInputElement>document.getElementsByClassName('create-car-text')[0];
   const carColorInput = <HTMLInputElement>document.getElementsByClassName('create-car-color')[0];
 
@@ -54,7 +57,7 @@ const addNewCar = async () => {
   carColorInput.value = Initial.color;
 };
 
-const updateSelectedCar = async (id: number) => {
+const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
   selectedCar = await Api.getCar(id);
 
   const carNameInput = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
@@ -89,7 +92,7 @@ const updateSelectedCar = async (id: number) => {
   });
 };
 
-const removeSelectedCar = async (id: number) => {
+const removeSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
   await Api.deleteCar(id);
   await Api.deleteWinner(id);
   await updateGarageView();
@@ -98,14 +101,14 @@ const removeSelectedCar = async (id: number) => {
   document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 };
 
-const generateCars = async () => {
+const generateCars: EmptyPromiseVoidFn = async (): Promise<void> => {
   await Promise.all(Utils.getRandomCars().map((car: Car) => Api.createCar(car)));
   await updateGarageView();
 
   document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 };
 
-const nextPage = async () => {
+const nextPage: EmptyPromiseVoidFn = async (): Promise<void> => {
   switch (storage.view) {
     case Views.garage: {
       storage.garagePage += 1;
@@ -124,7 +127,7 @@ const nextPage = async () => {
   }
 };
 
-const prevPage = async () => {
+const prevPage: EmptyPromiseVoidFn = async (): Promise<void> => {
   switch (storage.view) {
     case Views.garage: {
       storage.garagePage -= 1;
@@ -143,8 +146,8 @@ const prevPage = async () => {
   }
 };
 
-const sortWinners = async (sortBy: SortBy) => {
-  const prevSortBy = storage.sortBy;
+const sortWinners: SpecifiedPromiseFn<SortBy, void> = async (sortBy: SortBy): Promise<void> => {
+  const prevSortBy: SortBy = storage.sortBy;
   storage.sortBy = sortBy;
 
   switch (storage.sortBy) {
@@ -166,13 +169,13 @@ const sortWinners = async (sortBy: SortBy) => {
   document.getElementsByClassName('winners')[0].innerHTML = Render.renderWinners();
 };
 
-const switchToGarageView = async () => {
+const switchToGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
   const winnersButton = <HTMLButtonElement>document.getElementsByClassName('winners-button')[0];
   winnersButton.disabled = false;
 
   storage.view = Views.garage;
 
-  const currentView = document.getElementsByClassName('winners-view')[0];
+  const currentView = <HTMLDivElement>document.getElementsByClassName('winners-view')[0];
 
   if (currentView) {
     currentView.remove();
@@ -186,7 +189,7 @@ const switchToGarageView = async () => {
   garageButton.disabled = true;
 };
 
-const switchToWinnersView = async () => {
+const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
   await updateWinnersView();
 
   const garageButton = <HTMLButtonElement>document.getElementsByClassName('garage-button')[0];
@@ -208,10 +211,12 @@ const switchToWinnersView = async () => {
   winnersButton.disabled = true;
 };
 
-const carStarting = async (id: number): Promise<RaceResult> => {
+const carStarting: SpecifiedPromiseFn<number, RaceResult> = async (
+  id: number,
+): Promise<RaceResult> => {
   const startButton = Array.from(
     <HTMLCollectionOf<HTMLButtonElement>>document.getElementsByClassName('start-button'),
-  ).find((button) => +button.dataset.carStartId === id);
+  ).find((button: HTMLButtonElement) => +button.dataset.carStartId === id);
 
   startButton.disabled = true;
   startButton.classList.add('working');
@@ -226,7 +231,8 @@ const carStarting = async (id: number): Promise<RaceResult> => {
   const car = <HTMLDivElement>startButton.parentElement.getElementsByClassName('car')[0];
   const finish = <HTMLDivElement>startButton.parentElement.getElementsByClassName('finish')[0];
 
-  const screenDistance = Math.floor(Utils.getDistanceToDrive(car, finish)) + FINISH_FLAG_WIDTH;
+  const screenDistance: number = Math.floor(Utils.getDistanceToDrive(car, finish))
+    + FINISH_FLAG_WIDTH;
   storage.drivingAnimation[id] = Utils.animateDriving(car, screenDistance, time);
 
   const { success: finished } = await Api.drive(id);
@@ -238,7 +244,7 @@ const carStarting = async (id: number): Promise<RaceResult> => {
   return { finished, id, time };
 };
 
-const carStopping = async (id: number) => {
+const carStopping: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
   const stopButton = Array.from(
     <HTMLCollectionOf<HTMLButtonElement>>document.getElementsByClassName('stop-button'),
   ).find((button: HTMLButtonElement) => +button.dataset.carStopId === id);
@@ -261,7 +267,7 @@ const carStopping = async (id: number) => {
   }
 };
 
-const raceAll = async (
+const raceAll: PromisingPromiseFn = async (
   promises: Promise<RaceResult>[],
   indexes: number[],
 ): Promise<WinnerResult> => {
@@ -269,11 +275,11 @@ const raceAll = async (
 
   if (!finished) {
     const failedIndex: number = indexes.findIndex((index: number) => index === id);
-    const restPromises = [
+    const restPromises: Promise<RaceResult>[] = [
       ...promises.slice(0, failedIndex),
       ...promises.slice(failedIndex + 1, promises.length),
     ];
-    const restIndexes = [
+    const restIndexes: number[] = [
       ...indexes.slice(0, failedIndex),
       ...indexes.slice(failedIndex + 1, indexes.length),
     ];
@@ -287,7 +293,9 @@ const raceAll = async (
   };
 };
 
-const saveWinner = async (winner: WinnerResult) => {
+const saveWinner: SpecifiedPromiseFn<WinnerResult, void> = async (
+  winner: WinnerResult,
+): Promise<void> => {
   const winnerStatus: number = await Api.getWinnerStatus(winner.id);
   if (winnerStatus === 404) {
     await Api.createWinner({ id: winner.id, wins: 1, time: winner.time });
@@ -301,14 +309,16 @@ const saveWinner = async (winner: WinnerResult) => {
   }
 };
 
-const racing = async (action: (id: number) => Promise<RaceResult>): Promise<WinnerResult> => {
+const racing: SpecifiedPromiseFn<SpecifiedPromiseFn<number, RaceResult>, WinnerResult> = async (
+  action: SpecifiedPromiseFn<number, RaceResult>,
+): Promise<WinnerResult> => {
   const raceButton = <HTMLButtonElement>document.getElementsByClassName('race-button')[0];
   raceButton.disabled = true;
 
   const promises: Promise<RaceResult>[] = storage.garage.map(({ id }) => action(id));
   const winner: WinnerResult = await raceAll(promises, storage.garage.map((car: Car) => car.id));
 
-  const winnerMessage = document.getElementsByClassName('winner-message')[0];
+  const winnerMessage = <HTMLDivElement>document.getElementsByClassName('winner-message')[0];
   winnerMessage.innerHTML = `${winner.name} won in ${winner.time} s`;
 
   saveWinner(winner);
@@ -319,8 +329,8 @@ const racing = async (action: (id: number) => Promise<RaceResult>): Promise<Winn
   return winner;
 };
 
-const resetting = async (event: Event) => {
-  const resetButton = <HTMLButtonElement>event.target;
+const resetting: EmptyPromiseVoidFn = async (): Promise<void> => {
+  const resetButton = <HTMLButtonElement>document.getElementsByClassName('reset-button')[0];
   resetButton.disabled = true;
 
   storage.garage.map(({ id }) => carStopping(id));
@@ -332,7 +342,7 @@ const resetting = async (event: Event) => {
   raceButton.disabled = false;
 };
 
-export default function Listeners(): void {
+export default function listeners(): void {
   document.body.addEventListener('click', (event: MouseEvent) => {
     if (event.target instanceof HTMLButtonElement) {
       if (event.target.classList.contains('garage-button')) {
@@ -354,7 +364,7 @@ export default function Listeners(): void {
         racing(carStarting);
       }
       if (event.target.classList.contains('reset-button')) {
-        resetting(event);
+        resetting();
       }
       if (event.target.classList.contains('generate-cars-button')) {
         generateCars();

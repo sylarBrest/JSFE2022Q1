@@ -97,3 +97,17 @@ export type WinnerResult = {
   color: string,
   time: number,
 };
+
+export type SaveFn<T> = (element: T) => Promise<T>;
+
+export type GetOrDeleteFn<T, U> = (id: T) => Promise<U>;
+
+export type GetCarsFn = (page?: number) => Promise<Cars>;
+
+export type GetWinnersFn = (
+  page?: number,
+  sortBy?: SortBy,
+  sortOrder?: SortOrder,
+) => Promise<Winners>;
+
+export type GetStatusFn = (id: number) => Promise<number>;

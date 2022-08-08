@@ -1,10 +1,10 @@
-export const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_URL = 'http://127.0.0.1:3000';
 
-export const BASE_URL_GARAGE = 'http://127.0.0.1:3000/garage';
+export const BASE_URL_GARAGE = `${BASE_URL}/garage`;
 
-export const BASE_URL_ENGINE = 'http://127.0.0.1:3000/engine';
+export const BASE_URL_ENGINE = `${BASE_URL}/engine`;
 
-export const BASE_URL_WINNERS = 'http://127.0.0.1:3000/winners';
+export const BASE_URL_WINNERS = `${BASE_URL}/winners`;
 
 export const MAX_ITEMS_PER_PAGE_GARAGE = 7;
 
@@ -16,7 +16,7 @@ export const FINISH_FLAG_WIDTH = 30;
 
 export const COLOR_SYMBOLS = '0123456789abcdef';
 
-export const CAR_BRANDS = [
+export const CAR_BRANDS: readonly string[] = [
   'Pagani',
   'Porsche',
   'Bugatti',
@@ -29,7 +29,7 @@ export const CAR_BRANDS = [
   'Mercedes',
 ];
 
-export const CAR_MODELS = [
+export const CAR_MODELS: readonly string[] = [
   'Esprit',
   'Furai',
   'Gallardo',

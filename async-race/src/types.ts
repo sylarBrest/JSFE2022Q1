@@ -111,3 +111,13 @@ export type GetWinnersFn = (
 ) => Promise<Winners>;
 
 export type GetStatusFn = (id: number) => Promise<number>;
+
+export type RenderFn = () => string;
+
+export type DrawFn = (color: string) => string;
+
+export type RenderCarFn = (car: Car) => string;
+
+export type RenderWinnerFn = (winner: WinnerCar, index: number) => string;
+
+export type EmptyPromiseVoidFn = () => Promise<void>;

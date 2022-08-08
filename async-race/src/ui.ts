@@ -10,6 +10,7 @@ import {
   SortingBy,
   SortingOrder,
   Views,
+  Winner,
   WinnerResult,
 } from './types';
 import { FINISH_FLAG_WIDTH } from './constants';
@@ -286,16 +287,49 @@ const raceAll = async (
   };
 };
 
+const saveWinner = async (winner: WinnerResult) => {
+  const winnerStatus: number = await Api.getWinnerStatus(winner.id);
+  if (winnerStatus === 404) {
+    await Api.createWinner({ id: winner.id, wins: 1, time: winner.time });
+  } else {
+    const winnerInfo: Winner = await Api.getWinner(winner.id);
+    await Api.updateWinner({
+      id: winner.id,
+      wins: winnerInfo.wins + 1,
+      time: winner.time < winnerInfo.time ? winner.time : winnerInfo.time,
+    });
+  }
+};
+
 const racing = async (action: (id: number) => Promise<RaceResult>): Promise<WinnerResult> => {
+  const raceButton = <HTMLButtonElement>document.getElementsByClassName('race-button')[0];
+  raceButton.disabled = true;
+
   const promises: Promise<RaceResult>[] = storage.garage.map(({ id }) => action(id));
   const winner: WinnerResult = await raceAll(promises, storage.garage.map((car: Car) => car.id));
 
-  document.getElementsByClassName('controls')[0].insertAdjacentHTML(
-    'afterend',
-    Render.renderWinnerMessage(winner.name, winner.time),
-  );
+  const winnerMessage = document.getElementsByClassName('winner-message')[0];
+  winnerMessage.innerHTML = `${winner.name} won in ${winner.time} s`;
+
+  saveWinner(winner);
+
+  const resetButton = <HTMLButtonElement>document.getElementsByClassName('reset-button')[0];
+  resetButton.disabled = false;
 
   return winner;
+};
+
+const resetting = async (event: Event) => {
+  const resetButton = <HTMLButtonElement>event.target;
+  resetButton.disabled = true;
+
+  storage.garage.map(({ id }) => carStopping(id));
+
+  const winnerMessage = document.getElementsByClassName('winner-message')[0];
+  winnerMessage.innerHTML = '';
+
+  const raceButton = <HTMLButtonElement>document.getElementsByClassName('race-button')[0];
+  raceButton.disabled = false;
 };
 
 export default function Listeners(): void {
@@ -318,6 +352,9 @@ export default function Listeners(): void {
       }
       if (event.target.classList.contains('race-button')) {
         racing(carStarting);
+      }
+      if (event.target.classList.contains('reset-button')) {
+        resetting(event);
       }
       if (event.target.classList.contains('generate-cars-button')) {
         generateCars();

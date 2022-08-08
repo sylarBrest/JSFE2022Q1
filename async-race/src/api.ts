@@ -11,6 +11,7 @@ import {
   Engine,
   Success,
   Winner,
+  WinnerCar,
   Winners,
 } from './types';
 
@@ -95,7 +96,7 @@ export const getWinners = async (pageNumber = 1, sort = 'id', order = 'ASC'): Pr
   const res: Response = await fetch(
     `${BASE_URL_WINNERS}?_page=${pageNumber}&_limit=${MAX_ITEMS_PER_PAGE_WINNERS}&_sort=${sort}&_order=${order}`,
   );
-  const data: Winner[] = await res.json();
+  const data: WinnerCar[] = await res.json();
 
   return {
     winners: await Promise.all(data.map(async (winner: Winner) => ({
@@ -108,6 +109,38 @@ export const getWinners = async (pageNumber = 1, sort = 'id', order = 'ASC'): Pr
 
 export const getWinner = async (id: number): Promise<Winner> => {
   const res: Response = await fetch(`${BASE_URL_WINNERS}/${id}`);
+  const data: Winner = await res.json();
+
+  return data;
+};
+
+export const getWinnerStatus = async (id: number): Promise<number> => {
+  const res: Response = await fetch(`${BASE_URL_WINNERS}/${id}`);
+
+  return res.status;
+};
+
+export const createWinner = async (winner: Winner): Promise<Winner> => {
+  const res: Response = await fetch(BASE_URL_WINNERS, {
+    method: 'POST',
+    body: JSON.stringify(winner),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const data: Winner = await res.json();
+
+  return data;
+};
+
+export const updateWinner = async (winner: Winner): Promise<Winner> => {
+  const res: Response = await fetch(`${BASE_URL_WINNERS}/${winner.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(winner),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
   const data: Winner = await res.json();
 
   return data;

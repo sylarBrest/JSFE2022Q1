@@ -2,7 +2,7 @@ import {
   Car,
   Initial,
   SortingBy,
-  Winner,
+  WinnerCar,
 } from './types';
 import storage from './storage';
 import { MAX_ITEMS_PER_PAGE_WINNERS } from './constants';
@@ -36,9 +36,9 @@ function renderCreateCarContainer(): string {
   `;
 }
 
-export function renderWinnerMessage(winnerName: string, winnerTime: number): string {
+function renderWinnerMessage(): string {
   return `
-    <p class="winner-message">${winnerName} won in ${winnerTime} s</p>
+    <p class="winner-message"></p>
   `;
 }
 
@@ -56,7 +56,7 @@ function renderControlButtonsContainer(): string {
   return `
     <div class="control-buttons">
       <button class="button race-button">Race</button>
-      <button class="button reset-button">Reset</button>
+      <button class="button reset-button" disabled>Reset</button>
       <button class="button generate-cars-button">Generate cars</button>
     </div>
   `;
@@ -101,7 +101,7 @@ function renderCarPath(car: Car): string {
   `;
 }
 
-function renderWinnerLine(winner: Winner, index: number): string {
+function renderWinnerLine(winner: WinnerCar, index: number): string {
   const winnerNumber = (storage.winnersPage - 1) * MAX_ITEMS_PER_PAGE_WINNERS + index + 1;
 
   return `
@@ -145,7 +145,7 @@ export function renderWinners(): string {
   const styleSortByTime = storage.sortBy === SortingBy.time ? storage.sortOrder.toLowerCase() : '';
   const winnersLines = storage.winners.reduce((
     lines: string,
-    winner: Winner,
+    winner: WinnerCar,
     index: number,
   ) => lines + renderWinnerLine(winner, index), '');
 
@@ -174,6 +174,7 @@ export function renderGarageView(): string {
           ${renderUpdateCarContainer()}
           ${renderControlButtonsContainer()}
         </div>
+        ${renderWinnerMessage()}
       </div>
       <div class="garage">
         ${renderGarage()}

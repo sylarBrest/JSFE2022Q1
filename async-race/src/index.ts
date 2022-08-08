@@ -1,11 +1,9 @@
 import * as Render from './render';
 import * as API from './api';
 import * as Utils from './utils';
-
-import './scss/style.scss';
 import Listeners from './ui';
 
-console.log('Start Async-race task');
+import './scss/style.scss';
 
 API.getAllCars();
 

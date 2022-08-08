@@ -2,6 +2,8 @@ export type SortBy = 'id' | 'wins' | 'time';
 
 export type SortOrder = 'ASC' | 'DESC';
 
+export type View = 'Garage' | 'Winners';
+
 export enum SortingBy {
   id = 'id',
   wins = 'wins',
@@ -37,7 +39,13 @@ export type Engine = {
 export type Winner = {
   id?: number,
   wins: number,
-  time: string,
+  time: number,
+};
+
+export type WinnerCar = {
+  id?: number,
+  wins: number,
+  time: number,
   car: Car,
 };
 
@@ -55,12 +63,12 @@ export type Point = {
 };
 
 export type Storage = {
-  view: string,
+  view: View,
   garagePage: number,
   garage: Car[],
   garageLength: number,
   winnersPage: number,
-  winners: Winner[],
+  winners: WinnerCar[],
   winnersLength: number,
   sortBy: SortBy,
   sortOrder: SortOrder,
@@ -73,7 +81,7 @@ export type Cars = {
 };
 
 export type Winners = {
-  winners: Winner[],
+  winners: WinnerCar[],
   length: number,
 };
 

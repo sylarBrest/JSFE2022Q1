@@ -19,6 +19,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "async-race/index.html",
+      favicon: "async-race/src/assets/svg/favicon.svg",
     }),
   ],
   module: {

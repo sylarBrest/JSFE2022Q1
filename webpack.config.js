@@ -9,6 +9,8 @@ const config = {
   entry: "./async-race/src/index.ts",
   output: {
     path: path.resolve(__dirname, "async-race/dist"),
+    filename: "script.js",
+    clean: true,
   },
   devServer: {
     open: true,

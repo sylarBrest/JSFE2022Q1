@@ -36,6 +36,12 @@ function renderCreateCarContainer(): string {
   `;
 }
 
+export function renderWinnerMessage(winnerName: string, winnerTime: number): string {
+  return `
+    <p class="winner-message">${winnerName} won in ${winnerTime} s</p>
+  `;
+}
+
 function renderUpdateCarContainer(): string {
   return `
     <div class="update-car">
@@ -162,10 +168,12 @@ export function renderWinners(): string {
 export function renderGarageView(): string {
   return `
     <section class="view garage-view">
-      <div class="controls">
-        ${renderCreateCarContainer()}
-        ${renderUpdateCarContainer()}
-        ${renderControlButtonsContainer()}
+      <div class="view-heading">  
+        <div class="controls">
+          ${renderCreateCarContainer()}
+          ${renderUpdateCarContainer()}
+          ${renderControlButtonsContainer()}
+        </div>
       </div>
       <div class="garage">
         ${renderGarage()}

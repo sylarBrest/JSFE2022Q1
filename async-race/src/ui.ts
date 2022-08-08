@@ -5,10 +5,12 @@ import storage from './storage';
 import {
   Car,
   Initial,
+  RaceResult,
   SortBy,
   SortingBy,
   SortingOrder,
   Views,
+  WinnerResult,
 } from './types';
 import { FINISH_FLAG_WIDTH } from './constants';
 
@@ -51,10 +53,8 @@ const addNewCar = async () => {
   carColorInput.value = Initial.color;
 };
 
-const updateSelectedCar = async (event: Event) => {
-  const selectButton = <HTMLButtonElement>event.target;
-
-  selectedCar = await Api.getCar(+selectButton.dataset.carSelectId);
+const updateSelectedCar = async (id: number) => {
+  selectedCar = await Api.getCar(id);
 
   const carNameInput = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
   carNameInput.disabled = false;
@@ -88,12 +88,9 @@ const updateSelectedCar = async (event: Event) => {
   });
 };
 
-const removeSelectedCar = async (event: Event) => {
-  const removeButton = <HTMLButtonElement>event.target;
-  const selectedCarID = +removeButton.dataset.carRemoveId;
-
-  await Api.deleteCar(selectedCarID);
-  await Api.deleteWinner(selectedCarID);
+const removeSelectedCar = async (id: number) => {
+  await Api.deleteCar(id);
+  await Api.deleteWinner(id);
   await updateGarageView();
   await updateWinnersView();
 
@@ -210,9 +207,10 @@ const switchToWinnersView = async () => {
   winnersButton.disabled = true;
 };
 
-const carStarting = async (event: Event) => {
-  const startButton = <HTMLButtonElement>event.target;
-  const id: number = +startButton.dataset.carStartId;
+const carStarting = async (id: number): Promise<RaceResult> => {
+  const startButton = Array.from(
+    <HTMLCollectionOf<HTMLButtonElement>>document.getElementsByClassName('start-button'),
+  ).find((button) => +button.dataset.carStartId === id);
 
   startButton.disabled = true;
   startButton.classList.add('working');
@@ -230,18 +228,19 @@ const carStarting = async (event: Event) => {
   const screenDistance = Math.floor(Utils.getDistanceToDrive(car, finish)) + FINISH_FLAG_WIDTH;
   storage.drivingAnimation[id] = Utils.animateDriving(car, screenDistance, time);
 
-  const { success } = await Api.drive(id);
+  const { success: finished } = await Api.drive(id);
 
-  if (!success) {
+  if (!finished) {
     window.cancelAnimationFrame(storage.drivingAnimation[id].id);
   }
 
-  return { success, id, time };
+  return { finished, id, time };
 };
 
-const carStopping = async (event: Event) => {
-  const stopButton = <HTMLButtonElement>event.target;
-  const id: number = +stopButton.dataset.carStopId;
+const carStopping = async (id: number) => {
+  const stopButton = Array.from(
+    <HTMLCollectionOf<HTMLButtonElement>>document.getElementsByClassName('stop-button'),
+  ).find((button: HTMLButtonElement) => +button.dataset.carStopId === id);
 
   stopButton.disabled = true;
   stopButton.classList.add('working');
@@ -261,6 +260,44 @@ const carStopping = async (event: Event) => {
   }
 };
 
+const raceAll = async (
+  promises: Promise<RaceResult>[],
+  indexes: number[],
+): Promise<WinnerResult> => {
+  const { finished, id, time } = await Promise.race(promises);
+
+  if (!finished) {
+    const failedIndex: number = indexes.findIndex((index: number) => index === id);
+    const restPromises = [
+      ...promises.slice(0, failedIndex),
+      ...promises.slice(failedIndex + 1, promises.length),
+    ];
+    const restIndexes = [
+      ...indexes.slice(0, failedIndex),
+      ...indexes.slice(failedIndex + 1, indexes.length),
+    ];
+
+    return raceAll(restPromises, restIndexes);
+  }
+
+  return {
+    ...storage.garage.find((car: Car) => car.id === id),
+    time: +(time / 1000).toFixed(2),
+  };
+};
+
+const racing = async (action: (id: number) => Promise<RaceResult>): Promise<WinnerResult> => {
+  const promises: Promise<RaceResult>[] = storage.garage.map(({ id }) => action(id));
+  const winner: WinnerResult = await raceAll(promises, storage.garage.map((car: Car) => car.id));
+
+  document.getElementsByClassName('controls')[0].insertAdjacentHTML(
+    'afterend',
+    Render.renderWinnerMessage(winner.name, winner.time),
+  );
+
+  return winner;
+};
+
 export default function Listeners(): void {
   document.body.addEventListener('click', (event: MouseEvent) => {
     if (event.target instanceof HTMLButtonElement) {
@@ -274,19 +311,22 @@ export default function Listeners(): void {
         addNewCar();
       }
       if (event.target.classList.contains('select-button')) {
-        updateSelectedCar(event);
+        updateSelectedCar(+event.target.dataset.carSelectId);
       }
       if (event.target.classList.contains('remove-button')) {
-        removeSelectedCar(event);
+        removeSelectedCar(+event.target.dataset.carRemoveId);
+      }
+      if (event.target.classList.contains('race-button')) {
+        racing(carStarting);
       }
       if (event.target.classList.contains('generate-cars-button')) {
         generateCars();
       }
       if (event.target.classList.contains('start-button')) {
-        carStarting(event);
+        carStarting(+event.target.dataset.carStartId);
       }
       if (event.target.classList.contains('stop-button')) {
-        carStopping(event);
+        carStopping(+event.target.dataset.carStopId);
       }
       if (event.target.classList.contains('next-button')) {
         nextPage();

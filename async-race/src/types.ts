@@ -76,3 +76,16 @@ export type Winners = {
   winners: Winner[],
   length: number,
 };
+
+export type RaceResult = {
+  finished: boolean,
+  id: number,
+  time: number,
+};
+
+export type WinnerResult = {
+  id?: number,
+  name: string,
+  color: string,
+  time: number,
+};

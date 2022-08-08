@@ -33,7 +33,7 @@ export const getCar = async (id: number): Promise<Car> => {
 
 export const createCar = async (car: Car): Promise<Car> => {
   const res: Response = await fetch(
-    `${BASE_URL_GARAGE}`,
+    BASE_URL_GARAGE,
     {
       method: 'POST',
       headers: {

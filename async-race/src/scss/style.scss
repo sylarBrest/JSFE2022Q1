@@ -83,47 +83,58 @@ body {
     gap: 20px;
     height: 100%;
 
-    .controls {
+    .view-heading {
       display: flex;
-      flex-direction: column;
-      gap: 5px;
-      width: 300px;
+      gap: 20px;
 
-      .create-car,
-      .update-car {
+      .controls {
         display: flex;
+        flex-direction: column;
         gap: 5px;
-
-        .text-input,
-        .color-input {
-          border: none;
-          border-radius: 3px;
-
-          &:disabled {
-            cursor: not-allowed;
+        width: 300px;
+  
+        .create-car,
+        .update-car {
+          display: flex;
+          gap: 5px;
+  
+          .text-input,
+          .color-input {
+            border: none;
+            border-radius: 3px;
+  
+            &:disabled {
+              cursor: not-allowed;
+            }
+          }
+  
+          .text-input {
+            outline: none;
+            padding: 0 5px;
+          }
+  
+          .color-input {
+            cursor: pointer;
+          }
+  
+          .button {
+            flex-grow: 1;
           }
         }
-
-        .text-input {
-          outline: none;
-          padding: 0 5px;
-        }
-
-        .color-input {
-          cursor: pointer;
-        }
-
-        .button {
-          flex-grow: 1;
+  
+        .control-buttons {
+          display: flex;
+          gap: 5px;
+          .button {
+            flex-grow: 1;
+          }
         }
       }
 
-      .control-buttons {
-        display: flex;
-        gap: 5px;
-        .button {
-          flex-grow: 1;
-        }
+      .winner-message {
+        align-self: center;
+        font: normal normal 30px/40px sans-serif;
+        color: darkred;
       }
     }
 

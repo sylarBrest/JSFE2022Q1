@@ -2,6 +2,7 @@ import * as Render from './render';
 import * as API from './api';
 import * as Utils from './utils';
 import Listeners from './ui';
+import './self-check';
 
 import './scss/style.scss';
 

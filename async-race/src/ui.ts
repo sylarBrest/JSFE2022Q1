@@ -296,16 +296,20 @@ const raceAll: PromisingPromiseFn = async (
 const saveWinner: SpecifiedPromiseFn<WinnerResult, void> = async (
   winner: WinnerResult,
 ): Promise<void> => {
-  const winnerStatus: number = await Api.getWinnerStatus(winner.id);
-  if (winnerStatus === 404) {
-    await Api.createWinner({ id: winner.id, wins: 1, time: winner.time });
-  } else {
-    const winnerInfo: Winner = await Api.getWinner(winner.id);
-    await Api.updateWinner({
-      id: winner.id,
-      wins: winnerInfo.wins + 1,
-      time: winner.time < winnerInfo.time ? winner.time : winnerInfo.time,
-    });
+  let winnerStatus: number;
+  try {
+    winnerStatus = await Api.getWinnerStatus(winner.id);
+  } catch {
+    if (winnerStatus === 404) {
+      await Api.createWinner({ id: winner.id, wins: 1, time: winner.time });
+    } else {
+      const winnerInfo: Winner = await Api.getWinner(winner.id);
+      await Api.updateWinner({
+        id: winner.id,
+        wins: winnerInfo.wins + 1,
+        time: winner.time < winnerInfo.time ? winner.time : winnerInfo.time,
+      });
+    }
   }
 };
 

@@ -14,6 +14,7 @@ import {
   EmptyPromiseVoidFn,
   SpecifiedPromiseFn,
   PromisingPromiseFn,
+  EmptyVoidFn,
 } from './types';
 import { FINISH_FLAG_WIDTH } from './constants';
 import storage from './storage';
@@ -309,7 +310,7 @@ const saveWinner: SpecifiedPromiseFn<WinnerResult, void> = async (
   }
 };
 
-const disableButtons = (): void => {
+const disableButtons: EmptyVoidFn = (): void => {
   const raceButton = <HTMLButtonElement>document.getElementsByClassName('race-button')[0];
   const createCarButton = <HTMLButtonElement>document.getElementsByClassName('create-car-button')[0];
   const winnersButton = <HTMLButtonElement>document.getElementsByClassName('winners-button')[0];
@@ -337,7 +338,7 @@ const disableButtons = (): void => {
   nextButton.disabled = true;
 };
 
-const enableButtons = (): void => {
+const enableButtons: EmptyVoidFn = (): void => {
   const createCarButton = <HTMLButtonElement>document.getElementsByClassName('create-car-button')[0];
   const winnersButton = <HTMLButtonElement>document.getElementsByClassName('winners-button')[0];
   const generateCarsButton = <HTMLButtonElement>document.getElementsByClassName('generate-cars-button')[0];

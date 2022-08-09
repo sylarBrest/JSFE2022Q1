@@ -20,7 +20,7 @@ const storage: Storage = {
     color: Initial.color,
   },
   updateCarInputState: {
-    id: null,
+    id: 0,
     name: Initial.value,
     color: Initial.color,
     disabled: true,

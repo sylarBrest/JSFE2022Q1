@@ -74,7 +74,10 @@ const saveUpdateCarInfo: EmptyVoidFn = (): void => {
   const carUpdate = <HTMLDivElement>document.getElementsByClassName('update-car')[0];
 
   storage.updateCarInputState.id = +carUpdate.dataset.updateCarId;
-  storage.updateCarInputState.disabled = false;
+
+  if (storage.updateCarInputState.id) {
+    storage.updateCarInputState.disabled = false;
+  }
 };
 
 const cleanUpdateCarInfo: EmptyVoidFn = (): void => {
@@ -87,6 +90,34 @@ const cleanUpdateCarInfo: EmptyVoidFn = (): void => {
 };
 
 const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
+  const carUpdate = <HTMLDivElement>document.getElementsByClassName('update-car')[0];
+  const carNameInput = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
+  const carColorInput = <HTMLInputElement>document.getElementsByClassName('update-car-color')[0];
+  const updateButton = <HTMLButtonElement>document.getElementsByClassName('update-car-button')[0];
+
+  await Api.updateCar({
+    name: carNameInput.value,
+    id,
+    color: carColorInput.value,
+  });
+  await updateGarageView();
+
+  document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
+
+  carNameInput.value = Initial.value;
+  carColorInput.value = Initial.color;
+
+  carUpdate.dataset.updateCarId = '0';
+  carNameInput.disabled = true;
+  carColorInput.disabled = true;
+  updateButton.disabled = true;
+
+  cleanUpdateCarInfo();
+
+  selectedCar = null;
+};
+
+const prepareUpdate: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
   selectedCar = await Api.getCar(id);
 
   const carUpdate = <HTMLDivElement>document.getElementsByClassName('update-car')[0];
@@ -102,28 +133,6 @@ const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): 
 
   const updateButton = <HTMLButtonElement>document.getElementsByClassName('update-car-button')[0];
   updateButton.disabled = false;
-
-  updateButton.addEventListener('click', async () => {
-    await Api.updateCar({
-      name: carNameInput.value,
-      id: selectedCar.id,
-      color: carColorInput.value,
-    });
-    await updateGarageView();
-
-    document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
-
-    carNameInput.value = Initial.value;
-    carColorInput.value = Initial.color;
-
-    carNameInput.disabled = true;
-    carColorInput.disabled = true;
-    updateButton.disabled = true;
-
-    cleanUpdateCarInfo();
-
-    selectedCar = null;
-  });
 };
 
 const removeSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
@@ -209,6 +218,8 @@ const rememberInputs: EmptyVoidFn = (): void => {
 
   storage.createCarInputState.name = createCarName.value;
   storage.createCarInputState.color = createCarColor.value;
+
+  saveUpdateCarInfo();
 };
 
 const switchToGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
@@ -232,7 +243,6 @@ const switchToGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
 };
 
 const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
-  saveUpdateCarInfo();
   rememberInputs();
   await updateWinnersView();
 
@@ -248,7 +258,6 @@ const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
   }
 
   document.getElementsByClassName('main-container')[0].innerHTML += Render.renderWinnersView();
-  console.log(storage.createCarInputState, storage.updateCarInputState);
 
   await updateWinnersView();
 
@@ -453,10 +462,13 @@ export default function listeners(): void {
         addNewCar();
       }
       if (event.target.classList.contains('select-button')) {
-        updateSelectedCar(+event.target.dataset.carSelectId);
+        prepareUpdate(+event.target.dataset.carSelectId);
       }
       if (event.target.classList.contains('remove-button')) {
         removeSelectedCar(+event.target.dataset.carRemoveId);
+      }
+      if (event.target.classList.contains('update-car-button')) {
+        updateSelectedCar(selectedCar.id);
       }
       if (event.target.classList.contains('race-button')) {
         racing(carStarting);

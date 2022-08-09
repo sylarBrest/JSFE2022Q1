@@ -15,7 +15,6 @@ import {
   SpecifiedPromiseFn,
   PromisingPromiseFn,
   EmptyVoidFn,
-  NumberVoidFn,
 } from './types';
 import { FINISH_FLAG_WIDTH } from './constants';
 import storage from './storage';
@@ -59,18 +58,22 @@ const addNewCar: EmptyPromiseVoidFn = async (): Promise<void> => {
   carColorInput.value = Initial.color;
 };
 
-const saveUpdateCarInfo: NumberVoidFn = (id: number): void => {
+const saveUpdateCarInfo: EmptyVoidFn = (): void => {
   const carNameInput = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
+  storage.updateCarInputState.name = carNameInput.value;
   carNameInput.addEventListener('input', () => {
     storage.updateCarInputState.name = carNameInput.value;
   });
 
   const carColorInput = <HTMLInputElement>document.getElementsByClassName('update-car-color')[0];
+  storage.updateCarInputState.color = carColorInput.value;
   carColorInput.addEventListener('input', () => {
     storage.updateCarInputState.color = carColorInput.value;
   });
 
-  storage.updateCarInputState.id = id;
+  const carUpdate = <HTMLDivElement>document.getElementsByClassName('update-car')[0];
+
+  storage.updateCarInputState.id = +carUpdate.dataset.updateCarId;
   storage.updateCarInputState.disabled = false;
 };
 
@@ -86,6 +89,9 @@ const cleanUpdateCarInfo: EmptyVoidFn = (): void => {
 const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
   selectedCar = await Api.getCar(id);
 
+  const carUpdate = <HTMLDivElement>document.getElementsByClassName('update-car')[0];
+  carUpdate.dataset.updateCarId = id.toString();
+
   const carNameInput = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
   carNameInput.disabled = false;
   carNameInput.value = selectedCar.name;
@@ -96,8 +102,6 @@ const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): 
 
   const updateButton = <HTMLButtonElement>document.getElementsByClassName('update-car-button')[0];
   updateButton.disabled = false;
-
-  saveUpdateCarInfo(id);
 
   updateButton.addEventListener('click', async () => {
     await Api.updateCar({
@@ -228,6 +232,7 @@ const switchToGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
 };
 
 const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
+  saveUpdateCarInfo();
   rememberInputs();
   await updateWinnersView();
 

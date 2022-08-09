@@ -15,6 +15,7 @@ import {
   SpecifiedPromiseFn,
   PromisingPromiseFn,
   EmptyVoidFn,
+  NumberVoidFn,
 } from './types';
 import { FINISH_FLAG_WIDTH } from './constants';
 import storage from './storage';
@@ -58,6 +59,30 @@ const addNewCar: EmptyPromiseVoidFn = async (): Promise<void> => {
   carColorInput.value = Initial.color;
 };
 
+const saveUpdateCarInfo: NumberVoidFn = (id: number): void => {
+  const carNameInput = <HTMLInputElement>document.getElementsByClassName('update-car-text')[0];
+  carNameInput.addEventListener('input', () => {
+    storage.updateCarInputState.name = carNameInput.value;
+  });
+
+  const carColorInput = <HTMLInputElement>document.getElementsByClassName('update-car-color')[0];
+  carColorInput.addEventListener('input', () => {
+    storage.updateCarInputState.color = carColorInput.value;
+  });
+
+  storage.updateCarInputState.id = id;
+  storage.updateCarInputState.disabled = false;
+};
+
+const cleanUpdateCarInfo: EmptyVoidFn = (): void => {
+  storage.updateCarInputState = {
+    id: null,
+    name: Initial.value,
+    color: Initial.color,
+    disabled: true,
+  };
+};
+
 const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
   selectedCar = await Api.getCar(id);
 
@@ -71,6 +96,8 @@ const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): 
 
   const updateButton = <HTMLButtonElement>document.getElementsByClassName('update-car-button')[0];
   updateButton.disabled = false;
+
+  saveUpdateCarInfo(id);
 
   updateButton.addEventListener('click', async () => {
     await Api.updateCar({
@@ -88,6 +115,8 @@ const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): 
     carNameInput.disabled = true;
     carColorInput.disabled = true;
     updateButton.disabled = true;
+
+    cleanUpdateCarInfo();
 
     selectedCar = null;
   });
@@ -170,6 +199,14 @@ const sortWinners: SpecifiedPromiseFn<SortBy, void> = async (sortBy: SortBy): Pr
   document.getElementsByClassName('winners')[0].innerHTML = Render.renderWinners();
 };
 
+const rememberInputs: EmptyVoidFn = (): void => {
+  const createCarName = <HTMLInputElement>document.getElementsByClassName('create-car-text')[0];
+  const createCarColor = <HTMLInputElement>document.getElementsByClassName('create-car-color')[0];
+
+  storage.createCarInputState.name = createCarName.value;
+  storage.createCarInputState.color = createCarColor.value;
+};
+
 const switchToGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
   const winnersButton = <HTMLButtonElement>document.getElementsByClassName('winners-button')[0];
   winnersButton.disabled = false;
@@ -191,6 +228,7 @@ const switchToGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
 };
 
 const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
+  rememberInputs();
   await updateWinnersView();
 
   const garageButton = <HTMLButtonElement>document.getElementsByClassName('garage-button')[0];
@@ -205,6 +243,7 @@ const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
   }
 
   document.getElementsByClassName('main-container')[0].innerHTML += Render.renderWinnersView();
+  console.log(storage.createCarInputState, storage.updateCarInputState);
 
   await updateWinnersView();
 

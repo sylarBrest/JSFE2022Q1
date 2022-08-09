@@ -62,6 +62,18 @@ export type Point = {
   y: number,
 };
 
+export type CreateInput = {
+  name: string,
+  color: string,
+};
+
+export type UpdateInput = {
+  id: number,
+  name: string,
+  color: string,
+  disabled: boolean,
+};
+
 export type Storage = {
   view: View,
   garagePage: number,
@@ -73,6 +85,8 @@ export type Storage = {
   sortBy: SortBy,
   sortOrder: SortOrder,
   drivingAnimation: Record<string, State>,
+  createCarInputState: CreateInput,
+  updateCarInputState: UpdateInput,
 };
 
 export type Cars = {

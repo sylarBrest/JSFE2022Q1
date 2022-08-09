@@ -1,4 +1,4 @@
-import { Storage } from './types';
+import { Initial, Storage } from './types';
 import { getAllCars, getWinners } from './api';
 
 const { cars: garage, length: garageLength } = await getAllCars(1);
@@ -15,6 +15,16 @@ const storage: Storage = {
   sortBy: 'id',
   sortOrder: 'ASC',
   drivingAnimation: {},
+  createCarInputState: {
+    name: Initial.value,
+    color: Initial.color,
+  },
+  updateCarInputState: {
+    id: null,
+    name: Initial.value,
+    color: Initial.color,
+    disabled: true,
+  },
 };
 
 export default storage;

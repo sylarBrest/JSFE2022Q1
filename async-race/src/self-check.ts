@@ -7,7 +7,7 @@ console.log(
 );
 console.log('%cSelf-check:', 'font-weight: bold;');
 console.log(`
-Выполнены все пункты задания.
+All functional requirements completed.
 ✔️ 1. Basic structure (+25):
 + There should be two views on the site: "Garage" and "Winners". (+5)
 + "Garage" view should contain its name, page number, and the full amount of items in the database (how many car user has in his garage). (+5)

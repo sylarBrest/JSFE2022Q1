@@ -141,9 +141,23 @@ const prepareUpdate: SpecifiedPromiseFn<number, void> = async (id: number): Prom
   updateButton.disabled = false;
 };
 
+const isWinner = async (id: number) => {
+  const winnersIds: number[] = (await Api.getWinners(
+    1,
+    storage.sortBy,
+    storage.sortOrder,
+    storage.winnersLength,
+  )).winners.map((winnerCar: WinnerCar) => winnerCar.id);
+
+  return winnersIds.includes(id);
+};
+
 const removeSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
+  if (await isWinner(id)) {
+    await Api.deleteWinner(id);
+  }
+
   await Api.deleteCar(id);
-  await Api.deleteWinner(id);
   await updateGarageView();
   await updateWinnersView();
 
@@ -356,14 +370,7 @@ const raceAll: PromisingPromiseFn = async (
 const saveWinner: SpecifiedPromiseFn<WinnerResult, void> = async (
   winner: WinnerResult,
 ): Promise<void> => {
-  const winnersIds: number[] = (await Api.getWinners(
-    1,
-    storage.sortBy,
-    storage.sortOrder,
-    storage.winnersLength,
-  )).winners.map((winnerCar: WinnerCar) => winnerCar.id);
-
-  if (winnersIds.includes(winner.id)) {
+  if (await isWinner(winner.id)) {
     const winnerInfo: Winner = await Api.getWinner(winner.id);
     await Api.updateWinner({
       id: winner.id,

@@ -341,32 +341,6 @@ const carStopping: SpecifiedPromiseFn<number, void> = async (id: number): Promis
   }
 };
 
-const raceAll: PromisingPromiseFn = async (
-  promises: Promise<RaceResult>[],
-  indexes: number[],
-): Promise<WinnerResult> => {
-  const { finished, id, time } = await Promise.race(promises);
-
-  if (!finished) {
-    const failedIndex: number = indexes.findIndex((index: number) => index === id);
-    const restPromises: Promise<RaceResult>[] = [
-      ...promises.slice(0, failedIndex),
-      ...promises.slice(failedIndex + 1, promises.length),
-    ];
-    const restIndexes: number[] = [
-      ...indexes.slice(0, failedIndex),
-      ...indexes.slice(failedIndex + 1, indexes.length),
-    ];
-
-    return raceAll(restPromises, restIndexes);
-  }
-
-  return {
-    ...storage.garage.find((car: Car) => car.id === id),
-    time: +(time / 1000).toFixed(2),
-  };
-};
-
 const saveWinner: SpecifiedPromiseFn<WinnerResult, void> = async (
   winner: WinnerResult,
 ): Promise<void> => {
@@ -437,6 +411,32 @@ const enableButtons: EmptyVoidFn = (): void => {
   Utils.nextButtonUpdateState();
 };
 
+const raceAll: PromisingPromiseFn = async (
+  promises: Promise<RaceResult>[],
+  indexes: number[],
+): Promise<WinnerResult> => {
+  const { finished, id, time } = await Promise.race(promises).finally(() => enableButtons());
+
+  if (!finished) {
+    const failedIndex: number = indexes.findIndex((index: number) => index === id);
+    const restPromises: Promise<RaceResult>[] = [
+      ...promises.slice(0, failedIndex),
+      ...promises.slice(failedIndex + 1, promises.length),
+    ];
+    const restIndexes: number[] = [
+      ...indexes.slice(0, failedIndex),
+      ...indexes.slice(failedIndex + 1, indexes.length),
+    ];
+
+    return raceAll(restPromises, restIndexes);
+  }
+
+  return {
+    ...storage.garage.find((car: Car) => car.id === id),
+    time: +(time / 1000).toFixed(2),
+  };
+};
+
 const racing: SpecifiedPromiseFn<SpecifiedPromiseFn<number, RaceResult>, WinnerResult> = async (
   action: SpecifiedPromiseFn<number, RaceResult>,
 ): Promise<WinnerResult> => {
@@ -449,8 +449,6 @@ const racing: SpecifiedPromiseFn<SpecifiedPromiseFn<number, RaceResult>, WinnerR
   winnerMessage.innerHTML = `${winner.name} won in ${winner.time} s`;
 
   saveWinner(winner);
-
-  enableButtons();
 
   return winner;
 };

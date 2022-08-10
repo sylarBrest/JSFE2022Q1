@@ -141,13 +141,13 @@ const prepareUpdate: SpecifiedPromiseFn<number, void> = async (id: number): Prom
   updateButton.disabled = false;
 };
 
-const isWinner = async (id: number) => {
+const isWinner: SpecifiedPromiseFn<number, boolean> = async (id: number): Promise<boolean> => {
   const winnersIds: number[] = (await Api.getWinners(
     1,
     storage.sortBy,
     storage.sortOrder,
     storage.winnersLength,
-  )).winners.map((winnerCar: WinnerCar) => winnerCar.id);
+  )).winners.map((winner: WinnerCar) => winner.id);
 
   return winnersIds.includes(id);
 };
@@ -288,7 +288,7 @@ const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
 const carStarting: SpecifiedPromiseFn<number, RaceResult> = async (
   id: number,
 ): Promise<RaceResult> => {
-  const startButton = Array.from(
+  const startButton: HTMLButtonElement = Array.from(
     <HTMLCollectionOf<HTMLButtonElement>>document.getElementsByClassName('start-button'),
   ).find((button: HTMLButtonElement) => +button.dataset.carStartId === id);
 
@@ -319,7 +319,7 @@ const carStarting: SpecifiedPromiseFn<number, RaceResult> = async (
 };
 
 const carStopping: SpecifiedPromiseFn<number, void> = async (id: number): Promise<void> => {
-  const stopButton = Array.from(
+  const stopButton: HTMLButtonElement = Array.from(
     <HTMLCollectionOf<HTMLButtonElement>>document.getElementsByClassName('stop-button'),
   ).find((button: HTMLButtonElement) => +button.dataset.carStopId === id);
 
@@ -418,14 +418,14 @@ const raceAll: PromisingPromiseFn = async (
   const { finished, id, time } = await Promise.race(promises).finally(() => enableButtons());
 
   if (!finished) {
-    const failedIndex: number = indexes.findIndex((index: number) => index === id);
+    const failedCarIndex: number = indexes.findIndex((index: number) => index === id);
     const restPromises: Promise<RaceResult>[] = [
-      ...promises.slice(0, failedIndex),
-      ...promises.slice(failedIndex + 1, promises.length),
+      ...promises.slice(0, failedCarIndex),
+      ...promises.slice(failedCarIndex + 1, promises.length),
     ];
     const restIndexes: number[] = [
-      ...indexes.slice(0, failedIndex),
-      ...indexes.slice(failedIndex + 1, indexes.length),
+      ...indexes.slice(0, failedCarIndex),
+      ...indexes.slice(failedCarIndex + 1, indexes.length),
     ];
 
     return raceAll(restPromises, restIndexes);
@@ -459,7 +459,7 @@ const resetting: EmptyPromiseVoidFn = async (): Promise<void> => {
 
   storage.garage.map(({ id }) => carStopping(id));
 
-  const winnerMessage = document.getElementsByClassName('winner-message')[0];
+  const winnerMessage = <HTMLDivElement>document.getElementsByClassName('winner-message')[0];
   winnerMessage.innerHTML = '';
 
   const raceButton = <HTMLButtonElement>document.getElementsByClassName('race-button')[0];

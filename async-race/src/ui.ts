@@ -28,6 +28,11 @@ const updateGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
   storage.garage = cars;
   storage.garageLength = length;
 
+  if (!cars.length) {
+    storage.garagePage -= 1;
+    updateGarageView();
+  }
+
   Utils.prevButtonUpdateState();
   Utils.nextButtonUpdateState();
 };

@@ -15,6 +15,7 @@ import {
   SpecifiedPromiseFn,
   PromisingPromiseFn,
   EmptyVoidFn,
+  WinnerCar,
 } from './types';
 import { FINISH_FLAG_WIDTH } from './constants';
 import storage from './storage';
@@ -82,7 +83,7 @@ const saveUpdateCarInfo: EmptyVoidFn = (): void => {
 
 const cleanUpdateCarInfo: EmptyVoidFn = (): void => {
   storage.updateCarInputState = {
-    id: null,
+    id: 0,
     name: Initial.value,
     color: Initial.color,
     disabled: true,
@@ -350,16 +351,22 @@ const raceAll: PromisingPromiseFn = async (
 const saveWinner: SpecifiedPromiseFn<WinnerResult, void> = async (
   winner: WinnerResult,
 ): Promise<void> => {
-  const winnerStatus: number = await Api.getWinnerStatus(winner.id);
-  if (winnerStatus === 404) {
-    await Api.createWinner({ id: winner.id, wins: 1, time: winner.time });
-  } else {
+  const winnersIds: number[] = (await Api.getWinners(
+    1,
+    storage.sortBy,
+    storage.sortOrder,
+    storage.winnersLength,
+  )).winners.map((winnerCar: WinnerCar) => winnerCar.id);
+
+  if (winnersIds.includes(winner.id)) {
     const winnerInfo: Winner = await Api.getWinner(winner.id);
     await Api.updateWinner({
       id: winner.id,
       wins: winnerInfo.wins + 1,
       time: winner.time < winnerInfo.time ? winner.time : winnerInfo.time,
     });
+  } else {
+    await Api.createWinner({ id: winner.id, wins: 1, time: winner.time });
   }
 };
 

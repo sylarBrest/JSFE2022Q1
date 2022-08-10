@@ -122,9 +122,8 @@ export type GetWinnersFn = (
   page?: number,
   sortBy?: SortBy,
   sortOrder?: SortOrder,
+  limit?: number,
 ) => Promise<Winners>;
-
-export type GetStatusFn = (id: number) => Promise<number>;
 
 export type EmptyStringFn = () => string;
 

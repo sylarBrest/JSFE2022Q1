@@ -9,7 +9,6 @@ import {
   SpecifiedPromiseFn,
   GetCarsFn,
   GetWinnersFn,
-  GetStatusFn,
 } from './types';
 import {
   MAX_ITEMS_PER_PAGE_GARAGE,
@@ -117,8 +116,9 @@ export const getWinners: GetWinnersFn = async (
   pageNumber = 1,
   sort = 'id',
   order = 'ASC',
+  limit = MAX_ITEMS_PER_PAGE_WINNERS,
 ): Promise<Winners> => {
-  const url = `${BASE_URL_WINNERS}?_page=${pageNumber}&_limit=${MAX_ITEMS_PER_PAGE_WINNERS}&_sort=${sort}&_order=${order}`;
+  const url = `${BASE_URL_WINNERS}?_page=${pageNumber}&_limit=${limit}&_sort=${sort}&_order=${order}`;
   const res: Response = await fetch(url);
   const data: Winner[] = await res.json();
 
@@ -138,12 +138,6 @@ export const getWinner: SpecifiedPromiseFn<number, Winner> = async (
   const data: Winner = await res.json();
 
   return data;
-};
-
-export const getWinnerStatus: GetStatusFn = async (id: number): Promise<number> => {
-  const res: Response = await fetch(`${BASE_URL_WINNERS}/${id}`);
-
-  return res.status;
 };
 
 export const createWinner: SaveFn<Winner> = async (winner: Winner): Promise<Winner> => {

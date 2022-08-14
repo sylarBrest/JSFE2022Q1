@@ -1,0 +1,414 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="assets/reset.css">
+		<link rel="stylesheet" href="assets/reveal.css">
+		<link rel="stylesheet" href="assets/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background="#40a579">
+					<h1 style="margin-top: 300px;">CSS Grid Layout</h1>
+					<p style="margin-top: 200px;">by Aliaksandr Astrouski</p>
+				</section>
+				<section data-background="#40a579"><h3>What is GRID?</h3></section>
+				<section data-background="#40a579">
+					<section><h3>Terminology</h3></section>
+					<section>
+						<p>Grid-container</p>
+						<img data-src="img/terminology/grid-container.png">
+					</section>
+					<section>
+						<p>Grid-lines</p>
+						<img data-src="img/terminology/grid-lines.png">
+					</section>
+					<section>
+						<p>Grid-track</p>
+						<img data-src="img/terminology/grid-track.png">
+					</section>
+					<section>
+						<p>Grid-cell</p>
+						<img data-src="img/terminology/grid-cell.png">
+					</section>
+					<section>
+						<p>Grid-item</p>
+						<img data-src="img/terminology/grid-item.png">
+					</section>
+					<section>
+						<p>Grid-area</p>
+						<img data-src="img/terminology/grid-area.png">
+					</section>
+					<section>
+						<p>Grid-gap</p>
+						<img data-src="img/terminology/grid-gap.png">
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Create grid-container</h3></section>
+					<section>
+						<pre>
+							<code>display: grid;</code>
+							<img data-src="img/create/grid.png">
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code>display: inline-grid;</code>
+							<img data-src="img/create/inline-grid.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Columns and rows</h3></section>
+					<section>
+						<pre>
+							<code>grid-template-columns: 100px 5em 10% 6vw;
+grid-template-rows: 7rem 10vh;</code>
+							<img data-src="img/create/columns-rows.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Using length units</h3></section>
+					<section>
+						<p>Absolute lengths:</p>
+						<p style="display: flex; flex-direction: column;">
+							<span>px,&nbsp;&nbsp;pt</span>
+							<span>cm,&nbsp;&nbsp;mm</span>
+							<span>...</span>
+						</p>
+					</section>
+					<section>
+						<p>Relative lengths:</p>
+						<p style="display: flex; flex-direction: column;">
+							<span>em,&nbsp;&nbsp;rem</span>
+							<span>vh,&nbsp;&nbsp;vw</span>
+							<span>%</span>
+							<span>...</span>
+						</p>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>New relative unit - Fr</h3></section>
+					<section>
+						<p>Usage:</p>
+						<pre>
+							<code>grid-template-columns: 1fr 2fr 1fr;
+grid-template-rows: 1fr 1fr;</code>
+							<img data-src="img/fr/fr-1.png">
+						</pre>
+					</section>
+					<section>
+						<p>Mixing:</p>
+						<pre>
+							<code>grid-template-columns: 1fr 100px 1fr;
+grid-template-rows: 1fr 15vh;</code>
+							<img data-src="img/fr/fr-2.png">
+						</pre>
+					</section>
+					<section>
+						<p>Similar:</p>
+						<pre>
+							<code>grid-template-columns: 1fr 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr;</code>
+same as
+<code>grid-template-columns: 25% 25% 25% 25%;
+grid-template-rows: 50% 50%;</code>
+same as
+<code>grid-template-columns: 100px 100px 100px 100px;
+grid-template-rows: 100px 100px;</code>
+							<img data-src="img/fr/fr-3.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Keywords</h3></section>
+					<section>
+						<p>min-content</p>
+						<pre>
+							<code>grid-template-columns: min-content 1fr 2fr 1fr;
+grid-template-rows: 1fr 1fr;</code>
+							<img data-src="img/keywords/min-content.png">
+						</pre>
+					</section>
+					<section>
+						<p>max-content</p>
+						<pre>
+							<code>grid-template-columns: min-content max-content 1fr 1fr;
+grid-template-rows: 1fr 1fr;</code>
+							<img data-src="img/keywords/max-content.png">
+						</pre>
+					</section>
+					<section>
+						<p>fit-content(value)</p>
+						<pre>
+							<code>grid-template-columns: min-content max-content fit-content(120px);
+grid-template-rows: 1fr 1fr;</code>
+							<img data-src="img/keywords/fit-content.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Repeat</h3></section>
+					<section>
+						<p>Usage:</p>
+						<pre>
+							<code>grid-template-columns: 1fr 1fr 1fr 1fr;</code>
+same as
+<code>grid-template-columns: repeat(4, 1fr);</code>
+							<img data-src="img/repeat/usage.png">
+						</pre>
+					</section>
+					<section>
+						<p>multiple tracks</p>
+						<pre>
+							<code>grid-template-columns: repeat(2, 1fr 2fr);</code>
+							<img data-src="img/repeat/multiple.png">
+						</pre>
+					</section>
+					<section>
+						<p>among other values</p>
+						<pre>
+							<code>grid-template-columns: 1fr repeat(2, 2fr) 1fr;</code>
+							<img data-src="img/repeat/inside.png">
+						</pre>
+					</section>
+					<section>
+						<p>auto-fill / auto-fit</p>
+						<pre>
+							<code>grid-template-columns: repeat(auto-fill, 100px) 90px 60px;</code>
+							<img data-src="img/repeat/auto-fill.png">
+						</pre>
+					</section>
+					<section>
+						<p>minmax()</p>
+						<pre>
+							<code>grid-template-columns: repeat(auto-fill, minmax(5em, 2fr)) 2em 3vw;</code>
+							<img data-src="img/repeat/auto-fill.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Grid areas</h3></section>
+					<section>
+						<p>Positioning</p>
+						<pre>
+							<code>grid-row-start: 1;
+grid-row-end: 3;
+grid-column-start: 2;
+grid-column-end: 4;</code>
+							<img data-src="img/lines/grid-area.png">
+						</pre>
+					</section>
+					<section>
+						<p>Shorthands</p>
+						<pre>
+							<code>grid-row: 1 / 3;
+grid-column: 2 / 4;</code>
+same as
+<code>grid-area: 1 / 2 / 3 / 4;</code>
+						</pre>
+					</section>
+					<section>
+						<p>span</p>
+						<pre>
+							<code>grid-row: 1 / span 2;
+grid-column: 2 / span 2;</code>
+same as
+<code>grid-area: 1 / 2 / span 2 / span 2;</code>
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Named grid lines</h3></section>
+					<section>
+						<p>Naming lines</p>
+						<pre>
+							<code>grid-template-columns: [start-line] 1fr [middle-left-line] 1fr ...
+	... [center-line] 1fr [middle-right-line] 1fr [end-line];
+grid-template-rows: [start-line] 1fr [center-line] 1fr [end-line];</code>
+							<img data-src="img/lines/named-lines.png">
+						</pre>
+					</section>
+					<section>
+						<p>Positioning areas</p>
+						<pre>
+							<code>grid-area: start-line / middle-left-line / span 2 / span 2;</code>
+							<img data-src="img/lines/named-lines-area.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Positioning items</h3></section>
+					<section>
+						<p>By line numbers</p>
+						<pre>
+							<code>grid-area: 2 / 3;</code>
+							<img data-src="img/lines/line-pos.png">
+						</pre>
+					</section>
+					<section>
+						<p>Order property</p>
+						<pre>
+							<code>Order: &lt;integer&gt;;</code>
+							<img data-src="img/lines/order.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Items alignment and gaps</h3></section>
+					<section>
+						<p>align-items</p>
+						<pre>
+							<code>.grid-container {
+	align-items: start;
+}</code>
+							<img data-src="img/alignment/align-items.png">
+						</pre>
+					</section>
+					<section>
+						<p>align-self</p>
+						<pre>
+							<code>.grid-cell1 {
+	align-self: start;
+}
+.grid-cell2 {
+	align-self: center;
+}</code>
+							<img data-src="img/alignment/align-self.png">
+						</pre>
+					</section>
+					<section>
+						<p>justify-items</p>
+						<pre>
+							<code>.grid-container {
+	justify-items: start;
+}</code>
+							<img data-src="img/alignment/justify-items.png">
+						</pre>
+					</section>
+					<section>
+						<p>justify-self</p>
+						<pre>
+							<code>.grid-cell1 {
+	justify-self: start;
+}
+.grid-cell2 {
+	justify-self: end;
+}</code>
+							<img data-src="img/alignment/justify-self.png">
+						</pre>
+					</section>
+					<section>
+						<p>Gaps</p>
+						<pre>
+							<code>row-gap: 10px;
+column-gap: 20px;</code>
+same as
+<code>gap: 10px 20px;</code>
+							<img data-src="img/alignment/grid-gaps.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Tracks alignment</h3></section>
+					<section>
+						<p>justify-content & align-content</p>
+						<p style="font-size: 28px;">normal&nbsp;&nbsp;&nbsp;stretch<br>start&nbsp;&nbsp;&nbsp;end&nbsp;&nbsp;&nbsp;center<br>space-around&nbsp;&nbsp;&nbsp;space-between&nbsp;&nbsp;&nbsp;space-evenly<br>baseline&nbsp;&nbsp;&nbsp;first baseline&nbsp;&nbsp;&nbsp;last baseline</p>
+					</section>
+					<section>
+						<p>grid styles</p>
+						<pre><code>.grid-container {
+	width: 400px;
+	height: 400px;
+	display: grid;
+	grid-template-columns: repeat(3, 100px);
+	grid-template-rows: repeat(3, 100px);
+	border: 3px solid red;
+}</code></pre>
+					</section>
+					<section>
+						<p>justify-content</p>
+						<pre><code>.grid-container {
+	justify-content: space-between;
+}</code>
+							<img data-src="img/tracks/justify-content.png">
+						</pre>
+					</section>
+					<section>
+						<p>align-content</p>
+						<pre>
+							<code>.grid-container {
+	align-content: space-between;
+}</code>
+							<img data-src="img/tracks/align-content.png">
+						</pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<section><h3>Template areas</h3></section>
+					<section>
+						<p>Usage:</p>
+						<pre>
+							<code>grid-template-areas: "header header header"
+										 "aside main main"
+										 "footer footer footer";</code>
+							<img data-src="img/areas/template-areas.png">
+						</pre>
+					</section>
+					<section>
+						<p>Positioning</p>
+						<pre>
+							<code>.grid-cell1 {
+	grid-area: header;
+}
+.grid-cell2 {
+	grid-area: aside;
+}
+.grid-cell3 {
+	grid-area: main;
+}
+.grid-cell4 {
+	grid-area: footer;
+}</code>
+						</pre>
+					</section>
+					<section>
+						<p>Result</p>
+						<pre>  <img data-src="img/areas/position-areas.png"></pre>
+					</section>
+				</section>
+				<section data-background="#40a579">
+					<h3>Browser support</h3>
+					<img data-src="img/caniuse.png">
+				</section>
+				<section data-background="#40a579"><h3>Thanks for attention</h3></section>
+			</div>
+		</div>
+
+		<script src="assets/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

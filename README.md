@@ -8,3 +8,5 @@ Private repository for @sylarbrest
 [Online Store](https://rolling-scopes-school.github.io/sylarbrest-JSFE2022Q1/online-store "Bicycle Online Store")
 
 [Async Race](https://rolling-scopes-school.github.io/sylarbrest-JSFE2022Q1/async-race "Async Race")
+
+[Presentation](https://rolling-scopes-school.github.io/sylarbrest-JSFE2022Q1/presentation "CSS Grid Layout")

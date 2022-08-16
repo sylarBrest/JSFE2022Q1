@@ -1,5 +1,5 @@
 import { EInitial, TStorage } from './types';
-import { getAllCars, getWinners } from './api';
+import { getAllCars, getWinners } from './api/index';
 
 const { cars: garage, length: garageLength } = await getAllCars(1);
 const { winners, length: winnersLength } = await getWinners(1);

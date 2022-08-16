@@ -1,4 +1,4 @@
-import * as Api from './api';
+import * as Api from './api/index';
 import * as Utils from './utils';
 import * as Render from './render';
 import {

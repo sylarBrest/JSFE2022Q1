@@ -3,8 +3,9 @@ import { ESortingBy } from './types';
 
 export default function listeners(): void {
   document.body.addEventListener('click', (event: MouseEvent) => {
-    if (event.target instanceof HTMLButtonElement) {
-      const buttonClassList = event.target.classList;
+    const clickTarget: EventTarget = event.target;
+    if (clickTarget instanceof HTMLButtonElement) {
+      const buttonClassList: DOMTokenList = clickTarget.classList;
       switch (true) {
         case buttonClassList.contains('garage-button'):
           Ui.switchToGarageView();
@@ -13,10 +14,10 @@ export default function listeners(): void {
           Ui.switchToWinnersView();
           break;
         case buttonClassList.contains('select-button'):
-          Ui.prepareUpdate(+event.target.dataset.carSelectId);
+          Ui.prepareUpdate(+clickTarget.dataset.carSelectId);
           break;
         case buttonClassList.contains('remove-button'):
-          Ui.removeSelectedCar(+event.target.dataset.carRemoveId);
+          Ui.removeSelectedCar(+clickTarget.dataset.carRemoveId);
           break;
         case buttonClassList.contains('create-car-button'):
           Ui.addNewCar();
@@ -34,10 +35,10 @@ export default function listeners(): void {
           Ui.generateCars();
           break;
         case buttonClassList.contains('start-button'):
-          Ui.carStarting(+event.target.dataset.carStartId);
+          Ui.carStarting(+clickTarget.dataset.carStartId);
           break;
         case buttonClassList.contains('stop-button'):
-          Ui.carStopping(+event.target.dataset.carStopId);
+          Ui.carStopping(+clickTarget.dataset.carStopId);
           break;
         case buttonClassList.contains('next-button'):
           Ui.nextPage();
@@ -50,8 +51,8 @@ export default function listeners(): void {
       }
     }
 
-    if (event.target instanceof HTMLTableCellElement) {
-      const tHeadClassList = event.target.classList;
+    if (clickTarget instanceof HTMLTableCellElement) {
+      const tHeadClassList: DOMTokenList = clickTarget.classList;
       switch (true) {
         case tHeadClassList.contains('wins-sort'):
           Ui.sortWinners(ESortingBy.wins);

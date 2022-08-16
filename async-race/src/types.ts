@@ -25,87 +25,87 @@ export enum EInitial {
   value = '',
 }
 
-export type Car = {
+export type TCar = {
   color: string,
   id?: number,
   name: string,
 };
 
-export type Engine = {
+export type TEngine = {
   velocity: number,
   distance: number,
 };
 
-export type Winner = {
+export type TWinner = {
   id?: number,
   wins: number,
   time: number,
 };
 
-export type WinnerCar = {
+export type TWinnerCar = {
   id?: number,
   wins: number,
   time: number,
-  car: Car,
+  car: TCar,
 };
 
-export type Success = {
+export type TSuccess = {
   success: boolean,
 };
 
-export type State = {
+export type TState = {
   [key: string]: number;
 };
 
-export type Point = {
+export type TPoint = {
   x: number,
   y: number,
 };
 
-export type CreateInput = {
+export type TCreateInput = {
   name: string,
   color: string,
 };
 
-export type UpdateInput = {
+export type TUpdateInput = {
   id: number,
   name: string,
   color: string,
   disabled: boolean,
 };
 
-export type Storage = {
+export type TStorage = {
   view: View,
   garagePage: number,
-  garage: Car[],
+  garage: TCar[],
   garageLength: number,
   winnersPage: number,
-  winners: WinnerCar[],
+  winners: TWinnerCar[],
   winnersLength: number,
   sortBy: SortBy,
   sortOrder: SortOrder,
-  drivingAnimation: Record<string, State>,
-  createCarInputState: CreateInput,
-  updateCarInputState: UpdateInput,
+  drivingAnimation: Record<string, TState>,
+  createCarInputState: TCreateInput,
+  updateCarInputState: TUpdateInput,
 };
 
-export type Cars = {
-  cars: Car[],
+export type TCars = {
+  cars: TCar[],
   length: number,
 };
 
-export type Winners = {
-  winners: WinnerCar[],
+export type TWinners = {
+  winners: TWinnerCar[],
   length: number,
 };
 
-export type RaceResult = {
+export type TRaceResult = {
   finished: boolean,
   id: number,
   time: number,
 };
 
-export type WinnerResult = {
+export type TWinnerResult = {
   id?: number,
   name: string,
   color: string,
@@ -116,14 +116,14 @@ export type SaveFn<T> = (element: T) => Promise<T>;
 
 export type SpecifiedPromiseFn<T, U> = (param: T) => Promise<U>;
 
-export type GetCarsFn = (page?: number) => Promise<Cars>;
+export type GetCarsFn = (page?: number) => Promise<TCars>;
 
 export type GetWinnersFn = (
   page?: number,
   sortBy?: SortBy,
   sortOrder?: SortOrder,
   limit?: number,
-) => Promise<Winners>;
+) => Promise<TWinners>;
 
 export type EmptyStringFn = () => string;
 
@@ -131,15 +131,15 @@ export type EmptyVoidFn = () => void;
 
 export type DrawFn = (color: string) => string;
 
-export type RenderCarFn = (car: Car) => string;
+export type RenderCarFn = (car: TCar) => string;
 
-export type RenderWinnerFn = (winner: WinnerCar, index: number) => string;
+export type RenderWinnerFn = (winner: TWinnerCar, index: number) => string;
 
 export type EmptyPromiseVoidFn = () => Promise<void>;
 
-export type CarArrayFn = (count?: number) => Car[];
+export type CarArrayFn = (count?: number) => TCar[];
 
-export type PointFn = (element: HTMLDivElement) => Point;
+export type PointFn = (element: HTMLDivElement) => TPoint;
 
 export type DistanceFn = (car: HTMLDivElement, flag: HTMLDivElement) => number;
 
@@ -147,11 +147,11 @@ export type AnimationStateFn = (
   car: HTMLDivElement,
   distance: number,
   animationTime: number,
-) => State;
+) => TState;
 
 export type NumberVoidFn = (timestamp: number) => void;
 
 export type PromisingPromiseFn = (
-  promises: Promise<RaceResult>[],
+  promises: Promise<TRaceResult>[],
   indexes: number[],
-) => Promise<WinnerResult>;
+) => Promise<TWinnerResult>;

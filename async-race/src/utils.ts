@@ -1,8 +1,8 @@
 import {
   EViews,
-  Car,
-  Point,
-  State,
+  TCar,
+  TPoint,
+  TState,
   EmptyStringFn,
   EmptyVoidFn,
   CarArrayFn,
@@ -74,11 +74,11 @@ export const nextButtonUpdateState: EmptyVoidFn = (): void => {
 
 export const getRandomCars: CarArrayFn = (
   count: number = MAX_CREATED_CARS,
-): Car[] => new Array<Car>(count)
+): TCar[] => new Array<TCar>(count)
   .fill({ name: getRandomCarName(), color: getRandomCarColor() })
-  .map((car: Car) => ({ name: getRandomCarName(), color: getRandomCarColor() }) || car);
+  .map((car: TCar) => ({ name: getRandomCarName(), color: getRandomCarColor() }) || car);
 
-const getElementCenter: PointFn = (element: HTMLDivElement): Point => {
+const getElementCenter: PointFn = (element: HTMLDivElement): TPoint => {
   const {
     top,
     left,
@@ -96,8 +96,8 @@ export const getDistanceToDrive: DistanceFn = (
   car: HTMLDivElement,
   flag: HTMLDivElement,
 ): number => {
-  const start: Point = getElementCenter(car);
-  const finish: Point = getElementCenter(flag);
+  const start: TPoint = getElementCenter(car);
+  const finish: TPoint = getElementCenter(flag);
 
   return Math.hypot(start.x - finish.x, start.y - finish.y);
 };
@@ -106,9 +106,9 @@ export const animateDriving: AnimationStateFn = (
   car: HTMLDivElement,
   distance: number,
   animationTime: number,
-): State => {
+): TState => {
   let start: number = null;
-  const state: State = {};
+  const state: TState = {};
   const raceCar: HTMLDivElement = car;
 
   const step: NumberVoidFn = (timestamp: number) => {

@@ -1,7 +1,7 @@
 import {
   ESortingBy,
-  Car,
-  WinnerCar,
+  TCar,
+  TWinnerCar,
   EmptyStringFn,
   DrawFn,
   RenderCarFn,
@@ -72,7 +72,7 @@ const drawFinish: EmptyStringFn = (): string => `
   </svg>
 `;
 
-const renderCarPath: RenderCarFn = (car: Car): string => `
+const renderCarPath: RenderCarFn = (car: TCar): string => `
   <div class="car-path" data-car-path-id="${car.id}">
     <div class="car-controls">
       <button class="button select-button" data-car-select-id="${car.id}">Select</button>
@@ -92,7 +92,7 @@ const renderCarPath: RenderCarFn = (car: Car): string => `
   </div>
 `;
 
-const renderWinnerLine: RenderWinnerFn = (winner: WinnerCar, index: number): string => {
+const renderWinnerLine: RenderWinnerFn = (winner: TWinnerCar, index: number): string => {
   const winnerNumber: number = (storage.winnersPage - 1) * MAX_ITEMS_PER_PAGE_WINNERS + index + 1;
 
   return `
@@ -108,7 +108,7 @@ const renderWinnerLine: RenderWinnerFn = (winner: WinnerCar, index: number): str
 
 const renderTrack: EmptyStringFn = (): string => `
   <div class="track">
-    ${storage.garage.reduce((track: string, car: Car) => track + renderCarPath(car), '')}
+    ${storage.garage.reduce((track: string, car: TCar) => track + renderCarPath(car), '')}
   </div>
 `;
 
@@ -134,7 +134,7 @@ export const renderWinners: EmptyStringFn = (): string => {
     : '';
   const winnersLines: string = storage.winners.reduce((
     lines: string,
-    winner: WinnerCar,
+    winner: TWinnerCar,
     index: number,
   ) => lines + renderWinnerLine(winner, index), '');
 

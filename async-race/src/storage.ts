@@ -1,10 +1,10 @@
-import { EInitial, Storage } from './types';
+import { EInitial, TStorage } from './types';
 import { getAllCars, getWinners } from './api';
 
 const { cars: garage, length: garageLength } = await getAllCars(1);
 const { winners, length: winnersLength } = await getWinners(1);
 
-const storage: Storage = {
+const storage: TStorage = {
   view: 'Garage',
   garagePage: 1,
   garage,

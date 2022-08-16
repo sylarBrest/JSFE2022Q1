@@ -6,21 +6,21 @@ import {
   ESortingBy,
   ESortingOrder,
   EViews,
-  Car,
-  RaceResult,
   SortBy,
-  Winner,
-  WinnerResult,
+  TCar,
+  TRaceResult,
+  TWinner,
+  TWinnerCar,
+  TWinnerResult,
   EmptyPromiseVoidFn,
   SpecifiedPromiseFn,
   PromisingPromiseFn,
   EmptyVoidFn,
-  WinnerCar,
 } from './types';
 import { FINISH_FLAG_WIDTH } from './constants';
 import storage from './storage';
 
-let selectedCar: Car = null;
+let selectedCar: TCar = null;
 
 const updateGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
   const { cars, length } = await Api.getAllCars(storage.garagePage);
@@ -147,7 +147,7 @@ const isWinner: SpecifiedPromiseFn<number, boolean> = async (id: number): Promis
     storage.sortBy,
     storage.sortOrder,
     storage.winnersLength,
-  )).winners.map((winner: WinnerCar) => winner.id);
+  )).winners.map((winner: TWinnerCar) => winner.id);
 
   return winnersIds.includes(id);
 };
@@ -165,7 +165,7 @@ const removeSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): 
 };
 
 const generateCars: EmptyPromiseVoidFn = async (): Promise<void> => {
-  await Promise.all(Utils.getRandomCars().map((car: Car) => Api.createCar(car)));
+  await Promise.all(Utils.getRandomCars().map((car: TCar) => Api.createCar(car)));
   await updateGarageView();
 
   document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
@@ -285,9 +285,9 @@ const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
   winnersButton.disabled = true;
 };
 
-const carStarting: SpecifiedPromiseFn<number, RaceResult> = async (
+const carStarting: SpecifiedPromiseFn<number, TRaceResult> = async (
   id: number,
-): Promise<RaceResult> => {
+): Promise<TRaceResult> => {
   const startButton: HTMLButtonElement = Array.from(
     <HTMLCollectionOf<HTMLButtonElement>>document.getElementsByClassName('start-button'),
   ).find((button: HTMLButtonElement) => +button.dataset.carStartId === id);
@@ -341,11 +341,11 @@ const carStopping: SpecifiedPromiseFn<number, void> = async (id: number): Promis
   }
 };
 
-const saveWinner: SpecifiedPromiseFn<WinnerResult, void> = async (
-  winner: WinnerResult,
+const saveWinner: SpecifiedPromiseFn<TWinnerResult, void> = async (
+  winner: TWinnerResult,
 ): Promise<void> => {
   if (await isWinner(winner.id)) {
-    const winnerInfo: Winner = await Api.getWinner(winner.id);
+    const winnerInfo: TWinner = await Api.getWinner(winner.id);
     await Api.updateWinner({
       id: winner.id,
       wins: winnerInfo.wins + 1,
@@ -412,14 +412,14 @@ const enableButtons: EmptyVoidFn = (): void => {
 };
 
 const raceAll: PromisingPromiseFn = async (
-  promises: Promise<RaceResult>[],
+  promises: Promise<TRaceResult>[],
   indexes: number[],
-): Promise<WinnerResult> => {
+): Promise<TWinnerResult> => {
   const { finished, id, time } = await Promise.race(promises).finally(() => enableButtons());
 
   if (!finished) {
     const failedCarIndex: number = indexes.findIndex((index: number) => index === id);
-    const restPromises: Promise<RaceResult>[] = [
+    const restPromises: Promise<TRaceResult>[] = [
       ...promises.slice(0, failedCarIndex),
       ...promises.slice(failedCarIndex + 1, promises.length),
     ];
@@ -432,18 +432,18 @@ const raceAll: PromisingPromiseFn = async (
   }
 
   return {
-    ...storage.garage.find((car: Car) => car.id === id),
+    ...storage.garage.find((car: TCar) => car.id === id),
     time: +(time / 1000).toFixed(2),
   };
 };
 
-const racing: SpecifiedPromiseFn<SpecifiedPromiseFn<number, RaceResult>, WinnerResult> = async (
-  action: SpecifiedPromiseFn<number, RaceResult>,
-): Promise<WinnerResult> => {
+const racing: SpecifiedPromiseFn<SpecifiedPromiseFn<number, TRaceResult>, TWinnerResult> = async (
+  action: SpecifiedPromiseFn<number, TRaceResult>,
+): Promise<TWinnerResult> => {
   disableButtons();
 
-  const promises: Promise<RaceResult>[] = storage.garage.map(({ id }) => action(id));
-  const winner: WinnerResult = await raceAll(promises, storage.garage.map((car: Car) => car.id));
+  const promises: Promise<TRaceResult>[] = storage.garage.map(({ id }) => action(id));
+  const winner: TWinnerResult = await raceAll(promises, storage.garage.map((car: TCar) => car.id));
 
   const winnerMessage = <HTMLDivElement>document.getElementsByClassName('winner-message')[0];
   winnerMessage.innerHTML = `${winner.name} won in ${winner.time} s`;

@@ -1,0 +1,38 @@
+.button {
+  padding: 3px;
+  height: 27px;
+  background-color: #ffb18c;
+  min-width: 60px;
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: #ffc477;
+
+    &:disabled {
+      background-color: #ffb18c;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.start-button,
+.stop-button {
+  min-width: 27px;
+  background-color: unset;
+
+  &:disabled{
+    &:hover {
+      background-color: unset;
+    }
+  }
+
+  &:hover {
+    background-color: #ffc477;
+  }
+}

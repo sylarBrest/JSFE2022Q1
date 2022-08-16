@@ -131,33 +131,6 @@ grid-template-rows: 100px 100px;</code>
 					</section>
 				</section>
 				<section data-background="#40a579">
-					<section><h3>Keywords</h3></section>
-					<section>
-						<p>min-content</p>
-						<pre>
-							<code>grid-template-columns: min-content 1fr 2fr 1fr;
-grid-template-rows: 1fr 1fr;</code>
-							<img data-src="img/keywords/min-content.png">
-						</pre>
-					</section>
-					<section>
-						<p>max-content</p>
-						<pre>
-							<code>grid-template-columns: min-content max-content 1fr 1fr;
-grid-template-rows: 1fr 1fr;</code>
-							<img data-src="img/keywords/max-content.png">
-						</pre>
-					</section>
-					<section>
-						<p>fit-content(value)</p>
-						<pre>
-							<code>grid-template-columns: min-content max-content fit-content(120px);
-grid-template-rows: 1fr 1fr;</code>
-							<img data-src="img/keywords/fit-content.png">
-						</pre>
-					</section>
-				</section>
-				<section data-background="#40a579">
 					<section><h3>Repeat</h3></section>
 					<section>
 						<p>Usage:</p>
@@ -182,27 +155,18 @@ same as
 							<img data-src="img/repeat/inside.png">
 						</pre>
 					</section>
-					<section>
-						<p>auto-fill / auto-fit</p>
-						<pre>
-							<code>grid-template-columns: repeat(auto-fill, 100px) 90px 60px;</code>
-							<img data-src="img/repeat/auto-fill.png">
-						</pre>
-					</section>
-					<section>
-						<p>minmax()</p>
-						<pre>
-							<code>grid-template-columns: repeat(auto-fill, minmax(5em, 2fr)) 2em 3vw;</code>
-							<img data-src="img/repeat/auto-fill.png">
-						</pre>
-					</section>
 				</section>
 				<section data-background="#40a579">
 					<section><h3>Positioning items</h3></section>
 					<section>
 						<p>By line numbers</p>
-						<pre>
-							<code>grid-area: 2 / 3;</code>
+						<pre><code>grid-row-start: 2;
+grid-column-start: 3;</code>
+same as
+<code>grid-row: 2;
+grid-column: 3;</code>
+same as
+<code>grid-area: 2 / 3;</code>
 							<img data-src="img/lines/line-pos.png">
 						</pre>
 					</section>
@@ -348,7 +312,7 @@ same as
 						<p>align-content</p>
 						<pre>
 							<code>.grid-container {
-	align-content: space-between;
+	align-content: center;
 }</code>
 							<img data-src="img/tracks/align-content.png">
 						</pre>

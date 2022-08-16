@@ -1,6 +1,6 @@
 import * as Api from './api/index';
 import * as Utils from './utils';
-import * as Render from './render';
+import * as Render from './render/index';
 import {
   EInitial,
   ESortingBy,

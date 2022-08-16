@@ -1,5 +1,5 @@
-import * as Render from './render';
 import * as Api from './api/index';
+import * as Render from './render/index';
 import * as Utils from './utils';
 import listeners from './ui';
 import './self-check';

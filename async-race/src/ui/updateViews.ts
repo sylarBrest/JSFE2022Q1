@@ -19,11 +19,11 @@ export const updateGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
 };
 
 export const updateWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
-  const { winners, length } = await getWinners(
-    storage.winnersPage,
-    storage.sortBy,
-    storage.sortOrder,
-  );
+  const { winners, length } = await getWinners({
+    page: storage.winnersPage,
+    sortBy: storage.sortBy,
+    sortOrder: storage.sortOrder,
+  });
 
   storage.winners = winners;
   storage.winnersLength = length;

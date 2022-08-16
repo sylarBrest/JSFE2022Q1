@@ -19,12 +19,12 @@ export const cleanUpdateCarInfo: EmptyVoidFn = (): void => {
 export const isWinner: SpecifiedPromiseFn<number, boolean> = async (
   id: number,
 ): Promise<boolean> => {
-  const winnersIds: number[] = (await getWinners(
-    1,
-    storage.sortBy,
-    storage.sortOrder,
-    storage.winnersLength,
-  )).winners.map((winner: TWinnerCar) => winner.id);
+  const winnersIds: number[] = (await getWinners({
+    page: 1,
+    sortBy: storage.sortBy,
+    sortOrder: storage.sortOrder,
+    limit: storage.winnersLength,
+  })).winners.map((winner: TWinnerCar) => winner.id);
 
   return winnersIds.includes(id);
 };

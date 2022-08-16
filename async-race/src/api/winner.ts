@@ -8,12 +8,12 @@ import {
 import { MAX_ITEMS_PER_PAGE_WINNERS, BASE_URL_WINNERS } from '../constants';
 import { getCar } from './car';
 
-export const getWinners: GetWinnersFn = async (
-  pageNumber = 1,
-  sort = 'id',
-  order = 'ASC',
+export const getWinners: GetWinnersFn = async ({
+  page: pageNumber = 1,
+  sortBy: sort = 'id',
+  sortOrder: order = 'ASC',
   limit = MAX_ITEMS_PER_PAGE_WINNERS,
-): Promise<TWinners> => {
+}): Promise<TWinners> => {
   const url = `${BASE_URL_WINNERS}?_page=${pageNumber}&_limit=${limit}&_sort=${sort}&_order=${order}`;
   const res: Response = await fetch(url);
   const data: TWinner[] = await res.json();

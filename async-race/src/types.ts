@@ -112,18 +112,20 @@ export type TWinnerResult = {
   time: number,
 };
 
+export type TGetWinnerOptions = {
+  page: number,
+  sortBy: SortBy,
+  sortOrder: SortOrder,
+  limit: number,
+};
+
 export type SaveFn<T> = (element: T) => Promise<T>;
 
 export type SpecifiedPromiseFn<T, U> = (param: T) => Promise<U>;
 
 export type GetCarsFn = (page?: number) => Promise<TCars>;
 
-export type GetWinnersFn = (
-  page?: number,
-  sortBy?: SortBy,
-  sortOrder?: SortOrder,
-  limit?: number,
-) => Promise<TWinners>;
+export type GetWinnersFn = (options: Partial<TGetWinnerOptions>) => Promise<TWinners>;
 
 export type EmptyStringFn = () => string;
 

@@ -1,21 +1,21 @@
-import * as Api from './api/index';
-import * as Render from './render/index';
-import * as Utils from './utils';
+import { getAllCars } from './api/index';
+import { renderHeader, renderMain, renderFooter } from './render/index';
+import { prevButtonUpdateState, nextButtonUpdateState } from './utils';
 import listeners from './ui';
 import './self-check';
 
 import './scss/style.scss';
 
-Api.getAllCars();
+getAllCars();
 
 document.body.innerHTML = `
-  ${Render.renderHeader()}
-  ${Render.renderFooter()}
+  ${renderHeader()}
+  ${renderFooter()}
 `;
 
-Render.renderMain();
+renderMain();
 
-Utils.prevButtonUpdateState();
-Utils.nextButtonUpdateState();
+prevButtonUpdateState();
+nextButtonUpdateState();
 
 listeners();

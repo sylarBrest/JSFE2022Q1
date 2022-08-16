@@ -2,13 +2,13 @@ import * as Api from './api';
 import * as Utils from './utils';
 import * as Render from './render';
 import {
+  EInitial,
+  ESortingBy,
+  ESortingOrder,
+  EViews,
   Car,
-  Initial,
   RaceResult,
   SortBy,
-  SortingBy,
-  SortingOrder,
-  Views,
   Winner,
   WinnerResult,
   EmptyPromiseVoidFn,
@@ -60,8 +60,8 @@ const addNewCar: EmptyPromiseVoidFn = async (): Promise<void> => {
 
   document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 
-  carNameInput.value = Initial.value;
-  carColorInput.value = Initial.color;
+  carNameInput.value = EInitial.value;
+  carColorInput.value = EInitial.color;
 };
 
 const saveUpdateCarInfo: EmptyVoidFn = (): void => {
@@ -89,8 +89,8 @@ const saveUpdateCarInfo: EmptyVoidFn = (): void => {
 const cleanUpdateCarInfo: EmptyVoidFn = (): void => {
   storage.updateCarInputState = {
     id: 0,
-    name: Initial.value,
-    color: Initial.color,
+    name: EInitial.value,
+    color: EInitial.color,
     disabled: true,
   };
 };
@@ -110,8 +110,8 @@ const updateSelectedCar: SpecifiedPromiseFn<number, void> = async (id: number): 
 
   document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
 
-  carNameInput.value = Initial.value;
-  carColorInput.value = Initial.color;
+  carNameInput.value = EInitial.value;
+  carColorInput.value = EInitial.color;
 
   carUpdate.dataset.updateCarId = '0';
   carNameInput.disabled = true;
@@ -173,13 +173,13 @@ const generateCars: EmptyPromiseVoidFn = async (): Promise<void> => {
 
 const nextPage: EmptyPromiseVoidFn = async (): Promise<void> => {
   switch (storage.view) {
-    case Views.garage: {
+    case EViews.garage: {
       storage.garagePage += 1;
       await updateGarageView();
       document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
       break;
     }
-    case Views.winners: {
+    case EViews.winners: {
       storage.winnersPage += 1;
       await updateWinnersView();
       document.getElementsByClassName('winners')[0].innerHTML = Render.renderWinners();
@@ -192,13 +192,13 @@ const nextPage: EmptyPromiseVoidFn = async (): Promise<void> => {
 
 const prevPage: EmptyPromiseVoidFn = async (): Promise<void> => {
   switch (storage.view) {
-    case Views.garage: {
+    case EViews.garage: {
       storage.garagePage -= 1;
       await updateGarageView();
       document.getElementsByClassName('garage')[0].innerHTML = Render.renderGarage();
       break;
     }
-    case Views.winners: {
+    case EViews.winners: {
       storage.winnersPage -= 1;
       await updateWinnersView();
       document.getElementsByClassName('winners')[0].innerHTML = Render.renderWinners();
@@ -214,15 +214,15 @@ const sortWinners: SpecifiedPromiseFn<SortBy, void> = async (sortBy: SortBy): Pr
   storage.sortBy = sortBy;
 
   switch (storage.sortBy) {
-    case SortingBy.id:
+    case ESortingBy.id:
       break;
     default: {
       if (prevSortBy === storage.sortBy) {
-        storage.sortOrder = storage.sortOrder === SortingOrder.asc
-          ? SortingOrder.desc
-          : SortingOrder.asc;
+        storage.sortOrder = storage.sortOrder === ESortingOrder.asc
+          ? ESortingOrder.desc
+          : ESortingOrder.asc;
       } else {
-        storage.sortOrder = SortingOrder.asc;
+        storage.sortOrder = ESortingOrder.asc;
       }
     }
   }
@@ -246,7 +246,7 @@ const switchToGarageView: EmptyPromiseVoidFn = async (): Promise<void> => {
   const winnersButton = <HTMLButtonElement>document.getElementsByClassName('winners-button')[0];
   winnersButton.disabled = false;
 
-  storage.view = Views.garage;
+  storage.view = EViews.garage;
 
   const currentView = <HTMLDivElement>document.getElementsByClassName('winners-view')[0];
 
@@ -269,7 +269,7 @@ const switchToWinnersView: EmptyPromiseVoidFn = async (): Promise<void> => {
   const garageButton = <HTMLButtonElement>document.getElementsByClassName('garage-button')[0];
   garageButton.disabled = false;
 
-  storage.view = Views.winners;
+  storage.view = EViews.winners;
 
   const currentView = <HTMLDivElement>document.getElementsByClassName('garage-view')[0];
 
@@ -512,10 +512,10 @@ export default function listeners(): void {
 
     if (event.target instanceof HTMLTableCellElement) {
       if (event.target.classList.contains('wins-sort')) {
-        sortWinners(SortingBy.wins);
+        sortWinners(ESortingBy.wins);
       }
       if (event.target.classList.contains('time-sort')) {
-        sortWinners(SortingBy.time);
+        sortWinners(ESortingBy.time);
       }
     }
   });

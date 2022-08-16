@@ -1,6 +1,6 @@
 import {
+  ESortingBy,
   Car,
-  SortingBy,
   WinnerCar,
   EmptyStringFn,
   DrawFn,
@@ -126,10 +126,10 @@ export const renderGarage: EmptyStringFn = (): string => `
 `;
 
 export const renderWinners: EmptyStringFn = (): string => {
-  const styleSortByWins: string = storage.sortBy === SortingBy.wins
+  const styleSortByWins: string = storage.sortBy === ESortingBy.wins
     ? storage.sortOrder.toLowerCase()
     : '';
-  const styleSortByTime: string = storage.sortBy === SortingBy.time
+  const styleSortByTime: string = storage.sortBy === ESortingBy.time
     ? storage.sortOrder.toLowerCase()
     : '';
   const winnersLines: string = storage.winners.reduce((

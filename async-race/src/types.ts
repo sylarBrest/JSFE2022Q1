@@ -4,23 +4,23 @@ export type SortOrder = 'ASC' | 'DESC';
 
 export type View = 'Garage' | 'Winners';
 
-export enum SortingBy {
+export enum ESortingBy {
   id = 'id',
   wins = 'wins',
   time = 'time',
 }
 
-export enum SortingOrder {
+export enum ESortingOrder {
   asc = 'ASC',
   desc = 'DESC',
 }
 
-export enum Views {
+export enum EViews {
   garage = 'Garage',
   winners = 'Winners',
 }
 
-export enum Initial {
+export enum EInitial {
   color = '#ffffff',
   value = '',
 }

@@ -1,8 +1,8 @@
 import {
+  EViews,
   Car,
   Point,
   State,
-  Views,
   EmptyStringFn,
   EmptyVoidFn,
   CarArrayFn,
@@ -42,10 +42,10 @@ export const prevButtonUpdateState: EmptyVoidFn = (): void => {
   const prevButton = <HTMLButtonElement>document.getElementsByClassName('prev-button')[0];
 
   switch (storage.view) {
-    case Views.garage:
+    case EViews.garage:
       prevButton.disabled = storage.garagePage === 1;
       break;
-    case Views.winners:
+    case EViews.winners:
       prevButton.disabled = storage.winnersPage === 1;
       break;
     default:
@@ -57,12 +57,12 @@ export const nextButtonUpdateState: EmptyVoidFn = (): void => {
   const nextButton = <HTMLButtonElement>document.getElementsByClassName('next-button')[0];
 
   switch (storage.view) {
-    case Views.garage:
+    case EViews.garage:
       nextButton.disabled = storage.garagePage >= Math.ceil(
         storage.garageLength / MAX_ITEMS_PER_PAGE_GARAGE,
       );
       break;
-    case Views.winners:
+    case EViews.winners:
       nextButton.disabled = storage.winnersPage >= Math.ceil(
         storage.winnersLength / MAX_ITEMS_PER_PAGE_WINNERS,
       );
